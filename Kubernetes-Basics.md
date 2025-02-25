@@ -12,3 +12,6 @@ Scaling involves increasing or decreasing the number of containers running your 
 
 ### **Load Balancing:**
 Load balancing distributes network traffic evenly across multiple containers, ensuring no single container gets overwhelmed. Kubernetes **Services** handle load balancing by routing requests to the appropriate Pods.
+
+### **Batch Execution:**
+Batch execution refers to running jobs or tasks in a sequence. In Kubernetes, **Jobs** create and manage Pods that perform batch processing tasks. Once the tasks are completed, the Pods terminate.
