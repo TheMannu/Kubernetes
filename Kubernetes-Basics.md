@@ -9,3 +9,6 @@ Scheduling is the process of assigning containers to run on available nodes (ser
 
 ### **Scaling:**
 Scaling involves increasing or decreasing the number of containers running your application. **Horizontal scaling** adds more container instances, while **vertical scaling** increases the resources allocated to existing containers. Kubernetes handles scaling automatically based on resource utilization or manually.
+
+### **Load Balancing:**
+Load balancing distributes network traffic evenly across multiple containers, ensuring no single container gets overwhelmed. Kubernetes **Services** handle load balancing by routing requests to the appropriate Pods.
