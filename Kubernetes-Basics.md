@@ -6,3 +6,6 @@ Deployment refers to the process of releasing applications to the desired enviro
 
 ### **Scheduling:**
 Scheduling is the process of assigning containers to run on available nodes (servers). Kubernetes uses a scheduler to determine which node is best suited for a container based on factors like resource availability (CPU, memory).
+
+### **Scaling:**
+Scaling involves increasing or decreasing the number of containers running your application. **Horizontal scaling** adds more container instances, while **vertical scaling** increases the resources allocated to existing containers. Kubernetes handles scaling automatically based on resource utilization or manually.
