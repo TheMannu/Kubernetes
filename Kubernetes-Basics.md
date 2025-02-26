@@ -15,3 +15,6 @@ Load balancing distributes network traffic evenly across multiple containers, en
 
 ### **Batch Execution:**
 Batch execution refers to running jobs or tasks in a sequence. In Kubernetes, **Jobs** create and manage Pods that perform batch processing tasks. Once the tasks are completed, the Pods terminate.
+
+### **Rollbacks:**
+A rollback is the process of reverting to a previous version of an application in case of issues during or after deployment. Kubernetes facilitates easy rollbacks by maintaining deployment history.
