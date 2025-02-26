@@ -24,3 +24,7 @@ Monitoring involves tracking the health and performance of containers, applicati
 
 ### **Kubernetes = Orchestration:**
 Kubernetes is a container orchestration platform that automates container management tasks such as deployment, scaling, networking, and monitoring. It is a leading orchestration tool for containerized applications.
+
+### **Containers:**
+Containers encapsulate an application and its dependencies into a lightweight, portable unit. Containers run consistently across different environments, from development to production, by abstracting the underlying operating system.
+
