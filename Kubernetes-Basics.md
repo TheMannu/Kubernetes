@@ -21,3 +21,6 @@ A rollback is the process of reverting to a previous version of an application i
 
 ### **Monitoring:**
 Monitoring involves tracking the health and performance of containers, applications, and infrastructure. In Kubernetes, tools like **Prometheus**, **Grafana**, or built-in logs/metrics are used to monitor cluster performance, resource usage, and detect issues.
+
+### **Kubernetes = Orchestration:**
+Kubernetes is a container orchestration platform that automates container management tasks such as deployment, scaling, networking, and monitoring. It is a leading orchestration tool for containerized applications.
