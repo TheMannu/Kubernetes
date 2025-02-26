@@ -18,3 +18,6 @@ Batch execution refers to running jobs or tasks in a sequence. In Kubernetes, **
 
 ### **Rollbacks:**
 A rollback is the process of reverting to a previous version of an application in case of issues during or after deployment. Kubernetes facilitates easy rollbacks by maintaining deployment history.
+
+### **Monitoring:**
+Monitoring involves tracking the health and performance of containers, applications, and infrastructure. In Kubernetes, tools like **Prometheus**, **Grafana**, or built-in logs/metrics are used to monitor cluster performance, resource usage, and detect issues.
