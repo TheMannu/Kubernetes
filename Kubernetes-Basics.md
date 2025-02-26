@@ -28,3 +28,5 @@ Kubernetes is a container orchestration platform that automates container manage
 ### **Containers:**
 Containers encapsulate an application and its dependencies into a lightweight, portable unit. Containers run consistently across different environments, from development to production, by abstracting the underlying operating system.
 
+
+- **Self-Healing**: Kubernetes automatically restarts failed containers, replaces containers, and kills containers that don't respond to your user-defined health checks.
