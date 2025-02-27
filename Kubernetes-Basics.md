@@ -35,3 +35,6 @@ Containers encapsulate an application and its dependencies into a lightweight, p
 - **Auto-scaling**: Adjusts the number of replicas automatically based on CPU utilization or other custom metrics.
 - **Multi-Tenancy**: Supports namespaces to isolate different projects or teams within the same cluster.
 - **Persistent Storage Orchestration**: Kubernetes can automatically mount and unmount storage from public clouds, private clouds, or on-premise storage solutions.
+- **Networking**: Enables communication between Pods, handles service discovery, and manages internal cluster networking.
+  
+Kubernetes is highly versatile, making it ideal for deploying, scaling, and managing containerized applications in various environments.
