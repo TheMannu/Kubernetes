@@ -33,3 +33,4 @@ Containers encapsulate an application and its dependencies into a lightweight, p
 - **Horizontal Scaling**: Automatically adjusts the number of Pods based on CPU usage or other application metrics.
 - **Secret and Configuration Management**: Securely manages sensitive data, such as passwords or API tokens, and allows updating application configurations without rebuilding container images.
 - **Auto-scaling**: Adjusts the number of replicas automatically based on CPU utilization or other custom metrics.
+- **Multi-Tenancy**: Supports namespaces to isolate different projects or teams within the same cluster.
