@@ -40,3 +40,7 @@ Containers encapsulate an application and its dependencies into a lightweight, p
 Kubernetes is highly versatile, making it ideal for deploying, scaling, and managing containerized applications in various environments.
 
 Kubernetes is a powerful container management and orchestration tool that provides several key features to manage and deploy containerized applications efficiently. Here are its core features:
+
+
+### 1. **Deployment**:
+   - Manages Pods and ReplicaSets, ensuring that the desired state of your application is maintained across the cluster.
