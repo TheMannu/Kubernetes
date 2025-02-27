@@ -47,3 +47,7 @@ Kubernetes is a powerful container management and orchestration tool that provid
    
 ### 2. **Scheduling**:
    - Assigns containers to run on available nodes based on resource requirements and availability.
+
+### 3. **Scaling**:
+   - Automatically adjusts the number of running containers (Pods) either manually or automatically based on CPU usage or custom metrics.
+   - **Horizontal Scaling** allows adjusting the number of Pods dynamically based on metrics.
