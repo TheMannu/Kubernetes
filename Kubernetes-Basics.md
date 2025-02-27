@@ -34,3 +34,4 @@ Containers encapsulate an application and its dependencies into a lightweight, p
 - **Secret and Configuration Management**: Securely manages sensitive data, such as passwords or API tokens, and allows updating application configurations without rebuilding container images.
 - **Auto-scaling**: Adjusts the number of replicas automatically based on CPU utilization or other custom metrics.
 - **Multi-Tenancy**: Supports namespaces to isolate different projects or teams within the same cluster.
+- **Persistent Storage Orchestration**: Kubernetes can automatically mount and unmount storage from public clouds, private clouds, or on-premise storage solutions.
