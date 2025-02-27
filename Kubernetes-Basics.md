@@ -44,3 +44,6 @@ Kubernetes is a powerful container management and orchestration tool that provid
 
 ### 1. **Deployment**:
    - Manages Pods and ReplicaSets, ensuring that the desired state of your application is maintained across the cluster.
+   
+### 2. **Scheduling**:
+   - Assigns containers to run on available nodes based on resource requirements and availability.
