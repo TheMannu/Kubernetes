@@ -31,3 +31,4 @@ Containers encapsulate an application and its dependencies into a lightweight, p
 
 - **Self-Healing**: Kubernetes automatically restarts failed containers, replaces containers, and kills containers that don't respond to your user-defined health checks.
 - **Horizontal Scaling**: Automatically adjusts the number of Pods based on CPU usage or other application metrics.
+- **Secret and Configuration Management**: Securely manages sensitive data, such as passwords or API tokens, and allows updating application configurations without rebuilding container images.
