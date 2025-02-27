@@ -38,3 +38,5 @@ Containers encapsulate an application and its dependencies into a lightweight, p
 - **Networking**: Enables communication between Pods, handles service discovery, and manages internal cluster networking.
   
 Kubernetes is highly versatile, making it ideal for deploying, scaling, and managing containerized applications in various environments.
+
+Kubernetes is a powerful container management and orchestration tool that provides several key features to manage and deploy containerized applications efficiently. Here are its core features:
