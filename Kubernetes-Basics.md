@@ -57,3 +57,6 @@ Kubernetes is a powerful container management and orchestration tool that provid
 
 ### 5. **Batch Execution**:
    - Manages the execution of jobs using Kubernetes Jobs, creating Pods and retrying execution until they successfully terminate.
+
+### 6. **Rollbacks**:
+   - Reverts to a previous version of your application deployment to ensure stability if issues arise.
