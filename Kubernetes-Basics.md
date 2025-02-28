@@ -60,3 +60,6 @@ Kubernetes is a powerful container management and orchestration tool that provid
 
 ### 6. **Rollbacks**:
    - Reverts to a previous version of your application deployment to ensure stability if issues arise.
+
+### 7. **Monitoring**:
+   - Tracks container and cluster health using tools like Prometheus and Grafana to provide real-time insights into performance.
