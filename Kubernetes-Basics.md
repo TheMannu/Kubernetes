@@ -66,3 +66,6 @@ Kubernetes is a powerful container management and orchestration tool that provid
 
 ### 8. **Self-Healing**:
    - Kubernetes automatically restarts failed containers, replaces containers, and kills containers that don't respond to health checks.
+
+### 9. **Secret and Configuration Management**:
+   - Manages sensitive data like passwords or API tokens securely, allowing configuration updates without rebuilding container images.
