@@ -55,6 +55,9 @@ Kubernetes is a powerful container management and orchestration tool that provid
 
 ### 3. **Scaling**:
    - Automatically adjusts the number of running containers (Pods) either manually or automatically based on CPU usage or custom metrics.
+
+   Kubernetes can automatically scale applications up or down depending on traffic or resource usage. This scaling can be horizontal (adding more Pods) or vertical (allocating more resources to a Pod).
+   
    - **Horizontal Scaling** allows adjusting the number of Pods dynamically based on metrics.
 
 ### 4. **Load Balancing**:
