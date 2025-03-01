@@ -69,3 +69,6 @@ Kubernetes is a powerful container management and orchestration tool that provid
 
 ### 9. **Secret and Configuration Management**:
    - Manages sensitive data like passwords or API tokens securely, allowing configuration updates without rebuilding container images.
+
+### 10. **Auto-Scaling**:
+   - Automatically adjusts the number of replicas based on resource utilization or custom metrics.
