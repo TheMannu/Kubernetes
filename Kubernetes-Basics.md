@@ -75,3 +75,6 @@ Kubernetes is a powerful container management and orchestration tool that provid
 
 ### 11. **Multi-Tenancy**:
    - Supports namespaces, allowing you to isolate different teams or projects within the same Kubernetes cluster.
+
+### 12. **Persistent Storage Orchestration**:
+   - Allows automatic mounting and unmounting of storage from various sources, including public clouds, private clouds, or on-premise storage solutions.
