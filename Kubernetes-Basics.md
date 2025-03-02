@@ -60,6 +60,8 @@ Kubernetes is a powerful container management and orchestration tool that provid
    
    - **Horizontal Scaling** allows adjusting the number of Pods dynamically based on metrics.
 
+   Kubernetes adjusts the number of running Pods dynamically based on resource usage like CPU or memory, allowing your application to handle traffic spikes without manual intervention.
+
 ### 4. **Load Balancing**:
    - Distributes network traffic across multiple containers to ensure high availability and reliability.
 
