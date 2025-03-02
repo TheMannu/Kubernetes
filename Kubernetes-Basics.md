@@ -78,6 +78,8 @@ Kubernetes is a powerful container management and orchestration tool that provid
 ### 7. **Monitoring**:
    - Tracks container and cluster health using tools like Prometheus and Grafana to provide real-time insights into performance.
 
+   Kubernetes tracks the health and performance of containers and the cluster as a whole. Tools like Prometheus and Grafana can be integrated to visualize and monitor metrics and alerts.
+
 ### 8. **Self-Healing**:
    - Kubernetes automatically restarts failed containers, replaces containers, and kills containers that don't respond to health checks.
 
