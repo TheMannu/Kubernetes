@@ -112,9 +112,12 @@ Kubernetes is a powerful container management and orchestration tool that provid
 
    Kubernetes enables communication between Pods, managing internal networking and service discovery. Each Pod gets its own IP address, and Services expose Pods via ports for internal/external traffic.
 
-
 15. **Volume**: 
    A Kubernetes Volume is a storage directory accessible to Pods, ensuring data persistence, even if the container crashes.
 
 16. **Namespaces**: 
-    Divide your cluster resources between multiple users or teams by creating namespaces. This enables isolation and resource management across projects.
+   Divide your cluster resources between multiple users or teams by creating namespaces. This enables isolation and resource management across projects.
+
+
+17. **Replica Set**: 
+   Manages the number of Pod replicas running at any given time, ensuring the right amount of availability for the application.
