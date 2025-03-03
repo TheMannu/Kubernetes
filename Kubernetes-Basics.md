@@ -96,9 +96,11 @@ Kubernetes is a powerful container management and orchestration tool that provid
    - Automatically adjusts the number of replicas based on resource utilization or custom metrics.
 
    Kubernetes can automatically increase or decrease the number of Pods or nodes in the cluster based on custom metrics or CPU utilization, improving performance without manual oversight.
-   
+
 ### 11. **Multi-Tenancy**:
    - Supports namespaces, allowing you to isolate different teams or projects within the same Kubernetes cluster.
+
+   Using namespaces, Kubernetes allows different teams or projects to work in isolation within the same cluster. Each namespace has its own resources and access controls.
 
 ### 12. **Persistent Storage Orchestration**:
    - Allows automatic mounting and unmounting of storage from various sources, including public clouds, private clouds, or on-premise storage solutions.
