@@ -105,5 +105,7 @@ Kubernetes is a powerful container management and orchestration tool that provid
 ### 12. **Persistent Storage Orchestration**:
    - Allows automatic mounting and unmounting of storage from various sources, including public clouds, private clouds, or on-premise storage solutions.
 
+   Kubernetes manages storage by automatically mounting and unmounting volumes to Pods from cloud providers or on-prem storage, ensuring data is retained across restarts.
+
 ### 13. **Networking**:
    - Manages internal cluster networking, enabling communication between Pods and providing service discovery mechanisms.
