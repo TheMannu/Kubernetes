@@ -111,3 +111,8 @@ Kubernetes is a powerful container management and orchestration tool that provid
    - Manages internal cluster networking, enabling communication between Pods and providing service discovery mechanisms.
 
    Kubernetes enables communication between Pods, managing internal networking and service discovery. Each Pod gets its own IP address, and Services expose Pods via ports for internal/external traffic.
+
+
+15. **Volume**: 
+   A Kubernetes Volume is a storage directory accessible to Pods, ensuring data persistence, even if the container crashes.
+
