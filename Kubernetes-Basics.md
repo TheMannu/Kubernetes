@@ -95,6 +95,8 @@ Kubernetes is a powerful container management and orchestration tool that provid
 ### 10. **Auto-Scaling**:
    - Automatically adjusts the number of replicas based on resource utilization or custom metrics.
 
+   Kubernetes can automatically increase or decrease the number of Pods or nodes in the cluster based on custom metrics or CPU utilization, improving performance without manual oversight.
+   
 ### 11. **Multi-Tenancy**:
    - Supports namespaces, allowing you to isolate different teams or projects within the same Kubernetes cluster.
 
