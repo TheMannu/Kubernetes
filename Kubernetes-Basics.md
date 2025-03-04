@@ -127,3 +127,6 @@ Kubernetes is a powerful container management and orchestration tool that provid
 
 19. **Job**: 
    A Kubernetes Job creates one or more Pods and retries them until a specified number successfully terminate, useful for batch processing or scheduled tasks.
+
+20. **DaemonSet**: 
+   Ensures a Pod runs on all (or some) nodes in the cluster, typically used for logging, monitoring, or system administration tasks.
