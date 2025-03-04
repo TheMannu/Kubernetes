@@ -118,7 +118,6 @@ Kubernetes is a powerful container management and orchestration tool that provid
 16. **Namespaces**: 
    Divide your cluster resources between multiple users or teams by creating namespaces. This enables isolation and resource management across projects.
 
-
 17. **Replica Set**: 
    Manages the number of Pod replicas running at any given time, ensuring the right amount of availability for the application.
 
@@ -130,3 +129,6 @@ Kubernetes is a powerful container management and orchestration tool that provid
 
 20. **DaemonSet**: 
    Ensures a Pod runs on all (or some) nodes in the cluster, typically used for logging, monitoring, or system administration tasks.
+
+21. **K8s API/Desired State**: 
+   Kubernetes constantly checks if the current state of the cluster matches the desired state defined by the user, making adjustments to reach that state.
