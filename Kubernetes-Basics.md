@@ -124,6 +124,8 @@ Kubernetes is a powerful container management and orchestration tool that provid
 18. **StatefulSet**: 
    Kubernetes manages stateful applications using StatefulSets, ensuring Pods are deployed in a predictable order and retain their state across restarts.
 
+   Kubernetes uses StatefulSets to manage stateful applications, ensuring Pods are deployed in a defined order and retain their identity and state across restarts. This feature is essential for applications that require persistent storage and stable network identities.
+
 19. **Job**: 
    A Kubernetes Job creates one or more Pods and retries them until a specified number successfully terminate, useful for batch processing or scheduled tasks.
 
