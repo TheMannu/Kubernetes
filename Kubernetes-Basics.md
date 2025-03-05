@@ -129,6 +129,8 @@ Kubernetes is a powerful container management and orchestration tool that provid
 
 20. **DaemonSet**: 
    Ensures a Pod runs on all (or some) nodes in the cluster, typically used for logging, monitoring, or system administration tasks.
+    
+   A DaemonSet ensures that a specific Pod runs on all (or a selected subset of) nodes in the cluster. This is commonly used for system-level tasks like monitoring, logging, or managing configurations across the cluster.
 
 21. **K8s API/Desired State**: 
    Kubernetes constantly checks if the current state of the cluster matches the desired state defined by the user, making adjustments to reach that state.
