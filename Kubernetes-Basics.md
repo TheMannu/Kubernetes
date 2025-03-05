@@ -118,6 +118,8 @@ Kubernetes is a powerful container management and orchestration tool that provid
 16. **Namespaces**: 
    Divide your cluster resources between multiple users or teams by creating namespaces. This enables isolation and resource management across projects.
 
+   Namespaces allow for the division of cluster resources among multiple users or teams. This organizational feature promotes isolation and resource management, enabling different projects to coexist within the same Kubernetes cluster without interference.
+
 17. **Replica Set**: 
    Manages the number of Pod replicas running at any given time, ensuring the right amount of availability for the application.
 
