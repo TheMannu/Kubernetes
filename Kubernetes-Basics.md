@@ -121,6 +121,8 @@ Kubernetes is a powerful container management and orchestration tool that provid
 17. **Replica Set**: 
    Manages the number of Pod replicas running at any given time, ensuring the right amount of availability for the application.
 
+   A Replica Set is responsible for managing the number of Pod replicas running at any given time. It ensures that the specified number of replicas is maintained, providing high availability and fault tolerance for applications.
+
 18. **StatefulSet**: 
    Kubernetes manages stateful applications using StatefulSets, ensuring Pods are deployed in a predictable order and retain their state across restarts.
 
