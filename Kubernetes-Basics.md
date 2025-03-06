@@ -92,6 +92,8 @@ Kubernetes is a powerful container management and orchestration tool that provid
 
    Kubernetes manages sensitive data, such as passwords, SSH keys, or API tokens, securely and separately from your application code. You can update configurations without rebuilding container images.
 
+   Kubernetes securely manages sensitive information, such as passwords, SSH keys, and API tokens, separately from application code. This separation allows for easier updates to configurations without needing to rebuild container images, enhancing security and flexibility.
+
 ### 10. **Auto-Scaling**:
    - Automatically adjusts the number of replicas based on resource utilization or custom metrics.
 
