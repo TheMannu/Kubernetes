@@ -115,6 +115,8 @@ Kubernetes is a powerful container management and orchestration tool that provid
 15. **Volume**: 
    A Kubernetes Volume is a storage directory accessible to Pods, ensuring data persistence, even if the container crashes.
 
+   A Kubernetes Volume represents a storage directory accessible to Pods, ensuring that data persists beyond the lifecycle of individual containers. Volumes support various storage backends and retain data even if the container crashes.
+
 16. **Namespaces**: 
    Divide your cluster resources between multiple users or teams by creating namespaces. This enables isolation and resource management across projects.
 
