@@ -97,6 +97,8 @@ Kubernetes is a powerful container management and orchestration tool that provid
 
    Kubernetes can automatically increase or decrease the number of Pods or nodes in the cluster based on custom metrics or CPU utilization, improving performance without manual oversight.
 
+   Kubernetes can automatically increase or decrease the number of Pods or nodes in the cluster based on custom metrics, such as CPU utilization. This auto-scaling feature optimizes resource allocation, improving application performance while minimizing costs.
+
 ### 11. **Multi-Tenancy**:
    - Supports namespaces, allowing you to isolate different teams or projects within the same Kubernetes cluster.
 
