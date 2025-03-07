@@ -79,6 +79,8 @@ Kubernetes is a powerful container management and orchestration tool that provid
 
    Kubernetes enables rolling back to a previous version of an application if a deployment encounters issues. It ensures no downtime while switching between application versions.
 
+   If a deployment encounters issues, Kubernetes allows for easy rollbacks to a previous version of the application. This capability ensures continuity and availability, as it enables seamless transitions between application versions without downtime.
+
 ### 7. **Monitoring**:
    - Tracks container and cluster health using tools like Prometheus and Grafana to provide real-time insights into performance.
 
