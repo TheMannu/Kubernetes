@@ -88,6 +88,8 @@ Kubernetes is a powerful container management and orchestration tool that provid
    - Kubernetes automatically restarts failed containers, replaces containers, and kills containers that don't respond to health checks.
 
    Kubernetes automatically restarts failed containers, replaces containers that crash or don’t respond to health checks, and reschedules them on different nodes if needed.
+
+   Kubernetes enhances resilience by automatically restarting failed containers, replacing those that crash, and rescheduling Pods on different nodes if necessary. This self-healing mechanism ensures that applications remain available and functional despite failures.
    
 ### 9. **Secret and Configuration Management**:
    - Manages sensitive data like passwords or API tokens securely, allowing configuration updates without rebuilding container images.
