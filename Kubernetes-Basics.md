@@ -74,6 +74,8 @@ Kubernetes is a powerful container management and orchestration tool that provid
 
    With Kubernetes Jobs, you can run containers that execute tasks and terminate once the job is done. This is useful for tasks that require execution in sequence or at specific intervals.
 
+   Kubernetes supports batch execution through Jobs, which manage the execution of containers that perform specific tasks. These Jobs are designed to complete once their tasks are finished, making them suitable for processes that need to run in sequence or at scheduled intervals.
+
 ### 6. **Rollbacks**:
    - Reverts to a previous version of your application deployment to ensure stability if issues arise.
 
