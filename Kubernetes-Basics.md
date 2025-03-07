@@ -69,6 +69,8 @@ Kubernetes is a powerful container management and orchestration tool that provid
 
    Kubernetes distributes network traffic evenly across multiple instances of a service (Pods) to ensure efficient usage of resources and high availability.
 
+   To ensure high availability and efficient resource usage, Kubernetes balances network traffic across multiple instances of a service (Pods). It uses Services to distribute incoming requests evenly, preventing any single Pod from becoming a bottleneck and maintaining performance under load.
+
 ### 5. **Batch Execution**:
    - Manages the execution of jobs using Kubernetes Jobs, creating Pods and retrying execution until they successfully terminate.
 
