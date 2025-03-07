@@ -62,6 +62,8 @@ Kubernetes is a powerful container management and orchestration tool that provid
 
    Kubernetes adjusts the number of running Pods dynamically based on resource usage like CPU or memory, allowing your application to handle traffic spikes without manual intervention.
 
+   Kubernetes dynamically adjusts the number of running Pods based on real-time resource usage, such as CPU and memory metrics. This automatic scaling feature allows applications to seamlessly adapt to traffic spikes without requiring manual intervention.
+
 ### 4. **Load Balancing**:
    - Distributes network traffic across multiple containers to ensure high availability and reliability.
 
