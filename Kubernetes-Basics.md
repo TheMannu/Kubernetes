@@ -52,6 +52,8 @@ Kubernetes is a powerful container management and orchestration tool that provid
 
    Kubernetes assigns containers to available nodes in the cluster based on resource availability and specific policies, ensuring workloads are balanced.
 
+   Kubernetes employs a scheduling mechanism that assigns containers to the available nodes in the cluster based on their resource requirements and specific scheduling policies. This balancing ensures efficient utilization of resources and optimal performance of workloads across the cluster.
+
 
 ### 3. **Scaling**:
    - Automatically adjusts the number of running containers (Pods) either manually or automatically based on CPU usage or custom metrics.
