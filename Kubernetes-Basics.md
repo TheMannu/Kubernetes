@@ -47,6 +47,8 @@ Kubernetes is a powerful container management and orchestration tool that provid
 
    Kubernetes handles deploying applications by releasing them to the desired environment. It manages updates and rollouts, ensuring new versions are deployed without downtime.
 
+   Kubernetes facilitates the deployment of applications, ensuring they are released to the desired environment smoothly. It handles updates and rollouts, allowing new versions to be deployed with zero downtime, thereby maintaining the availability of the application during changes.
+
 ### 2. **Scheduling**:
    - Assigns containers to run on available nodes based on resource requirements and availability.
 
