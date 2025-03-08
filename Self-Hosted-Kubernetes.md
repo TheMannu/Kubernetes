@@ -4,3 +4,11 @@
 This guide provides a step-by-step process to install a self-hosted Kubernetes cluster on a master node and worker node(s). It includes detailed explanations for each command and step to ensure a smooth setup.
 
 ---
+
+## Prerequisites
+
+- **Ubuntu OS** (recommended for both master and worker nodes).
+- **sudo privileges** on both master and worker nodes.
+- Stable internet connection.
+
+---
