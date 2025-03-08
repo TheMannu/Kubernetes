@@ -12,3 +12,12 @@ This guide provides a step-by-step process to install a self-hosted Kubernetes c
 - Stable internet connection.
 
 ---
+
+## Step 1: Install Docker and Kubernetes Tools
+
+### On Both Master and Worker Nodes
+
+1. **Switch to the root user**:
+   ```bash
+   sudo su
+   ```
