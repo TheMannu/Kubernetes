@@ -21,3 +21,8 @@ This guide provides a step-by-step process to install a self-hosted Kubernetes c
    ```bash
    sudo su
    ```
+
+2. **Update the package list**:
+   ```bash
+   sudo apt-get update -y
+   ```
