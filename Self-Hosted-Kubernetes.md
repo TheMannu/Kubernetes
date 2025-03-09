@@ -44,3 +44,9 @@ This guide provides a step-by-step process to install a self-hosted Kubernetes c
    ```bash
    sudo apt-get install -y apt-transport-https ca-certificates curl gpg
    ```
+
+6. **Add Kubernetes repository key**:
+   Download and add the Kubernetes GPG key to your system.
+   ```bash
+   curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.32/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+   ```
