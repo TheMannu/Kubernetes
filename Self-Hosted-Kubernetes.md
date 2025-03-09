@@ -50,3 +50,9 @@ This guide provides a step-by-step process to install a self-hosted Kubernetes c
    ```bash
    curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.32/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
    ```
+
+7. **Add Kubernetes repository**:
+   Add the Kubernetes repository to your system's package sources.
+   ```bash
+   echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.32/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+   ```
