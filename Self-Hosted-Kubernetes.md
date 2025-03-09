@@ -32,3 +32,9 @@ This guide provides a step-by-step process to install a self-hosted Kubernetes c
    ```bash
    sudo apt-get install docker.io -y
    ```
+
+4. **Restart Docker service**:
+   Ensure Docker is running after installation.
+   ```bash
+   sudo service docker restart
+   ```
