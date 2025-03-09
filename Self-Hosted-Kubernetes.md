@@ -38,3 +38,9 @@ This guide provides a step-by-step process to install a self-hosted Kubernetes c
    ```bash
    sudo service docker restart
    ```
+
+5. **Install Kubernetes dependencies**:
+   Install `apt-transport-https`, `ca-certificates`, `curl`, and `gpg` to securely download Kubernetes packages.
+   ```bash
+   sudo apt-get install -y apt-transport-https ca-certificates curl gpg
+   ```
