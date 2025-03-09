@@ -26,3 +26,9 @@ This guide provides a step-by-step process to install a self-hosted Kubernetes c
    ```bash
    sudo apt-get update -y
    ```
+
+3. **Install Docker**:
+   Docker is required to run Kubernetes containers.
+   ```bash
+   sudo apt-get install docker.io -y
+   ```
