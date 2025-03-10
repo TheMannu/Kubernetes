@@ -75,3 +75,12 @@ This guide provides a step-by-step process to install a self-hosted Kubernetes c
     sudo curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
     echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" > /etc/apt/sources.list.d/kubernetes.list
     ```
+
+11. **Install specific versions of Kubernetes tools**:
+    Install specific versions of `kubeadm`, `kubectl`, and `kubelet` (e.g., version 1.20.0).
+    ```bash
+    sudo apt-get update
+    sudo apt install kubeadm=1.20.0-00 kubectl=1.20.0-00 kubelet=1.20.0-00 -y
+    ```
+
+---
