@@ -68,3 +68,10 @@ This guide provides a step-by-step process to install a self-hosted Kubernetes c
    ```bash
    sudo apt-get install -y kubelet kubeadm kubectl
    ```
+
+10. **Add Google Cloud's Kubernetes repository**:
+    Add the official Kubernetes repository for additional packages.
+    ```bash
+    sudo curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+    echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" > /etc/apt/sources.list.d/kubernetes.list
+    ```
