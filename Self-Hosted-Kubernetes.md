@@ -94,3 +94,16 @@ This guide provides a step-by-step process to install a self-hosted Kubernetes c
    ```bash
    kubeadm init --pod-network-cidr=192.168.0.0/16
    ```
+
+2. **Set up kubeconfig**:
+   Configure `kubectl` to interact with the cluster.
+   ```bash
+   mkdir -p $HOME/.kube
+   sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+   sudo chown $(id -u):$(id -g) $HOME/.kube/config
+   ```
+
+   Alternatively, if you are the root user, you can set the `KUBECONFIG` environment variable:
+   ```bash
+   export KUBECONFIG=/etc/kubernetes/admin.conf
+   ```
