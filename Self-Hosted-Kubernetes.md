@@ -84,3 +84,13 @@ This guide provides a step-by-step process to install a self-hosted Kubernetes c
     ```
 
 ---
+
+## Step 2: Initialize the Kubernetes Cluster
+
+### On the Master Node
+
+1. **Initialize the cluster**:
+   Use `kubeadm init` to initialize the Kubernetes master node. Replace the `--pod-network-cidr` value with your desired network range.
+   ```bash
+   kubeadm init --pod-network-cidr=192.168.0.0/16
+   ```
