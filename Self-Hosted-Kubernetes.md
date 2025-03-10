@@ -62,3 +62,9 @@ This guide provides a step-by-step process to install a self-hosted Kubernetes c
    ```bash
    sudo apt-get update
    ```
+
+9. **Install Kubernetes tools**:
+   Install `kubelet`, `kubeadm`, and `kubectl` (Kubernetes command-line tools).
+   ```bash
+   sudo apt-get install -y kubelet kubeadm kubectl
+   ```
