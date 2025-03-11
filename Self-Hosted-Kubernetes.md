@@ -107,3 +107,9 @@ This guide provides a step-by-step process to install a self-hosted Kubernetes c
    ```bash
    export KUBECONFIG=/etc/kubernetes/admin.conf
    ```
+
+3. **Install a network plugin**:
+   Install Calico for networking between pods.
+   ```bash
+   kubectl apply -f https://docs.projectcalico.org/v3.20/manifests/calico.yaml
+   ```
