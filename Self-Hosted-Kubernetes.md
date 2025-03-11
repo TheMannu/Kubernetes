@@ -119,3 +119,11 @@ This guide provides a step-by-step process to install a self-hosted Kubernetes c
    ```bash
    kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.49.0/deploy/static/provider/baremetal/deploy.yaml
    ```
+
+5. **Verify the master node**:
+   Check if the master node is ready.
+   ```bash
+   kubectl get nodes
+   ```
+
+---
