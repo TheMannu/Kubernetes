@@ -134,3 +134,7 @@ This guide provides a step-by-step process to install a self-hosted Kubernetes c
 
 1. **Join the worker node to the cluster**:
    Use the `kubeadm join` command provided after initializing the master node. Replace the IP address, token, and hash with your values.
+   
+   ```bash
+   kubeadm join 172.31.44.213:6443 --token jr32xy.wd2a9wo7n87bkqn7 --discovery-token-ca-cert-hash sha256:4f432d1258179f953af37a32ce6e386c75dbc548f1d28b636212142050276002
+   ```
