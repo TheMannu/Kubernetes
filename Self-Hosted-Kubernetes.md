@@ -113,3 +113,9 @@ This guide provides a step-by-step process to install a self-hosted Kubernetes c
    ```bash
    kubectl apply -f https://docs.projectcalico.org/v3.20/manifests/calico.yaml
    ```
+
+4. **Install Ingress Nginx**:
+   Install the Ingress Nginx controller for managing external access to services.
+   ```bash
+   kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.49.0/deploy/static/provider/baremetal/deploy.yaml
+   ```
