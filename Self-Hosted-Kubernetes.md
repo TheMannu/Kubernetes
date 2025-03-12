@@ -156,3 +156,21 @@ This guide provides a step-by-step process to install a self-hosted Kubernetes c
    ```bash
    mkdir -p /home/ubuntu/mongo/mongo-vol
    ```
+
+2. **Create a PersistentVolume and PersistentVolumeClaim**:
+   Save the following YAML code in a file named `mongo-pv-pvc.yaml`:
+   ```yaml
+   ---
+   apiVersion: v1
+   kind: PersistentVolume
+   metadata:
+     name: mongo-pv
+   spec:
+     capacity:
+       storage: 1Gi
+     accessModes:
+       - ReadWriteOnce
+     persistentVolumeReclaimPolicy: Retain
+     hostPath:
+       path: /home/ubuntu/mongo/mongo-vol
+   ---
