@@ -196,3 +196,17 @@ This guide provides a step-by-step process to install a self-hosted Kubernetes c
    kubectl get pv
    kubectl get pvc
    ```
+
+3. **Create a Secret for MongoDB credentials**:
+   Save the following YAML code in a file named `secret.yaml`:
+   ```yaml
+   ---
+   apiVersion: v1
+   kind: Secret
+   metadata:
+     name: mongodb-secret
+   type: Opaque
+   data:
+     username: YWRtaW4=  # "admin" in Base64
+     password: MTIz      # "123" in Base64
+   ---
