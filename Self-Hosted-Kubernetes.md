@@ -185,3 +185,8 @@ This guide provides a step-by-step process to install a self-hosted Kubernetes c
        requests:
          storage: 1Gi
    ```
+
+   Apply the YAML file:
+   ```bash
+   kubectl apply -f mongo-pv-pvc.yaml
+   ```
