@@ -147,3 +147,12 @@ This guide provides a step-by-step process to install a self-hosted Kubernetes c
    ```
 
 ---
+
+## Step 4: Deploy Applications on Kubernetes
+
+### On the Master Node
+
+1. **Create a directory for MongoDB data**:
+   ```bash
+   mkdir -p /home/ubuntu/mongo/mongo-vol
+   ```
