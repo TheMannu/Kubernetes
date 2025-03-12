@@ -174,3 +174,14 @@ This guide provides a step-by-step process to install a self-hosted Kubernetes c
      hostPath:
        path: /home/ubuntu/mongo/mongo-vol
    ---
+   apiVersion: v1
+   kind: PersistentVolumeClaim
+   metadata:
+     name: mongo-pvc
+   spec:
+     accessModes:
+       - ReadWriteOnce
+     resources:
+       requests:
+         storage: 1Gi
+   ```
