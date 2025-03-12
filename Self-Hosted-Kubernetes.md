@@ -190,3 +190,9 @@ This guide provides a step-by-step process to install a self-hosted Kubernetes c
    ```bash
    kubectl apply -f mongo-pv-pvc.yaml
    ```
+
+   Verify the PersistentVolume and PersistentVolumeClaim:
+   ```bash
+   kubectl get pv
+   kubectl get pvc
+   ```
