@@ -278,3 +278,15 @@ This guide provides a step-by-step process to install a self-hosted Kubernetes c
              persistentVolumeClaim:
                claimName: mongo-pvc
    ---
+   apiVersion: v1
+   kind: Service
+   metadata:
+     name: mongodb-service
+   spec:
+     selector:
+       app: mongodb
+     ports:
+       - protocol: TCP
+         port: 27017
+         targetPort: 27017
+   ---
