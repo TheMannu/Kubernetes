@@ -233,7 +233,48 @@ This guide provides a step-by-step process to install a self-hosted Kubernetes c
    kubectl describe secret mongodb-secret
    kubectl describe secret secret
    ```
-   
+
 4. **Deploy MongoDB and Mongo Express**:
    Save the following YAML code in a file named `mongo-deployment.yaml`:
    ```yaml
+   ---
+   apiVersion: apps/v1
+   kind: Deployment
+   metadata:
+     name: mongodb
+     labels:
+       app: mongodb
+   spec:
+     replicas: 1
+     selector:
+       matchLabels:
+         app: mongodb
+     template:
+       metadata:
+         labels:
+           app: mongodb
+       spec:
+         containers:
+           - name: mongodb
+             image: mongo
+             ports:
+               - containerPort: 27017
+             env:
+               - name: MONGO_INITDB_ROOT_USERNAME
+                 valueFrom:
+                   secretKeyRef:
+                     name: mongodb-secret
+                     key: username
+               - name: MONGO_INITDB_ROOT_PASSWORD
+                 valueFrom:
+                   secretKeyRef:
+                     name: mongodb-secret
+                     key: password
+             volumeMounts:
+               - name: mongo-data
+                 mountPath: /data/db
+         volumes:
+           - name: mongo-data
+             persistentVolumeClaim:
+               claimName: mongo-pvc
+   ---
