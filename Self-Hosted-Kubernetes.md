@@ -221,3 +221,8 @@ This guide provides a step-by-step process to install a self-hosted Kubernetes c
      meuser: YWRtaW4=   # "admin" in Base64
      mepass: MT17       # Invalid Base64 (correct this if necessary)
    ```
+
+   Apply the YAML file:
+   ```bash
+   kubectl apply -f secret.yaml
+   ```
