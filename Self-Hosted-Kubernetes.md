@@ -226,3 +226,10 @@ This guide provides a step-by-step process to install a self-hosted Kubernetes c
    ```bash
    kubectl apply -f secret.yaml
    ```
+
+   Verify the Secret:
+   ```bash
+   kubectl get secrets
+   kubectl describe secret mongodb-secret
+   kubectl describe secret secret
+   ```
