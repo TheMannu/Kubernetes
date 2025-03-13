@@ -233,3 +233,7 @@ This guide provides a step-by-step process to install a self-hosted Kubernetes c
    kubectl describe secret mongodb-secret
    kubectl describe secret secret
    ```
+   
+4. **Deploy MongoDB and Mongo Express**:
+   Save the following YAML code in a file named `mongo-deployment.yaml`:
+   ```yaml
