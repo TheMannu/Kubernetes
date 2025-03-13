@@ -210,3 +210,14 @@ This guide provides a step-by-step process to install a self-hosted Kubernetes c
      username: YWRtaW4=  # "admin" in Base64
      password: MTIz      # "123" in Base64
    ---
+   apiVersion: v1
+   kind: Secret
+   metadata:
+     name: secret
+   type: Opaque
+   data:
+     nKiuser: YWRtaW4=  # "admin" in Base64
+     nKipass: MTIz      # "123" in Base64
+     meuser: YWRtaW4=   # "admin" in Base64
+     mepass: MT17       # Invalid Base64 (correct this if necessary)
+   ```
