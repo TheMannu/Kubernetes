@@ -297,3 +297,19 @@ This guide provides a step-by-step process to install a self-hosted Kubernetes c
    data:
      db_host: mongodb-service
    ---
+   apiVersion: apps/v1
+   kind: Deployment
+   metadata:
+     name: mongo-express
+     labels:
+       app: mongo-express
+   spec:
+     replicas: 1
+     selector:
+       matchLabels:
+         app: mongo-express
+     template:
+       metadata:
+         labels:
+           app: mongo-express
+       spec:
