@@ -313,3 +313,35 @@ This guide provides a step-by-step process to install a self-hosted Kubernetes c
          labels:
            app: mongo-express
        spec:
+         containers:
+           - name: mongo-express
+             image: mongo-express
+             ports:
+               - containerPort: 8081
+             env:
+               - name: ME_CONFIG_BASICAUTH_USERNAME
+                 valueFrom:
+                   secretKeyRef:
+                     name: mongo-express-secret
+                     key: meuser
+               - name: ME_CONFIG_BASICAUTH_PASSWORD
+                 valueFrom:
+                   secretKeyRef:
+                     name: mongo-express-secret
+                     key: mepass
+               - name: ME_CONFIG_MONGODB_ADMINUSERNAME
+                 valueFrom:
+                   secretKeyRef:
+                     name: mongodb-secret
+                     key: username
+               - name: ME_CONFIG_MONGODB_ADMINPASSWORD
+                 valueFrom:
+                   secretKeyRef:
+                     name: mongodb-secret
+                     key: password
+               - name: ME_CONFIG_MONGODB_SERVER
+                 valueFrom:
+                   configMapKeyRef:
+                     name: mongodb-configmap
+                     key: db_host
+   ---
