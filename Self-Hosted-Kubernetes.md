@@ -345,3 +345,16 @@ This guide provides a step-by-step process to install a self-hosted Kubernetes c
                      name: mongodb-configmap
                      key: db_host
    ---
+   apiVersion: v1
+   kind: Service
+   metadata:
+     name: mongo-express-service
+   spec:
+     selector:
+       app: mongo-express
+     type: NodePort
+     ports:
+       - protocol: TCP
+         port: 8081
+         targetPort: 8081
+   ```
