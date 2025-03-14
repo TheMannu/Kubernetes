@@ -358,3 +358,8 @@ This guide provides a step-by-step process to install a self-hosted Kubernetes c
          port: 8081
          targetPort: 8081
    ```
+
+   Apply the YAML file:
+   ```bash
+   kubectl apply -f mongo-deployment.yaml
+   ```
