@@ -363,3 +363,16 @@ This guide provides a step-by-step process to install a self-hosted Kubernetes c
    ```bash
    kubectl apply -f mongo-deployment.yaml
    ```
+
+5. **Verify the deployment**:
+   Check the status of deployments, services, and pods.
+   ```bash
+   kubectl get deployment
+   kubectl get secrets
+   kubectl get pv
+   kubectl get pvc
+   kubectl get pods
+   kubectl get services
+   ```
+
+---
