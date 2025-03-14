@@ -290,3 +290,10 @@ This guide provides a step-by-step process to install a self-hosted Kubernetes c
          port: 27017
          targetPort: 27017
    ---
+   apiVersion: v1
+   kind: ConfigMap
+   metadata:
+     name: mongodb-configmap
+   data:
+     db_host: mongodb-service
+   ---
