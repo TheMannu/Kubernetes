@@ -383,3 +383,9 @@ To delete deployments, services, secrets, or persistent volumes, use the followi
 ```bash
 kubectl get deployments
 kubectl delete deployments <deployment-name>
+
+kubectl get svc
+kubectl delete svc <service-name>
+
+kubectl get secrets
+kubectl delete secrets <secret-name>
