@@ -389,3 +389,9 @@ kubectl delete svc <service-name>
 
 kubectl get secrets
 kubectl delete secrets <secret-name>
+
+kubectl get pv
+kubectl delete pv <persistent-volume-name>
+```
+
+---
