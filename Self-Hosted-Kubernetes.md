@@ -376,3 +376,10 @@ This guide provides a step-by-step process to install a self-hosted Kubernetes c
    ```
 
 ---
+
+## Step 5: Clean Up (Optional)
+
+To delete deployments, services, secrets, or persistent volumes, use the following commands:
+```bash
+kubectl get deployments
+kubectl delete deployments <deployment-name>
