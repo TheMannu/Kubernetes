@@ -29,3 +29,5 @@
 ### **Simple Flow:**  
 1. You use `kubectl` to send a command (e.g., "Run 3 Nginx Pods").  
 2. The **API Server** receives it and updates **etcd**.  
+3. The **Scheduler** picks the best nodes for the Pods.  
+4. The **Kubelet** on those nodes starts the Pods using the **Container Runtime**. 
