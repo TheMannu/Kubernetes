@@ -31,3 +31,5 @@
 2. The **API Server** receives it and updates **etcd**.  
 3. The **Scheduler** picks the best nodes for the Pods.  
 4. The **Kubelet** on those nodes starts the Pods using the **Container Runtime**. 
+5. **Controllers** (like Deployment Controller) ensure the right number of Pods stay running.  
+6. **kube-proxy** makes sure traffic reaches the Pods correctly.  
