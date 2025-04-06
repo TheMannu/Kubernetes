@@ -9,9 +9,15 @@
 
 4. **SCHEDULER**  
    - Decides **where to place workloads** (Pods) based on resources, policies, and constraints.  
-   
+
 5. **KUBELET**  
    - An agent that **runs on each worker node**, ensuring Pods are running as expected.  
 
 6. **ETCD**  
    - Kubernetes’ **database**—stores all cluster data (configurations, states, etc.).  
+
+7. **KUBE-PROXY**  
+   - Manages **network traffic** (load balancing, routing) to Pods across the cluster.  
+
+8. **POD**  
+   - The smallest deployable unit in Kubernetes—a **group of containers** that share resources.  
