@@ -21,3 +21,6 @@
 
 8. **POD**  
    - The smallest deployable unit in Kubernetes—a **group of containers** that share resources.  
+
+9. **CONTAINER RUNTIME**  
+   - The software (like Docker or containerd) that **runs containers** inside Pods.  
