@@ -24,3 +24,8 @@
 
 9. **CONTAINER RUNTIME**  
    - The software (like Docker or containerd) that **runs containers** inside Pods.  
+
+
+### **Simple Flow:**  
+1. You use `kubectl` to send a command (e.g., "Run 3 Nginx Pods").  
+2. The **API Server** receives it and updates **etcd**.  
