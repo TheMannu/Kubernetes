@@ -26,3 +26,9 @@ Node drain operation stuck indefinitely due to an unresponsive terminating pod w
 
 ## Root Cause  
 Finalizer logic failed to execute because its controller was down, making the pod undeletable.
+
+## Fix/Workaround  
+Force-remove the finalizer:  
+```sh
+kubectl patch pod <pod-name> -p '{"metadata":{"finalizers":[]}}' --type=merge
+```
