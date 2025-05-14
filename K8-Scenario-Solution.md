@@ -18,3 +18,8 @@ Node drain operation stuck indefinitely due to an unresponsive terminating pod w
    kubectl get pods --all-namespaces -o wide
    ```
 2. Identified pod stuck in `Terminating` state for >20 minutes
+3. Inspected pod details to find custom finalizer:  
+   ```sh
+   kubectl describe pod <pod>
+   ```
+4. Discovered the controller managing the finalizer had crashed  
