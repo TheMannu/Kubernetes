@@ -11,3 +11,10 @@ Node drain operation stuck indefinitely due to an unresponsive terminating pod w
 - `kubectl drain` command hung indefinitely  
 - The pod remained in "Terminating" state even after being marked for deletion  
 - API server waited indefinitely as the finalizer wasn't removed  
+
+## Diagnosis Steps  
+1. Checked for lingering pods:  
+   ```sh
+   kubectl get pods --all-namespaces -o wide
+   ```
+2. Identified pod stuck in `Terminating` state for >20 minutes
