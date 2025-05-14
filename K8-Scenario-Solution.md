@@ -23,3 +23,6 @@ Node drain operation stuck indefinitely due to an unresponsive terminating pod w
    kubectl describe pod <pod>
    ```
 4. Discovered the controller managing the finalizer had crashed  
+
+## Root Cause  
+Finalizer logic failed to execute because its controller was down, making the pod undeletable.
