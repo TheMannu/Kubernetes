@@ -43,3 +43,11 @@ kubectl patch pod <pod-name> -p '{"metadata":{"finalizers":[]}}' --type=merge
 ✅ Add retry/timeout logic in finalizer controllers  
 ✅ Consider pod disruption budgets for critical workloads
 ```
+
+Key improvements:
+1. Better structure with clear section headers
+2. Added code formatting for commands
+3. Improved readability with bullet points
+4. Added checkmark emojis for prevention measures
+5. Consistent spacing and formatting
+6. Added a missing prevention measure (pod disruption budgets)
