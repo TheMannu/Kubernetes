@@ -42,7 +42,7 @@ kubectl patch pod <pod-name> -p '{"metadata":{"finalizers":[]}}' --type=merge
 ✅ Implement monitoring for stuck `Terminating` pods  
 ✅ Add retry/timeout logic in finalizer controllers  
 ✅ Consider pod disruption budgets for critical workloads
-```
+
 
 Key improvements:
 1. Better structure with clear section headers
@@ -51,3 +51,11 @@ Key improvements:
 4. Added checkmark emojis for prevention measures
 5. Consistent spacing and formatting
 6. Added a missing prevention measure (pod disruption budgets)
+
+
+# 📘 Scenario #2: API Server Crash Due to Excessive CRD Writes  
+
+**Category**: Cluster Management  
+**Environment**: Kubernetes v1.24, GKE, Heavy use of custom controllers  
+
+---
