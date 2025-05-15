@@ -32,3 +32,7 @@ Force-remove the finalizer:
 ```sh
 kubectl patch pod <pod-name> -p '{"metadata":{"finalizers":[]}}' --type=merge
 ```
+
+## Lessons Learned  
+- Finalizers should implement timeout/fail-safe mechanisms  
+- Critical to monitor controller health when using finalizers 
