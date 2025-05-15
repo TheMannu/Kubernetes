@@ -36,3 +36,10 @@ kubectl patch pod <pod-name> -p '{"metadata":{"finalizers":[]}}' --type=merge
 ## Lessons Learned  
 - Finalizers should implement timeout/fail-safe mechanisms  
 - Critical to monitor controller health when using finalizers 
+
+## How to Avoid  
+✅ Avoid finalizers unless absolutely necessary  
+✅ Implement monitoring for stuck `Terminating` pods  
+✅ Add retry/timeout logic in finalizer controllers  
+✅ Consider pod disruption budgets for critical workloads
+```
