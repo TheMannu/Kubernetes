@@ -64,3 +64,11 @@ Key improvements:
 API server crashed after being flooded by a malfunctioning controller creating excessive Custom Resources (CRs).  
 
 ---
+
+## What Happened  
+- A buggy controller entered an infinite reconciliation loop, creating **thousands of duplicate CRs**  
+- **etcd overwhelmed** with write requests, causing high latency  
+- API server became unresponsive, returning `504 Gateway Timeout` errors  
+- Cluster operations (including `kubectl` commands) failed due to backend pressure  
+
+---
