@@ -59,3 +59,8 @@ Key improvements:
 **Environment**: Kubernetes v1.24, GKE, Heavy use of custom controllers  
 
 ---
+
+## Scenario Summary  
+API server crashed after being flooded by a malfunctioning controller creating excessive Custom Resources (CRs).  
+
+---
