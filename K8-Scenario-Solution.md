@@ -105,3 +105,9 @@ API server crashed after being flooded by a malfunctioning controller creating e
    - Used batch deletion (e.g., `kubectl delete crd --all` or selector-based cleanup)  
 
 ---
+
+## Lessons Learned  
+⚠️ **Always test reconciliation logic** in a non-production cluster first.  
+⚠️ **Monitor etcd metrics** (I/O, memory) to catch flooding early.  
+
+---
