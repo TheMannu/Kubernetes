@@ -95,3 +95,13 @@ API server crashed after being flooded by a malfunctioning controller creating e
 - No rate-limiting or deduplication safeguards  
 
 ---
+
+## Fix/Workaround  
+1. **Immediate mitigation**:  
+   ```sh
+   kubectl scale deploy <controller> --replicas=0  # Stop the controller
+   ```  
+2. **Cleanup CRs**:  
+   - Used batch deletion (e.g., `kubectl delete crd --all` or selector-based cleanup)  
+
+---
