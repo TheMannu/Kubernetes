@@ -72,3 +72,12 @@ API server crashed after being flooded by a malfunctioning controller creating e
 - Cluster operations (including `kubectl` commands) failed due to backend pressure  
 
 ---
+
+## Diagnosis Steps  
+1. **Observed symptoms**:  
+   - API latency spikes  
+   - `kubectl` commands timing out with `504` errors  
+2. **Checked CRD volume**:  
+   ```sh
+   kubectl get crds | wc -l  # Excessive count confirmed
+   ```  
