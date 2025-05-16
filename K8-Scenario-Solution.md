@@ -81,3 +81,10 @@ API server crashed after being flooded by a malfunctioning controller creating e
    ```sh
    kubectl get crds | wc -l  # Excessive count confirmed
    ```  
+3. **Traced controller logs**:  
+   - Found **infinite reconcile loop** on a specific CR type  
+4. **Monitored etcd**:  
+   - Disk I/O saturated at 100%  
+   - **High memory usage** from storing redundant CRs  
+
+---
