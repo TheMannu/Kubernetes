@@ -111,3 +111,16 @@ API server crashed after being flooded by a malfunctioning controller creating e
 ⚠️ **Monitor etcd metrics** (I/O, memory) to catch flooding early.  
 
 ---
+
+## How to Avoid  
+✅ **Add guards in reconciliation logic**:  
+   - Check `resourceVersion` before creation  
+   - Implement idempotent operations  
+✅ **Set Prometheus alerts for**:  
+   - CR count per namespace  
+   - etcd write latency  
+✅ **Use admission webhooks** to enforce CR quotas  
+✅ **Enable etcd compaction** to reduce storage bloat  
+```  
+
+---
