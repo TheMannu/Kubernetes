@@ -88,3 +88,10 @@ API server crashed after being flooded by a malfunctioning controller creating e
    - **High memory usage** from storing redundant CRs  
 
 ---
+
+## Root Cause  
+**Faulty reconciliation logic**:  
+- Controller **always executed `create`** instead of checking existing resources  
+- No rate-limiting or deduplication safeguards  
+
+---
