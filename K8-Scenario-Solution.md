@@ -120,8 +120,7 @@ API server crashed after being flooded by a malfunctioning controller creating e
    - CR count per namespace  
    - etcd write latency  
 ✅ **Use admission webhooks** to enforce CR quotas  
-✅ **Enable etcd compaction** to reduce storage bloat  
-```  
+✅ **Enable etcd compaction** to reduce storage bloat    
 
 ---
 
@@ -134,3 +133,10 @@ API server crashed after being flooded by a malfunctioning controller creating e
    - etcd compaction  
 5. **Concise root cause** highlighting the logic flaw  
 6. **Formatted fixes** as actionable steps 
+
+# 📘 Scenario #3: Node Not Rejoining After Reboot
+
+**Category**: Cluster Management  
+**Environment**: Kubernetes v1.21, Self-managed cluster, Static nodes  
+
+---
