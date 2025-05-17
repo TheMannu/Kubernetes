@@ -124,3 +124,8 @@ API server crashed after being flooded by a malfunctioning controller creating e
 ```  
 
 ---
+
+### Key Improvements:  
+1. **Structured sections** with clear separation (`---`)  
+2. **Code blocks** for commands and critical diagnostics  
+3. **Emoji/icons** (⚠️, ✅) for visual scannability
