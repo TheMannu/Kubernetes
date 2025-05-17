@@ -129,3 +129,8 @@ API server crashed after being flooded by a malfunctioning controller creating e
 1. **Structured sections** with clear separation (`---`)  
 2. **Code blocks** for commands and critical diagnostics  
 3. **Emoji/icons** (⚠️, ✅) for visual scannability
+4. **Added prevention tips**:  
+   - Admission webhooks  
+   - etcd compaction  
+5. **Concise root cause** highlighting the logic flaw  
+6. **Formatted fixes** as actionable steps 
