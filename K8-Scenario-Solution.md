@@ -140,3 +140,8 @@ API server crashed after being flooded by a malfunctioning controller creating e
 **Environment**: Kubernetes v1.21, Self-managed cluster, Static nodes  
 
 ---
+
+## Scenario Summary  
+A rebooted node failed to rejoin the cluster due to a kubelet identity mismatch caused by hostname changes.
+
+---
