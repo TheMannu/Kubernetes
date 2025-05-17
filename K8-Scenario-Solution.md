@@ -152,3 +152,11 @@ A rebooted node failed to rejoin the cluster due to a kubelet identity mismatch 
 - Investigation revealed a **hostname mismatch** between the node's current state and its cluster registration  
 
 ---
+
+## Diagnosis Steps  
+1. **Checked system logs**:  
+   ```sh
+   journalctl -u kubelet --no-pager | grep -i "registration"
+   ```
+2. **Verified kubelet configuration**:  
+   - Found `--hostname-override` didn't match the originally registered node name 
