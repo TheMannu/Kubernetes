@@ -145,3 +145,10 @@ API server crashed after being flooded by a malfunctioning controller creating e
 A rebooted node failed to rejoin the cluster due to a kubelet identity mismatch caused by hostname changes.
 
 ---
+
+## What Happened  
+- After a **kernel upgrade and reboot**, a node disappeared from `kubectl get nodes`  
+- **Kubelet failed to register** with the control plane  
+- Investigation revealed a **hostname mismatch** between the node's current state and its cluster registration  
+
+---
