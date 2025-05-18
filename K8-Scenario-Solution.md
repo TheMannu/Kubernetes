@@ -168,3 +168,11 @@ A rebooted node failed to rejoin the cluster due to a kubelet identity mismatch 
    - Node's **hostname changed after reboot** (DHCP lease renewal or cloud-init behavior)  
 
 ---
+
+## Root Cause  
+**Identity mismatch**:  
+- Kubelet attempted to register with a **new hostname**  
+- Control plane still expected the **original node identity**  
+- Certificate SANs/Node authorization rejected the "new" node  
+
+---
