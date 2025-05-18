@@ -184,3 +184,9 @@ A rebooted node failed to rejoin the cluster due to a kubelet identity mismatch 
    KUBELET_EXTRA_ARGS="--hostname-override=<original-node-name>"
    systemctl restart kubelet
    ```
+2. **Cleaned stale node entry** (if needed):  
+   ```sh
+   kubectl delete node <old-node-name>
+   ```
+
+---
