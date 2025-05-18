@@ -176,3 +176,11 @@ A rebooted node failed to rejoin the cluster due to a kubelet identity mismatch 
 - Certificate SANs/Node authorization rejected the "new" node  
 
 ---
+
+## Fix/Workaround  
+1. **Corrected hostname override**:  
+   ```sh
+   # Update kubelet config (e.g., /etc/default/kubelet)
+   KUBELET_EXTRA_ARGS="--hostname-override=<original-node-name>"
+   systemctl restart kubelet
+   ```
