@@ -190,3 +190,9 @@ A rebooted node failed to rejoin the cluster due to a kubelet identity mismatch 
    ```
 
 ---
+
+## Lessons Learned  
+⚠️ **Hostname consistency is critical** for node identity in Kubernetes.  
+⚠️ **DHCP + Kubernetes requires careful planning** to avoid identity drift.  
+
+---
