@@ -196,3 +196,12 @@ A rebooted node failed to rejoin the cluster due to a kubelet identity mismatch 
 ⚠️ **DHCP + Kubernetes requires careful planning** to avoid identity drift.  
 
 ---
+
+## How to Avoid  
+✅ **Use static hostnames/IPs** for nodes:  
+   ```sh
+   hostnamectl set-hostname <persistent-name>
+   ```
+✅ **Standardize node provisioning** with:  
+   - Immutable cloud-init configurations  
+   - Kubeadm `--node-name` flag (if applicable) 
