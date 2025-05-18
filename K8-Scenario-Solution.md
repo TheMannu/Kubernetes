@@ -160,3 +160,11 @@ A rebooted node failed to rejoin the cluster due to a kubelet identity mismatch 
    ```
 2. **Verified kubelet configuration**:  
    - Found `--hostname-override` didn't match the originally registered node name 
+3. **Compared cluster state**:  
+   ```sh
+   kubectl get nodes -o wide  # Showed old hostname vs. current DHCP-assigned hostname
+   ```
+4. **Identified root issue**:  
+   - Node's **hostname changed after reboot** (DHCP lease renewal or cloud-init behavior)  
+
+---
