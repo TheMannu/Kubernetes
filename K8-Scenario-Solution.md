@@ -205,3 +205,13 @@ A rebooted node failed to rejoin the cluster due to a kubelet identity mismatch 
 ✅ **Standardize node provisioning** with:  
    - Immutable cloud-init configurations  
    - Kubeadm `--node-name` flag (if applicable) 
+✅ **Monitor node heartbeats**:  
+   ```sh
+   kubectl get nodes -w
+   ```
+✅ **Implement automated detection** for:  
+   - Nodes stuck in `NotReady`  
+   - Hostname mismatches in kubelet logs  
+
+
+---
