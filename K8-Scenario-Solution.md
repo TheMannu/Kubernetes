@@ -215,3 +215,8 @@ A rebooted node failed to rejoin the cluster due to a kubelet identity mismatch 
 
 
 ---
+
+### Key Improvements:
+1. **Added actionable commands** with proper syntax highlighting
+2. **Structured troubleshooting flow** from symptoms to resolution
+3. **Included prevention automation** (monitoring commands)
