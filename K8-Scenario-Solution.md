@@ -231,3 +231,8 @@ A rebooted node failed to rejoin the cluster due to a kubelet identity mismatch 
 **Environment**: Kubernetes v1.25, Bare-metal cluster  
 
 ---
+
+## Scenario Summary  
+Cluster API server became unresponsive due to etcd running out of disk space from accumulated WAL logs and uncompacted revisions.
+
+---
