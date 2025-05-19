@@ -244,3 +244,13 @@ Cluster API server became unresponsive due to etcd running out of disk space fro
 - Cluster operations (including `kubectl` commands) became unreliable  
 
 ---
+
+## Diagnosis Steps  
+1. **Verified disk space** on etcd nodes:  
+   ```sh
+   df -h /var/lib/etcd
+   ```
+2. **Analyzed etcd storage usage**:  
+   ```sh
+   sudo du -sh /var/lib/etcd/member/
+   ```
