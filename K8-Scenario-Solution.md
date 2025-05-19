@@ -220,3 +220,6 @@ A rebooted node failed to rejoin the cluster due to a kubelet identity mismatch 
 1. **Added actionable commands** with proper syntax highlighting
 2. **Structured troubleshooting flow** from symptoms to resolution
 3. **Included prevention automation** (monitoring commands)
+4. **Emphasized key takeaways** with icons (⚠️, ✅)
+5. **Added context** about certificate SANs/authorization impact
+6. **Standardized formatting** with clear section breaks (`---`)
