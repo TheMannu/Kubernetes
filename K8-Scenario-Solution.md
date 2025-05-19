@@ -254,3 +254,13 @@ Cluster API server became unresponsive due to etcd running out of disk space fro
    ```sh
    sudo du -sh /var/lib/etcd/member/
    ```
+3. **Checked etcd metrics**:  
+   ```sh
+   etcdctl endpoint status --write-out=table
+   ```
+4. **Identified root issues**:  
+   - **No compaction** of historical revisions  
+   - **Accumulated WAL logs** and snapshots  
+   - **No disk space alerts** configured  
+
+---
