@@ -236,3 +236,11 @@ A rebooted node failed to rejoin the cluster due to a kubelet identity mismatch 
 Cluster API server became unresponsive due to etcd running out of disk space from accumulated WAL logs and uncompacted revisions.
 
 ---
+
+## What Happened  
+- Cluster began **failing API requests** with timeout errors  
+- **Etcd logs** showed `"mvcc: database space exceeded"` errors  
+- **API server logs** indicated failed storage operations (`"etcdserver: request timed out"`)  
+- Cluster operations (including `kubectl` commands) became unreliable  
+
+---
