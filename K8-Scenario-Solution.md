@@ -223,3 +223,11 @@ A rebooted node failed to rejoin the cluster due to a kubelet identity mismatch 
 4. **Emphasized key takeaways** with icons (⚠️, ✅)
 5. **Added context** about certificate SANs/authorization impact
 6. **Standardized formatting** with clear section breaks (`---`)
+
+---
+# 📘 Scenario #4: Etcd Disk Full Causing API Server Timeout
+
+**Category**: Cluster Management  
+**Environment**: Kubernetes v1.25, Bare-metal cluster  
+
+---
