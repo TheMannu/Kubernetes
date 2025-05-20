@@ -272,3 +272,20 @@ Cluster API server became unresponsive due to etcd running out of disk space fro
 3. Insufficient **disk space monitoring**  
 
 ---
+
+## Fix/Workaround  
+
+### Immediate Recovery:
+1. **Compact old revisions** (replace `<rev>` with current revision):  
+   ```sh
+   etcdctl compact $(etcdctl endpoint status --write-out=json | jq -r '.[].Status.header.revision')
+   ```
+2. **Defragment etcd database**:  
+   ```sh
+   etcdctl defrag --cluster
+   ```
+3. **Clean up disk space**:  
+   ```sh
+   # Remove old snapshots/WAL logs (if safe)
+   sudo find /var/lib/etcd/member/wal -type f -mtime +7 -delete
+   ```
