@@ -301,3 +301,14 @@ Cluster API server became unresponsive due to etcd running out of disk space fro
 ⚠️ **Silent failures**: API server errors may not clearly indicate etcd issues.  
 
 ---
+
+## How to Avoid  
+✅ **Enable automatic compaction** (e.g., in etcd config):  
+   ```yaml
+   auto-compaction-mode: periodic
+   auto-compaction-retention: "1h"  # Adjust based on cluster size
+   ```
+✅ **Schedule regular defragmentation** (cronjob or script):  
+   ```sh
+   etcdctl defrag --cluster
+   ```
