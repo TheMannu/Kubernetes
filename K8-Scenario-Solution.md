@@ -264,3 +264,11 @@ Cluster API server became unresponsive due to etcd running out of disk space fro
    - **No disk space alerts** configured  
 
 ---
+
+## Root Cause  
+**Storage exhaustion due to**:  
+1. Lack of **automatic compaction** of old revisions  
+2. No **routine defragmentation** of etcd database  
+3. Insufficient **disk space monitoring**  
+
+---
