@@ -289,3 +289,9 @@ Cluster API server became unresponsive due to etcd running out of disk space fro
    # Remove old snapshots/WAL logs (if safe)
    sudo find /var/lib/etcd/member/wal -type f -mtime +7 -delete
    ```
+
+### Long-term Solution:
+- **Increase etcd volume size**  
+- **Configure automatic maintenance** (see prevention below)  
+
+---
