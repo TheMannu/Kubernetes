@@ -312,3 +312,13 @@ Cluster API server became unresponsive due to etcd running out of disk space fro
    ```sh
    etcdctl defrag --cluster
    ```
+✅ **Monitor critical metrics**:  
+   - etcd storage size (`etcd_mvcc_db_total_size_in_bytes`)  
+   - Disk available space  
+   - `etcd_server_quota_backend_bytes` (quota alerts)  
+✅ **Set up alerts** for:  
+   - Disk >70% utilization  
+   - etcd leader changes  
+   - High latency on etcd operations  
+
+---
