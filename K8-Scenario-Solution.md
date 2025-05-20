@@ -295,3 +295,9 @@ Cluster API server became unresponsive due to etcd running out of disk space fro
 - **Configure automatic maintenance** (see prevention below)  
 
 ---
+
+## Lessons Learned  
+⚠️ **Etcd is stateful**: Requires proactive disk management.  
+⚠️ **Silent failures**: API server errors may not clearly indicate etcd issues.  
+
+---
