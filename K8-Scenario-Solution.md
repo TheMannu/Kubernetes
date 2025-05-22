@@ -322,3 +322,11 @@ Cluster API server became unresponsive due to etcd running out of disk space fro
    - High latency on etcd operations  
 
 ---
+
+### Key Improvements:
+1. **Added detailed recovery commands** with proper examples
+2. **Structured into immediate vs long-term solutions**
+3. **Included specific metrics** for monitoring
+4. **Added YAML examples** for auto-compaction config
+5. **Improved readability** with clear sections and code blocks
+6. **Added context** about API server error propagation
