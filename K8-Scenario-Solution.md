@@ -353,3 +353,10 @@ Critical workloads failed to schedule after blanket `NoSchedule` taints were app
 - Applications began failing SLA as pods couldn't be rescheduled  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Identified scheduling failures:
+```sh
+kubectl get pods --all-namespaces --field-selector status.phase=Pending
+```
