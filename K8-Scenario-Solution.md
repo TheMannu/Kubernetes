@@ -330,3 +330,16 @@ Cluster API server became unresponsive due to etcd running out of disk space fro
 4. **Added YAML examples** for auto-compaction config
 5. **Improved readability** with clear sections and code blocks
 6. **Added context** about API server error propagation
+---
+
+# 📘 Scenario #5: Misconfigured Taints Blocking Pod Scheduling
+
+**Category**: Cluster Management  
+**Environment**: Kubernetes v1.26, Multi-tenant cluster  
+
+---
+
+## Scenario Summary  
+Critical workloads failed to schedule after blanket `NoSchedule` taints were applied without corresponding workload tolerations, causing cluster-wide scheduling issues.
+
+---
