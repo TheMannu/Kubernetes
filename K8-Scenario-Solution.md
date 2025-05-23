@@ -392,3 +392,11 @@ kubectl who-can update nodes
 - **No change control process** for node modifications  
 
 ---
+
+## Fix/Workaround  
+
+### Immediate Action:
+```sh
+# Remove problematic taints from all nodes
+kubectl taint nodes --all <taint-key>-
+```
