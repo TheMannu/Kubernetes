@@ -369,3 +369,10 @@ kubectl get pods --all-namespaces --field-selector status.phase=Pending
 kubectl describe pod <pending-pod> | grep -A10 Events
 # Output showed: "0/3 nodes are available: 3 node(s) had untolerated taint..."
 ```
+
+### 3. Inspected node taints:
+```sh
+kubectl get nodes -o json | jq '.items[].spec.taints'
+# OR
+kubectl describe node <node> | grep Taints
+```
