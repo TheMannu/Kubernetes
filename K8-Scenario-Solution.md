@@ -363,3 +363,9 @@ Critical workloads failed to schedule after blanket `NoSchedule` taints were app
 ```sh
 kubectl get pods --all-namespaces --field-selector status.phase=Pending
 ```
+
+### 2. Analyzed pending pods:
+```sh
+kubectl describe pod <pending-pod> | grep -A10 Events
+# Output showed: "0/3 nodes are available: 3 node(s) had untolerated taint..."
+```
