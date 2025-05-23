@@ -52,6 +52,7 @@ Key improvements:
 5. Consistent spacing and formatting
 6. Added a missing prevention measure (pod disruption budgets)
 
+---
 
 # 📘 Scenario #2: API Server Crash Due to Excessive CRD Writes  
 
@@ -133,6 +134,8 @@ API server crashed after being flooded by a malfunctioning controller creating e
    - etcd compaction  
 5. **Concise root cause** highlighting the logic flaw  
 6. **Formatted fixes** as actionable steps 
+
+---
 
 # 📘 Scenario #3: Node Not Rejoining After Reboot
 
