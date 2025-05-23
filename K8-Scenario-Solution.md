@@ -383,3 +383,12 @@ kubectl who-can update nodes
 ```
 
 ---
+
+## Root Cause  
+**Improper taint management**:  
+- Blanket `NoSchedule` taints applied without:  
+  - **Cluster-wide impact assessment**  
+  - **Required tolerations** in existing workloads  
+- **No change control process** for node modifications  
+
+---
