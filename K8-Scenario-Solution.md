@@ -376,3 +376,10 @@ kubectl get nodes -o json | jq '.items[].spec.taints'
 # OR
 kubectl describe node <node> | grep Taints
 ```
+
+### 4. Verified RBAC:
+```sh
+kubectl who-can update nodes
+```
+
+---
