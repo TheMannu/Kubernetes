@@ -411,3 +411,9 @@ watch kubectl get pods -A -o wide  # Observe pods transitioning to Running
 2. Add **required tolerations** to system-critical deployments  
 
 ---
+
+## Lessons Learned  
+⚠️ **Taints are cluster-wide weapons**: Affects all workloads without tolerations  
+⚠️ **System workloads need special consideration**: CNI, CSI, monitoring pods must tolerate common taints  
+
+---
