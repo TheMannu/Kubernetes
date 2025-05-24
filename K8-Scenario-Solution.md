@@ -442,3 +442,15 @@ watch kubectl get pods -A -o wide  # Observe pods transitioning to Running
      resources: ["nodes"]
      verbs: ["get", "list", "watch"]  # No update/patch
    ```
+
+✅ **Admission Controls**:  
+   - Use OPA/Gatekeeper to:  
+     - Require matching tolerations for certain taints  
+     - Prevent blanket taints on all nodes  
+
+✅ **Monitoring**:  
+   - Alert on:  
+     - High `Pending` pod count  
+     - Node taint changes  
+     - System pods not running  
+```
