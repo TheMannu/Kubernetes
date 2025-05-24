@@ -400,3 +400,8 @@ kubectl who-can update nodes
 # Remove problematic taints from all nodes
 kubectl taint nodes --all <taint-key>-
 ```
+
+### Verify Recovery:
+```sh
+watch kubectl get pods -A -o wide  # Observe pods transitioning to Running
+```
