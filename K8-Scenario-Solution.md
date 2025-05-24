@@ -417,3 +417,15 @@ watch kubectl get pods -A -o wide  # Observe pods transitioning to Running
 ⚠️ **System workloads need special consideration**: CNI, CSI, monitoring pods must tolerate common taints  
 
 ---
+
+## How to Avoid  
+
+✅ **Education & Documentation**:  
+   - Conduct workshops on taints/tolerations  
+   - Maintain a cluster taint registry  
+
+✅ **Technical Safeguards**:  
+   ```sh
+   # Use kubectl diff to preview taint changes
+   kubectl taint nodes --dry-run=server ...
+   ```
