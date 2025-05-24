@@ -429,3 +429,16 @@ watch kubectl get pods -A -o wide  # Observe pods transitioning to Running
    # Use kubectl diff to preview taint changes
    kubectl taint nodes --dry-run=server ...
    ```
+   
+✅ **RBAC Controls**:  
+   ```yaml
+   # Restrict node modification to cluster-admins
+   apiVersion: rbac.authorization.k8s.io/v1
+   kind: ClusterRole
+   metadata:
+     name: restricted-node-access
+   rules:
+   - apiGroups: [""]
+     resources: ["nodes"]
+     verbs: ["get", "list", "watch"]  # No update/patch
+   ```
