@@ -405,3 +405,9 @@ kubectl taint nodes --all <taint-key>-
 ```sh
 watch kubectl get pods -A -o wide  # Observe pods transitioning to Running
 ```
+
+### Long-term Solution:
+1. Implement **selective tainting** (only specific nodes)  
+2. Add **required tolerations** to system-critical deployments  
+
+---
