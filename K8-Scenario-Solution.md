@@ -1,4 +1,4 @@
-# 📘 Scenario #1: Zombie Pods Causing Node Drain to Hang
+# 📘 Scenario 1: Zombie Pods Causing Node Drain to Hang
 
 **Category**: Cluster Management  
 **Environment**: Kubernetes v1.23, On-prem bare metal, Systemd cgroups 
@@ -54,7 +54,7 @@ Key improvements:
 
 ---
 
-# 📘 Scenario #2: API Server Crash Due to Excessive CRD Writes  
+# 📘 Scenario 2: API Server Crash Due to Excessive CRD Writes  
 
 **Category**: Cluster Management  
 **Environment**: Kubernetes v1.24, GKE, Heavy use of custom controllers  
@@ -137,7 +137,7 @@ API server crashed after being flooded by a malfunctioning controller creating e
 
 ---
 
-# 📘 Scenario #3: Node Not Rejoining After Reboot
+# 📘 Scenario 3: Node Not Rejoining After Reboot
 
 **Category**: Cluster Management  
 **Environment**: Kubernetes v1.21, Self-managed cluster, Static nodes  
@@ -228,7 +228,7 @@ A rebooted node failed to rejoin the cluster due to a kubelet identity mismatch 
 6. **Standardized formatting** with clear section breaks (`---`)
 
 ---
-# 📘 Scenario #4: Etcd Disk Full Causing API Server Timeout
+# 📘 Scenario 4: Etcd Disk Full Causing API Server Timeout
 
 **Category**: Cluster Management  
 **Environment**: Kubernetes v1.25, Bare-metal cluster  
@@ -333,9 +333,10 @@ Cluster API server became unresponsive due to etcd running out of disk space fro
 4. **Added YAML examples** for auto-compaction config
 5. **Improved readability** with clear sections and code blocks
 6. **Added context** about API server error propagation
----
 
-# 📘 Scenario #5: Misconfigured Taints Blocking Pod Scheduling
+---
+---
+# 📘 Scenario 5: Misconfigured Taints Blocking Pod Scheduling
 
 **Category**: Cluster Management  
 **Environment**: Kubernetes v1.26, Multi-tenant cluster  
@@ -453,7 +454,6 @@ watch kubectl get pods -A -o wide  # Observe pods transitioning to Running
      - High `Pending` pod count  
      - Node taint changes  
      - System pods not running  
-```
 
 ### Key Improvements:
 1. **Added concrete commands** for diagnosis and remediation
@@ -462,3 +462,11 @@ watch kubectl get pods -A -o wide  # Observe pods transitioning to Running
 4. **Added monitoring recommendations**
 5. **Separated immediate vs long-term solutions**
 6. **Emphasized system workload requirements**
+
+---
+---
+
+# 📘 Scenario 6: Kubelet DiskPressure Loop on Large Image Pulls
+
+**Category**: Node Resource Management  
+**Environment**: Kubernetes v1.22, EKS  
