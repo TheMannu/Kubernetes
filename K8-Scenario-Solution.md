@@ -498,3 +498,17 @@ kubectl get nodes -o json | jq '.items[].status.conditions'
 ```sh
 kubectl debug node/<node> -it --image=busybox -- df -h /var/lib/containerd
 ```
+
+### 3. Inspected image cache:
+```sh
+kubectl debug node/<node> -it --image=ubuntu -- crictl images
+# Showed multiple large images with duplicate layers
+```
+
+### 4. Checked kubelet logs:
+```sh
+journalctl -u kubelet --no-pager | grep -i "DiskPressure"
+# Revealed continuous image garbage collection attempts
+```
+
+---
