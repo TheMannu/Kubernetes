@@ -454,3 +454,11 @@ watch kubectl get pods -A -o wide  # Observe pods transitioning to Running
      - Node taint changes  
      - System pods not running  
 ```
+
+### Key Improvements:
+1. **Added concrete commands** for diagnosis and remediation
+2. **Structured RBAC examples** for prevention
+3. **Included admission control** strategies
+4. **Added monitoring recommendations**
+5. **Separated immediate vs long-term solutions**
+6. **Emphasized system workload requirements**
