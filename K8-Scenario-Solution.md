@@ -485,3 +485,16 @@ Nodes entered a destructive eviction loop due to disk exhaustion from pulling ov
 - Cluster autoscaler added nodes but they quickly became unstable  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Verified node conditions:
+```sh
+kubectl get nodes -o json | jq '.items[].status.conditions'
+# Output showed DiskPressure=True
+```
+
+### 2. Analyzed disk usage:
+```sh
+kubectl debug node/<node> -it --image=busybox -- df -h /var/lib/containerd
+```
