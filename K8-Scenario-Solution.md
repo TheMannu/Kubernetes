@@ -470,3 +470,8 @@ watch kubectl get pods -A -o wide  # Observe pods transitioning to Running
 
 **Category**: Node Resource Management  
 **Environment**: Kubernetes v1.22, EKS  
+
+## Scenario Summary  
+Nodes entered a destructive eviction loop due to disk exhaustion from pulling oversized container images, triggering continuous `DiskPressure` conditions.
+
+---
