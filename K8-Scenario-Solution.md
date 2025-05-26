@@ -528,3 +528,28 @@ journalctl -u kubelet --no-pager | grep -i "DiskPressure"
 # Manually clean up node images (on affected nodes)
 crictl rmi --prune
 ```
+
+### Long-term Solution:
+1. **Optimized Dockerfile**:
+   ```dockerfile
+   # Before (1.2GB image)
+   FROM ubuntu:20.04
+   RUN apt update && apt install -y build-essential... 
+   
+   # After (280MB image using multi-stage)
+   FROM ubuntu:20.04 as builder
+   RUN apt update && apt install -y build-essential...
+   
+   FROM gcr.io/distroless/base
+   COPY --from=builder /app /app
+   ```
+
+2. **Node Configuration**:
+   ```yaml
+   # kubelet arguments (increase thresholds)
+   --eviction-hard=memory.available<500Mi,nodefs.available<15%
+   --image-gc-high-threshold=85
+   --image-gc-low-threshold=80
+   ```
+
+---
