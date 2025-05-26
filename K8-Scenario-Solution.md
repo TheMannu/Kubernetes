@@ -520,3 +520,11 @@ journalctl -u kubelet --no-pager | grep -i "DiskPressure"
 3. **Insufficient disk headroom** for normal operations  
 
 ---
+
+## Fix/Workaround  
+
+### Immediate Action:
+```sh
+# Manually clean up node images (on affected nodes)
+crictl rmi --prune
+```
