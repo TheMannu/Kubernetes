@@ -553,3 +553,9 @@ crictl rmi --prune
    ```
 
 ---
+
+## Lessons Learned  
+⚠️ **DiskPressure is cascading**: One bloated image can destabilize entire nodes  
+⚠️ **Eviction loops compound problems**: Rescheduled pods often re-pull the same images  
+
+---
