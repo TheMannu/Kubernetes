@@ -568,3 +568,19 @@ crictl rmi --prune
    ```sh
    dive build -t <image> .
    ```
+
+✅ **Admission Controls**:  
+   ```yaml
+   # OPA/Gatekeeper policy example
+   apiVersion: constraints.gatekeeper.sh/v1beta1
+   kind: K8sAllowedRepos
+   metadata:
+     name: prod-image-size-limit
+   spec:
+     match:
+       kinds:
+       - apiGroups: [""]
+         kinds: ["Pod"]
+     parameters:
+       maxSizeMB: 500
+   ```
