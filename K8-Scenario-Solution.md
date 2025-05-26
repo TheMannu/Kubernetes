@@ -512,3 +512,11 @@ journalctl -u kubelet --no-pager | grep -i "DiskPressure"
 ```
 
 ---
+
+## Root Cause  
+**Image storage bloat from**:  
+1. **Unoptimized image** with redundant layers (dev tools left in production image)  
+2. **No image size limits** in CI/CD pipeline  
+3. **Insufficient disk headroom** for normal operations  
+
+---
