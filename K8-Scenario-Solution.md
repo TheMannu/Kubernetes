@@ -559,3 +559,12 @@ crictl rmi --prune
 ⚠️ **Eviction loops compound problems**: Rescheduled pods often re-pull the same images  
 
 ---
+
+## How to Avoid  
+
+✅ **Image Optimization**:  
+   - Enforce multi-stage builds  
+   - Use `dive` to analyze layer efficiency  
+   ```sh
+   dive build -t <image> .
+   ```
