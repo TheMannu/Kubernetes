@@ -584,3 +584,13 @@ crictl rmi --prune
      parameters:
        maxSizeMB: 500
    ```
+
+✅ **Node Configuration**:  
+   - Separate container runtime partition (>100GB recommended)  
+   - Pre-pull critical images during node bootstrap  
+
+✅ **Monitoring**:  
+   - Alert on:  
+     - `kubelet_volume_stats_available_bytes` < 20%  
+     - `container_fs_usage_bytes` approaching capacity  
+     - Pod eviction rate spikes  
