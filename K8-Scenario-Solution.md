@@ -594,3 +594,10 @@ crictl rmi --prune
      - `kubelet_volume_stats_available_bytes` < 20%  
      - `container_fs_usage_bytes` approaching capacity  
      - Pod eviction rate spikes  
+
+✅ **CI/CD Safeguards**:  
+   ```sh
+   # Fail pipeline if image exceeds size limit
+   docker inspect --format='{{.Size}}' $IMAGE | awk '{if ($1 > 500000000) exit 1}'
+   ```
+```
