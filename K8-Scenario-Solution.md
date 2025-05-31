@@ -652,3 +652,17 @@ kubectl get nodes -o wide | grep -i notready
 timedatectl status
 # Expected output showing NTP sync active
 ```
+
+### 3. Measure clock skew:
+```sh
+# Compare node time with control plane
+date -u && kubectl run -it --rm check-time --image=busybox --restart=Never -- date -u
+```
+
+### 4. Investigate NTP service:
+```sh
+systemctl status chronyd --no-pager
+journalctl -u chronyd -n 50 --no-pager
+```
+
+---
