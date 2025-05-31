@@ -608,3 +608,6 @@ crictl rmi --prune
 1. **Added concrete Dockerfile examples** showing optimization
 2. **Included kubelet configuration parameters** for disk management
 3. **Provided OPA/Gatekeeper policy** for enforcement
+4. **Added CI/CD pipeline check** example
+5. **Expanded monitoring metrics**
+6. **Separated immediate vs long-term solutions**
