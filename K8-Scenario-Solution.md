@@ -620,3 +620,8 @@ crictl rmi --prune
 **Impact**: Node isolation, workload rescheduling  
 
 ---
+
+## Scenario Summary  
+A worker node became `NotReady` due to TLS certificate validation failures caused by significant clock drift (45 seconds), resulting from a failed NTP service.
+
+---
