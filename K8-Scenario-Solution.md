@@ -601,3 +601,10 @@ crictl rmi --prune
    docker inspect --format='{{.Size}}' $IMAGE | awk '{if ($1 > 500000000) exit 1}'
    ```
 ```
+
+---
+
+### Key Improvements:
+1. **Added concrete Dockerfile examples** showing optimization
+2. **Included kubelet configuration parameters** for disk management
+3. **Provided OPA/Gatekeeper policy** for enforcement
