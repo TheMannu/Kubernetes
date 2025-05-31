@@ -639,3 +639,16 @@ A worker node became `NotReady` due to TLS certificate validation failures cause
   - Cluster autoscaler provisioned replacement nodes  
 
 ---
+## Diagnosis Steps  
+
+### 1. Verify node status:
+```sh
+kubectl get nodes -o wide | grep -i notready
+```
+
+### 2. Check time synchronization:
+```sh
+# On affected node:
+timedatectl status
+# Expected output showing NTP sync active
+```
