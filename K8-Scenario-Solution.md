@@ -600,7 +600,6 @@ crictl rmi --prune
    # Fail pipeline if image exceeds size limit
    docker inspect --format='{{.Size}}' $IMAGE | awk '{if ($1 > 500000000) exit 1}'
    ```
-```
 
 ---
 
@@ -611,3 +610,13 @@ crictl rmi --prune
 4. **Added CI/CD pipeline check** example
 5. **Expanded monitoring metrics**
 6. **Separated immediate vs long-term solutions**
+
+---
+
+# 📘 Scenario #7: Node Goes NotReady Due to Clock Skew
+
+**Category**: Cluster Reliability  
+**Environment**: Kubernetes v1.20, On-prem (VMware)  
+**Impact**: Node isolation, workload rescheduling  
+
+---
