@@ -677,3 +677,15 @@ journalctl -u chronyd -n 50 --no-pager
    - 45s drift invalidated all API server communications  
 
 ---
+
+## Fix/Workaround  
+
+### Immediate Recovery:
+```sh
+# Force time sync (node)
+sudo chronyc makestep
+sudo systemctl restart chronyd
+
+# Restart kubelet after sync
+sudo systemctl restart kubelet
+```
