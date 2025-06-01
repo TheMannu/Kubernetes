@@ -689,3 +689,12 @@ sudo systemctl restart chronyd
 # Restart kubelet after sync
 sudo systemctl restart kubelet
 ```
+
+### Long-term Solutions:
+1. **Configure NTP hardening**:
+   ```ini
+   # /etc/chrony.conf
+   pool pool.ntp.org iburst
+   makestep 1.0 3
+   rtcsync
+   ```
