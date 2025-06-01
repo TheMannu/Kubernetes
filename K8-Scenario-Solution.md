@@ -666,3 +666,14 @@ journalctl -u chronyd -n 50 --no-pager
 ```
 
 ---
+
+## Root Cause  
+**Time synchronization breakdown**:  
+1. **NTP service failure**:  
+   - `chronyd` crashed due to resource constraints  
+   - No automatic restart configured  
+2. **TLS certificate validation**:  
+   - Kubernetes requires <30s clock skew for TLS validation  
+   - 45s drift invalidated all API server communications  
+
+---
