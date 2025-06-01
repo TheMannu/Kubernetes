@@ -708,3 +708,9 @@ sudo systemctl restart kubelet
    ```
 
 ---
+
+## Lessons Learned  
+⚠️ **TLS is time-sensitive**: Kubernetes components require sub-30s synchronization  
+⚠️ **Silent failure mode**: NTP services can fail without obvious symptoms until TLS breaks  
+
+---
