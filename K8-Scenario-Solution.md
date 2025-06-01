@@ -714,3 +714,11 @@ sudo systemctl restart kubelet
 ⚠️ **Silent failure mode**: NTP services can fail without obvious symptoms until TLS breaks  
 
 ---
+
+## Prevention Framework  
+
+### 1. Time Synchronization
+```sh
+# Deploy NTP as DaemonSet (for air-gapped environments)
+kubectl apply -f https://k8s.io/examples/admin/chrony-daemonset.yaml
+```
