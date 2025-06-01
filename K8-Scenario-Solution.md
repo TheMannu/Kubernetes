@@ -698,3 +698,13 @@ sudo systemctl restart kubelet
    makestep 1.0 3
    rtcsync
    ```
+
+2. **Add startup probe**:
+   ```yaml
+   # kubelet systemd unit override
+   [Unit]
+   After=chronyd.service
+   Requires=chronyd.service
+   ```
+
+---
