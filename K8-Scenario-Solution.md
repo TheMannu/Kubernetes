@@ -740,3 +740,12 @@ kubectl apply -f https://k8s.io/examples/admin/chrony-daemonset.yaml
 NTP=pool.ntp.org
 FallbackNTP=time.google.com
 ```
+
+### 4. Validation Checks
+```sh
+# Pre-flight check for new nodes
+kubeadm join ... --ignore-preflight-errors=all  # NEVER do this
+# Instead fix NTP before joining
+```
+
+---
