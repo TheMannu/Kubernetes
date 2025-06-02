@@ -754,3 +754,10 @@ kubeadm join ... --ignore-preflight-errors=all  # NEVER do this
 - `node_timex_offset_seconds`  
 - `node_timex_sync_status`  
 - `kubelet_node_name{condition="Ready"}`  
+
+**Tools for Investigation**:  
+```sh
+chronyc tracking     # Check NTP sync status
+chronyc sources -v   # Verify NTP sources
+openssl s_client -connect api-server:6443 # TLS handshake test
+```
