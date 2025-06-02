@@ -732,3 +732,11 @@ kubectl apply -f https://k8s.io/examples/admin/chrony-daemonset.yaml
   labels:
     severity: critical
 ```
+
+### 3. Node Configuration
+```ini
+# /etc/systemd/timesyncd.conf (alternative)
+[Time]
+NTP=pool.ntp.org
+FallbackNTP=time.google.com
+```
