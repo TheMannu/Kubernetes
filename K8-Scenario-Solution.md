@@ -722,3 +722,13 @@ sudo systemctl restart kubelet
 # Deploy NTP as DaemonSet (for air-gapped environments)
 kubectl apply -f https://k8s.io/examples/admin/chrony-daemonset.yaml
 ```
+
+### 2. Monitoring
+```yaml
+# Prometheus alert for clock skew
+- alert: NodeClockSkew
+  expr: abs(time() - node_time_seconds{job="node-exporter"}) > 30
+  for: 5m
+  labels:
+    severity: critical
+```
