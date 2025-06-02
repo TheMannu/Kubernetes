@@ -749,3 +749,8 @@ kubeadm join ... --ignore-preflight-errors=all  # NEVER do this
 ```
 
 ---
+
+**Key Metrics to Monitor**:  
+- `node_timex_offset_seconds`  
+- `node_timex_sync_status`  
+- `kubelet_node_name{condition="Ready"}`  
