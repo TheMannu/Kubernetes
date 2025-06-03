@@ -801,3 +801,9 @@ kubectl get events --all-namespaces --sort-by='.metadata.creationTimestamp' | \
 etcd_disk_wal_fsync_duration_seconds{quantile="0.99"} > 1
 etcd_server_quota_backend_bytes{cluster="true"} > 90%
 ```
+
+### 3. Locate problematic controller:
+```sh
+kubectl logs -n <namespace> <controller-pod> | \
+  grep -i "event.*failed" -m 20
+```
