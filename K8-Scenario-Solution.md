@@ -807,3 +807,11 @@ etcd_server_quota_backend_bytes{cluster="true"} > 90%
 kubectl logs -n <namespace> <controller-pod> | \
   grep -i "event.*failed" -m 20
 ```
+
+### 4. Verify API server health:
+```sh
+kubectl get --raw='/metrics' | \
+  grep -E 'apiserver_request_duration_seconds|apiserver_current_inflight_requests'
+```
+
+---
