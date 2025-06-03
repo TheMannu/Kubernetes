@@ -761,3 +761,11 @@ chronyc tracking     # Check NTP sync status
 chronyc sources -v   # Verify NTP sources
 openssl s_client -connect api-server:6443 # TLS handshake test
 ```
+
+# 📘 Scenario #8: API Server High Latency Due to Event Flooding
+
+**Category**: API Server Performance  
+**Environment**: Kubernetes v1.23, Azure AKS  
+**Impact**: Cluster-wide API latency spikes, scheduler disruptions  
+
+---
