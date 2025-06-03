@@ -769,3 +769,8 @@ openssl s_client -connect api-server:6443 # TLS handshake test
 **Impact**: Cluster-wide API latency spikes, scheduler disruptions  
 
 ---
+
+## Scenario Summary  
+A malfunctioning controller flooded the cluster with 50+ events/second, overwhelming etcd and causing API server latency to exceed 5s.
+
+---
