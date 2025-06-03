@@ -774,3 +774,15 @@ openssl s_client -connect api-server:6443 # TLS handshake test
 A malfunctioning controller flooded the cluster with 50+ events/second, overwhelming etcd and causing API server latency to exceed 5s.
 
 ---
+
+## What Happened  
+- **API degradation**:  
+  - `kubectl` commands timed out (`Error from server (Timeout)`)  
+  - Scheduler could not update pod status (`leader election lost`)  
+- **Event storm**:  
+  - 500,000+ events in default namespace  
+  - etcd WAL growth rate spiked to 50MB/minute  
+- **Controller misbehavior**:  
+  - Continuous `FailedCreate` events for non-critical conditions  
+
+---
