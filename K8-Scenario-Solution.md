@@ -794,3 +794,10 @@ A malfunctioning controller flooded the cluster with 50+ events/second, overwhel
 kubectl get events --all-namespaces --sort-by='.metadata.creationTimestamp' | \
   awk '{print $2}' | sort | uniq -c | sort -n
 ```
+
+### 2. Check etcd metrics:
+```sh
+# Via Prometheus
+etcd_disk_wal_fsync_duration_seconds{quantile="0.99"} > 1
+etcd_server_quota_backend_bytes{cluster="true"} > 90%
+```
