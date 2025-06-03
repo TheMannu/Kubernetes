@@ -786,3 +786,11 @@ A malfunctioning controller flooded the cluster with 50+ events/second, overwhel
   - Continuous `FailedCreate` events for non-critical conditions  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Identify event source:
+```sh
+kubectl get events --all-namespaces --sort-by='.metadata.creationTimestamp' | \
+  awk '{print $2}' | sort | uniq -c | sort -n
+```
