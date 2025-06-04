@@ -856,3 +856,13 @@ if time.Since(lastEvent) > 5*time.Minute {
 ⚠️ **Cascading failures**: API latency affects all controllers/schedulers  
 
 ---
+
+## Prevention Framework  
+
+### 1. Cluster Configuration
+```yaml
+# API server flags
+--event-ttl=30m  # Reduce from default 1h
+--enable-admission-plugins=EventRateLimit
+--admission-control-config-file=eventconfig.yaml
+```
