@@ -866,3 +866,14 @@ if time.Since(lastEvent) > 5*time.Minute {
 --enable-admission-plugins=EventRateLimit
 --admission-control-config-file=eventconfig.yaml
 ```
+
+### 2. Event Rate Limiting Policy
+```yaml
+# eventconfig.yaml
+apiVersion: eventratelimit.admission.k8s.io/v1alpha1
+kind: Configuration
+limits:
+  - type: Namespace
+    qps: 50
+    burst: 100
+```
