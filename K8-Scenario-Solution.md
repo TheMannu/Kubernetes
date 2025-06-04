@@ -815,3 +815,11 @@ kubectl get --raw='/metrics' | \
 ```
 
 ---
+
+## Root Cause  
+**Uncontrolled event generation**:  
+1. **No rate limiting**: Controller logged identical errors in tight loop  
+2. **No deduplication**: Same event recorded hundreds of times  
+3. **No cleanup**: Default event TTL of 1h insufficient  
+
+---
