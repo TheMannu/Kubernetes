@@ -848,3 +848,11 @@ if time.Since(lastEvent) > 5*time.Minute {
     errorCount = 0
 }
 ```
+
+---
+
+## Lessons Learned  
+⚠️ **Events are etcd writes**: Each event consumes etcd I/O capacity  
+⚠️ **Cascading failures**: API latency affects all controllers/schedulers  
+
+---
