@@ -823,3 +823,14 @@ kubectl get --raw='/metrics' | \
 3. **No cleanup**: Default event TTL of 1h insufficient  
 
 ---
+
+## Fix/Workaround  
+
+### Immediate Actions:
+```sh
+# Bulk delete events (carefully!)
+kubectl delete events --all --namespace=default
+
+# Scale down offending controller
+kubectl scale deploy <controller> --replicas=0
+```
