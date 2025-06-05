@@ -908,3 +908,7 @@ if time.Since(lastEvent) > time.Duration(eventInterval)*time.Second {
 ```sh
 # Real-time event monitoring
 kubectl get events -w --field-selector type=Warning
+
+# etcd compaction (if needed)
+etcdctl compact $(etcdctl endpoint status -w json | jq -r '.[].Status.header.revision')
+```
