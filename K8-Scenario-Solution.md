@@ -877,3 +877,12 @@ limits:
     qps: 50
     burst: 100
 ```
+
+### 3. Controller Best Practices
+```go
+// Use exponential backoff for error events
+eventInterval := math.Min(5*math.Pow(2, retryCount), 300)
+if time.Since(lastEvent) > time.Duration(eventInterval)*time.Second {
+    recordEvent()
+}
+```
