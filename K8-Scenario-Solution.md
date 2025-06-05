@@ -896,3 +896,10 @@ if time.Since(lastEvent) > time.Duration(eventInterval)*time.Second {
   labels:
     severity: critical
 ```
+
+---
+
+**Key Metrics to Watch**:  
+- `apiserver_storage_objects{resource="events"}`  
+- `etcd_mvcc_db_total_size_in_bytes`  
+- `apiserver_request_duration_seconds{verb="POST",resource="events"}`  
