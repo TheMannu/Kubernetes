@@ -886,3 +886,13 @@ if time.Since(lastEvent) > time.Duration(eventInterval)*time.Second {
     recordEvent()
 }
 ```
+
+### 4. Monitoring
+```yaml
+# Critical Prometheus alerts
+- alert: EventStorm
+  expr: rate(apiserver_event_count[1m]) > 100
+  for: 2m
+  labels:
+    severity: critical
+```
