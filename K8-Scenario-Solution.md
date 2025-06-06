@@ -912,3 +912,12 @@ kubectl get events -w --field-selector type=Warning
 # etcd compaction (if needed)
 etcdctl compact $(etcdctl endpoint status -w json | jq -r '.[].Status.header.revision')
 ```
+---
+
+# 📘 Scenario #9: CoreDNS CrashLoop on Startup  
+
+**Category**: Cluster Networking  
+**Environment**: Kubernetes v1.24, DigitalOcean  
+**Impact**: Cluster-wide DNS resolution failure  
+
+---
