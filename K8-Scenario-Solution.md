@@ -939,3 +939,11 @@ CoreDNS pods entered a `CrashLoopBackOff` state due to an invalid `Corefile` con
   - Service mesh (Istio) sidecars failed health checks  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Check CoreDNS pod status:
+```sh
+kubectl get pods -n kube-system -l k8s-app=kube-dns
+# Output showed CrashLoopBackOff
+```
