@@ -953,3 +953,10 @@ kubectl get pods -n kube-system -l k8s-app=kube-dns
 kubectl logs -n kube-system -l k8s-app=kube-dns --tail=50
 # Error: "Corefile:5 - Error during parsing: Unknown directive 'rewrit'"
 ```
+
+### 3. Verify ConfigMap:
+```sh
+kubectl get configmap/coredns -n kube-system -o yaml | grep -A10 "Corefile"
+# Revealed malformed rewrite rule:
+# rewrit name exact foo.bar internal.svc.cluster.local
+```
