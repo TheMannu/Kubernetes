@@ -947,3 +947,9 @@ CoreDNS pods entered a `CrashLoopBackOff` state due to an invalid `Corefile` con
 kubectl get pods -n kube-system -l k8s-app=kube-dns
 # Output showed CrashLoopBackOff
 ```
+
+### 2. Inspect pod logs:
+```sh
+kubectl logs -n kube-system -l k8s-app=kube-dns --tail=50
+# Error: "Corefile:5 - Error during parsing: Unknown directive 'rewrit'"
+```
