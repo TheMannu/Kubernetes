@@ -960,3 +960,10 @@ kubectl get configmap/coredns -n kube-system -o yaml | grep -A10 "Corefile"
 # Revealed malformed rewrite rule:
 # rewrit name exact foo.bar internal.svc.cluster.local
 ```
+
+### 4. Validate Corefile syntax (offline):
+```sh
+docker run -i coredns/coredns:1.8.6 -conf - <<< "$(kubectl get configmap/coredns -n kube-system -o jsonpath='{.data.Corefile}')"
+```
+
+---
