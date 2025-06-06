@@ -921,3 +921,8 @@ etcdctl compact $(etcdctl endpoint status -w json | jq -r '.[].Status.header.rev
 **Impact**: Cluster-wide DNS resolution failure  
 
 ---
+
+## Scenario Summary  
+CoreDNS pods entered a `CrashLoopBackOff` state due to an invalid `Corefile` configuration, breaking DNS resolution across all cluster workloads.  
+
+---
