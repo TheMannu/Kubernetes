@@ -993,3 +993,16 @@ kubectl rollout restart deployment/coredns -n kube-system
    # Pre-apply check using coredns/corerc
    docker run -i coredns/corerc:latest validate < corefile-new.cfg
    ```
+
+2. **Implement GitOps**:
+   ```yaml
+   # ArgoCD Application with kustomize
+   apiVersion: argoproj.io/v1alpha1
+   kind: Application
+   spec:
+     syncPolicy:
+       automated:
+         selfHeal: true  # Auto-revert broken changes
+   ```
+
+---
