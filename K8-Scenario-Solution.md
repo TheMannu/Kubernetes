@@ -975,3 +975,14 @@ docker run -i coredns/coredns:1.8.6 -conf - <<< "$(kubectl get configmap/coredns
 - No validation before applying changes  
 
 ---
+
+## Fix/Workaround  
+
+### Immediate Recovery:
+```sh
+# Revert to previous ConfigMap version
+kubectl rollout undo configmap/coredns -n kube-system
+
+# Force CoreDNS rollout
+kubectl rollout restart deployment/coredns -n kube-system
+```
