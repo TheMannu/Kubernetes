@@ -1006,3 +1006,9 @@ kubectl rollout restart deployment/coredns -n kube-system
    ```
 
 ---
+
+## Lessons Learned  
+⚠️ **DNS is critical infrastructure**: Even syntax errors cause cluster-wide outages  
+⚠️ **ConfigMaps need version control**: `kubectl edit` is dangerous without backups  
+
+---
