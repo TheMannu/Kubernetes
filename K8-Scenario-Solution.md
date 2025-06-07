@@ -986,3 +986,10 @@ kubectl rollout undo configmap/coredns -n kube-system
 # Force CoreDNS rollout
 kubectl rollout restart deployment/coredns -n kube-system
 ```
+
+### Permanent Solution:
+1. **Add validation workflow**:
+   ```sh
+   # Pre-apply check using coredns/corerc
+   docker run -i coredns/corerc:latest validate < corefile-new.cfg
+   ```
