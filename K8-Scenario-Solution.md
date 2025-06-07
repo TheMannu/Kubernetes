@@ -967,3 +967,11 @@ docker run -i coredns/coredns:1.8.6 -conf - <<< "$(kubectl get configmap/coredns
 ```
 
 ---
+
+## Root Cause  
+**Configuration error**:  
+- Typo in directive (`rewrit` vs `rewrite`)  
+- Missing required plugin (`rewrite` not in CoreDNS image)  
+- No validation before applying changes  
+
+---
