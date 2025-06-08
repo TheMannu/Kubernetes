@@ -1051,3 +1051,13 @@ spec:
   labels:
     severity: critical
 ```
+
+### 4. Deployment Best Practices
+```yaml
+# Helm values.yaml safety checks
+coredns:
+  customCorefile: |
+    import ./validate-corefile.sh  # Pre-install validation
+  rollingUpdate:
+    maxUnavailable: 0  # Ensure zero-downtime updates
+```
