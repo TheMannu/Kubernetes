@@ -1041,3 +1041,13 @@ spec:
       matchLabels:
         k8s-app: kube-dns
 ```
+
+### 3. Monitoring
+```yaml
+# Prometheus alerts for CoreDNS health
+- alert: CoreDNSDown
+  expr: absent(up{job="kube-dns"} == 1)
+  for: 1m
+  labels:
+    severity: critical
+```
