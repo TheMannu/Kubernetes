@@ -1024,3 +1024,20 @@ docker run -i coredns/coredns:${CORE_DNS_VERSION} -conf - < corefile.cfg || {
   exit 1
 }
 ```
+
+### 2. Change Management
+```yaml
+# CoreDNS ConfigMap backup policy (Velero example)
+apiVersion: velero.io/v1
+kind: Schedule
+metadata:
+  name: coredns-daily
+spec:
+  schedule: "@daily"
+  template:
+    includedNamespaces: [kube-system]
+    includedResources: [configmaps]
+    labelSelector:
+      matchLabels:
+        k8s-app: kube-dns
+```
