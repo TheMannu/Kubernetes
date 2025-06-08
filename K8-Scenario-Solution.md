@@ -1061,3 +1061,16 @@ coredns:
   rollingUpdate:
     maxUnavailable: 0  # Ensure zero-downtime updates
 ```
+
+---
+
+**Key Metrics to Monitor**:  
+- `coredns_cache_hits_total`  
+- `coredns_panics_total`  
+- `kube_dns_errors_total`  
+
+**Debugging Tools**:  
+```sh
+# Live CoreDNS query test
+kubectl run -it --rm dns-test --image=busybox --restart=Never -- nslookup kubernetes.default
+``` 
