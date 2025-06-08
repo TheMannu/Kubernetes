@@ -1074,3 +1074,23 @@ coredns:
 # Live CoreDNS query test
 kubectl run -it --rm dns-test --image=busybox --restart=Never -- nslookup kubernetes.default
 ``` 
+
+**Backup Corefile Template**:  
+```corefile
+. {
+    errors
+    health {
+       lameduck 5s
+    }
+    ready
+    kubernetes cluster.local in-addr.arpa ip6.arpa {
+       pods insecure
+       fallthrough in-addr.arpa ip6.arpa
+    }
+    prometheus :9153
+    forward . /etc/resolv.conf
+    cache 30
+    loop
+    reload  # Enable automatic config reload
+}
+```
