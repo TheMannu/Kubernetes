@@ -1137,3 +1137,18 @@ kubectl get nodes -o custom-columns=NAME:.metadata.name,POD_CIDR:.spec.podCIDR
 kubectl -n kube-system get cm kube-flannel-cfg -o jsonpath='{.data.net-conf\.json}' | jq
 # Revealed Network: "10.244.0.0/16" vs node's 10.244.1.0/24
 ```
+
+### 3. Inspect network routes:
+```sh
+# On affected node:
+ip route show | grep flannel
+# Missing expected overlay routes
+```
+
+### 4. Analyze kubelet logs:
+```sh
+journalctl -u kubelet --no-pager | grep -i podcidr
+# Log showed "PodCIDR not set for node" warnings
+```
+
+---
