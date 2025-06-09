@@ -1105,3 +1105,8 @@ kubectl run -it --rm dns-test --image=busybox --restart=Never -- nslookup kubern
 **Impact**: Complete control plane isolation, workload communication breakdown  
 
 ---
+
+## Scenario Summary  
+A new node joined with an incorrect pod CIDR, causing Flannel routing tables to corrupt and severing all control plane communications.  
+
+---
