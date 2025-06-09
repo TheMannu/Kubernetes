@@ -1094,3 +1094,14 @@ kubectl run -it --rm dns-test --image=busybox --restart=Never -- nslookup kubern
     reload  # Enable automatic config reload
 }
 ```
+
+---
+---
+
+# 📘 Scenario #10: Control Plane Unavailable After Flannel Misconfiguration  
+
+**Category**: Cluster Networking  
+**Environment**: Kubernetes v1.18, On-prem (Bare Metal), Flannel CNI  
+**Impact**: Complete control plane isolation, workload communication breakdown  
+
+---
