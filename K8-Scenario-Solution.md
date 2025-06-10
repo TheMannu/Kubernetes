@@ -1160,3 +1160,19 @@ journalctl -u kubelet --no-pager | grep -i podcidr
 3. **Flannel's strict subnet requirements** not enforced  
 
 ---
+
+## Fix/Workaround  
+
+### Emergency Recovery:
+```sh
+# Drain and remove misconfigured node
+kubectl drain <node> --delete-emptydir-data --force
+kubectl delete node <node>
+
+# Reset Flannel (on all nodes)
+sudo systemctl restart flanneld
+sudo iptables -F && sudo iptables -t nat -F
+
+# Rejoin node with correct CIDR
+kubeadm join ... --pod-network-cidr=10.244.0.0/16
+```
