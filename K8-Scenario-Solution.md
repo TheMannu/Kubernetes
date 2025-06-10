@@ -1209,3 +1209,27 @@ kubeadm join ... --pod-network-cidr=10.244.0.0/16
 ⚠️ **Control plane depends on pod network**: Broken CNI → Broken API  
 
 ---
+
+## Prevention Framework  
+
+### 1. Admission Control
+```yaml
+# Kyverno ClusterPolicy example
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: validate-pod-cidr
+spec:
+  validationFailureAction: enforce
+  rules:
+  - name: check-pod-cidr
+    match:
+      resources:
+        kinds:
+        - Node
+    validate:
+      message: "Pod CIDR must match cluster range"
+      pattern:
+        spec:
+          podCIDR: "10.244.0.0/16"
+```
