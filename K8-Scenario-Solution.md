@@ -1202,3 +1202,10 @@ kubeadm join ... --pod-network-cidr=10.244.0.0/16
    ```
 
 ---
+
+## Lessons Learned  
+⚠️ **CNI plugins are fragile**: Flannel requires perfect CIDR alignment  
+⚠️ **Manual node additions are dangerous**: Always use automation  
+⚠️ **Control plane depends on pod network**: Broken CNI → Broken API  
+
+---
