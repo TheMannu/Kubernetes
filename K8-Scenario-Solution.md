@@ -1189,3 +1189,16 @@ kubeadm join ... --pod-network-cidr=10.244.0.0/16
      parameters:
        cidr: "10.244.0.0/16"
    ```
+
+2. **Flannel configuration hardening**:
+   ```json
+   {
+     "Network": "10.244.0.0/16",
+     "Backend": {
+       "Type": "vxlan",
+       "DirectRouting": true
+     }
+   }
+   ```
+
+---
