@@ -1176,3 +1176,16 @@ sudo iptables -F && sudo iptables -t nat -F
 # Rejoin node with correct CIDR
 kubeadm join ... --pod-network-cidr=10.244.0.0/16
 ```
+
+### Long-term Solution:
+1. **Automated node validation**:
+   ```yaml
+   # OPA Gatekeeper constraint
+   apiVersion: constraints.gatekeeper.sh/v1beta1
+   kind: K8sRequiredPodCIDR
+   spec:
+     match:
+       kinds: [{kind: Node}]
+     parameters:
+       cidr: "10.244.0.0/16"
+   ```
