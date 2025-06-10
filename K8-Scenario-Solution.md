@@ -1233,3 +1233,9 @@ spec:
         spec:
           podCIDR: "10.244.0.0/16"
 ```
+
+### 2. Provisioning Safeguards
+```sh
+# kubeadm pre-flight check
+kubeadm join --config=kubeadm-config.yaml --dry-run
+```
