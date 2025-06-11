@@ -1239,3 +1239,12 @@ spec:
 # kubeadm pre-flight check
 kubeadm join --config=kubeadm-config.yaml --dry-run
 ```
+
+### 3. Monitoring
+```yaml
+# Critical Prometheus alerts
+- alert: FlannelCIDRMismatch
+  expr: count(kube_node_info{pod_cidr!="10.244.0.0/16"}) > 0
+  labels:
+    severity: critical
+```
