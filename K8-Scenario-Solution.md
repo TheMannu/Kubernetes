@@ -1265,3 +1265,10 @@ resource "local_file" "kubeadm_config" {
 - `flannel_subnet_leases`  
 - `kube_node_status_condition{condition="NetworkUnavailable"}`  
 - `node_network_up`  
+
+**Debugging Tools**:  
+```sh
+# Network connectivity test
+kubectl run net-test --image=nicolaka/netshoot --rm -it -- \
+   curl -m 5 https://kubernetes.default.svc.cluster.local
+``` 
