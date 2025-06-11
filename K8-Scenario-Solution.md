@@ -1272,3 +1272,11 @@ resource "local_file" "kubeadm_config" {
 kubectl run net-test --image=nicolaka/netshoot --rm -it -- \
    curl -m 5 https://kubernetes.default.svc.cluster.local
 ``` 
+
+**Flannel Health Checks**:  
+```sh
+# Verify Flannel interface
+ip -d link show flannel.1
+# Check route propagation
+etcdctl get /coreos.com/network/subnets --prefix
+```
