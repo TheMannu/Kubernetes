@@ -1258,3 +1258,10 @@ resource "local_file" "kubeadm_config" {
   })
 }
 ```
+
+---
+
+**Key Metrics to Monitor**:  
+- `flannel_subnet_leases`  
+- `kube_node_status_condition{condition="NetworkUnavailable"}`  
+- `node_network_up`  
