@@ -1280,3 +1280,13 @@ ip -d link show flannel.1
 # Check route propagation
 etcdctl get /coreos.com/network/subnets --prefix
 ```
+
+---
+
+# 📘 Scenario #11: kube-proxy IPTables Rules Overlap Breaking Networking
+
+**Category**: Cluster Networking  
+**Environment**: Kubernetes v1.22, On-prem, kube-proxy in IPTables mode  
+**Impact**: Service connectivity loss, DNS resolution failures  
+
+---
