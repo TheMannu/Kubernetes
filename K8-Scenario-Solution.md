@@ -1290,3 +1290,8 @@ etcdctl get /coreos.com/network/subnets --prefix
 **Impact**: Service connectivity loss, DNS resolution failures  
 
 ---
+
+## Scenario Summary  
+Custom IPTables NAT rules installed on nodes conflicted with kube-proxy's service routing rules, causing broken cluster networking and service blackholes.  
+
+---
