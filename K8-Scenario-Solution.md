@@ -1317,3 +1317,9 @@ Custom IPTables NAT rules installed on nodes conflicted with kube-proxy's servic
 kubectl run net-test --image=nicolaka/netshoot --rm -it -- \
    curl -v http://kubernetes.default.svc.cluster.local
 ```
+
+### 2. Inspect IPTables rules:
+```sh
+iptables-save -t nat | grep -A 10 KUBE-SERVICES
+# Found custom SNAT rules inserted above kube-proxy rules
+```
