@@ -1309,3 +1309,11 @@ Custom IPTables NAT rules installed on nodes conflicted with kube-proxy's servic
   - Rule ordering became corrupted after kube-proxy syncs  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Verify service connectivity:
+```sh
+kubectl run net-test --image=nicolaka/netshoot --rm -it -- \
+   curl -v http://kubernetes.default.svc.cluster.local
+```
