@@ -1323,3 +1323,18 @@ kubectl run net-test --image=nicolaka/netshoot --rm -it -- \
 iptables-save -t nat | grep -A 10 KUBE-SERVICES
 # Found custom SNAT rules inserted above kube-proxy rules
 ```
+
+### 3. Check kube-proxy logs:
+```sh
+journalctl -u kube-proxy --no-pager | grep -i conflict
+# "Couldn't clean up iptables rules: exit status 2"
+```
+
+### 4. Compare rule versions:
+```sh
+# Before custom rules
+iptables-save > /tmp/pre-change.iptables
+# After incident
+diff /tmp/pre-change.iptables <(iptables-save)
+```
+
