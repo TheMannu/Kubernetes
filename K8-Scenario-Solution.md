@@ -1368,3 +1368,21 @@ kubectl get svc -A -o wide
    iptables -t nat -N CUSTOM-NAT
    iptables -t nat -A PREROUTING -j CUSTOM-NAT
    ```
+
+### Long-term Solution:
+1. **Isolate custom rules**:
+   ```sh
+   # Create dedicated chain
+   iptables -t nat -N CUSTOM-NAT
+   iptables -t nat -A PREROUTING -j CUSTOM-NAT
+   ```
+
+2. **kube-proxy configuration**:
+   ```yaml
+   # /var/lib/kube-proxy/configuration.conf
+   iptables:
+     minSyncPeriod: 5s  # Faster recovery from conflicts
+     localhostNodePorts: false  # Reduce rule complexity
+   ```
+
+---
