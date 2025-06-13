@@ -1393,3 +1393,13 @@ kubectl get svc -A -o wide
 ⚠️ **Silent failures**: kube-proxy retries indefinitely without alerting  
 
 ---
+
+## Prevention Framework  
+
+### 1. Firewall Policy
+```sh
+# Safe rule addition template
+iptables -t nat -N MY-APP-NAT
+iptables -t nat -A PREROUTING -j MY-APP-NAT  # Runs BEFORE KUBE-SERVICES
+iptables -t nat -A POSTROUTING -j MY-APP-NAT
+```
