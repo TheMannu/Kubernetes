@@ -1386,3 +1386,10 @@ kubectl get svc -A -o wide
    ```
 
 ---
+
+## Lessons Learned  
+⚠️ **kube-proxy owns NAT chains**: Never manually modify `KUBE-*` chains  
+⚠️ **Rule ordering matters**: First-match wins in IPTables  
+⚠️ **Silent failures**: kube-proxy retries indefinitely without alerting  
+
+---
