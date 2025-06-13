@@ -1360,3 +1360,11 @@ systemctl restart kube-proxy
 # Verify service restoration
 kubectl get svc -A -o wide
 ```
+
+### Long-term Solution:
+1. **Isolate custom rules**:
+   ```sh
+   # Create dedicated chain
+   iptables -t nat -N CUSTOM-NAT
+   iptables -t nat -A PREROUTING -j CUSTOM-NAT
+   ```
