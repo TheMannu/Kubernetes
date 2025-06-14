@@ -1438,3 +1438,17 @@ spec:
 ```
 
 ---
+
+**Key Metrics to Monitor**:  
+- `kube_proxy_sync_proxy_rules_duration_seconds`  
+- `node_netstat_IpExt_OutNoRoutes`  
+- `kube_proxy_network_programming_duration_seconds`  
+
+**Debugging Tools**:  
+```sh
+# Compare expected vs actual rules
+diff <(kube-proxy --cleanup) <(iptables-save)
+
+# Rule visualization
+iptables -t nat -L -v --line-numbers
+```
