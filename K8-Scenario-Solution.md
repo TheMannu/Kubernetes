@@ -1427,3 +1427,14 @@ spec:
   labels:
     severity: critical
 ```
+
+### 4. Documentation Standard
+```markdown
+## Node Firewall Policy
+- All custom rules MUST:
+  - Use dedicated chains (`-N CUSTOM-NAME`)
+  - Never modify `KUBE-*` chains directly  
+  - Be version-controlled in `/etc/iptables.rules`
+```
+
+---
