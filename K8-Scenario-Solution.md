@@ -1403,3 +1403,18 @@ iptables -t nat -N MY-APP-NAT
 iptables -t nat -A PREROUTING -j MY-APP-NAT  # Runs BEFORE KUBE-SERVICES
 iptables -t nat -A POSTROUTING -j MY-APP-NAT
 ```
+
+### 2. Admission Control
+```yaml
+# OPA Gatekeeper policy to block node modifications
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sAllowedSysctls
+metadata:
+  name: deny-iptables-mod
+spec:
+  match:
+    kinds:
+    - Node
+  parameters:
+    forbiddenPatterns: ["*iptables*"]
+```
