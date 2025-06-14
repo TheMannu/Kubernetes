@@ -1452,3 +1452,10 @@ diff <(kube-proxy --cleanup) <(iptables-save)
 # Rule visualization
 iptables -t nat -L -v --line-numbers
 ```
+
+**kube-proxy Health Checks**:  
+```sh
+# Verify rule sync status
+curl -s http://localhost:10249/proxyMode
+# Should return "iptables" with no errors
+``` 
