@@ -1459,3 +1459,9 @@ iptables -t nat -L -v --line-numbers
 curl -s http://localhost:10249/proxyMode
 # Should return "iptables" with no errors
 ``` 
+
+**Backup Procedure**:  
+```sh
+# Daily iptables backup
+iptables-save > /etc/iptables.rules.$(date +%F)
+```
