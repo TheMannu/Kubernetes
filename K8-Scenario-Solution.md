@@ -1465,3 +1465,12 @@ curl -s http://localhost:10249/proxyMode
 # Daily iptables backup
 iptables-save > /etc/iptables.rules.$(date +%F)
 ```
+---
+---
+# 📘 Scenario #12: Stuck CSR Requests Blocking New Node Joins
+
+**Category**: Cluster Authentication  
+**Environment**: Kubernetes v1.20, kubeadm cluster  
+**Impact**: Node provisioning freeze, scaling operations failed  
+
+---
