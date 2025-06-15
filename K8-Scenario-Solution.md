@@ -1507,3 +1507,10 @@ kubectl get csr -o wide | grep -c Pending
 journalctl -u kubelet --no-pager | grep -A10 "certificate"
 # "Failed to request signed certificate: timed out waiting for CSR to be signed"
 ```
+
+### 3. Verify controller status:
+```sh
+kubectl -n kube-system get pod -l component=kube-controller-manager \
+  -o jsonpath='{.items[0].spec.containers[0].command}' | jq
+# Missing --cluster-signing-cert-file flag
+```
