@@ -1528,3 +1528,16 @@ openssl x509 -enddate -noout -in /var/lib/kubelet/pki/kubelet-client-current.pem
 1. Security hardening disabled certificate signing controller  
 2. No monitoring for CSR approval latency  
 3. Certificate expiry wave compounded the problem  
+
+## Fix/Workaround  
+
+### Emergency Recovery:
+```sh
+# Bulk approve node client CSRs
+kubectl get csr -o name | grep 'node-client' | xargs kubectl certificate approve
+
+# Approve all pending kubelet-serving CSRs
+kubectl get csr -o json | \
+  jq -r '.items[] | select(.status == {}) | .metadata.name' | \
+  xargs kubectl certificate approve
+```
