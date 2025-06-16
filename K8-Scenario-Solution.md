@@ -1522,3 +1522,9 @@ openssl x509 -enddate -noout -in /var/lib/kubelet/pki/kubelet-client-current.pem
 ```
 
 ---
+
+## Root Cause  
+**Broken auto-approval flow**:  
+1. Security hardening disabled certificate signing controller  
+2. No monitoring for CSR approval latency  
+3. Certificate expiry wave compounded the problem  
