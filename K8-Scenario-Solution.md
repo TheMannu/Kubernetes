@@ -1564,3 +1564,18 @@ spec:
 ⚠️ **Certificate expiry waves**: Synchronized issuance causes time-bomb effects  
 
 ---
+
+## Prevention Framework  
+
+### 1. Automated Approval Policies
+```yaml
+# CSR Approver ClusterRole (ensure it exists)
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: system:certificates.k8s.io:certificatesigningrequests:nodeclient
+rules:
+- apiGroups: ["certificates.k8s.io"]
+  resources: ["certificatesigningrequests/nodeclient"]
+  verbs: ["create"]
+```
