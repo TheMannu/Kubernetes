@@ -1514,3 +1514,11 @@ kubectl -n kube-system get pod -l component=kube-controller-manager \
   -o jsonpath='{.items[0].spec.containers[0].command}' | jq
 # Missing --cluster-signing-cert-file flag
 ```
+
+### 4. Check certificate expiry:
+```sh
+openssl x509 -enddate -noout -in /var/lib/kubelet/pki/kubelet-client-current.pem
+# "notAfter=Apr 12 13:32:42 2023 GMT" (expired)
+```
+
+---
