@@ -1541,3 +1541,17 @@ kubectl get csr -o json | \
   jq -r '.items[] | select(.status == {}) | .metadata.name' | \
   xargs kubectl certificate approve
 ```
+
+### Controller Restoration:
+```yaml
+# /etc/kubernetes/manifests/kube-controller-manager.yaml
+spec:
+  containers:
+  - command:
+    - kube-controller-manager
+    - --cluster-signing-cert-file=/etc/kubernetes/pki/ca.crt
+    - --cluster-signing-key-file=/etc/kubernetes/pki/ca.key
+    - --controllers=*,csrapproving  # Explicitly enable
+```
+
+---
