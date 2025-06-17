@@ -1622,3 +1622,7 @@ certificateRotationStrategy:
 ```sh
 # Inspect CSR details
 kubectl get csr -o jsonpath='{range .items[*]}{.metadata.name}{"\t"}{.spec.username}{"\t"}{.status.conditions[*].type}{"\n"}{end}'
+
+# Verify CA certificate chain
+openssl verify -CAfile /etc/kubernetes/pki/ca.crt /var/lib/kubelet/pki/kubelet-client-current.pem
+```
