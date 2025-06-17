@@ -1592,3 +1592,10 @@ rules:
 - alert: CertificateExpirySoon
   expr: kubelet_certificate_manager_client_expiration_seconds < 86400*7  # 7 days
 ```
+
+### 3. Automation Safeguards
+```sh
+# Pre-flight check for new nodes
+kubeadm join --dry-run | grep -q "certificate signing request" || \
+  { echo "CSR flow broken"; exit 1; }
+```
