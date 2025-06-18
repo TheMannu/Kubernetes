@@ -1643,3 +1643,8 @@ rm /var/lib/kubelet/pki/kubelet-client-*
 **Impact**: Upgrade rollback required, 2-hour control plane outage  
 
 ---
+
+## Scenario Summary  
+A malformed etcd static pod manifest prevented the control plane from coming up during a minor version upgrade, requiring manual intervention and causing extended downtime.  
+
+---
