@@ -1662,3 +1662,12 @@ A malformed etcd static pod manifest prevented the control plane from coming up 
   - Scheduler stopped assigning new pods  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Verify static pod status:
+```sh
+# On control plane node:
+crictl pods --name etcd
+# Showed "NotReady" state
+```
