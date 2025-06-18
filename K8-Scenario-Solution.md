@@ -1633,3 +1633,13 @@ openssl verify -CAfile /etc/kubernetes/pki/ca.crt /var/lib/kubelet/pki/kubelet-c
 systemctl restart kubelet
 rm /var/lib/kubelet/pki/kubelet-client-*
 ```
+
+---
+---
+# 📘 Scenario #13: Failed Cluster Upgrade Due to Unready Static Pods
+
+**Category**: Control Plane Maintenance  
+**Environment**: Kubernetes v1.21 → v1.23 upgrade, kubeadm  
+**Impact**: Upgrade rollback required, 2-hour control plane outage  
+
+---
