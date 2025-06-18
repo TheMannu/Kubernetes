@@ -1671,3 +1671,15 @@ A malformed etcd static pod manifest prevented the control plane from coming up 
 crictl pods --name etcd
 # Showed "NotReady" state
 ```
+
+### 2. Inspect kubelet logs:
+```sh
+journalctl -u kubelet -n 50 --no-pager | grep -A10 "static pod"
+# Error: "invalid volume mount path: /var/lib/etc"
+```
+
+### 3. Validate manifest syntax:
+```sh
+yamllint /etc/kubernetes/manifests/etcd.yaml
+# Passed (syntax valid but path incorrect)
+```
