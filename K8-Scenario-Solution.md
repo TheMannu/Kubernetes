@@ -1691,3 +1691,11 @@ crictl inspect $(crictl ps -a --name etcd -q) | jq '.status.reason'
 ```
 
 ---
+
+## Root Cause  
+**Manifest validation gap**:  
+1. **No pre-flight validation** of static pod changes  
+2. **Case-sensitive path** typo went undetected  
+3. **kubelet retry logic** didn't surface error clearly  
+
+---
