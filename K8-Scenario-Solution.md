@@ -1726,3 +1726,14 @@ kubeadm upgrade apply v1.23.5 --force
 ⚠️ **Control plane domino effect**: etcd failure → API failure → Cluster failure  
 
 ---
+
+## Prevention Framework  
+
+### 1. Manifest Management
+```sh
+# Pre-change validation script
+validate_manifest() {
+  yamllint $1 && \
+  kubeval --strict $1 --schema-location https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master
+}
+```
