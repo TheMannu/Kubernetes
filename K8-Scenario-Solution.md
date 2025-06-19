@@ -1683,3 +1683,11 @@ journalctl -u kubelet -n 50 --no-pager | grep -A10 "static pod"
 yamllint /etc/kubernetes/manifests/etcd.yaml
 # Passed (syntax valid but path incorrect)
 ```
+
+### 4. Check etcd container:
+```sh
+crictl inspect $(crictl ps -a --name etcd -q) | jq '.status.reason'
+# "CreateContainerError"
+```
+
+---
