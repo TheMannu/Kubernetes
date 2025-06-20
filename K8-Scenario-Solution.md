@@ -1787,3 +1787,17 @@ diff -u /etc/kubernetes/manifests/etcd.yaml /etc/kubernetes/manifests/etcd.yaml.
 # Daily manifest backup
 tar czf /backups/k8s-manifests-$(date +%F).tgz /etc/kubernetes/manifests
 ```
+
+**Static Pod Linter**:  
+```yaml
+# Example etcd manifest validation rules
+checks:
+  - id: etcd-volume-mounts
+    severity: ERROR
+    message: "ETCD data volume must mount to /var/lib/etcd"
+    paths:
+      - /etc/kubernetes/manifests/etcd.yaml
+    assert:
+      all:
+        - exists: $.spec.containers[0].volumeMounts[?(@.mountPath == '/var/lib/etcd')]
+```
