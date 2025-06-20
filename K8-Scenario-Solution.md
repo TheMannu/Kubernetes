@@ -1759,3 +1759,11 @@ validate_manifest() {
   labels:
     severity: critical
 ```
+
+### 4. Upgrade Safeguards
+```sh
+# kubeadm pre-flight check
+kubeadm upgrade diff --config=kubeadm-config.yaml
+```
+
+---
