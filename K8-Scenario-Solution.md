@@ -1831,3 +1831,11 @@ A misconfigured debug flag in a production pod caused log explosions (100+ MB/se
   - Cluster autoscaler spun up new nodes (which also filled rapidly)  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Identify disk usage:
+```sh
+kubectl debug node/<node> -it --image=alpine -- df -h /var/log
+# Output: 100% used
+```
