@@ -1801,3 +1801,14 @@ checks:
       all:
         - exists: $.spec.containers[0].volumeMounts[?(@.mountPath == '/var/lib/etcd')]
 ```
+
+---
+---
+
+# 📘 Scenario #14: Uncontrolled Logs Filled Disk on All Nodes
+
+**Category**: Node Resource Management  
+**Environment**: Kubernetes v1.24, AWS EKS, containerd runtime  
+**Impact**: Cluster-wide disk pressure, pod evictions, and application failures  
+
+---
