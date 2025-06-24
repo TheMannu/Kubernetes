@@ -1845,3 +1845,9 @@ kubectl debug node/<node> -it --image=alpine -- df -h /var/log
 kubectl debug node/<node> -it --image=alpine -- \
   du -ah /var/log/containers/ | sort -rh | head -20
 ```
+
+### 3. Verify pod logs:
+```sh
+kubectl logs <offending-pod> --tail=100 | grep -c "TRACE"
+# Output: 100/100 lines at TRACE level
+```
