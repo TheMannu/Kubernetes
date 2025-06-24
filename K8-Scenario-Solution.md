@@ -1839,3 +1839,9 @@ A misconfigured debug flag in a production pod caused log explosions (100+ MB/se
 kubectl debug node/<node> -it --image=alpine -- df -h /var/log
 # Output: 100% used
 ```
+
+### 2. Locate log offenders:
+```sh
+kubectl debug node/<node> -it --image=alpine -- \
+  du -ah /var/log/containers/ | sort -rh | head -20
+```
