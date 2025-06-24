@@ -1851,3 +1851,12 @@ kubectl debug node/<node> -it --image=alpine -- \
 kubectl logs <offending-pod> --tail=100 | grep -c "TRACE"
 # Output: 100/100 lines at TRACE level
 ```
+
+### 4. Check log rotation config:
+```sh
+kubectl debug node/<node> -it --image=alpine -- \
+  cat /etc/docker/daemon.json | jq '.["log-opts"]'
+# Showed missing size limits
+```
+
+---
