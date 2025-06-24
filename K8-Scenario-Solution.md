@@ -1880,3 +1880,7 @@ kubectl debug node/<node> -it --image=alpine -- \
 # 2. Restart containerd
 kubectl debug node/<node> -it --image=alpine -- \
   systemctl restart containerd
+
+# 3. Scale down offender
+kubectl scale deploy <debug-deployment> --replicas=0
+```
