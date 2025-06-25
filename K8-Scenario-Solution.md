@@ -1915,3 +1915,19 @@ kind: KubeletConfiguration
 containerLogMaxSize: "50Mi"
 containerLogMaxFiles: 3
 ``
+
+### 2. Deployment Safeguards
+```yaml
+# OPA/Gatekeeper policy
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sAllowedLogLevels
+metadata:
+  name: deny-trace-logs
+spec:
+  match:
+    kinds:
+    - apiGroups: [""]
+      kinds: ["Pod"]
+  parameters:
+    forbiddenLevels: ["TRACE", "DEBUG"]
+```
