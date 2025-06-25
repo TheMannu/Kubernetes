@@ -1931,3 +1931,13 @@ spec:
   parameters:
     forbiddenLevels: ["TRACE", "DEBUG"]
 ```
+
+### 3. Monitoring
+```yaml
+# Prometheus alerts
+- alert: NodeLogDiskFull
+  expr: node_filesystem_avail_bytes{mountpoint="/var/log"} / node_filesystem_size_bytes{mountpoint="/var/log"} < 0.2
+  for: 5m
+  labels:
+    severity: critical
+```
