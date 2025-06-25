@@ -1898,3 +1898,9 @@ kubectl scale deploy <debug-deployment> --replicas=0
 ```
 
 ---
+## Lessons Learned  
+⚠️ **Logs are unmanaged resources**: Can consume 100% disk if unchecked  
+⚠️ **Debug levels are dangerous**: `TRACE`/`DEBUG` must never reach production  
+⚠️ **Node storage is shared**: One pod can take down entire node  
+
+---
