@@ -1884,3 +1884,17 @@ kubectl debug node/<node> -it --image=alpine -- \
 # 3. Scale down offender
 kubectl scale deploy <debug-deployment> --replicas=0
 ```
+
+### Long-term Solution:
+```json
+// /etc/containerd/config.toml
+[plugins."io.containerd.grpc.v1.cri".containerd]
+  disable_hugetlb_controller = false
+  [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc.options]
+    SystemdCgroup = true
+  [plugins."io.containerd.grpc.v1.cri".containerd.logs]
+    max_size = "100MB"
+    max_files = 3
+```
+
+---
