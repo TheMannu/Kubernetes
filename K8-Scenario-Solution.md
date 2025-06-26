@@ -1962,3 +1962,7 @@ fi
 ```sh
 # Live log rate monitoring
 kubectl exec <pod> -- sh -c "tail -f /proc/1/fd/1 | pv -lbtr >/dev/null"
+
+# Per-pod log size
+kubectl get pods -o json | jq '.items[] | {name:.metadata.name, logs:.spec.containers[].resources.limits."logging-size"}'
+```
