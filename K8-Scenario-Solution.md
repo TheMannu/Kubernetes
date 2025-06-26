@@ -1957,3 +1957,8 @@ fi
 - `container_fs_usage_bytes`  
 - `node_filesystem_avail_bytes{mountpoint="/var/log"}`  
 - `kubelet_evictions` by `DiskPressure`  
+
+**Debugging Tools**:  
+```sh
+# Live log rate monitoring
+kubectl exec <pod> -- sh -c "tail -f /proc/1/fd/1 | pv -lbtr >/dev/null"
