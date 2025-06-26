@@ -1952,3 +1952,8 @@ fi
 ```
 
 ---
+
+**Key Metrics to Monitor**:  
+- `container_fs_usage_bytes`  
+- `node_filesystem_avail_bytes{mountpoint="/var/log"}`  
+- `kubelet_evictions` by `DiskPressure`  
