@@ -1990,3 +1990,8 @@ spec:
 **Impact**: Unplanned maintenance delays, failed node rotations  
 
 ---
+
+## Scenario Summary  
+A `PodDisruptionBudget` (PDB) deadlock prevented node drainage when a deployment's `minAvailable` requirement exceeded available replicas during maintenance operations.
+
+---
