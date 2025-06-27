@@ -2008,3 +2008,10 @@ A `PodDisruptionBudget` (PDB) deadlock prevented node drainage when a deployment
   - Cluster autoscaler refused to scale up (CPU metrics below threshold)  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Check PDB status:
+```sh
+kubectl get pdb -A -o custom-columns="NAMESPACE:.metadata.namespace,NAME:.metadata.name,MIN-AVAILABLE:.spec.minAvailable,PODS:.status.currentHealthy,ALLOWED:.status.disruptionsAllowed"
+```
