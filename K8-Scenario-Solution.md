@@ -2003,3 +2003,8 @@ A `PodDisruptionBudget` (PDB) deadlock prevented node drainage when a deployment
 - **PDB conflict**:  
   - Deployment had `replicas: 2` with PDB `minAvailable: 2`  
   - Zero allowed disruptions (`kubectl get pdb` showed `ALLOWED-DISRUPTIONS: 0`) 
+- **System behavior**:  
+  - Drain operation timed out after 1h (`error when evicting pod: cannot evict as it would violate the pod's disruption budget`)  
+  - Cluster autoscaler refused to scale up (CPU metrics below threshold)  
+
+---
