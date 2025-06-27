@@ -2015,3 +2015,9 @@ A `PodDisruptionBudget` (PDB) deadlock prevented node drainage when a deployment
 ```sh
 kubectl get pdb -A -o custom-columns="NAMESPACE:.metadata.namespace,NAME:.metadata.name,MIN-AVAILABLE:.spec.minAvailable,PODS:.status.currentHealthy,ALLOWED:.status.disruptionsAllowed"
 ```
+
+### 2. Verify deployment scale:
+```sh
+kubectl get deploy -n <namespace> -o jsonpath='{.items[*].spec.replicas}'
+# Output: 2
+```
