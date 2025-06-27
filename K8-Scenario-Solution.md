@@ -2021,3 +2021,9 @@ kubectl get pdb -A -o custom-columns="NAMESPACE:.metadata.namespace,NAME:.metada
 kubectl get deploy -n <namespace> -o jsonpath='{.items[*].spec.replicas}'
 # Output: 2
 ```
+
+### 3. Inspect drain status:
+```sh
+kubectl get events --field-selector involvedObject.kind=Pod --sort-by=.lastTimestamp
+# Showed repeated eviction failures
+```
