@@ -1995,3 +1995,11 @@ spec:
 A `PodDisruptionBudget` (PDB) deadlock prevented node drainage when a deployment's `minAvailable` requirement exceeded available replicas during maintenance operations.
 
 ---
+
+## What Happened  
+- **Maintenance trigger**:  
+  - Node required emergency patching (CVE-2021-44228)  
+  - `kubectl drain` command hung indefinitely  
+- **PDB conflict**:  
+  - Deployment had `replicas: 2` with PDB `minAvailable: 2`  
+  - Zero allowed disruptions (`kubectl get pdb` showed `ALLOWED-DISRUPTIONS: 0`) 
