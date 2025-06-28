@@ -2043,3 +2043,14 @@ kubectl get hpa -n <namespace> -o yaml | yq '.items[].spec.minReplicas'
 3. No coordination between PDB definitions and maintenance procedures  
 
 ---
+
+## Fix/Workaround  
+
+### Immediate Resolution:
+```sh
+# Option 1: Temporarily relax PDB (if SLA allows)
+kubectl patch pdb <name> -p '{"spec":{"minAvailable":1}}'
+
+# Option 2: Force scale-up first
+kubectl scale deploy <name> --replicas=3
+```
