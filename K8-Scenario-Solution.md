@@ -2070,3 +2070,10 @@ kubectl scale deploy <name> --replicas=2
 ```
 
 ---
+
+## Lessons Learned  
+⚠️ **PDBs can create hard locks**: Exact `minAvailable` matches are dangerous  
+⚠️ **HPA interactions matter**: Minimum replicas must exceed PDB requirements  
+⚠️ **Maintenance needs headroom**: Always design for N+1 availability during operations  
+
+---
