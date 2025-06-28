@@ -2054,3 +2054,19 @@ kubectl patch pdb <name> -p '{"spec":{"minAvailable":1}}'
 # Option 2: Force scale-up first
 kubectl scale deploy <name> --replicas=3
 ```
+
+### Complete Drain:
+```sh
+kubectl drain <node> --ignore-daemonsets --delete-emptydir-data
+```
+
+### Post-Maintenance:
+```sh
+# Restore original PDB
+kubectl patch pdb <name> -p '{"spec":{"minAvailable":2}}'
+
+# Optional scale-down
+kubectl scale deploy <name> --replicas=2
+```
+
+---
