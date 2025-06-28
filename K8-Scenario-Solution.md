@@ -2077,3 +2077,21 @@ kubectl scale deploy <name> --replicas=2
 ⚠️ **Maintenance needs headroom**: Always design for N+1 availability during operations  
 
 ---
+
+## Prevention Framework  
+
+### 1. Validation Webhooks
+```yaml
+# OPA/Gatekeeper constraint
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sValidPodDisruptionBudget
+metadata:
+  name: pdb-min-available-check
+spec:
+  match:
+    kinds:
+    - apiGroups: ["policy"]
+      kinds: ["PodDisruptionBudget"]
+  parameters:
+    minReplicaBuffer: 1  # Require minAvailable < replicas
+```
