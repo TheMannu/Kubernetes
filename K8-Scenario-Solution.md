@@ -2095,3 +2095,16 @@ spec:
   parameters:
     minReplicaBuffer: 1  # Require minAvailable < replicas
 ```
+
+### 2. CI/CD Checks
+```sh
+# Pre-deployment validation script
+check_pdb() {
+  replicas=$(kubectl get deploy $1 -o jsonpath='{.spec.replicas}')
+  minAvailable=$(kubectl get pdb $1 -o jsonpath='{.spec.minAvailable}')
+  [ $replicas -gt $minAvailable ] || {
+    echo "ERROR: PDB minAvailable >= replicas"
+    exit 1
+  }
+}
+```
