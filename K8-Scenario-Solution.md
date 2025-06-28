@@ -2035,3 +2035,11 @@ kubectl get hpa -n <namespace> -o yaml | yq '.items[].spec.minReplicas'
 ```
 
 ---
+
+## Root Cause  
+**Availability guarantee paradox**:  
+1. PDB `minAvailable` == replica count → Zero eviction headroom  
+2. HPA prevented scale-up during low traffic periods  
+3. No coordination between PDB definitions and maintenance procedures  
+
+---
