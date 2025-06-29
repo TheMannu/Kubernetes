@@ -2143,3 +2143,12 @@ check_pdb() {
 - `kube_poddisruptionbudget_status_disruptions_allowed`  
 - `kube_deployment_spec_replicas` vs `kube_poddisruptionbudget_spec_min_available`  
 - `kube_node_status_condition{condition="Ready"}` during maintenance  
+
+**Debugging Tools**:  
+```sh
+# Simulate drain impact
+kubectl drain <node> --dry-run=server
+
+# Check PDB calculations
+kubectl get pdb -o json | jq '.items[] | {name:.metadata.name, min:.spec.minAvailable, healthy:.status.currentHealthy, allowed:.status.disruptionsAllowed}'
+```
