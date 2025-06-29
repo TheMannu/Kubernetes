@@ -2108,3 +2108,31 @@ check_pdb() {
   }
 }
 ```
+
+### 3. Monitoring
+```yaml
+# Critical Prometheus alerts
+- alert: PDBBlocksEvictions
+  expr: kube_poddisruptionbudget_status_disruptions_allowed == 0
+  for: 15m
+  labels:
+    severity: warning
+  annotations:
+    description: PDB {{ $labels.namespace }}/{{ $labels.poddisruptionbudget }} has zero allowed disruptions
+```
+
+### 4. Drain Automation
+```yaml
+# Ansible playbook snippet
+- name: Ensure drain capacity
+  k8s:
+    definition:
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: "{{ item }}"
+        namespace: production
+      spec:
+        replicas: "{{ deployment_replicas | int + 1 }}"
+  when: maintenance_mode
+```
