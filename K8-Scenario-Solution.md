@@ -2163,3 +2163,5 @@ kubectl get pdb -o json | jq '.items[] | {name:.metadata.name, min:.spec.minAvai
      cluster/ops-maintenance-protocol: "Scale to 3+ replicas before drain"
    ```
 ```
+---
+---
