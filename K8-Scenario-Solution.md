@@ -2204,3 +2204,15 @@ kubectl -n kube-system get pod -l component=kube-controller-manager
 kubectl -n kube-system logs --tail=50 -l component=kube-controller-manager
 # Error: "unknown admission plugin \"InitialResources\""
 ```
+
+### 3. Verify version compatibility:
+```sh
+kube-controller-manager --version | grep -q "v1.23" || \
+  echo "Version mismatch"
+```
+
+### 4. Check startup flags:
+```sh
+ps aux | grep kube-controller-manager | grep -o "\-\-enable\-admission\-plugins=[^ ]*"
+# Output: --enable-admission-plugins=NamespaceLifecycle,InitialResources
+```
