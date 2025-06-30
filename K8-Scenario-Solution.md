@@ -2172,3 +2172,8 @@ kubectl get pdb -o json | jq '.items[] | {name:.metadata.name, min:.spec.minAvai
 **Impact**: Cluster-wide controller failures (deployments, services stalled)  
 
 ---
+
+## Scenario Summary  
+The `kube-controller-manager` entered a crashloop after a cluster upgrade due to an obsolete admission plugin in its startup configuration, paralyzing core cluster operations.
+
+---
