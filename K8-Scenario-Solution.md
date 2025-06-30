@@ -2154,7 +2154,7 @@ kubectl get pdb -o json | jq '.items[] | {name:.metadata.name, min:.spec.minAvai
 ```
 
 **PDB Design Guidelines**:  
-```markdown
+
 1. Always set `minAvailable` ≤ (replicas - 1)  
 2. For critical systems, use percentage-based PDBs (`minAvailable: 50%`)  
 3. Annotate PDBs with maintenance instructions:  
@@ -2162,6 +2162,13 @@ kubectl get pdb -o json | jq '.items[] | {name:.metadata.name, min:.spec.minAvai
    annotations:
      cluster/ops-maintenance-protocol: "Scale to 3+ replicas before drain"
    ```
-```
+
 ---
+---
+# 📘 Scenario #16: CrashLoop of Kube-Controller-Manager on Boot
+
+**Category**: Control Plane Stability  
+**Environment**: Kubernetes v1.23, Self-hosted Control Plane  
+**Impact**: Cluster-wide controller failures (deployments, services stalled)  
+
 ---
