@@ -2190,3 +2190,11 @@ The `kube-controller-manager` entered a crashloop after a cluster upgrade due to
   - `InitialResources` plugin removed in Kubernetes 1.22  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Check controller-manager status:
+```sh
+kubectl -n kube-system get pod -l component=kube-controller-manager
+# Showed CrashLoopBackOff
+```
