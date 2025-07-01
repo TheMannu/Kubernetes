@@ -2216,3 +2216,11 @@ kube-controller-manager --version | grep -q "v1.23" || \
 ps aux | grep kube-controller-manager | grep -o "\-\-enable\-admission\-plugins=[^ ]*"
 # Output: --enable-admission-plugins=NamespaceLifecycle,InitialResources
 ```
+
+## Root Cause  
+**Breaking change unhandled**:  
+1. Admission plugin `InitialResources` removed in v1.22 (unnoticed during upgrade planning)  
+2. No pre-flight validation of controller-manager flags  
+3. Static pod manifest not version-controlled  
+
+---
