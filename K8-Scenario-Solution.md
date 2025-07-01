@@ -2235,3 +2235,7 @@ vi /etc/kubernetes/manifests/kube-controller-manager.yaml
 
 # 2. Force kubelet to reload
 systemctl restart kubelet
+
+# 3. Verify recovery
+kubectl -n kube-system wait pod -l component=kube-controller-manager --for=condition=Ready
+```
