@@ -2273,3 +2273,10 @@ spec:
 2. [ ] Audit all `--enable-admission-plugins` flags  
 3. [ ] Test control plane components in staging  
 ```
+
+### 2. Configuration Validation
+```sh
+# Pre-upgrade compatibility check
+kube-controller-manager --enable-admission-plugins=... --dry-run | grep -q "unknown" && \
+  echo "Invalid plugins detected"
+```
