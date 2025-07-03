@@ -2373,3 +2373,9 @@ kubectl get deployments,statefulsets -A -o json | jq -r '.items[] | select(.stat
 velero backup describe $BACKUP --details | grep -c "Resource"
 kubectl api-resources --verbs=list -o name | xargs -n1 kubectl get -A --ignore-not-found | wc -l
 ```
+
+### 2. Inspect storage state:
+```sh
+kubectl get pv,pvc -A --no-headers | grep -v Bound
+# Showed unbound claims
+```
