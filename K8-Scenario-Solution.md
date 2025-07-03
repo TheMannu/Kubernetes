@@ -2331,3 +2331,14 @@ enable-admission-plugins: |
   NamespaceLifecycle,ServiceAccount,DefaultStorageClass,DefaultTolerationSeconds,
   ResourceQuota,Priority,MutatingAdmissionWebhook,ValidatingAdmissionWebhook
 ```
+
+---
+---
+
+# 📘 Scenario #17: Inconsistent Cluster State After Partial Backup Restore
+
+**Category**: Disaster Recovery  
+**Environment**: Kubernetes v1.24, Velero with etcd snapshots  
+**Impact**: Production outage lasting 4+ hours due to incomplete state restoration  
+
+---
