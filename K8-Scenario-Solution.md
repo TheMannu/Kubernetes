@@ -2361,3 +2361,10 @@ A partial etcd restore operation created a "zombie cluster" state where API obje
   - ServiceAccounts lacked corresponding Secrets  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Verify resource consistency:
+```sh
+# Check for orphaned objects
+kubectl get deployments,statefulsets -A -o json | jq -r '.items[] | select(.status.replicas != .status.readyReplicas) | .metadata.name'
