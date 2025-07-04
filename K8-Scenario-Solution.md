@@ -2408,8 +2408,16 @@ velero restore logs $RESTORE | grep -i "skipped\|failed"
 ```sh
 # 1. Recreate critical secrets from backup
 kubectl create secret generic registry-key \
-  --from-file=./backups/secrets/registry-key.json
+--from-file=./backups/secrets/registry-key.json
 
 # 2. Provision replacement PVs
 velero restore create --from-backup $PVC_BACKUP --include-resources persistentvolumeclaims
 ```
+
+### Full Restoration:
+```sh
+# 3. Redeploy applications with corrected dependencies
+kubectl rollout restart deploy -n production
+```
+
+---
