@@ -2379,3 +2379,9 @@ kubectl api-resources --verbs=list -o name | xargs -n1 kubectl get -A --ignore-n
 kubectl get pv,pvc -A --no-headers | grep -v Bound
 # Showed unbound claims
 ```
+
+### 3. Check secret dependencies:
+```sh
+kubectl get secrets -A | grep -E "(default-token|registry-key)"
+# Missing critical secrets
+```
