@@ -2385,3 +2385,11 @@ kubectl get pv,pvc -A --no-headers | grep -v Bound
 kubectl get secrets -A | grep -E "(default-token|registry-key)"
 # Missing critical secrets
 ```
+
+### 4. Audit Velero restore logs:
+```sh
+velero restore logs $RESTORE | grep -i "skipped\|failed"
+# Revealed excluded resources
+```
+
+---
