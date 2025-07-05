@@ -2460,3 +2460,13 @@ validate_restore() {
   kubectl get pvc -A | grep -v Bound && echo "Unbound PVCs detected"
 }
 ```
+
+### 3. Backup Monitoring
+```yaml
+# Prometheus alerts
+- alert: IncompleteBackup
+  expr: velero_backup_success_total == 0 or velero_volume_snapshot_failure_total > 0
+  for: 15m
+  labels:
+    severity: critical
+```
