@@ -2487,3 +2487,15 @@ Quarterly Test Plan:
 - **CSI**: Persistent Volumes  
 - **External**: Secrets (Vault/HashiCorp), Container Images  
 - **Configuration**: CNI, CSI, Ingress controllers  
+
+
+**Restore Verification Tools**:  
+```sh
+# Check object consistency
+kubectl get all,cm,secret,pvc -A --no-headers | wc -l
+# Compare with backup
+velero backup describe $BACKUP --details | grep "Resource"
+
+# Validate storage
+kubectl exec -it test-pod -- df -h /data
+```
