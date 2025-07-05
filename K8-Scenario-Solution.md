@@ -2470,3 +2470,14 @@ validate_restore() {
   labels:
     severity: critical
 ```
+
+### 4. Disaster Recovery Drills
+```markdown
+Quarterly Test Plan:
+1. [ ] Simulate etcd corruption  
+2. [ ] Restore from Velero + CSI snapshots  
+3. [ ] Validate application connectivity  
+4. [ ] Measure time-to-recovery (TTR)  
+```
+
+---
