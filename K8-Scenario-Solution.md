@@ -2530,3 +2530,8 @@ spec:
 **Impact**: Deployment failures across 200+ nodes, 4-hour service disruption  
 
 ---
+
+## Scenario Summary  
+A missing `NO_PROXY` configuration caused kubelet to route all container image pulls through an external proxy, breaking internal registry access and cluster DNS resolution.
+
+---
