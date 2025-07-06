@@ -2499,3 +2499,27 @@ velero backup describe $BACKUP --details | grep "Resource"
 # Validate storage
 kubectl exec -it test-pod -- df -h /data
 ```
+**Velero Best Practices**:  
+```yaml
+# Schedule with hooks
+apiVersion: velero.io/v1
+kind: Schedule
+metadata:
+  name: daily-full
+spec:
+  schedule: "@daily"
+  template:
+    hooks:
+      resources:
+      - name: freeze-db
+        pre:
+        - exec:
+            container: db
+            command: ["/bin/sh", "-c", "flush tables with read lock"]
+        post:
+        - exec:
+            container: db
+            command: ["/bin/sh", "-c", "unlock tables"]
+```
+---
+---
