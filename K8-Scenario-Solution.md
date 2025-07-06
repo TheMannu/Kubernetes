@@ -2523,3 +2523,10 @@ spec:
 ```
 ---
 ---
+# 📘 Scenario #18: kubelet Unable to Pull Images Due to Proxy Misconfig
+
+**Category**: Cluster Networking  
+**Environment**: Kubernetes v1.25, Corporate Proxy Environment  
+**Impact**: Deployment failures across 200+ nodes, 4-hour service disruption  
+
+---
