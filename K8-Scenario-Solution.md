@@ -2652,3 +2652,15 @@ validate_proxy() {
     sh -c "env | grep -E 'NO_PROXY|cluster.local' || exit 1"
 }
 ```
+
+
+### 3. Monitoring
+```yaml
+# Prometheus alerts
+- alert: ProxyImagePullFailures
+  expr: increase(kubelet_image_pull_failures_total[1h]) > 10
+  labels:
+    severity: critical
+  annotations:
+    summary: "Image pulls failing through proxy (instance {{ $labels.instance }})"
+```
