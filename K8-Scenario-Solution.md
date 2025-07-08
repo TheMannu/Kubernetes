@@ -2664,3 +2664,11 @@ validate_proxy() {
   annotations:
     summary: "Image pulls failing through proxy (instance {{ $labels.instance }})"
 ```
+
+### 4. Documentation Standards
+```markdown
+## Corporate Proxy Requirements for Kubernetes
+- **Always exclude**:
+  - Cluster CIDR (e.g., `10.0.0.0/8`)
+  - Service CIDR (e.g., `192.168.0.0/16`)
+  - DNS suffixes (`.svc`, `.cluster.local`)
