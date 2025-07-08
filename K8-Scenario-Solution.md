@@ -2681,3 +2681,10 @@ validate_proxy() {
 ```
 
 ---
+
+**Key NO_PROXY Entries for Kubernetes**:  
+- Cluster Pod CIDR  
+- Service CIDR  
+- `.svc`, `.svc.cluster.local`  
+- Internal registry domains  
+- Node IP ranges 
