@@ -2688,3 +2688,8 @@ validate_proxy() {
 - `.svc`, `.svc.cluster.local`  
 - Internal registry domains  
 - Node IP ranges 
+
+**Debugging Tools**:  
+```sh
+# Verify current proxy settings
+kubectl debug node/<node> -it --image=alpine -- env | grep -i proxy
