@@ -2666,7 +2666,7 @@ validate_proxy() {
 ```
 
 ### 4. Documentation Standards
-```markdown
+
 ## Corporate Proxy Requirements for Kubernetes
 - **Always exclude**:
   - Cluster CIDR (e.g., `10.0.0.0/8`)
@@ -2678,7 +2678,7 @@ validate_proxy() {
   kubectl run proxy-test --image=busybox -- \
     wget -O- http://kubernetes.default.svc
   ```
-```
+
 
 ---
 
@@ -2693,3 +2693,8 @@ validate_proxy() {
 ```sh
 # Verify current proxy settings
 kubectl debug node/<node> -it --image=alpine -- env | grep -i proxy
+
+# Test registry access
+kubectl run -it --rm registry-test --image=alpine -- \
+  curl -v http://registry.internal.corp/v2/_catalog
+```
