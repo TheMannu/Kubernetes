@@ -2749,3 +2749,9 @@ kubectl get nodes -o wide --watch | tee node-status.log
 ethtool eno1 | grep -A5 'Link detected'
 # Reported intermittent link drops
 ```
+
+### 3. Analyze kernel logs:
+```sh
+dmesg -T | grep -i 'link down\|nic'
+# Revealed NIC resets
+```
