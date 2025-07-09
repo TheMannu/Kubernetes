@@ -2716,3 +2716,8 @@ sudo systemctl restart kubelet
 **Impact**: Intermittent node failures, pod evictions, and workload disruptions  
 
 ---
+
+## Scenario Summary  
+A flapping network interface caused multiple nodes to oscillate between `Ready` and `NotReady` states, triggering unnecessary pod evictions and workload rescheduling.
+
+---
