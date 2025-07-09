@@ -2721,3 +2721,8 @@ sudo systemctl restart kubelet
 A flapping network interface caused multiple nodes to oscillate between `Ready` and `NotReady` states, triggering unnecessary pod evictions and workload rescheduling.
 
 ---
+
+## What Happened  
+- **Network instability**:  
+  - Nodes randomly reported `NotReady` for 30-60 second intervals  
+  - `kube-controller-manager` logs showed frequent `NodeNotReady` events
