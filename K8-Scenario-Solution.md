@@ -2735,3 +2735,11 @@ A flapping network interface caused multiple nodes to oscillate between `Ready` 
   - `ethtool` reported `link flaps: 142` on affected nodes  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Check node status history:
+```sh
+kubectl get nodes -o wide --watch | tee node-status.log
+# Showed flapping between Ready/NotReady
+```
