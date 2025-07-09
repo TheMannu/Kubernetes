@@ -2743,3 +2743,9 @@ A flapping network interface caused multiple nodes to oscillate between `Ready` 
 kubectl get nodes -o wide --watch | tee node-status.log
 # Showed flapping between Ready/NotReady
 ```
+
+### 2. Inspect network interfaces:
+```sh
+ethtool eno1 | grep -A5 'Link detected'
+# Reported intermittent link drops
+```
