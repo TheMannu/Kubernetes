@@ -2763,3 +2763,11 @@ ssh switch01 show interface ethernet 1/0/24 | include 'error|flap'
 ```
 
 ---
+
+## Root Cause  
+**Physical layer instability**:  
+1. **Faulty SFP+ transceiver** causing signal degradation  
+2. **Loose fiber connection** in one port of the bonded interface  
+3. **No LACP fallback** configured for single-port failures  
+
+---
