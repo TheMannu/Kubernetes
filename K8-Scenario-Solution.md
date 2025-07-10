@@ -2771,3 +2771,16 @@ ssh switch01 show interface ethernet 1/0/24 | include 'error|flap'
 3. **No LACP fallback** configured for single-port failures  
 
 ---
+
+## Fix/Workaround  
+
+### Immediate Actions:
+```sh
+# 1. Disable problematic switch port
+ssh switch01 configure terminal
+interface ethernet 1/0/24
+shutdown
+
+# 2. Drain affected nodes
+kubectl drain <node> --ignore-daemonsets --delete-emptydir-data
+```
