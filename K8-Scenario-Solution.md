@@ -2796,3 +2796,10 @@ nmcli con add type bond-slave ifname eth1 master bond0
 ```
 
 ---
+
+## Lessons Learned  
+⚠️ **Kubernetes amplifies physical issues**: Short blips cause pod evictions  
+⚠️ **Bonding != redundancy**: Must test failover scenarios  
+⚠️ **Hardware fails silently**: Requires active monitoring  
+
+---
