@@ -2828,3 +2828,9 @@ connections:
   for: 5m
   labels:
     severity: warning
+    
+- alert: NICErrorsHigh
+  expr: node_network_up == 0 or rate(node_network_transmit_errs_total[5m]) > 5
+  labels:
+    severity: critical
+```
