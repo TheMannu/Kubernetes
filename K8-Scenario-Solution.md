@@ -2851,6 +2851,11 @@ smartctl -H /dev/nvme0
   ```sh
   ip link set eth0 down && sleep 30 && ip link set eth0 up
   ```
-```
 
 ---
+
+
+**Key Metrics to Monitor**:  
+- `node_network_carrier_changes`  
+- `node_network_up`  
+- `kube_node_status_condition{condition="NetworkUnavailable"}`  
