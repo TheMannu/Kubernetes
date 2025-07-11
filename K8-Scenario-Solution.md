@@ -2841,3 +2841,16 @@ connections:
 ethtool -S eth0 | grep -E 'err|drop'
 smartctl -H /dev/nvme0
 ```
+
+### 4. Documentation
+```markdown
+## Bonding Best Practices
+- **Mode**: 802.3ad (LACP) for switches, active-backup for redundancy  
+- **Monitoring**: Track `carrier_changes` and `link_flaps`  
+- **Testing**:  
+  ```sh
+  ip link set eth0 down && sleep 30 && ip link set eth0 up
+  ```
+```
+
+---
