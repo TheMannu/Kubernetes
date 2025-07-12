@@ -2922,3 +2922,12 @@ A well-intentioned but overly aggressive DaemonSet overwrote critical node label
 ```sh
 kubectl get events --field-selector reason=FailedScheduling -A
 ```
+
+### 2. Compare node labels pre/post incident:
+```sh
+# Get current state
+kubectl get nodes -L gpu,storage,zone
+
+# Compare with backup (if available)
+diff <(kubectl get nodes --show-labels) node-labels-backup.txt
+```
