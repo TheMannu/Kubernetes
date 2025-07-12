@@ -2878,3 +2878,11 @@ interface Port-channel1
   channel-group 1 mode active
   lacp fast-switchover
 ```
+
+**Rollback Procedure**:  
+```sh
+# Emergency single-interface fallback
+ip link set bond0 down
+ip link set eth0 up
+ip addr add <NODE_IP>/24 dev eth0
+```
