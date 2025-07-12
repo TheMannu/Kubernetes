@@ -2915,3 +2915,10 @@ A well-intentioned but overly aggressive DaemonSet overwrote critical node label
   - Scheduler metrics showed `FailedScheduling` events spiked 400%  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Identify scheduling failures:
+```sh
+kubectl get events --field-selector reason=FailedScheduling -A
+```
