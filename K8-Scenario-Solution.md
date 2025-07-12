@@ -2843,7 +2843,7 @@ smartctl -H /dev/nvme0
 ```
 
 ### 4. Documentation
-```markdown
+
 ## Bonding Best Practices
 - **Mode**: 802.3ad (LACP) for switches, active-backup for redundancy  
 - **Monitoring**: Track `carrier_changes` and `link_flaps`  
@@ -2868,4 +2868,13 @@ kubectl debug node/<node> -it --image=nicolaka/netshoot -- \
 
 # Bonding status
 cat /proc/net/bonding/bond0
+```
+
+**Switch Configuration**:  
+```cisco
+interface Port-channel1
+  description Kubernetes-Bond
+  switchport mode trunk
+  channel-group 1 mode active
+  lacp fast-switchover
 ```
