@@ -2886,3 +2886,14 @@ ip link set bond0 down
 ip link set eth0 up
 ip addr add <NODE_IP>/24 dev eth0
 ```
+---
+---
+
+
+# 📘 Scenario #20: Node Labels Accidentally Overwritten by DaemonSet
+
+**Category**: Cluster Configuration  
+**Environment**: Kubernetes v1.24, Label Management DaemonSet  
+**Impact**: Critical GPU workloads unscheduled for 3+ hours  
+
+---
