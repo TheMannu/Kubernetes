@@ -2897,3 +2897,8 @@ ip addr add <NODE_IP>/24 dev eth0
 **Impact**: Critical GPU workloads unscheduled for 3+ hours  
 
 ---
+
+## Scenario Summary  
+A well-intentioned but overly aggressive DaemonSet overwrote critical node labels (`gpu=true`, `storage=ssd`), disrupting scheduler decisions and causing workload placement failures.
+
+---
