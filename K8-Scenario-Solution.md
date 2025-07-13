@@ -2985,3 +2985,10 @@ spec:
 ```
 
 ---
+
+## Lessons Learned  
+⚠️ **Labels are live configuration**: Overwrites immediately affect scheduling  
+⚠️ **DaemonSets are powerful**: Can modify cluster state at scale  
+⚠️ **Not all labels are equal**: Some are critical for operations  
+
+---
