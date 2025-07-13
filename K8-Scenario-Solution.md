@@ -2931,3 +2931,9 @@ kubectl get nodes -L gpu,storage,zone
 # Compare with backup (if available)
 diff <(kubectl get nodes --show-labels) node-labels-backup.txt
 ```
+
+### 3. Audit DaemonSet logic:
+```sh
+kubectl get daemonset node-labeler -o yaml | yq '.spec.template.spec.containers[0].command'
+# Showed: ["/bin/sh", "-c", "kubectl label node $NODE zone=us-east-1a --overwrite"]
+```
