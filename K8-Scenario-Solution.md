@@ -2944,3 +2944,11 @@ kubectl logs -l app=node-labeler --tail=50 | grep -i "labeling"
 ```
 
 ---
+
+## Root Cause  
+**Destructive label operations**:  
+1. `--overwrite` flag removed all non-specified labels  
+2. No change validation before application  
+3. Missing protection for business-critical labels  
+
+---
