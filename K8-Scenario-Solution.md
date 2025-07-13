@@ -2952,3 +2952,15 @@ kubectl logs -l app=node-labeler --tail=50 | grep -i "labeling"
 3. Missing protection for business-critical labels  
 
 ---
+
+## Fix/Workaround  
+
+### Immediate Recovery:
+```sh
+# 1. Rollback DaemonSet
+kubectl rollout undo daemonset/node-labeler
+
+# 2. Restore critical labels
+kubectl label nodes --all gpu=true --selector='node-role/gpu=true'
+kubectl label nodes --all storage=ssd --selector='beta.kubernetes.io/storage=ssd'
+```
