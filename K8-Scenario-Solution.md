@@ -2964,3 +2964,24 @@ kubectl rollout undo daemonset/node-labeler
 kubectl label nodes --all gpu=true --selector='node-role/gpu=true'
 kubectl label nodes --all storage=ssd --selector='beta.kubernetes.io/storage=ssd'
 ```
+
+### Permanent Solution:
+```yaml
+# Updated DaemonSet strategy
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: node-labeler
+spec:
+  template:
+    spec:
+      containers:
+      - command:
+        - /bin/sh
+        - -c
+        - |
+          CURRENT_LABELS=$(kubectl get node $NODE -o json | jq -c '.metadata.labels')
+          kubectl patch node $NODE -p "{\"metadata\":{\"labels\":{\"zone\":\"us-east-1a\",$CURRENT_LABELS}}}"
+```
+
+---
