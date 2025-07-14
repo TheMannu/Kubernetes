@@ -3017,3 +3017,15 @@ spec:
   parameters:
     protectedLabels: ["gpu", "storage", "topology.kubernetes.io/*"]
 ```
+
+### 3. Change Control
+```yaml
+# ArgoCD Sync Policy
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+spec:
+  syncPolicy:
+    automated:
+      prune: false  # Prevent automatic deletions
+      selfHeal: false  # Require manual intervention
+```
