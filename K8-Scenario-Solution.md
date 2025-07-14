@@ -3041,3 +3041,8 @@ spec:
 ```
 
 ---
+
+**Key Labels to Protect**:  
+- Hardware: `gpu`, `fpga`, `storage`  
+- Topology: `zone`, `region`, `rack`  
+- Capacity: `memory`, `cpu-type`  
