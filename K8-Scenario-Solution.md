@@ -3079,3 +3079,17 @@ kubectl diff -f restored-labels.yaml
 A deployment with an unreliable readiness probe triggered continuous node scaling cycles (5-7 per hour), causing performance degradation and cloud cost spikes.
 
 ---
+
+## What Happened  
+- **Problematic deployment**:  
+  - Readiness probe checked an endpoint with 30% failure rate  
+  - `kubectl get pods` showed pods alternating `Ready/NotReady`  
+- **Autoscaler reaction**:  
+  - Scaled up when >3 pods were `NotReady` (considered unschedulable)  
+  - Scaled down 10 minutes after pods recovered  
+- **Observed symptoms**:  
+  - AWS EC2 `InstanceLaunchRate` exceeded account limits  
+  - Node `Ready` duration histogram showed 80% <15 minutes  
+  - CloudWatch showed `CPUUtilization` sawtooth pattern  
+
+---
