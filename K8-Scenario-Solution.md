@@ -3046,3 +3046,12 @@ spec:
 - Hardware: `gpu`, `fpga`, `storage`  
 - Topology: `zone`, `region`, `rack`  
 - Capacity: `memory`, `cpu-type`  
+
+**Recovery Tools**:  
+```sh
+# Backup node labels
+kubectl get nodes -o json | jq -r '.items[].metadata.labels' > node-labels-backup.json
+
+# Diff current vs desired
+kubectl diff -f restored-labels.yaml
+```
