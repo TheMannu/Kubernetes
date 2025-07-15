@@ -3093,3 +3093,12 @@ A deployment with an unreliable readiness probe triggered continuous node scalin
   - CloudWatch showed `CPUUtilization` sawtooth pattern  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Identify scaling loops:
+```sh
+kubectl -n kube-system logs -l app=cluster-autoscaler --tail=100 | \
+  grep -E "ScaleUp|ScaleDown"
+# Output showed 6 scale-up/scale-down cycles in 2 hours
+```
