@@ -3063,3 +3063,14 @@ kubectl diff -f restored-labels.yaml
 3. **Test changes** on a single node first  
 4. **Version control** all label operations  
 ```
+
+---
+---
+
+# 📘 Scenario #21: Cluster Autoscaler Thrashing from Flaky Readiness Probes
+
+**Category**: Cluster Scaling  
+**Environment**: Kubernetes v1.24, AWS EKS with Cluster Autoscaler v1.22.2  
+**Impact**: 40% cost overrun from node churn, workload instability  
+
+---
