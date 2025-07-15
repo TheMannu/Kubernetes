@@ -3074,3 +3074,8 @@ kubectl diff -f restored-labels.yaml
 **Impact**: 40% cost overrun from node churn, workload instability  
 
 ---
+
+## Scenario Summary  
+A deployment with an unreliable readiness probe triggered continuous node scaling cycles (5-7 per hour), causing performance degradation and cloud cost spikes.
+
+---
