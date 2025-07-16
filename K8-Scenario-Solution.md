@@ -3115,3 +3115,11 @@ kubectl get events --sort-by=.lastTimestamp | \
 kubectl get deploy frontend -o yaml | yq '.spec.template.spec.containers[].readinessProbe'
 # Showed HTTP probe to /health with 1s timeout
 ```
+
+### 4. Verify scaling triggers:
+```sh
+kubectl -n kube-system describe configmap cluster-autoscaler-status | \
+  grep -A5 "ScaleUp"
+```
+
+---
