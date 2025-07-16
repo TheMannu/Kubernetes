@@ -3102,3 +3102,10 @@ kubectl -n kube-system logs -l app=cluster-autoscaler --tail=100 | \
   grep -E "ScaleUp|ScaleDown"
 # Output showed 6 scale-up/scale-down cycles in 2 hours
 ```
+
+### 2. Locate problematic pods:
+```sh
+kubectl get events --sort-by=.lastTimestamp | \
+  grep -i "probe failed"
+# Revealed deployment/frontend pods failing probes
+```
