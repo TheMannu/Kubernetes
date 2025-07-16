@@ -3123,3 +3123,11 @@ kubectl -n kube-system describe configmap cluster-autoscaler-status | \
 ```
 
 ---
+
+## Root Cause  
+**Probe misalignment**:  
+1. Readiness endpoint had 300ms latency spikes (exceeding 1s timeout)  
+2. No retries configured (`failureThreshold: 1`)  
+3. Autoscaler reacted faster than pod stabilization  
+
+---
