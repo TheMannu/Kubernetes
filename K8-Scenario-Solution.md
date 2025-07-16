@@ -3109,3 +3109,9 @@ kubectl get events --sort-by=.lastTimestamp | \
   grep -i "probe failed"
 # Revealed deployment/frontend pods failing probes
 ```
+
+### 3. Analyze probe configuration:
+```sh
+kubectl get deploy frontend -o yaml | yq '.spec.template.spec.containers[].readinessProbe'
+# Showed HTTP probe to /health with 1s timeout
+```
