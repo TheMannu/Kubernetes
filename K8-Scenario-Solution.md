@@ -3175,3 +3175,10 @@ extraArgs:
 ```
 
 ---
+
+## Lessons Learned  
+⚠️ **Probes are scaling triggers**: Flakiness causes infrastructure ripple effects  
+⚠️ **Cooldowns matter**: Autoscaler defaults may be too aggressive  
+⚠️ **Monitoring gaps**: Need visibility into probe failures vs scaling  
+
+---
