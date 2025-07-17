@@ -3192,3 +3192,13 @@ extraArgs:
 3. [ ] Configure `failureThreshold` >=3  
 4. [ ] Verify with `kubectl get --raw="/readyz?verbose"`  
 ```
+
+### 2. Autoscaler Safeguards
+```yaml
+# Prometheus alerts
+- alert: RapidNodeChurn
+  expr: increase(cluster_autoscaler_scale_ups_total[1h]) > 5
+  labels:
+    severity: critical
+  annotations:
+    summary: "Cluster scaling thrashing ({{ $value }} scale-ups/hour)"
