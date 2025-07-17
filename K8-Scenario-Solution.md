@@ -3202,3 +3202,9 @@ extraArgs:
     severity: critical
   annotations:
     summary: "Cluster scaling thrashing ({{ $value }} scale-ups/hour)"
+
+- alert: FailedProbesHigh
+  expr: sum(rate(kubelet_prober_probe_total{result!="success"}[5m])) by (pod, probe_type) > 5
+  labels:
+    severity: warning
+```
