@@ -3248,3 +3248,8 @@ kubectl -n kube-system logs -l app=cluster-autoscaler -f --tail=100 | grep "Even
 # Inspect probe history
 kubectl get --raw "/api/v1/namespaces/default/pods/frontend-xyz123/proxy/debug/pprof/health?debug=2"
 ```
+**Autoscaler Tuning Guide**:  
+
+| Parameter                     | Production Recommendation |
+|-------------------------------|--------------------------|
+| scale-down-delay-after-add    | 15-30m                   |
