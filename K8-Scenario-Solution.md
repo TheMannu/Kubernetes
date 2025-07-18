@@ -3239,3 +3239,8 @@ kubectl run -it --rm vegeta --image=peterevans/vegeta -- \
 - `kubelet_prober_probe_total{result="failure"}`  
 - `cluster_autoscaler_nodes_count`  
 - `aws_ec2_running_instances` by AutoScalingGroup  
+
+**Debugging Tools**:  
+```sh
+# Watch scaling decisions
+kubectl -n kube-system logs -l app=cluster-autoscaler -f --tail=100 | grep "Event"
