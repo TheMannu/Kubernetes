@@ -3234,3 +3234,8 @@ kubectl run -it --rm vegeta --image=peterevans/vegeta -- \
 ```
 
 ---
+
+**Key Metrics to Monitor**:  
+- `kubelet_prober_probe_total{result="failure"}`  
+- `cluster_autoscaler_nodes_count`  
+- `aws_ec2_running_instances` by AutoScalingGroup  
