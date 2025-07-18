@@ -3244,3 +3244,7 @@ kubectl run -it --rm vegeta --image=peterevans/vegeta -- \
 ```sh
 # Watch scaling decisions
 kubectl -n kube-system logs -l app=cluster-autoscaler -f --tail=100 | grep "Event"
+
+# Inspect probe history
+kubectl get --raw "/api/v1/namespaces/default/pods/frontend-xyz123/proxy/debug/pprof/health?debug=2"
+```
