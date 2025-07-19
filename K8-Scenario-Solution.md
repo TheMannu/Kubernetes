@@ -3271,3 +3271,17 @@ kubectl get --raw "/api/v1/namespaces/default/pods/frontend-xyz123/proxy/debug/p
 A namespace became permanently stuck in `Terminating` state due to orphaned finalizers from an uninstalled custom controller, requiring manual intervention to resolve.
 
 ---
+
+## What Happened  
+- **Controller uninstallation**:  
+  - Team deleted a CustomResourceDefinition (CRD) without first cleaning up instances  
+  - Operator deployment was removed while finalizers were still pending  
+- **Termination deadlock**:  
+  - `kubectl delete ns` command hung indefinitely  
+  - Namespace status showed `phase: Terminating` for 3 days  
+  - Blocked CI/CD pipelines needing namespace reuse  
+- **Root discovery**:  
+  - Finalizer `custom-controller/cleanup` referenced a non-existent controller  
+  - API server continuously retried finalizer execution  
+
+---
