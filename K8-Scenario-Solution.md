@@ -3266,3 +3266,8 @@ kubectl get --raw "/api/v1/namespaces/default/pods/frontend-xyz123/proxy/debug/p
 **Impact**: Namespace stuck in Terminating for 72+ hours, blocking resource cleanup  
 
 ---
+
+## Scenario Summary  
+A namespace became permanently stuck in `Terminating` state due to orphaned finalizers from an uninstalled custom controller, requiring manual intervention to resolve.
+
+---
