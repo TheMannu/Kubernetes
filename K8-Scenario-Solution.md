@@ -3285,3 +3285,17 @@ A namespace became permanently stuck in `Terminating` state due to orphaned fina
   - API server continuously retried finalizer execution  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Verify namespace status:
+```sh
+kubectl get ns <namespace> -o jsonpath='{.status.phase}'
+# Output: Terminating
+```
+
+### 2. Inspect finalizers:
+```sh
+kubectl get ns <namespace> -o json | jq '.spec.finalizers'
+# Showed ["kubernetes", "custom-controller/cleanup"]
+```
