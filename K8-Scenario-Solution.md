@@ -3256,3 +3256,13 @@ kubectl get --raw "/api/v1/namespaces/default/pods/frontend-xyz123/proxy/debug/p
 | scale-down-unneeded-time      | 15-30m                   |
 | max-node-provision-time       | 10-15m                   |
 | unremovable-node-recheck-time | 5m                       |
+
+---
+---
+# 📘 Scenario #22: Stale Finalizers Preventing Namespace Deletion
+
+**Category**: Resource Lifecycle Management  
+**Environment**: Kubernetes v1.21, Self-managed with Custom Operators  
+**Impact**: Namespace stuck in Terminating for 72+ hours, blocking resource cleanup  
+
+---
