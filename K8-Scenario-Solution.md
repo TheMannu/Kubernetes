@@ -3367,3 +3367,10 @@ spec:
       - name: cleanup
         command: ["/bin/sh", "-c", "kubectl patch $(kubectl get <crd> -o name) -p '{\"metadata\":{\"finalizers\":[]}}' --type=merge"]
 ```
+
+### 2. Finalizer Auditing
+```sh
+# Daily finalizer health check
+kubectl get ns -o json | jq -r '.items[] | select(.status.phase=="Terminating") | .metadata.name'
+kubectl get crd -o json | jq -r '.items[] | select(.spec.scope=="Namespaced") | .metadata.name' | xargs -I{} sh -c "kubectl get {} -A -o json | jq -r '.items[] | select(.metadata.finalizers!=null) | .metadata.name'"
+```
