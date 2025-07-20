@@ -3342,3 +3342,10 @@ kubectl delete crd <crd-name>  # Remove CRD last
 ```
 
 ---
+
+## Lessons Learned  
+⚠️ **Finalizers are promises**: Must have operational controllers  
+⚠️ **Order matters**: Always delete resources before their definitions  
+⚠️ **Namespace termination is atomic**: Single finalizer blocks everything  
+
+---
