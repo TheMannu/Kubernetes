@@ -3332,3 +3332,13 @@ kubectl patch ns <namespace> -p '{"spec":{"finalizers":[]}}' --type=merge
 # 2. Verify deletion completes
 kubectl get ns <namespace> --watch
 ```
+
+### Proper Cleanup Procedure:
+```sh
+# For future uninstalls:
+kubectl delete all --all -n <namespace>  # Delete standard resources
+kubectl delete <crd-name> --all -n <namespace>  # Delete CR instances 
+kubectl delete crd <crd-name>  # Remove CRD last
+```
+
+---
