@@ -3321,3 +3321,14 @@ kubectl get crd -A --show-labels | grep custom-resource
 3. Namespace finalizer garbage collection blocked  
 
 ---
+
+## Fix/Workaround  
+
+### Immediate Resolution:
+```sh
+# 1. Force remove finalizers
+kubectl patch ns <namespace> -p '{"spec":{"finalizers":[]}}' --type=merge
+
+# 2. Verify deletion completes
+kubectl get ns <namespace> --watch
+```
