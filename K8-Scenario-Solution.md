@@ -3414,3 +3414,7 @@ spec:
 ```sh
 # List all resources with finalizers
 kubectl api-resources --verbs=list -o name | xargs -n1 kubectl get -A --ignore-not-found -o json | jq -r '.items[] | select(.metadata.finalizers!=null) | "\(.kind)/\(.metadata.name)"'
+
+# Check etcd for stale keys
+etcdctl get / --prefix --keys-only | grep finalizers
+```
