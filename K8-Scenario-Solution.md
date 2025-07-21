@@ -3402,3 +3402,10 @@ spec:
   annotations:
     description: Namespace {{ $labels.namespace }} stuck terminating for 1h
 ```
+
+---
+
+**Key Resources to Check**:  
+- Namespaces in `Terminating` >15m  
+- Custom Resources with finalizers  
+- Orphaned finalizers in etcd  
