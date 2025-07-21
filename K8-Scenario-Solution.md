@@ -3391,3 +3391,14 @@ spec:
     requiredAnnotations:
       finalizerController: "true"
 ```
+
+### 4. Monitoring
+```yaml
+# Prometheus alerts
+- alert: StaleFinalizers
+  expr: time() - kube_namespace_status_phase{phase="Terminating"} > 3600
+  labels:
+    severity: warning
+  annotations:
+    description: Namespace {{ $labels.namespace }} stuck terminating for 1h
+```
