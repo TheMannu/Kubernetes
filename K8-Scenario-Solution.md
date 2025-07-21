@@ -3409,3 +3409,8 @@ spec:
 - Namespaces in `Terminating` >15m  
 - Custom Resources with finalizers  
 - Orphaned finalizers in etcd  
+
+**Debugging Tools**:  
+```sh
+# List all resources with finalizers
+kubectl api-resources --verbs=list -o name | xargs -n1 kubectl get -A --ignore-not-found -o json | jq -r '.items[] | select(.metadata.finalizers!=null) | "\(.kind)/\(.metadata.name)"'
