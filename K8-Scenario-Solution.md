@@ -3426,3 +3426,17 @@ etcdctl get / --prefix --keys-only | grep finalizers
 3. **Document all finalizers** - Maintain registry with ownership  
 4. **Test uninstall scenarios** - Include in CI/CD pipelines  
 ```
+---
+---
+# 📘 Scenario #23: CoreDNS CrashLoop Due to Invalid ConfigMap Update
+
+**Category**: Cluster Networking  
+**Environment**: Kubernetes 1.23, GKE (Managed Control Plane)  
+**Impact**: Cluster-wide DNS outage lasting 47 minutes  
+
+---
+
+## Scenario Summary  
+A malformed CoreDNS ConfigMap update caused all DNS resolution to fail, breaking service discovery and pod-to-pod communication across the entire cluster.
+
+---
