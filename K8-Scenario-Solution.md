@@ -3440,3 +3440,16 @@ etcdctl get / --prefix --keys-only | grep finalizers
 A malformed CoreDNS ConfigMap update caused all DNS resolution to fail, breaking service discovery and pod-to-pod communication across the entire cluster.
 
 ---
+
+## What Happened  
+- **Config change**:  
+  - Added rewrite rule with incorrect syntax: `rewrite stop name regex (.*)\.internal internal.svc.cluster.local`  
+  - Missing plugin declaration in Corefile preamble  
+- **Immediate impact**:  
+  - CoreDNS pods entered `CrashLoopBackOff`  
+  - `kubectl logs` showed `Corefile:5 - Error during parsing: Unknown directive 'rewrit'`  
+- **Cascading failures**:  
+  - Service mesh (Istio) sidecars failed health checks  
+  - `kubelet` reported `node not ready` due to DNS timeouts  
+
+---
