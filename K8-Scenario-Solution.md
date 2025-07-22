@@ -3453,3 +3453,11 @@ A malformed CoreDNS ConfigMap update caused all DNS resolution to fail, breaking
   - `kubelet` reported `node not ready` due to DNS timeouts  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Verify DNS availability:
+```sh
+kubectl run -it --rm dns-test --image=busybox -- nslookup kubernetes.default
+# Error: `Server failure`
+```
