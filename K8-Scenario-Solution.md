@@ -3473,3 +3473,11 @@ kubectl -n kube-system get pods -l k8s-app=kube-dns
 kubectl -n kube-system logs -l k8s-app=kube-dns --tail=50
 # Output: `plugin/rewrite: unknown property "stop"`
 ```
+
+### 4. Validate ConfigMap:
+```sh
+kubectl -n kube-system get cm coredns -o jsonpath='{.data.Corefile}' | grep -A5 rewrite
+# Revealed malformed rewrite rule
+```
+
+---
