@@ -3503,3 +3503,14 @@ kubectl -n kube-system rollout restart deployment/coredns
 # 3. Verify restoration
 kubectl run -it --rm dns-test --image=busybox -- nslookup kubernetes.default
 ```
+
+### Correct Configuration:
+```corefile
+# Valid rewrite rule
+.:53 {
+    rewrite name regex (.*)\.internal internal.svc.cluster.local
+    # ... other plugins ...
+}
+```
+
+---
