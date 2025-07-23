@@ -3481,3 +3481,11 @@ kubectl -n kube-system get cm coredns -o jsonpath='{.data.Corefile}' | grep -A5 
 ```
 
 ---
+
+## Root Cause  
+**Configuration error**:  
+1. Missing `rewrite` plugin in CoreDNS deployment  
+2. Typo in rewrite directive (`rewrit` vs `rewrite`)  
+3. No validation before applying changes  
+
+---
