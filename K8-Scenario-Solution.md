@@ -3570,3 +3570,8 @@ spec:
 - `coredns_dns_responses_total{rcode="SERVFAIL"}`  
 - `kubelet_dns_errors`  
 - `probe_dns_lookup_time_seconds`  
+
+**Debugging Tools**:  
+```sh
+# Live DNS query test
+kubectl run -it --rm dns-debug --image=nicolaka/netshoot -- dig +trace kubernetes.default.svc.cluster.local
