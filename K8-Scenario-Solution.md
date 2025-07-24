@@ -3593,3 +3593,10 @@ kubectl get --raw "/api/v1/namespaces/kube-system/services/coredns:9153/proxy/he
         pods insecure
         fallthrough in-addr.arpa ip6.arpa
     }
+    prometheus :9153
+    forward . /etc/resolv.conf
+    cache 30
+    loop
+    reload  # Enable automatic config reload
+}
+```
