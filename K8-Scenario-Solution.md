@@ -3554,3 +3554,14 @@ spec:
   labels:
     severity: critical
 ```
+
+### 4. Change Management
+```markdown
+## CoreDNS Config Checklist
+1. [ ] Test in staging cluster  
+2. [ ] Validate with `coredns -conf`  
+3. [ ] Document change in runbook  
+4. [ ] Prepare rollback procedure  
+```
+
+---
