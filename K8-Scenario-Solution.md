@@ -3575,3 +3575,7 @@ spec:
 ```sh
 # Live DNS query test
 kubectl run -it --rm dns-debug --image=nicolaka/netshoot -- dig +trace kubernetes.default.svc.cluster.local
+
+# CoreDNS health check
+kubectl get --raw "/api/v1/namespaces/kube-system/services/coredns:9153/proxy/health"
+```
