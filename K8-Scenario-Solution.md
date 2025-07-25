@@ -3636,3 +3636,9 @@ A mass container image update triggered uncontrolled disk consumption across all
 ```sh
 kubectl get nodes -o json | jq -r '.items[] | .metadata.name + " " + (.status.conditions[] | select(.type=="DiskPressure") | .status'
 ```
+
+### 2. Check disk usage:
+```sh
+kubectl debug node/<node> -it --image=alpine -- df -h /var/lib/containerd
+# Output: 100% used
+```
