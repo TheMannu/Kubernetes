@@ -3600,3 +3600,13 @@ kubectl get --raw "/api/v1/namespaces/kube-system/services/coredns:9153/proxy/he
     reload  # Enable automatic config reload
 }
 ```
+
+---
+---
+# 📘 Scenario #24: Pod Eviction Storm Due to DiskPressure
+
+**Category**: Node Resource Management  
+**Environment**: Kubernetes 1.25, Self-managed, containerd runtime  
+**Impact**: 83% of cluster pods evicted, 2-hour service disruption  
+
+---
