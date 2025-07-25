@@ -3615,3 +3615,17 @@ kubectl get --raw "/api/v1/namespaces/kube-system/services/coredns:9153/proxy/he
 A mass container image update triggered uncontrolled disk consumption across all worker nodes, causing cascading pod evictions and cluster instability.
 
 ---
+
+## What Happened  
+- **Batch update initiated**:  
+  - Deployment rollout of 5GB image to 1,200 pods  
+  - Simultaneous pulls across 50 nodes  
+- **Storage exhaustion**:  
+  - `/var/lib/containerd` reached 100% utilization in 8 minutes  
+  - `kubelet` enforced `DiskPressure` evictions (`nodefs.available<10%`)  
+- **Cascading failures**:  
+  - System pods (CNI, CSI) evicted first  
+  - Cluster-autoscaler spun up new nodes (which also filled)  
+  - etcd overwhelmed by pod churn events  
+
+---
