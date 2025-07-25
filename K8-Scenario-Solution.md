@@ -3629,3 +3629,10 @@ A mass container image update triggered uncontrolled disk consumption across all
   - etcd overwhelmed by pod churn events  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Verify node conditions:
+```sh
+kubectl get nodes -o json | jq -r '.items[] | .metadata.name + " " + (.status.conditions[] | select(.type=="DiskPressure") | .status'
+```
