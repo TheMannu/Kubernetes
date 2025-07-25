@@ -3642,3 +3642,9 @@ kubectl get nodes -o json | jq -r '.items[] | .metadata.name + " " + (.status.co
 kubectl debug node/<node> -it --image=alpine -- df -h /var/lib/containerd
 # Output: 100% used
 ```
+
+### 3. Inspect image cache:
+```sh
+kubectl debug node/<node> -it --image=ubuntu -- crictl images --digests
+# Showed 40+ GB of images
+```
