@@ -3702,3 +3702,15 @@ imageGCLowThresholdPercent: 80
 ⚠️ **Default thresholds are dangerous**: Must be tuned per workload  
 
 ---
+
+## Prevention Framework  
+
+### 1. Resource Management
+```yaml
+# Pod storage limits
+resources:
+  limits:
+    ephemeral-storage: "2Gi"
+  requests:
+    ephemeral-storage: "1Gi"
+```
