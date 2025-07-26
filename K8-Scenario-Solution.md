@@ -3648,3 +3648,11 @@ kubectl debug node/<node> -it --image=alpine -- df -h /var/lib/containerd
 kubectl debug node/<node> -it --image=ubuntu -- crictl images --digests
 # Showed 40+ GB of images
 ```
+
+### 4. Analyze eviction logs:
+```sh
+journalctl -u kubelet --no-pager -n 100 | grep -A10 "DiskPressure"
+# Logged "Attempting to reclaim ephemeral-storage"
+```
+
+---
