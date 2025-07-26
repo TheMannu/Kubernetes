@@ -3656,3 +3656,11 @@ journalctl -u kubelet --no-pager -n 100 | grep -A10 "DiskPressure"
 ```
 
 ---
+
+## Root Cause  
+**Unmanaged disk consumption**:  
+1. No image garbage collection thresholds  
+2. Unlimited concurrent image pulls  
+3. Default 100GB node disks insufficient for workload churn  
+
+---
