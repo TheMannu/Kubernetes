@@ -3733,3 +3733,13 @@ strategy:
   labels:
     severity: critical
 ```
+
+### 4. Node Design
+```sh
+# Separate 200GB volume for /var/lib/containerd
+mkfs.xfs /dev/nvme1n1
+mkdir -p /var/lib/containerd
+mount /dev/nvme1n1 /var/lib/containerd
+```
+
+---
