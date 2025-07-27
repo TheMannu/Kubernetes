@@ -3723,3 +3723,13 @@ strategy:
     maxSurge: 25%
     maxUnavailable: 10%
 ```
+
+### 3. Monitoring
+```yaml
+# Prometheus alerts
+- alert: NodeDiskPressureImminent
+  expr: kubelet_volume_stats_available_bytes / kubelet_volume_stats_capacity_bytes < 0.2
+  for: 5m
+  labels:
+    severity: critical
+```
