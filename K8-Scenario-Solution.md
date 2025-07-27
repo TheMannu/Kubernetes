@@ -3758,3 +3758,12 @@ kubectl debug node/<node> -it --image=nicolaka/netshoot -- bmon
 kubectl debug node/<node> -it --image=ubuntu -- \
   du -ah /var/lib/containerd | sort -rh | head -20
 ```
+
+**Image GC Policy**:  
+```markdown
+| Parameter                     | Production Value |
+|-------------------------------|------------------|
+| imageGCHighThresholdPercent   | 85               |
+| imageGCLowThresholdPercent    | 75               |
+| imageMinimumGCAge            | 2h               |
+```
