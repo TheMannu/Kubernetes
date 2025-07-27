@@ -3748,3 +3748,13 @@ mount /dev/nvme1n1 /var/lib/containerd
 - `container_fs_usage_bytes`  
 - `kubelet_evictions` by `DiskPressure`  
 - `crictl_images_bytes`  
+
+**Debugging Tools**:  
+```sh
+# Live disk usage
+kubectl debug node/<node> -it --image=nicolaka/netshoot -- bmon
+
+# Find large images
+kubectl debug node/<node> -it --image=ubuntu -- \
+  du -ah /var/lib/containerd | sort -rh | head -20
+```
