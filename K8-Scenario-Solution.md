@@ -3767,3 +3767,18 @@ kubectl debug node/<node> -it --image=ubuntu -- \
 | imageGCLowThresholdPercent    | 75               |
 | imageMinimumGCAge            | 2h               |
 ```
+
+---
+---
+# 📘 Scenario #25: Orphaned PVs Causing Unscheduled Pods
+
+**Category**: Storage Management  
+**Environment**: Kubernetes 1.20, vSphere CSI Driver 2.3  
+**Impact**: 47 PVCs stuck in Pending state, blocking application deployments  
+
+---
+
+## Scenario Summary  
+PersistentVolumes (PVs) left in `Released` state after pod deletions prevented new PVCs from binding, causing critical workloads to fail scheduling.
+
+---
