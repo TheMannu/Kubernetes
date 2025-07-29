@@ -3843,3 +3843,17 @@ kubectl get pv | grep Released | awk '{print $1}' | xargs -I{} kubectl delete pv
 kubectl get pvc -A | grep Pending | awk '{print $1,$2}' | \
   xargs -n2 sh -c 'kubectl patch pvc -n $0 $1 -p '"'"'{"metadata":{"annotations":{"volume.beta.kubernetes.io/storage-class":"force-retry"}}'"'"'
 ```
+
+### Long-term Solution:
+```yaml
+# StorageClass update
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: vsphere-ssd
+provisioner: csi.vsphere.vmware.com
+reclaimPolicy: Delete  # Changed from Retain
+volumeBindingMode: WaitForFirstConsumer
+```
+
+---
