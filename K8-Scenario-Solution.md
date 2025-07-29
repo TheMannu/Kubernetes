@@ -3908,3 +3908,12 @@ spec:
   parameters:
     allowedReclaimPolicies: ["Delete"]
 ```
+
+### 3. Monitoring
+```yaml
+# Prometheus alerts
+- alert: OrphanedPVs
+  expr: count(kube_persistentvolume_status_phase{phase="Released"}) > 0
+  for: 1h
+  labels:
+    severity: warning
