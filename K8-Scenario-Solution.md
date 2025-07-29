@@ -3917,3 +3917,10 @@ spec:
   for: 1h
   labels:
     severity: warning
+
+- alert: PendingPVCs
+  expr: count(kube_persistentvolumeclaim_status_phase{phase="Pending"}) > 5
+  for: 30m
+  labels:
+    severity: critical
+```
