@@ -3924,3 +3924,11 @@ spec:
   labels:
     severity: critical
 ```
+
+### 4. Documentation
+
+## PV Cleanup Protocol
+1. **Identify candidates**:
+   ```sh
+   kubectl get pv -o json | jq -r '.items[] | select(.status.phase=="Released") | .metadata.name'
+   ```
