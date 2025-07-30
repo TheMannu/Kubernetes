@@ -3952,3 +3952,7 @@ spec:
 ```sh
 # Find PVCs waiting for PVs
 kubectl get pvc -A -o json | jq -r '.items[] | select(.status.phase=="Pending") | .metadata.namespace + "/" + .metadata.name'
+
+# Check storage provider capacity
+kubectl get --raw="/apis/storage.k8s.io/v1/csinodes" | jq '.items[].spec.drivers[]'
+```
