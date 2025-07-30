@@ -3941,3 +3941,10 @@ spec:
    kubectl delete pv <name> --wait=false
    ```
 
+---
+
+**Key Metrics to Monitor**:  
+- `kube_persistentvolume_status_phase`  
+- `kube_persistentvolumeclaim_status_phase`  
+- `csi_volume_operations_total`  
+
