@@ -3956,3 +3956,7 @@ kubectl get pvc -A -o json | jq -r '.items[] | select(.status.phase=="Pending") 
 # Check storage provider capacity
 kubectl get --raw="/apis/storage.k8s.io/v1/csinodes" | jq '.items[].spec.drivers[]'
 ```
+
+**PV Lifecycle Best Practices**:  
+```markdown
+1. **Default to Delete policy** unless data retention required  
