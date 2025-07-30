@@ -3932,3 +3932,12 @@ spec:
    ```sh
    kubectl get pv -o json | jq -r '.items[] | select(.status.phase=="Released") | .metadata.name'
    ```
+2. **Backup data** (if needed):
+   ```sh
+   velero backup create pv-cleanup-$(date +%s) --include-resources persistentvolumes
+   ```
+3. **Release volumes**:
+   ```sh
+   kubectl delete pv <name> --wait=false
+   ```
+
