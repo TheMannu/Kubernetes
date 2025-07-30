@@ -3948,3 +3948,7 @@ spec:
 - `kube_persistentvolumeclaim_status_phase`  
 - `csi_volume_operations_total`  
 
+**Debugging Tools**:  
+```sh
+# Find PVCs waiting for PVs
+kubectl get pvc -A -o json | jq -r '.items[] | select(.status.phase=="Pending") | .metadata.namespace + "/" + .metadata.name'
