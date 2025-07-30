@@ -3960,3 +3960,7 @@ kubectl get --raw="/apis/storage.k8s.io/v1/csinodes" | jq '.items[].spec.drivers
 **PV Lifecycle Best Practices**:  
 ```markdown
 1. **Default to Delete policy** unless data retention required  
+2. **Tag resources** with owner/expiration metadata  
+3. **Implement backup** before cleanup  
+4. **Monitor volume age** - alert if >30 days unused  
+```
