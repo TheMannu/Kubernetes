@@ -4022,3 +4022,11 @@ kubectl get deploy -A -o json | \
 ```
 
 ---
+
+## Root Cause  
+**Scheduling policy drift**:  
+1. New taints introduced without workload updates  
+2. CI/CD pipelines didn't enforce toleration standards  
+3. No validation between node selectors and taints  
+
+---
