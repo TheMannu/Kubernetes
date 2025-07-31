@@ -3991,3 +3991,16 @@ New GPU nodes remained underutilized because critical workloads lacked required 
   - Node selector `accelerator: nvidia-tesla` still pointed to old nodes  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Check pending pods:
+```sh
+kubectl get pods -A --field-selector status.phase=Pending -o wide | grep gpu
+```
+
+### 2. Inspect scheduling barriers:
+```sh
+kubectl describe pod <pending-pod> | grep -A10 Events
+# Showed "node(s) had untolerated taint {node-role.kubernetes.io/gpu: }"
+```
