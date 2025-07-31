@@ -3964,3 +3964,17 @@ kubectl get --raw="/apis/storage.k8s.io/v1/csinodes" | jq '.items[].spec.drivers
 3. **Implement backup** before cleanup  
 4. **Monitor volume age** - alert if >30 days unused  
 ```
+---
+---
+# 📘 Scenario #26: Taints and Tolerations Mismatch Prevented Workload Scheduling
+
+**Category**: Cluster Scheduling  
+**Environment**: Kubernetes 1.22, AKS GPU Node Pool  
+**Impact**: GPU-accelerated workloads failed to schedule for 6+ hours  
+
+---
+
+## Scenario Summary  
+New GPU nodes remained underutilized because critical workloads lacked required tolerations, causing scheduling deadlocks and resource starvation for AI/ML pipelines.
+
+---
