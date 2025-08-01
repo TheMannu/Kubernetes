@@ -4134,3 +4134,15 @@ spec:
         image: nvidia/cuda:11.0-base
         command: ["nvidia-smi"]
 ```
+
+### 4. Monitoring
+```yaml
+# Prometheus alerts
+- alert: UntoleratedTaints
+  expr: count(kube_pod_info{node=~".*gpu.*"} unless on(pod) kube_pod_spec_tolerations{key="node-role.kubernetes.io/gpu"} > 0
+  for: 15m
+  labels:
+    severity: critical
+```
+
+---
