@@ -4071,3 +4071,10 @@ spec:
 ```
 
 ---
+
+## Lessons Learned  
+⚠️ **Taints break scheduling silently**: No warnings during apply  
+⚠️ **Node selectors ≠ taints**: Both must be coordinated  
+⚠️ **Costly idle resources**: Untolerated GPU nodes waste $100+/hr  
+
+---
