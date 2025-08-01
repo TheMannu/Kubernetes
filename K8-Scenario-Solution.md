@@ -4050,3 +4050,24 @@ kubectl patch deploy <name> -p '{
   }
 }'
 ```
+
+### Long-term Solution:
+```yaml
+# Kustomize patch for GPU workloads
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gpu-workload
+spec:
+  template:
+    spec:
+      tolerations:
+      - key: "node-role.kubernetes.io/gpu"
+        operator: "Exists"
+        effect: "NoSchedule"
+      - key: "nvidia.com/gpu"
+        operator: "Exists"
+        effect: "NoSchedule"
+```
+
+---
