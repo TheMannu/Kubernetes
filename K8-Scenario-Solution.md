@@ -4151,3 +4151,12 @@ spec:
 - `kube_node_spec_taints`  
 - `kube_pod_spec_tolerations`  
 - `nvidia_gpu_duty_cycle` 
+
+**Debugging Tools**:  
+```sh
+# List nodes with taints
+kubectl get nodes -o custom-columns=NAME:.metadata.name,TAINTS:.spec.taints
+
+# Check toleration coverage
+kubectl get pods -A -o json | jq -r '.items[] | select(.spec.nodeSelector?.accelerator=="nvidia-tesla") | .metadata.name + " " + (.spec.tolerations // [] | map(.key) | join(","))'
+```
