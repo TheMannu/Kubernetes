@@ -4160,3 +4160,11 @@ kubectl get nodes -o custom-columns=NAME:.metadata.name,TAINTS:.spec.taints
 # Check toleration coverage
 kubectl get pods -A -o json | jq -r '.items[] | select(.spec.nodeSelector?.accelerator=="nvidia-tesla") | .metadata.name + " " + (.spec.tolerations // [] | map(.key) | join(","))'
 ```
+
+**Toleration Best Practices**:  
+```markdown
+1. **Standardize tolerations** per node pool type  
+2. **Use `Exists` operator** for role-based taints  
+3. **Document taints** in cluster runbooks  
+4. **Test before scaling** new node pools  
+```
