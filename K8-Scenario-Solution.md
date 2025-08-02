@@ -4146,3 +4146,8 @@ spec:
 ```
 
 ---
+
+**Key Metrics to Monitor**:  
+- `kube_node_spec_taints`  
+- `kube_pod_spec_tolerations`  
+- `nvidia_gpu_duty_cycle` 
