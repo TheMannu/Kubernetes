@@ -4232,3 +4232,15 @@ kubeadm config images list --kubernetes-version v1.21.5
 3. Infrastructure-as-Code (IaC) templates lacked image preloading  
 
 ---
+
+## Fix/Workaround  
+
+### Immediate Recovery:
+```sh
+# 1. Restore registry service
+systemctl restart registry-backend
+
+# 2. Manually load images on affected nodes
+ctr -n k8s.io images import /opt/k8s/images/pause.tar
+```
+
