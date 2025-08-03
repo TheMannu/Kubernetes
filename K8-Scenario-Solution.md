@@ -4210,3 +4210,17 @@ kubectl get nodes -o json | \
 journalctl -u containerd --no-pager -n 100 | grep -i pull
 # Output: "PullImage registry.internal:5000/pause:3.4.1 failed"
 ```
+
+### 3. Verify registry access:
+```sh
+curl -I https://registry.internal:5000/v2/
+# Returned 503 Service Unavailable
+```
+
+### 4. Check essential images:
+```sh
+kubeadm config images list --kubernetes-version v1.21.5
+# All images pointed to registry.internal
+```
+
+---
