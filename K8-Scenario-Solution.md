@@ -4258,3 +4258,10 @@ provisioner "shell" {
 ```
 
 ---
+
+## Lessons Learned  
+⚠️ **Bootstrap is fragile**: Requires all dependencies available  
+⚠️ **Air-gapped needs redundancy**: Must have backup image sources  
+⚠️ **Node images should be atomic**: Include all needed containers  
+
+---
