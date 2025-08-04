@@ -4286,3 +4286,15 @@ done
     [plugins."io.containerd.grpc.v1.cri".registry.mirrors."registry.internal"]
       endpoint = ["https://registry-01.internal", "https://registry-02.internal"]
 ```
+
+### 3. Monitoring
+```yaml
+# Prometheus alerts
+- alert: RegistryUnavailable
+  expr: probe_success{job="registry-healthcheck"} == 0
+  for: 1m
+  labels:
+    severity: critical
+  annotations:
+    summary: "Container registry {{ $labels.instance }} is down"
+```
