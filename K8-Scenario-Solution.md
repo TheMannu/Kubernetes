@@ -4318,3 +4318,9 @@ done
 ```
 
 ---
+
+**Key Images to Preload**:  
+- `pause` (kubelet sandbox)  
+- CNI plugins (`calico`, `flannel`)  
+- `kube-proxy`  
+- `node-exporter`  
