@@ -4277,3 +4277,12 @@ for image in $IMAGES; do
   docker save -o /opt/k8s/images/${image##*/}.tar $REGISTRY/${image#*/}
 done
 ```
+
+### 2. Registry Redundancy
+```yaml
+# containerd config.toml
+[plugins."io.containerd.grpc.v1.cri".registry]
+  [plugins."io.containerd.grpc.v1.cri".registry.mirrors]
+    [plugins."io.containerd.grpc.v1.cri".registry.mirrors."registry.internal"]
+      endpoint = ["https://registry-01.internal", "https://registry-02.internal"]
+```
