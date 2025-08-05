@@ -4387,3 +4387,9 @@ kubectl get nodes -o json | \
 journalctl -u kubelet --no-pager -n 50 | grep -i cert
 # Output: "certificate expired on 2023-05-15 14:22:00 +0000 UTC"
 ```
+
+### 3. Inspect certificates:
+```sh
+openssl x509 -enddate -noout -in /var/lib/kubelet/pki/kubelet-client-current.pem
+# Output: "notAfter=May 15 14:22:00 2023 GMT"
+```
