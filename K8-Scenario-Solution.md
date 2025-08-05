@@ -4393,3 +4393,12 @@ journalctl -u kubelet --no-pager -n 50 | grep -i cert
 openssl x509 -enddate -noout -in /var/lib/kubelet/pki/kubelet-client-current.pem
 # Output: "notAfter=May 15 14:22:00 2023 GMT"
 ```
+
+### 4. Verify rotation config:
+```sh
+kubectl -n kube-system get cm kubelet-config -o json | \
+  jq -r '.data."kubelet.conf"' | grep rotate
+# Showed rotation enabled but node offline during window
+```
+
+---
