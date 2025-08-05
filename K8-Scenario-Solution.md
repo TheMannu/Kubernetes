@@ -4360,3 +4360,16 @@ kubectl run -it --rm registry-test --image=alpine -- \
 Nodes failed to rejoin the cluster after a scheduled reboot when kubelet client certificates expired during the downtime, breaking authentication with the API server.
 
 ---
+
+## What Happened  
+- **Planned maintenance**:  
+  - 2-hour power maintenance for rack PDU upgrade  
+  - 18 nodes powered off during certificate rotation window  
+- **Post-reboot failures**:  
+  - `kubelet` crashed with `x509: certificate has expired or is not yet valid`  
+  - `journalctl` showed `Failed to start kubelet: unable to load client certificate`  
+- **Certificate analysis**:  
+  - `kubelet-client-current.pem` expired 37 minutes into downtime  
+  - No automatic rotation attempted due to power-off state  
+
+---
