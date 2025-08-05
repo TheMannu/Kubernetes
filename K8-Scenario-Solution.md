@@ -4373,3 +4373,11 @@ Nodes failed to rejoin the cluster after a scheduled reboot when kubelet client 
   - No automatic rotation attempted due to power-off state  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Verify node status:
+```sh
+kubectl get nodes -o json | \
+  jq -r '.items[] | select(.status.conditions[].reason=="KubeletNotReady") | .metadata.name'
+```
