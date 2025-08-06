@@ -4421,3 +4421,7 @@ kubeadm certs renew all --config /etc/kubernetes/kubeadm-config.yaml
 # 2. Distribute new kubeconfigs
 kubeadm init phase kubeconfig kubelet --config /etc/kubernetes/kubeadm-config.yaml
 rsync -avz /etc/kubernetes/kubelet.conf ${NODE}:/etc/kubernetes/
+
+# 3. Restart kubelet
+systemctl restart kubelet
+```
