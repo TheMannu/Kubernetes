@@ -4465,3 +4465,17 @@ controllerManager:
 kubeadm certs check-expiration | grep -E 'kubelet-client|apiserver-kubelet-client' | \
   awk '{if ($4 < 30) system("kubeadm certs renew " $1)}'
 ```
+
+### 3. Maintenance Protocol
+```markdown
+## Pre-Downtime Checklist
+1. [ ] Verify cert expiry dates:
+   ```sh
+   kubeadm certs check-expiration
+   ```
+2. [ ] Force renewal if <30d validity:
+   ```sh
+   kubeadm certs renew all
+   ```
+3. [ ] Document manual recovery steps
+```
