@@ -4458,3 +4458,10 @@ controllerManager:
   annotations:
     summary: "Kubelet client cert expires in {{ $value | humanizeDuration }}"
 ```
+
+### 2. Renewal Automation
+```sh
+# Weekly renewal check (CronJob)
+kubeadm certs check-expiration | grep -E 'kubelet-client|apiserver-kubelet-client' | \
+  awk '{if ($4 < 30) system("kubeadm certs renew " $1)}'
+```
