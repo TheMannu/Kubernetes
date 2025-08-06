@@ -4402,3 +4402,11 @@ kubectl -n kube-system get cm kubelet-config -o json | \
 ```
 
 ---
+
+## Root Cause  
+**Certificate lifecycle gap**:  
+1. 1-year certs issued at cluster init  
+2. No renewal during 3-month maintenance blackout  
+3. kubelet couldn't bootstrap without valid credentials  
+
+---
