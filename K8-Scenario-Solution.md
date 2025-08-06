@@ -4425,3 +4425,16 @@ rsync -avz /etc/kubernetes/kubelet.conf ${NODE}:/etc/kubernetes/
 # 3. Restart kubelet
 systemctl restart kubelet
 ```
+
+### Long-term Solution:
+```yaml
+# kubeadm-config.yaml
+apiVersion: kubeadm.k8s.io/v1beta2
+kind: ClusterConfiguration
+certificatesDir: /etc/kubernetes/pki
+controllerManager:
+  extraArgs:
+    cluster-signing-duration: 87600h # 10 years
+```
+
+---
