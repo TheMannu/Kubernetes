@@ -4438,3 +4438,10 @@ controllerManager:
 ```
 
 ---
+
+## Lessons Learned  
+⚠️ **Certs expire silently**: No warnings until failure  
+⚠️ **Rotation requires uptime**: Offline nodes miss windows  
+⚠️ **Kubelet is special**: Can't use bootstrap tokens after initial setup  
+
+---
