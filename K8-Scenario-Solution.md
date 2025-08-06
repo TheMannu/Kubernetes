@@ -4478,4 +4478,17 @@ kubeadm certs check-expiration | grep -E 'kubelet-client|apiserver-kubelet-clien
    kubeadm certs renew all
    ```
 3. [ ] Document manual recovery steps
+
+
+### 4. Configuration Hardening
+```yaml
+# KubeletConfiguration
+apiVersion: kubelet.config.k8s.io/v1beta1
+kind: KubeletConfiguration
+rotateCertificates: true
+serverTLSBootstrap: true
+certificateRotationStrategy:
+  expirationSeconds: 157680000  # 5 years
 ```
+
+---
