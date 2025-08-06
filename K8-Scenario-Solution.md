@@ -4410,3 +4410,14 @@ kubectl -n kube-system get cm kubelet-config -o json | \
 3. kubelet couldn't bootstrap without valid credentials  
 
 ---
+
+## Fix/Workaround  
+
+### Immediate Recovery:
+```sh
+# 1. Renew all certs (on control plane)
+kubeadm certs renew all --config /etc/kubernetes/kubeadm-config.yaml
+
+# 2. Distribute new kubeconfigs
+kubeadm init phase kubeconfig kubelet --config /etc/kubernetes/kubeadm-config.yaml
+rsync -avz /etc/kubernetes/kubelet.conf ${NODE}:/etc/kubernetes/
