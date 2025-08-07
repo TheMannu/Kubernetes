@@ -4510,3 +4510,12 @@ openssl x509 -in /var/lib/kubelet/pki/kubelet-client-current.pem -text -noout | 
 # Verify cert chain
 openssl verify -CAfile /etc/kubernetes/pki/ca.crt /var/lib/kubelet/pki/kubelet-client-current.pem
 ```
+
+**Certificate Policy**:  
+```markdown
+| Component          | Recommended Validity | Rotation Method          |
+|--------------------|----------------------|--------------------------|
+| kubelet-client     | 1-2 years            | kubeadm certs renew      |
+| CA                 | 10 years             | Manual rotation          |
+| etcd-peer          | 5 years              | etcd cert-manager        |
+```
