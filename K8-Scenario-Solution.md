@@ -4506,3 +4506,7 @@ kubeadm certs check-expiration
 # Manual cert inspection
 openssl x509 -in /var/lib/kubelet/pki/kubelet-client-current.pem -text -noout | \
   grep -A2 Validity
+
+# Verify cert chain
+openssl verify -CAfile /etc/kubernetes/pki/ca.crt /var/lib/kubelet/pki/kubelet-client-current.pem
+```
