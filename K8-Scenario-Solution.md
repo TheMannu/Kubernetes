@@ -4497,3 +4497,8 @@ certificateRotationStrategy:
 - `front-proxy-client.crt`  
 
 ---
+
+**Debugging Tools**:  
+```sh
+# Check all cert expiry
+kubeadm certs check-expiration
