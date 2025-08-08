@@ -4548,3 +4548,17 @@ A misconfigured leader election namespace caused the `kube-scheduler` to crash o
   - Default RBAC lacked namespace creation permissions  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Check scheduler status:
+```sh
+kubectl -n kube-system get pods -l component=kube-scheduler
+# Showed CrashLoopBackOff
+```
+
+### 2. Inspect crash logs:
+```sh
+kubectl -n kube-system logs -l component=kube-scheduler --tail=100 | grep -A5 panic
+# Output: "leases.coordination.k8s.io is forbidden: cannot create resource in namespace kube-scheduler"
+```
