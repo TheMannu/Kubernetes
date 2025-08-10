@@ -4584,3 +4584,10 @@ kubectl get ns kube-scheduler
 3. Missing pre-flight namespace validation  
 
 ---
+
+## Fix/Workaround  
+
+### Immediate Recovery:
+```sh
+# 1. Create missing namespace
+kubectl create ns kube-scheduler
