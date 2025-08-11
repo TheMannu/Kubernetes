@@ -4661,7 +4661,7 @@ fi
 ```
 
 ### 4. Documentation Standards
-```markdown
+
 ## Scheduler Configuration Checklist
 1. **Namespace must exist** before deployment  
 2. **RBAC** for leases in target namespace:  
@@ -4674,6 +4674,11 @@ fi
      verbs: ["create", "get", "update"]
    ```
 3. **Test leader failover** during maintenance  
-```
+
 
 ---
+
+**Key Resources to Verify**:  
+- `leases.coordination.k8s.io` in election namespace  
+- `kube-scheduler` pod logs  
+- `scheduler_scheduling_attempts_total` metric  
