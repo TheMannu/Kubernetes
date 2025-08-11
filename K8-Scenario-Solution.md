@@ -4687,3 +4687,6 @@ fi
 ```sh
 # Check leader election status
 kubectl -n kube-system get leases.coordination.k8s.io kube-scheduler -o yaml
+
+# Verify RBAC
+kubectl auth can-i create leases -n kube-system --as system:kube-scheduler
