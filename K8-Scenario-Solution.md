@@ -4682,3 +4682,8 @@ fi
 - `leases.coordination.k8s.io` in election namespace  
 - `kube-scheduler` pod logs  
 - `scheduler_scheduling_attempts_total` metric  
+
+**Debugging Tools**:  
+```sh
+# Check leader election status
+kubectl -n kube-system get leases.coordination.k8s.io kube-scheduler -o yaml
