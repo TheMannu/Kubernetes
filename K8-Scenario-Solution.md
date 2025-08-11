@@ -4647,3 +4647,15 @@ if ! kubectl get ns "$(yq '.leaderElection.namespace' values.yaml)"; then
   exit 1
 fi
 ```
+
+### 3. Monitoring
+```yaml
+# Prometheus alerts
+- alert: SchedulerDown
+  expr: absent(up{job="kube-scheduler"} == 1)
+  for: 1m
+  labels:
+    severity: critical
+  annotations:
+    summary: "kube-scheduler is down (instance {{ $labels.instance }})"
+```
