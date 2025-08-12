@@ -4734,3 +4734,11 @@ A Calico CNI upgrade introduced default-deny network policies that inadvertently
   - No exceptions for `kube-dns` service IP range  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Verify DNS functionality:
+```sh
+kubectl run -it --rm dns-test --image=busybox -- nslookup kubernetes.default
+# Timeout after 30s
+```
