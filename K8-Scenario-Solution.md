@@ -4694,3 +4694,14 @@ kubectl auth can-i create leases -n kube-system --as system:kube-scheduler
 # Test scheduler connectivity
 kubectl get --raw "/healthz/scheduler"
 ```
+
+**Leader Election Best Practices**:  
+```markdown
+1. **Use `kube-system`** unless multi-scheduler  
+2. **Monitor lease duration**:  
+   ```sh
+   kubectl get leases -n kube-system -w
+   ```
+3. **Configure renewDeadline** < leaseDuration  
+4. **Test failover** with `kubectl delete pod -n kube-system -l component=kube-scheduler`  
+```
