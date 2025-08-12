@@ -4720,3 +4720,17 @@ kubectl get --raw "/healthz/scheduler"
 A Calico CNI upgrade introduced default-deny network policies that inadvertently blocked CoreDNS egress traffic, breaking all DNS resolution across the cluster.
 
 ---
+
+## What Happened  
+- **Calico upgrade**:  
+  - v3.21 → v3.22 included new `default-deny` global network policy  
+  - Changed default behavior from `allow-all` to explicit whitelisting  
+- **Immediate symptoms**:  
+  - `kubectl exec` commands hung with `i/o timeout`  
+  - CoreDNS logs showed `SERVFAIL` for all queries  
+  - `tcpdump` revealed `ICMP admin prohibited` packets  
+- **Policy analysis**:  
+  - New `default-deny` policy applied to `kube-system` namespace  
+  - No exceptions for `kube-dns` service IP range  
+
+---
