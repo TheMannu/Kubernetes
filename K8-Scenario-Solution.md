@@ -4763,3 +4763,11 @@ kubectl debug node/<node> -it --image=nicolaka/netshoot -- \
 ```
 
 ---
+
+## Root Cause  
+**Security policy overreach**:  
+1. Calico 3.22's new default-deny policy  
+2. Missing allow rule for DNS service IP range  
+3. No pre-upgrade impact assessment  
+
+---
