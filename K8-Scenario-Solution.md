@@ -4771,3 +4771,25 @@ kubectl debug node/<node> -it --image=nicolaka/netshoot -- \
 3. No pre-upgrade impact assessment  
 
 ---
+
+## Fix/Workaround  
+
+### Immediate Resolution:
+```yaml
+# calico-dns-allow.yaml
+apiVersion: projectcalico.org/v3
+kind: NetworkPolicy
+metadata:
+  name: allow-kube-dns
+  namespace: kube-system
+spec:
+  selector: k8s-app == 'kube-dns'
+  egress:
+  - action: Allow
+    destination:
+      selector: ''
+  ingress:
+  - action: Allow
+    source:
+      selector: ''
+```
