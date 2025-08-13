@@ -4748,3 +4748,9 @@ kubectl run -it --rm dns-test --image=busybox -- nslookup kubernetes.default
 kubectl logs -n kube-system -l k8s-app=kube-dns --tail=50
 # Showed "SERVFAIL" errors
 ```
+
+### 3. Check network policies:
+```sh
+kubectl get globalnetworkpolicies.crd.projectcalico.org -o yaml | grep -i deny
+# Output: "default-deny: true"
+```
