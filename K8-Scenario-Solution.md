@@ -4793,3 +4793,22 @@ spec:
     source:
       selector: ''
 ```
+
+### Long-term Solution:
+```yaml
+# Helm values override for Calico
+installation:
+  calicoNetwork:
+    bgp: Enabled
+    ipPools:
+    - cidr: 192.168.0.0/16
+      natOutgoing: Enabled
+    nodeAddressAutodetectionV4:
+      interface: eth.*
+    hostPorts: Enabled
+    multiInterfaceMode: None
+    containerIPForwarding: Enabled
+    iptablesFilterAllowAction: Return
+```
+
+---
