@@ -4836,4 +4836,27 @@ installation:
    ```sh
    kubectl run dns-test --image=busybox --rm -it -- nslookup kubernetes.default
    ```
+
+### 2. Network Policy Safeguards
+```yaml
+# Required DNS policy template
+apiVersion: projectcalico.org/v3
+kind: GlobalNetworkPolicy
+metadata:
+  name: allow-dns
+spec:
+  selector: has(pod-template-hash)
+  namespaceSelector: ''
+  order: 100
+  ingress:
+  - action: Allow
+    protocol: UDP
+    destination:
+      ports: [53]
+  egress:
+  - action: Allow
+    protocol: UDP
+    destination:
+      ports: [53]
 ```
+
