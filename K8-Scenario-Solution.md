@@ -4812,3 +4812,10 @@ installation:
 ```
 
 ---
+
+## Lessons Learned  
+⚠️ **Default-deny breaks assumptions**: Must audit all required flows  
+⚠️ **DNS is special**: Requires explicit allow before deny  
+⚠️ **CNI upgrades are risky**: Need staged rollouts  
+
+---
