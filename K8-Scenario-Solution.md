@@ -4872,3 +4872,18 @@ spec:
     summary: "DNS failing ({{ $value }} errors/min)"
 ```
 
+
+### 4. Canary Testing
+```yaml
+# Calico upgrade strategy
+strategy:
+  rollingUpdate:
+    maxUnavailable: 1
+  canary:
+    enabled: true
+    replicaCount: 2
+    nodeSelector:
+      node-role.kubernetes.io/canary: "true"
+```
+
+---
