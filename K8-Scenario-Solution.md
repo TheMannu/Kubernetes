@@ -4860,3 +4860,15 @@ spec:
       ports: [53]
 ```
 
+### 3. Monitoring
+```yaml
+# Prometheus alerts
+- alert: DNSResolutionFailed
+  expr: rate(coredns_dns_responses_total{rcode="SERVFAIL"}[5m]) > 10
+  for: 2m
+  labels:
+    severity: critical
+  annotations:
+    summary: "DNS failing ({{ $value }} errors/min)"
+```
+
