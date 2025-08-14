@@ -4819,3 +4819,12 @@ installation:
 ⚠️ **CNI upgrades are risky**: Need staged rollouts  
 
 ---
+
+## Prevention Framework  
+
+### 1. Upgrade Protocol
+```markdown
+1. **Pre-flight checks**:
+   ```sh
+   calicoctl get globalnetworkpolicy -o yaml > pre-upgrade-policies.yaml
+   ```
