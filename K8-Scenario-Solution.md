@@ -4828,3 +4828,12 @@ installation:
    ```sh
    calicoctl get globalnetworkpolicy -o yaml > pre-upgrade-policies.yaml
    ```
+2. **Stage rollout**:
+   ```sh
+   kubectl set image daemonset/calico-node -n kube-system calico-node=calico/node:v3.22.0 --record --dry-run=server
+   ```
+3. **Validate core services**:
+   ```sh
+   kubectl run dns-test --image=busybox --rm -it -- nslookup kubernetes.default
+   ```
+```
