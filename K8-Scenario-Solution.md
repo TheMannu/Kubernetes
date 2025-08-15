@@ -4892,3 +4892,8 @@ strategy:
 - `kube-dns` service IP (default `10.96.0.10`)  
 - CoreDNS pod network interfaces  
 - Node-to-node Calico BGP peering  
+
+**Debugging Tools**:  
+```sh
+# Verify Calico policies
+calicoctl get networkpolicy -A -o wide
