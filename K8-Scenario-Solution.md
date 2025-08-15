@@ -4900,3 +4900,8 @@ calicoctl get networkpolicy -A -o wide
 
 # Check active iptables rules
 kubectl debug node/<node> -it --image=nicolaka/netshoot -- iptables-save | grep -i calico
+
+# Test DNS resolution path
+kubectl run -it --rm netshoot --image=nicolaka/netshoot -- \
+  mtr -n -t -u -p 53 10.96.0.10
+```
