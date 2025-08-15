@@ -4897,3 +4897,6 @@ strategy:
 ```sh
 # Verify Calico policies
 calicoctl get networkpolicy -A -o wide
+
+# Check active iptables rules
+kubectl debug node/<node> -it --image=nicolaka/netshoot -- iptables-save | grep -i calico
