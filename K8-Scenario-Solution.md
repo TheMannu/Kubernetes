@@ -4905,3 +4905,11 @@ kubectl debug node/<node> -it --image=nicolaka/netshoot -- iptables-save | grep 
 kubectl run -it --rm netshoot --image=nicolaka/netshoot -- \
   mtr -n -t -u -p 53 10.96.0.10
 ```
+
+**Calico Upgrade Checklist**:  
+```markdown
+1. [ ] Backup all NetworkPolicies (`calicoctl get ... -o yaml`)  
+2. [ ] Test in non-production cluster  
+3. [ ] Annotate required flows (DNS, metrics, etc.)  
+4. [ ] Prepare rollback procedure  
+```
