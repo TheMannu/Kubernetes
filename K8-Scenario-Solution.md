@@ -4887,3 +4887,8 @@ strategy:
 ```
 
 ---
+
+**Key Resources to Protect**:  
+- `kube-dns` service IP (default `10.96.0.10`)  
+- CoreDNS pod network interfaces  
+- Node-to-node Calico BGP peering  
