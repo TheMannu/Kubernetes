@@ -4913,3 +4913,18 @@ kubectl run -it --rm netshoot --image=nicolaka/netshoot -- \
 3. [ ] Annotate required flows (DNS, metrics, etc.)  
 4. [ ] Prepare rollback procedure  
 ```
+
+---
+---
+# 📘 Scenario #31: Node Clock Drift Causing Authentication Failures
+
+**Category**: Cluster Authentication  
+**Environment**: Kubernetes 1.22, On-prem, kubeadm  
+**Impact**: Cluster-wide authentication failures lasting 2+ hours  
+
+---
+
+## Scenario Summary  
+Clock drift exceeding 5 minutes between worker nodes and control plane caused JWT token validation failures, breaking all token-based authentication across the cluster.
+
+---
