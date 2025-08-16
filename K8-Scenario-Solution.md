@@ -4942,3 +4942,11 @@ Clock drift exceeding 5 minutes between worker nodes and control plane caused JW
   - `kube-apiserver` logs showed `too much clock skew` warnings  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Verify authentication errors:
+```sh
+kubectl get pods -A 2>&1 | grep -i "clock skew"
+# Output: "Token cannot be validated: clock skew of 12m exceeds 5m"
+```
