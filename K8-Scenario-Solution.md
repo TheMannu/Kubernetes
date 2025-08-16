@@ -4963,3 +4963,13 @@ kubectl get nodes -o json | jq -r '.items[].metadata.name' | \
 kubectl debug node/<node> -it --image=ubuntu -- systemctl status chrony
 # Output: inactive (dead)
 ```
+
+### 4. Verify token validity:
+```sh
+kubectl describe secret -n kube-system $(kubectl get secret -n kube-system | \
+  grep service-account-token | head -1 | awk '{print $1}') | \
+  grep "Expires:"
+# Output: Expires: 2023-05-15 14:22:00 +0000 UTC (conflicted with node time)
+```
+
+---
