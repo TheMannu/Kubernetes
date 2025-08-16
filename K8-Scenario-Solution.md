@@ -4950,3 +4950,10 @@ Clock drift exceeding 5 minutes between worker nodes and control plane caused JW
 kubectl get pods -A 2>&1 | grep -i "clock skew"
 # Output: "Token cannot be validated: clock skew of 12m exceeds 5m"
 ```
+
+### 2. Check node times:
+```sh
+kubectl get nodes -o json | jq -r '.items[].metadata.name' | \
+  xargs -I{} sh -c 'echo {}; kubectl debug node/{} -it --image=busybox -- date -u'
+# Showed 5-15 minute drift
+```
