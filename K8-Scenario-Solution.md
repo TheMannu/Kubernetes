@@ -4928,3 +4928,17 @@ kubectl run -it --rm netshoot --image=nicolaka/netshoot -- \
 Clock drift exceeding 5 minutes between worker nodes and control plane caused JWT token validation failures, breaking all token-based authentication across the cluster.
 
 ---
+
+## What Happened  
+- **Time synchronization failure**:  
+  - NTP daemon disabled during OS patching  
+  - Worker nodes drifted 7-12 minutes over 3 weeks  
+- **Authentication symptoms**:  
+  - `kubectl` commands failed with `Token cannot be validated: clock skew too great`  
+  - Pod-to-API communication errors (`x509: certificate has expired or is not yet valid`)  
+  - Service accounts unable to refresh tokens  
+- **Root discovery**:  
+  - Control plane at UTC-5, nodes at UTC+7  
+  - `kube-apiserver` logs showed `too much clock skew` warnings  
+
+---
