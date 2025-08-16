@@ -4957,3 +4957,9 @@ kubectl get nodes -o json | jq -r '.items[].metadata.name' | \
   xargs -I{} sh -c 'echo {}; kubectl debug node/{} -it --image=busybox -- date -u'
 # Showed 5-15 minute drift
 ```
+
+### 3. Inspect time services:
+```sh
+kubectl debug node/<node> -it --image=ubuntu -- systemctl status chrony
+# Output: inactive (dead)
+```
