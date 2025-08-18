@@ -5008,3 +5008,10 @@ nodeRegistration:
 ```
 
 ---
+
+## Lessons Learned  
+⚠️ **Time is critical infrastructure**: Microservices depend on synchronized clocks  
+⚠️ **Silent degradation**: Drift accumulates unnoticed until auth breaks  
+⚠️ **Kubernetes is unforgiving**: 5-minute tolerance is non-negotiable  
+
+---
