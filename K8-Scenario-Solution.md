@@ -5015,3 +5015,34 @@ nodeRegistration:
 ⚠️ **Kubernetes is unforgiving**: 5-minute tolerance is non-negotiable  
 
 ---
+
+## Prevention Framework  
+
+### 1. Time Synchronization Hardening
+```yaml
+# Machine config for chrony
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  labels:
+    machineconfiguration.openshift.io/role: worker
+  name: 50-worker-chrony
+spec:
+  config:
+    ignition:
+      version: 3.2.0
+    systemd:
+      units:
+      - contents: |
+          [Unit]
+          Description=NTP client/server
+          After=network.target
+          [Service]
+          Type=simple
+          ExecStart=/usr/sbin/chronyd -n -F 1
+          Restart=always
+          [Install]
+          WantedBy=multi-user.target
+        enabled: true
+        name: chronyd.service
+```
