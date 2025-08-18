@@ -4973,3 +4973,11 @@ kubectl describe secret -n kube-system $(kubectl get secret -n kube-system | \
 ```
 
 ---
+
+## Root Cause  
+**Time synchronization breakdown**:  
+1. NTP service disabled on worker nodes  
+2. No time drift monitoring in place  
+3. Kubernetes' strict 5-minute clock skew tolerance  
+
+---
