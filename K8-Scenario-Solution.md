@@ -4981,3 +4981,16 @@ kubectl describe secret -n kube-system $(kubectl get secret -n kube-system | \
 3. Kubernetes' strict 5-minute clock skew tolerance  
 
 ---
+
+## Fix/Workaround  
+
+### Immediate Recovery:
+```sh
+# 1. Force time sync on all nodes
+ansible all -i hosts -m shell -a "chronyc makestep && systemctl restart chronyd"
+
+# 2. Verify synchronization
+kubectl get nodes -o json | jq -r '.items[].metadata.name' | \
+  xargs -I{} kubectl debug node/{} -it --image=ubuntu -- \
+  chronyc tracking | grep -i "last offset"
+```
