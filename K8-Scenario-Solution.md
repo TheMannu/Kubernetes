@@ -5060,3 +5060,12 @@ spec:
     summary: "Clock drift detected on {{ $labels.instance }}"
     description: "Node clock is {{ $value }} seconds offset"
 ```
+
+### 3. Validation Checks
+```sh
+# Pre-flight time sync check
+if ! chronyc tracking | grep -q "Leap status\s*: Normal"; then
+  echo "ERROR: Time synchronization failed"
+  exit 1
+fi
+```
