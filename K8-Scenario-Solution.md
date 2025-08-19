@@ -5078,3 +5078,13 @@ fi
    server time.google.com iburst
    server pool.ntp.org iburst
    ```
+2. **Forced sync on boot**:  
+   ```conf
+   makestep 1.0 3
+   ```
+3. **Monitoring**:  
+   ```sh
+   chronyc tracking | grep "Last offset"
+   ```
+
+---
