@@ -5046,3 +5046,17 @@ spec:
         enabled: true
         name: chronyd.service
 ```
+
+
+### 2. Monitoring
+```yaml
+# Prometheus alerts
+- alert: NodeClockDrift
+  expr: abs(node_timex_offset_seconds) > 300  # 5 minutes
+  for: 5m
+  labels:
+    severity: critical
+  annotations:
+    summary: "Clock drift detected on {{ $labels.instance }}"
+    description: "Node clock is {{ $value }} seconds offset"
+```
