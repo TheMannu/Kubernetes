@@ -5069,3 +5069,12 @@ if ! chronyc tracking | grep -q "Leap status\s*: Normal"; then
   exit 1
 fi
 ```
+
+### 4. Documentation Standards
+```markdown
+## NTP Configuration Requirements
+1. **Stratum 1/2 sources**:  
+   ```conf
+   server time.google.com iburst
+   server pool.ntp.org iburst
+   ```
