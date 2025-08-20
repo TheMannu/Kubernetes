@@ -5101,3 +5101,7 @@ kubectl debug node/<node> -it --image=ubuntu -- chronyc sources -v
 
 # Verify API server time
 kubectl run -it --rm timecheck --image=busybox -- date -u
+
+# Inspect certificate validity
+openssl x509 -in /etc/kubernetes/pki/apiserver.crt -noout -dates
+```
