@@ -5093,3 +5093,8 @@ fi
 - `node_timex_offset_seconds`  
 - `chrony_stratum`  
 - `kubelet_server_expiration_seconds`  
+
+**Debugging Tools**:  
+```sh
+# Check time sync sources
+kubectl debug node/<node> -it --image=ubuntu -- chronyc sources -v
