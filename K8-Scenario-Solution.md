@@ -5088,8 +5088,3 @@ fi
    ```
 
 ---
-
-**Key Metrics to Monitor**:  
-- `node_timex_offset_seconds`  
-- `chrony_stratum`  
-- `kubelet_server_expiration_seconds`  
