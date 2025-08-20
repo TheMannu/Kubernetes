@@ -5105,3 +5105,9 @@ kubectl run -it --rm timecheck --image=busybox -- date -u
 # Inspect certificate validity
 openssl x509 -in /etc/kubernetes/pki/apiserver.crt -noout -dates
 ```
+
+**Time Synchronization Policy**:  
+```markdown
+| Component          | Tolerance  | Sync Method          |
+|--------------------|------------|----------------------|
+| Control Plane      | ±10ms      | GPS/Hardware NTP     |
