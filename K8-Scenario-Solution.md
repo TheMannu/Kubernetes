@@ -5098,3 +5098,6 @@ fi
 ```sh
 # Check time sync sources
 kubectl debug node/<node> -it --image=ubuntu -- chronyc sources -v
+
+# Verify API server time
+kubectl run -it --rm timecheck --image=busybox -- date -u
