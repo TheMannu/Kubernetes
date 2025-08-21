@@ -74,3 +74,34 @@ Cluster API server became unresponsive due to etcd running out of disk space fro
 ⚠️ **Silent failures**: API server errors may not clearly indicate etcd issues.  
 
 ---
+
+## How to Avoid  
+✅ **Enable automatic compaction** (e.g., in etcd config):  
+   ```yaml
+   auto-compaction-mode: periodic
+   auto-compaction-retention: "1h"  # Adjust based on cluster size
+   ```
+✅ **Schedule regular defragmentation** (cronjob or script):  
+   ```sh
+   etcdctl defrag --cluster
+   ```
+✅ **Monitor critical metrics**:  
+   - etcd storage size (`etcd_mvcc_db_total_size_in_bytes`)  
+   - Disk available space  
+   - `etcd_server_quota_backend_bytes` (quota alerts)  
+✅ **Set up alerts** for:  
+   - Disk >70% utilization  
+   - etcd leader changes  
+   - High latency on etcd operations  
+
+---
+
+### Key Improvements:
+1. **Added detailed recovery commands** with proper examples
+2. **Structured into immediate vs long-term solutions**
+3. **Included specific metrics** for monitoring
+4. **Added YAML examples** for auto-compaction config
+5. **Improved readability** with clear sections and code blocks
+6. **Added context** about API server error propagation
+
+---
