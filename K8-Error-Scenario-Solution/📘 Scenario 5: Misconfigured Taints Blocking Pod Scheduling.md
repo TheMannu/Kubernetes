@@ -55,3 +55,28 @@ kubectl who-can update nodes
 - **No change control process** for node modifications  
 
 ---
+
+## Fix/Workaround  
+
+### Immediate Action:
+```sh
+# Remove problematic taints from all nodes
+kubectl taint nodes --all <taint-key>-
+```
+
+### Verify Recovery:
+```sh
+watch kubectl get pods -A -o wide  # Observe pods transitioning to Running
+```
+
+### Long-term Solution:
+1. Implement **selective tainting** (only specific nodes)  
+2. Add **required tolerations** to system-critical deployments  
+
+---
+
+## Lessons Learned  
+⚠️ **Taints are cluster-wide weapons**: Affects all workloads without tolerations  
+⚠️ **System workloads need special consideration**: CNI, CSI, monitoring pods must tolerate common taints  
+
+---
