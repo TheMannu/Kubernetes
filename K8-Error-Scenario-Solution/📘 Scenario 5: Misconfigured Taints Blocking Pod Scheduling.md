@@ -19,3 +19,39 @@ Critical workloads failed to schedule after blanket `NoSchedule` taints were app
 - Applications began failing SLA as pods couldn't be rescheduled  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Identified scheduling failures:
+```sh
+kubectl get pods --all-namespaces --field-selector status.phase=Pending
+```
+
+### 2. Analyzed pending pods:
+```sh
+kubectl describe pod <pending-pod> | grep -A10 Events
+# Output showed: "0/3 nodes are available: 3 node(s) had untolerated taint..."
+```
+
+### 3. Inspected node taints:
+```sh
+kubectl get nodes -o json | jq '.items[].spec.taints'
+# OR
+kubectl describe node <node> | grep Taints
+```
+
+### 4. Verified RBAC:
+```sh
+kubectl who-can update nodes
+```
+
+---
+
+## Root Cause  
+**Improper taint management**:  
+- Blanket `NoSchedule` taints applied without:  
+  - **Cluster-wide impact assessment**  
+  - **Required tolerations** in existing workloads  
+- **No change control process** for node modifications  
+
+---
