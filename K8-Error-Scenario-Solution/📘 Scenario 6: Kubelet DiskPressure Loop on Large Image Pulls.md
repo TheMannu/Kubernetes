@@ -17,3 +17,38 @@ Nodes entered a destructive eviction loop due to disk exhaustion from pulling ov
 - Cluster autoscaler added nodes but they quickly became unstable  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Verified node conditions:
+```sh
+kubectl get nodes -o json | jq '.items[].status.conditions'
+# Output showed DiskPressure=True
+```
+
+### 2. Analyzed disk usage:
+```sh
+kubectl debug node/<node> -it --image=busybox -- df -h /var/lib/containerd
+```
+
+### 3. Inspected image cache:
+```sh
+kubectl debug node/<node> -it --image=ubuntu -- crictl images
+# Showed multiple large images with duplicate layers
+```
+
+### 4. Checked kubelet logs:
+```sh
+journalctl -u kubelet --no-pager | grep -i "DiskPressure"
+# Revealed continuous image garbage collection attempts
+```
+
+---
+
+## Root Cause  
+**Image storage bloat from**:  
+1. **Unoptimized image** with redundant layers (dev tools left in production image)  
+2. **No image size limits** in CI/CD pipeline  
+3. **Insufficient disk headroom** for normal operations  
+
+---
