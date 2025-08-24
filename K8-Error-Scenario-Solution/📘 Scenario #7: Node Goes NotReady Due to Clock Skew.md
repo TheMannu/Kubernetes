@@ -24,3 +24,42 @@ A worker node became `NotReady` due to TLS certificate validation failures cause
   - Cluster autoscaler provisioned replacement nodes  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Verify node status:
+```sh
+kubectl get nodes -o wide | grep -i notready
+```
+
+### 2. Check time synchronization:
+```sh
+# On affected node:
+timedatectl status
+# Expected output showing NTP sync active
+```
+
+### 3. Measure clock skew:
+```sh
+# Compare node time with control plane
+date -u && kubectl run -it --rm check-time --image=busybox --restart=Never -- date -u
+```
+
+### 4. Investigate NTP service:
+```sh
+systemctl status chronyd --no-pager
+journalctl -u chronyd -n 50 --no-pager
+```
+
+---
+
+## Root Cause  
+**Time synchronization breakdown**:  
+1. **NTP service failure**:  
+   - `chronyd` crashed due to resource constraints  
+   - No automatic restart configured  
+2. **TLS certificate validation**:  
+   - Kubernetes requires <30s clock skew for TLS validation  
+   - 45s drift invalidated all API server communications  
+
+---
