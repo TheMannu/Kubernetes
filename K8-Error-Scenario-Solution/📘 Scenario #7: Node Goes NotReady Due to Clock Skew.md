@@ -100,3 +100,51 @@ sudo systemctl restart kubelet
 ⚠️ **Silent failure mode**: NTP services can fail without obvious symptoms until TLS breaks  
 
 ---
+
+## Prevention Framework  
+
+### 1. Time Synchronization
+```sh
+# Deploy NTP as DaemonSet (for air-gapped environments)
+kubectl apply -f https://k8s.io/examples/admin/chrony-daemonset.yaml
+```
+
+### 2. Monitoring
+```yaml
+# Prometheus alert for clock skew
+- alert: NodeClockSkew
+  expr: abs(time() - node_time_seconds{job="node-exporter"}) > 30
+  for: 5m
+  labels:
+    severity: critical
+```
+
+### 3. Node Configuration
+```ini
+# /etc/systemd/timesyncd.conf (alternative)
+[Time]
+NTP=pool.ntp.org
+FallbackNTP=time.google.com
+```
+
+### 4. Validation Checks
+```sh
+# Pre-flight check for new nodes
+kubeadm join ... --ignore-preflight-errors=all  # NEVER do this
+# Instead fix NTP before joining
+```
+
+---
+
+**Key Metrics to Monitor**:  
+- `node_timex_offset_seconds`  
+- `node_timex_sync_status`  
+- `kubelet_node_name{condition="Ready"}`  
+
+**Tools for Investigation**:  
+```sh
+chronyc tracking     # Check NTP sync status
+chronyc sources -v   # Verify NTP sources
+openssl s_client -connect api-server:6443 # TLS handshake test
+```
+
