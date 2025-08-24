@@ -63,3 +63,40 @@ journalctl -u chronyd -n 50 --no-pager
    - 45s drift invalidated all API server communications  
 
 ---
+
+## Fix/Workaround  
+
+### Immediate Recovery:
+```sh
+# Force time sync (node)
+sudo chronyc makestep
+sudo systemctl restart chronyd
+
+# Restart kubelet after sync
+sudo systemctl restart kubelet
+```
+
+### Long-term Solutions:
+1. **Configure NTP hardening**:
+   ```ini
+   # /etc/chrony.conf
+   pool pool.ntp.org iburst
+   makestep 1.0 3
+   rtcsync
+   ```
+
+2. **Add startup probe**:
+   ```yaml
+   # kubelet systemd unit override
+   [Unit]
+   After=chronyd.service
+   Requires=chronyd.service
+   ```
+
+---
+
+## Lessons Learned  
+⚠️ **TLS is time-sensitive**: Kubernetes components require sub-30s synchronization  
+⚠️ **Silent failure mode**: NTP services can fail without obvious symptoms until TLS breaks  
+
+---
