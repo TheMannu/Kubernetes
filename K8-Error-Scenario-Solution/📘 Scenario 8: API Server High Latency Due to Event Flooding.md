@@ -113,3 +113,24 @@ limits:
     qps: 50
     burst: 100
 ```
+
+### 3. Controller Best Practices
+```go
+// Use exponential backoff for error events
+eventInterval := math.Min(5*math.Pow(2, retryCount), 300)
+if time.Since(lastEvent) > time.Duration(eventInterval)*time.Second {
+    recordEvent()
+}
+```
+
+### 4. Monitoring
+```yaml
+# Critical Prometheus alerts
+- alert: EventStorm
+  expr: rate(apiserver_event_count[1m]) > 100
+  for: 2m
+  labels:
+    severity: critical
+```
+
+---
