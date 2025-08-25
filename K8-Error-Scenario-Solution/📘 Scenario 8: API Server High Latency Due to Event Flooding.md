@@ -51,3 +51,38 @@ kubectl get --raw='/metrics' | \
 ```
 
 ---
+
+## Root Cause  
+**Uncontrolled event generation**:  
+1. **No rate limiting**: Controller logged identical errors in tight loop  
+2. **No deduplication**: Same event recorded hundreds of times  
+3. **No cleanup**: Default event TTL of 1h insufficient  
+
+---
+
+## Fix/Workaround  
+
+### Immediate Actions:
+```sh
+# Bulk delete events (carefully!)
+kubectl delete events --all --namespace=default
+
+# Scale down offending controller
+kubectl scale deploy <controller> --replicas=0
+```
+
+### Controller Patch Example:
+```go
+// Before: Uncontrolled events
+recorder.Eventf(obj, "Warning", "FailedCreate", "Error creating resource")
+
+// After: Rate-limited with deduplication
+if time.Since(lastEvent) > 5*time.Minute {
+    recorder.Eventf(obj, "Warning", "FailedCreate", 
+        "Error creating resource (repeated %d times)", errorCount)
+    lastEvent = time.Now()
+    errorCount = 0
+}
+```
+
+---
