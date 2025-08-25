@@ -86,3 +86,30 @@ if time.Since(lastEvent) > 5*time.Minute {
 ```
 
 ---
+
+## Lessons Learned  
+⚠️ **Events are etcd writes**: Each event consumes etcd I/O capacity  
+⚠️ **Cascading failures**: API latency affects all controllers/schedulers  
+
+---
+
+## Prevention Framework  
+
+### 1. Cluster Configuration
+```yaml
+# API server flags
+--event-ttl=30m  # Reduce from default 1h
+--enable-admission-plugins=EventRateLimit
+--admission-control-config-file=eventconfig.yaml
+```
+
+### 2. Event Rate Limiting Policy
+```yaml
+# eventconfig.yaml
+apiVersion: eventratelimit.admission.k8s.io/v1alpha1
+kind: Configuration
+limits:
+  - type: Namespace
+    qps: 50
+    burst: 100
+```
