@@ -134,3 +134,18 @@ if time.Since(lastEvent) > time.Duration(eventInterval)*time.Second {
 ```
 
 ---
+
+**Key Metrics to Watch**:  
+- `apiserver_storage_objects{resource="events"}`  
+- `etcd_mvcc_db_total_size_in_bytes`  
+- `apiserver_request_duration_seconds{verb="POST",resource="events"}`  
+
+**Debugging Tools**:  
+```sh
+# Real-time event monitoring
+kubectl get events -w --field-selector type=Warning
+
+# etcd compaction (if needed)
+etcdctl compact $(etcdctl endpoint status -w json | jq -r '.[].Status.header.revision')
+```
+---
