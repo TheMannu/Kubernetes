@@ -90,3 +90,21 @@ kubectl rollout restart deployment/coredns -n kube-system
 
 ---
 
+## Lessons Learned  
+⚠️ **DNS is critical infrastructure**: Even syntax errors cause cluster-wide outages  
+⚠️ **ConfigMaps need version control**: `kubectl edit` is dangerous without backups  
+
+---
+
+## Prevention Framework  
+
+### 1. Validation Safeguards
+```sh
+# Pre-commit hook example (.git/hooks/pre-commit)
+#!/bin/sh
+docker run -i coredns/coredns:${CORE_DNS_VERSION} -conf - < corefile.cfg || {
+  echo "Corefile validation failed"
+  exit 1
+}
+```
+
