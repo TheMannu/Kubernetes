@@ -108,3 +108,41 @@ docker run -i coredns/coredns:${CORE_DNS_VERSION} -conf - < corefile.cfg || {
 }
 ```
 
+### 2. Change Management
+```yaml
+# CoreDNS ConfigMap backup policy (Velero example)
+apiVersion: velero.io/v1
+kind: Schedule
+metadata:
+  name: coredns-daily
+spec:
+  schedule: "@daily"
+  template:
+    includedNamespaces: [kube-system]
+    includedResources: [configmaps]
+    labelSelector:
+      matchLabels:
+        k8s-app: kube-dns
+```
+
+### 3. Monitoring
+```yaml
+# Prometheus alerts for CoreDNS health
+- alert: CoreDNSDown
+  expr: absent(up{job="kube-dns"} == 1)
+  for: 1m
+  labels:
+    severity: critical
+```
+
+### 4. Deployment Best Practices
+```yaml
+# Helm values.yaml safety checks
+coredns:
+  customCorefile: |
+    import ./validate-corefile.sh  # Pre-install validation
+  rollingUpdate:
+    maxUnavailable: 0  # Ensure zero-downtime updates
+```
+
+---
