@@ -70,3 +70,23 @@ kubectl rollout undo configmap/coredns -n kube-system
 kubectl rollout restart deployment/coredns -n kube-system
 ```
 
+### Permanent Solution:
+1. **Add validation workflow**:
+   ```sh
+   # Pre-apply check using coredns/corerc
+   docker run -i coredns/corerc:latest validate < corefile-new.cfg
+   ```
+
+2. **Implement GitOps**:
+   ```yaml
+   # ArgoCD Application with kustomize
+   apiVersion: argoproj.io/v1alpha1
+   kind: Application
+   spec:
+     syncPolicy:
+       automated:
+         selfHeal: true  # Auto-revert broken changes
+   ```
+
+---
+
