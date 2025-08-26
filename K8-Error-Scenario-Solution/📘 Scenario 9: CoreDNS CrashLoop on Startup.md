@@ -49,5 +49,24 @@ kubectl get configmap/coredns -n kube-system -o yaml | grep -A10 "Corefile"
 ```sh
 docker run -i coredns/coredns:1.8.6 -conf - <<< "$(kubectl get configmap/coredns -n kube-system -o jsonpath='{.data.Corefile}')"
 ```
+---
+
+## Root Cause  
+**Configuration error**:  
+- Typo in directive (`rewrit` vs `rewrite`)  
+- Missing required plugin (`rewrite` not in CoreDNS image)  
+- No validation before applying changes  
 
 ---
+
+## Fix/Workaround  
+
+### Immediate Recovery:
+```sh
+# Revert to previous ConfigMap version
+kubectl rollout undo configmap/coredns -n kube-system
+
+# Force CoreDNS rollout
+kubectl rollout restart deployment/coredns -n kube-system
+```
+
