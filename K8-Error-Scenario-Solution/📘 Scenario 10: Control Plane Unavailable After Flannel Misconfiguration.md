@@ -52,3 +52,11 @@ journalctl -u kubelet --no-pager | grep -i podcidr
 ```
 
 ---
+
+## Root Cause  
+**CIDR misalignment**:  
+1. **Manual node addition** bypassing cluster provisioning standards  
+2. **No validation** of podCIDR consistency  
+3. **Flannel's strict subnet requirements** not enforced  
+
+---
