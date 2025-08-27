@@ -148,3 +148,20 @@ kubeadm join --config=kubeadm-config.yaml --dry-run
   labels:
     severity: critical
 ```
+
+### 4. Automation Templates
+```terraform
+# Terraform node template
+resource "local_file" "kubeadm_config" {
+  content = templatefile("${path.module}/templates/kubeadm-config.tpl", {
+    pod_cidr = "10.244.${count.index}.0/24"
+  })
+}
+```
+
+---
+
+**Key Metrics to Monitor**:  
+- `flannel_subnet_leases`  
+- `kube_node_status_condition{condition="NetworkUnavailable"}`  
+- `node_network_up`  
