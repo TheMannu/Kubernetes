@@ -53,3 +53,10 @@ iptables-save > /tmp/pre-change.iptables
 diff /tmp/pre-change.iptables <(iptables-save)
 ```
 
+## Root Cause  
+**Rule precedence conflict**:  
+1. Custom rules inserted at **top** of `KUBE-SERVICES` chain  
+2. kube-proxy rules **overwritten** during sync cycles (every 30s)  
+3. No `-I` vs `-A` distinction in rule management  
+
+---
