@@ -60,3 +60,16 @@ diff /tmp/pre-change.iptables <(iptables-save)
 3. No `-I` vs `-A` distinction in rule management  
 
 ---
+## Fix/Workaround  
+
+### Emergency Recovery:
+```sh
+# Flush ALL custom NAT rules (CAUTION: Verify first!)
+iptables -t nat -F
+
+# Restart kube-proxy to rebuild rules
+systemctl restart kube-proxy
+
+# Verify service restoration
+kubectl get svc -A -o wide
+```
