@@ -131,3 +131,23 @@ spec:
   parameters:
     forbiddenPatterns: ["*iptables*"]
 ```
+
+### 3. Monitoring
+```yaml
+# Prometheus alerts for kube-proxy health
+- alert: KubeProxyRuleSyncFailed
+  expr: increase(kube_proxy_sync_proxy_rules_errors_total[5m]) > 3
+  labels:
+    severity: critical
+```
+
+### 4. Documentation Standard
+```yaml
+## Node Firewall Policy
+- All custom rules MUST:
+  - Use dedicated chains (`-N CUSTOM-NAME`)
+  - Never modify `KUBE-*` chains directly  
+  - Be version-controlled in `/etc/iptables.rules`
+```
+
+---
