@@ -156,3 +156,19 @@ spec:
 - `kube_proxy_sync_proxy_rules_duration_seconds`  
 - `node_netstat_IpExt_OutNoRoutes`  
 - `kube_proxy_network_programming_duration_seconds`  
+
+**Debugging Tools**:  
+```sh
+# Compare expected vs actual rules
+diff <(kube-proxy --cleanup) <(iptables-save)
+
+# Rule visualization
+iptables -t nat -L -v --line-numbers
+```
+
+**kube-proxy Health Checks**:  
+```sh
+# Verify rule sync status
+curl -s http://localhost:10249/proxyMode
+# Should return "iptables" with no errors
+``` 
