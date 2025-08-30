@@ -86,3 +86,10 @@ spec:
 ```
 
 ---
+
+## Lessons Learned  
+⚠️ **CSRs are cluster lifeblood**: Controls node auth and TLS rotations  
+⚠️ **Silent failures**: Controllers fail open with no alerts  
+⚠️ **Certificate expiry waves**: Synchronized issuance causes time-bomb effects  
+
+---
