@@ -24,3 +24,17 @@ A disabled CSR approval controller caused a backlog of 500+ unapproved certifica
   - Cluster-autoscaler couldn't provision worker nodes  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Check CSR backlog:
+```sh
+kubectl get csr -o wide | grep -c Pending
+# Output showed 527 pending requests
+```
+
+### 2. Inspect kubelet logs:
+```sh
+journalctl -u kubelet --no-pager | grep -A10 "certificate"
+# "Failed to request signed certificate: timed out waiting for CSR to be signed"
+```
