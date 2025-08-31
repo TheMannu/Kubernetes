@@ -141,3 +141,8 @@ certificateRotationStrategy:
 ```
 
 ---
+
+**Key Metrics to Monitor**:  
+- `kube_certificatesigningrequest_status_condition`  
+- `kubelet_certificate_manager_client_expiration_seconds`  
+- `controller_manager_ttl_after_finished_seconds`  
