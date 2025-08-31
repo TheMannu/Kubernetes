@@ -108,3 +108,16 @@ rules:
   resources: ["certificatesigningrequests/nodeclient"]
   verbs: ["create"]
 ```
+
+### 2. Monitoring
+```yaml
+# Critical Prometheus alerts
+- alert: PendingCSRsHigh
+  expr: count(kube_certificatesigningrequest_status_condition{condition="Approved",status="false"}) > 10
+  for: 5m
+  labels:
+    severity: critical
+
+- alert: CertificateExpirySoon
+  expr: kubelet_certificate_manager_client_expiration_seconds < 86400*7  # 7 days
+```
