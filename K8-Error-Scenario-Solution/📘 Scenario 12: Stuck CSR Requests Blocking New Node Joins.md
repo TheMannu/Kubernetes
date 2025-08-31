@@ -121,3 +121,23 @@ rules:
 - alert: CertificateExpirySoon
   expr: kubelet_certificate_manager_client_expiration_seconds < 86400*7  # 7 days
 ```
+
+### 3. Automation Safeguards
+```sh
+# Pre-flight check for new nodes
+kubeadm join --dry-run | grep -q "certificate signing request" || \
+  { echo "CSR flow broken"; exit 1; }
+```
+
+### 4. Certificate Management
+```yaml
+# KubeletConfiguration (rotate more frequently)
+apiVersion: kubelet.config.k8s.io/v1beta1
+kind: KubeletConfiguration
+serverTLSBootstrap: true
+rotateCertificates: true
+certificateRotationStrategy:
+  expirationSeconds: 86400*30  # 30-day certs
+```
+
+---
