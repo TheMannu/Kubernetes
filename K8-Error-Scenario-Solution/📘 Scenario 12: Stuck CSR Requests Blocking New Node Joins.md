@@ -146,3 +146,21 @@ certificateRotationStrategy:
 - `kube_certificatesigningrequest_status_condition`  
 - `kubelet_certificate_manager_client_expiration_seconds`  
 - `controller_manager_ttl_after_finished_seconds`  
+
+**Debugging Tools**:  
+```sh
+# Inspect CSR details
+kubectl get csr -o jsonpath='{range .items[*]}{.metadata.name}{"\t"}{.spec.username}{"\t"}{.status.conditions[*].type}{"\n"}{end}'
+
+# Verify CA certificate chain
+openssl verify -CAfile /etc/kubernetes/pki/ca.crt /var/lib/kubelet/pki/kubelet-client-current.pem
+```
+
+**Renewal Procedure**:  
+```sh
+# Force certificate renewal (on node)
+systemctl restart kubelet
+rm /var/lib/kubelet/pki/kubelet-client-*
+```
+
+---
