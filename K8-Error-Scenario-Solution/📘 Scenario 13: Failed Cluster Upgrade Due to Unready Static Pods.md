@@ -75,3 +75,15 @@ systemctl restart kubelet
 # 3. Verify etcd recovery
 crictl logs $(crictl ps --name etcd -q)
 ```
+
+### Complete Upgrade:
+```sh
+kubeadm upgrade apply v1.23.5 --force
+```
+
+## Lessons Learned  
+⚠️ **Static pods are fragile**: No admission controllers validate them  
+⚠️ **kubelet is silent**: Errors only appear in logs, not `kubectl`  
+⚠️ **Control plane domino effect**: etcd failure → API failure → Cluster failure  
+
+---
