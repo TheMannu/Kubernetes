@@ -110,3 +110,21 @@ validate_manifest() {
     - etcd.yaml
     - kube-apiserver.yaml
 ```
+
+### 3. Monitoring
+```yaml
+# Prometheus alerts for static pods
+- alert: StaticPodNotReady
+  expr: time() - kube_pod_start_time{created_by_kind="Node"} > 300
+  for: 2m
+  labels:
+    severity: critical
+```
+
+### 4. Upgrade Safeguards
+```sh
+# kubeadm pre-flight check
+kubeadm upgrade diff --config=kubeadm-config.yaml
+```
+
+---
