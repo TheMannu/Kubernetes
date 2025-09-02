@@ -142,3 +142,4 @@ crictl inspectp $(crictl pods --name etcd -q) | jq '.status.conditions'
 # Compare manifests
 diff -u /etc/kubernetes/manifests/etcd.yaml /etc/kubernetes/manifests/etcd.yaml.bak
 ```
+
