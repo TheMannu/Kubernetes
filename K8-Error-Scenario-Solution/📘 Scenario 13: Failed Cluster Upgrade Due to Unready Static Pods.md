@@ -128,3 +128,17 @@ kubeadm upgrade diff --config=kubeadm-config.yaml
 ```
 
 ---
+
+**Key Metrics to Monitor**:  
+- `kube_pod_status_ready{created_by_kind="Node"}`  
+- `kubelet_running_pods`  
+- `etcd_server_has_leader`  
+
+**Debugging Tools**:  
+```sh
+# Live static pod inspection
+crictl inspectp $(crictl pods --name etcd -q) | jq '.status.conditions'
+
+# Compare manifests
+diff -u /etc/kubernetes/manifests/etcd.yaml /etc/kubernetes/manifests/etcd.yaml.bak
+```
