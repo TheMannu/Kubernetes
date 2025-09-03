@@ -53,3 +53,11 @@ kubectl debug node/<node> -it --image=alpine -- \
 ```
 
 ---
+
+## Root Cause  
+**Unbounded logging**:  
+1. No log rotation or size limits in container runtime config  
+2. CI/CD allowed `TRACE` level in production  
+3. Missing pod-level log quotas  
+
+---
