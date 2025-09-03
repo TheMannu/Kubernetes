@@ -61,3 +61,19 @@ kubectl debug node/<node> -it --image=alpine -- \
 3. Missing pod-level log quotas  
 
 ---
+
+## Fix/Workaround  
+
+### Emergency Recovery:
+```sh
+# 1. Free up space (on affected nodes)
+kubectl debug node/<node> -it --image=alpine -- \
+  truncate -s 0 /var/log/containers/*_<namespace>_<pod-name>*.log
+
+# 2. Restart containerd
+kubectl debug node/<node> -it --image=alpine -- \
+  systemctl restart containerd
+
+# 3. Scale down offender
+kubectl scale deploy <debug-deployment> --replicas=0
+```
