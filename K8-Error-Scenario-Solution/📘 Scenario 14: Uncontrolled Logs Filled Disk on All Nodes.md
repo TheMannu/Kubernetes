@@ -133,3 +133,14 @@ spec:
   labels:
     severity: critical
 ```
+
+### 4. CI/CD Validation
+```sh
+# Pre-deployment check
+if grep -q "LOG_LEVEL=TRACE" $MANIFEST; then
+  echo "ERROR: TRACE logging prohibited in production"
+  exit 1
+fi
+```
+
+---
