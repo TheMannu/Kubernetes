@@ -96,3 +96,14 @@ kubectl scale deploy <debug-deployment> --replicas=0
 ⚠️ **Node storage is shared**: One pod can take down entire node  
 
 ---
+
+## Prevention Framework  
+
+### 1. Runtime Log Policies
+```yaml
+# EKS AMI bootstrap configuration
+apiVersion: kubelet.config.k8s.io/v1beta1
+kind: KubeletConfiguration
+containerLogMaxSize: "50Mi"
+containerLogMaxFiles: 3
+``
