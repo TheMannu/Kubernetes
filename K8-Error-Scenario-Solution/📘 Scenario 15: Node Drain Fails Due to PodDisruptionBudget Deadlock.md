@@ -43,3 +43,10 @@ kubectl get events --field-selector involvedObject.kind=Pod --sort-by=.lastTimes
 # Showed repeated eviction failures
 ```
 
+### 4. Check HPA constraints:
+```sh
+kubectl get hpa -n <namespace> -o yaml | yq '.items[].spec.minReplicas'
+# Output: 2 (locked scale)
+```
+
+---
