@@ -158,3 +158,17 @@ kubectl exec <pod> -- sh -c "tail -f /proc/1/fd/1 | pv -lbtr >/dev/null"
 # Per-pod log size
 kubectl get pods -o json | jq '.items[] | {name:.metadata.name, logs:.spec.containers[].resources.limits."logging-size"}'
 ```
+
+**Log Rotation Policy**:  
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: log-limited
+spec:
+  containers:
+  - name: app
+    resources:
+      limits:
+        logging-size: "100Mi"
+```
