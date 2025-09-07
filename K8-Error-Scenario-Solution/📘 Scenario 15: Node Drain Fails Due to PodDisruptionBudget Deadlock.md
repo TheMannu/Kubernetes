@@ -153,3 +153,8 @@ check_pdb() {
 ```
 
 ---
+
+**Key Metrics to Monitor**:  
+- `kube_poddisruptionbudget_status_disruptions_allowed`  
+- `kube_deployment_spec_replicas` vs `kube_poddisruptionbudget_spec_min_available`  
+- `kube_node_status_condition{condition="Ready"}` during maintenance  
