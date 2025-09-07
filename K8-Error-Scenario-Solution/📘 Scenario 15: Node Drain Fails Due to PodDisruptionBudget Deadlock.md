@@ -123,3 +123,15 @@ check_pdb() {
   }
 }
 ```
+
+### 3. Monitoring
+```yaml
+# Critical Prometheus alerts
+- alert: PDBBlocksEvictions
+  expr: kube_poddisruptionbudget_status_disruptions_allowed == 0
+  for: 15m
+  labels:
+    severity: warning
+  annotations:
+    description: PDB {{ $labels.namespace }}/{{ $labels.poddisruptionbudget }} has zero allowed disruptions
+```
