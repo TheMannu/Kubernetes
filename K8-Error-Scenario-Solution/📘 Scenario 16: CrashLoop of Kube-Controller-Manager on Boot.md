@@ -97,3 +97,12 @@ spec:
 ⚠️ **Controller-manager is critical**: Crashes halt deployments, services, and more  
 
 ---
+
+## Prevention Framework  
+
+### 1. Version Upgrade Checklist
+```markdown
+1. [ ] Review deprecated API removals in changelog  
+2. [ ] Audit all `--enable-admission-plugins` flags  
+3. [ ] Test control plane components in staging  
+```
