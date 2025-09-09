@@ -130,3 +130,15 @@ spec:
       prune: true
       selfHeal: true
 ```
+
+### 4. Monitoring
+```yaml
+# Prometheus alert for controller health
+- alert: ControllerManagerDown
+  expr: absent(up{job="kube-controller-manager"} == 1)
+  for: 1m
+  labels:
+    severity: critical
+```
+
+---
