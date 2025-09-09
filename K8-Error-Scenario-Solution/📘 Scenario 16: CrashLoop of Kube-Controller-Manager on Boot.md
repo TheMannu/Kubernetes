@@ -90,3 +90,10 @@ spec:
 ```
 
 ---
+
+## Lessons Learned  
+⚠️ **Admission plugins are version-locked**: Removed plugins cause hard failures  
+⚠️ **Static pods need upgrade testing**: Cannot rely on `kubeadm` to fix all configs  
+⚠️ **Controller-manager is critical**: Crashes halt deployments, services, and more  
+
+---
