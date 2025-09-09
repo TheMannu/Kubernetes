@@ -72,3 +72,21 @@ systemctl restart kubelet
 # 3. Verify recovery
 kubectl -n kube-system wait pod -l component=kube-controller-manager --for=condition=Ready
 ```
+
+### Permanent Solution:
+```yaml
+# Updated admission control configuration
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kube-controller-manager
+  namespace: kube-system
+spec:
+  containers:
+  - command:
+    - kube-controller-manager
+    - --enable-admission-plugins=NamespaceLifecycle,ServiceAccount
+    - --disable-admission-plugins=InitialResources  # Explicit disable
+```
+
+---
