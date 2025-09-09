@@ -113,3 +113,20 @@ spec:
 kube-controller-manager --enable-admission-plugins=... --dry-run | grep -q "unknown" && \
   echo "Invalid plugins detected"
 ```
+
+### 3. GitOps for Control Plane
+```yaml
+# ArgoCD Application for kube-system
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: control-plane
+spec:
+  source:
+    path: kubernetes/manifests
+    repoURL: git@github.com:org/cluster-config.git
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+```
