@@ -156,3 +156,14 @@ kube-controller-manager --help | grep "enable-admission-plugins"
 # Diff current vs expected manifests
 diff -u /etc/kubernetes/manifests/kube-controller-manager.yaml /gitops/manifests/kube-controller-manager.yaml
 ```
+
+**Admission Plugin Policy**:  
+```yaml
+# Recommended v1.23+ plugins
+enable-admission-plugins: |
+  NamespaceLifecycle,ServiceAccount,DefaultStorageClass,DefaultTolerationSeconds,
+  ResourceQuota,Priority,MutatingAdmissionWebhook,ValidatingAdmissionWebhook
+```
+
+---
+---
