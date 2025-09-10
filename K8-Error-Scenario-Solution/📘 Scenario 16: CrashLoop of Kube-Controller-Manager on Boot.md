@@ -147,3 +147,12 @@ spec:
 - `controller_manager_running_controllers`  
 - `workqueue_depth` (per controller)  
 - `rest_client_requests_total{code!~"2.."}`  
+
+**Debugging Tools**:  
+```sh
+# Check available admission plugins
+kube-controller-manager --help | grep "enable-admission-plugins"
+
+# Diff current vs expected manifests
+diff -u /etc/kubernetes/manifests/kube-controller-manager.yaml /gitops/manifests/kube-controller-manager.yaml
+```
