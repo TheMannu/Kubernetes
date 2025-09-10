@@ -142,3 +142,8 @@ spec:
 ```
 
 ---
+
+**Key Metrics to Monitor**:  
+- `controller_manager_running_controllers`  
+- `workqueue_depth` (per controller)  
+- `rest_client_requests_total{code!~"2.."}`  
