@@ -56,3 +56,12 @@ velero restore logs $RESTORE | grep -i "skipped\|failed"
 ```
 
 ---
+
+
+## Root Cause  
+**Incomplete backup strategy**:  
+1. Velero configured without `--snapshot-volumes=true`  
+2. No coordination between etcd backups and CSI snapshots  
+3. External secrets (Vault) not included in backup scope  
+
+---
