@@ -65,3 +65,15 @@ velero restore logs $RESTORE | grep -i "skipped\|failed"
 3. External secrets (Vault) not included in backup scope  
 
 ---
+
+## Fix/Workaround  
+
+### Immediate Recovery:
+```sh
+# 1. Recreate critical secrets from backup
+kubectl create secret generic registry-key \
+--from-file=./backups/secrets/registry-key.json
+
+# 2. Provision replacement PVs
+velero restore create --from-backup $PVC_BACKUP --include-resources persistentvolumeclaims
+```
