@@ -24,3 +24,15 @@ A partial etcd restore operation created a "zombie cluster" state where API obje
   - ServiceAccounts lacked corresponding Secrets  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Verify resource consistency:
+```sh
+# Check for orphaned objects
+kubectl get deployments,statefulsets -A -o json | jq -r '.items[] | select(.status.replicas != .status.readyReplicas) | .metadata.name'
+
+# Compare object counts
+velero backup describe $BACKUP --details | grep -c "Resource"
+kubectl api-resources --verbs=list -o name | xargs -n1 kubectl get -A --ignore-not-found | wc -l
+```
