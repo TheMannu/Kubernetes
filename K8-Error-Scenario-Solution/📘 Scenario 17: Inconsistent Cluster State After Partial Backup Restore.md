@@ -92,3 +92,26 @@ kubectl rollout restart deploy -n production
 ⚠️ **Silent exclusions**: Backup tools often skip resources by default  
 
 ---
+
+## Prevention Framework  
+
+### 1. Holistic Backup Policy
+```yaml
+# velero-backup.yaml
+apiVersion: velero.io/v1
+kind: Backup
+spec:
+  includedResources:
+  - '*'
+  excludedResources:
+  - nodes,events,events.events.k8s.io
+  snapshotVolumes: true
+  ttl: 720h
+  hooks:
+    resources:
+    - name: pre-vault-backup
+      pre:
+        - exec:
+            container: vault-agent
+            command: ["/bin/sh", "-c", "vault operator raft snapshot save /backups/vault.snap"]
+```
