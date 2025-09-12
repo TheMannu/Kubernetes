@@ -115,3 +115,13 @@ spec:
             container: vault-agent
             command: ["/bin/sh", "-c", "vault operator raft snapshot save /backups/vault.snap"]
 ```
+
+
+### 2. Restore Validation
+```sh
+# Post-restore checklist
+validate_restore() {
+  kubectl wait --for=condition=Ready pods --all --timeout=10m
+  kubectl get pvc -A | grep -v Bound && echo "Unbound PVCs detected"
+}
+```
