@@ -85,3 +85,10 @@ kubectl rollout restart deploy -n production
 ```
 
 ---
+
+## Lessons Learned  
+⚠️ **etcd is only part of the picture**: Application state spans multiple systems  
+⚠️ **Dependencies matter**: Objects without their dependencies create "zombie" resources  
+⚠️ **Silent exclusions**: Backup tools often skip resources by default  
+
+---
