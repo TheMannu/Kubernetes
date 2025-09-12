@@ -77,3 +77,11 @@ kubectl create secret generic registry-key \
 # 2. Provision replacement PVs
 velero restore create --from-backup $PVC_BACKUP --include-resources persistentvolumeclaims
 ```
+
+### Full Restoration:
+```sh
+# 3. Redeploy applications with corrected dependencies
+kubectl rollout restart deploy -n production
+```
+
+---
