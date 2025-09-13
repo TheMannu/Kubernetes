@@ -146,3 +146,10 @@ Quarterly Test Plan:
 ```
 
 ---
+
+**Key Resources to Backup**:  
+- **etd**: All Kubernetes objects  
+- **CSI**: Persistent Volumes  
+- **External**: Secrets (Vault/HashiCorp), Container Images  
+- **Configuration**: CNI, CSI, Ingress controllers  
+
