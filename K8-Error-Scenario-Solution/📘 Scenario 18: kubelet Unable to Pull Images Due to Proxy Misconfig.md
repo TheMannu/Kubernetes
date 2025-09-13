@@ -24,3 +24,16 @@ A missing `NO_PROXY` configuration caused kubelet to route all container image p
   - CoreDNS queries to `kubernetes.default.svc` timed out  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Verify image pull failures:
+```sh
+kubectl get pods -A -o wide | grep -E 'ImagePullBackOff|ErrImagePull'
+```
+
+### 2. Inspect kubelet proxy config:
+```sh
+systemctl show kubelet --property=Environment --no-pager
+# Output showed HTTP_PROXY set but NO_PROXY missing
+```
