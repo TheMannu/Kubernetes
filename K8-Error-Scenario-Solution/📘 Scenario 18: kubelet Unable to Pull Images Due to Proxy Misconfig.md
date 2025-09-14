@@ -44,3 +44,12 @@ kubectl run -it --rm netcheck --image=busybox -- \
   sh -c "wget -O- http://kubernetes.default.svc --proxy=on"
 # Failed with 504 Gateway Timeout
 ```
+
+### 4. Check registry access:
+```sh
+kubectl debug node/<node> -it --image=alpine -- \
+  curl -x $HTTP_PROXY https://registry.internal.corp/v2/
+# Returned 407 Proxy Authentication Required
+```
+
+---
