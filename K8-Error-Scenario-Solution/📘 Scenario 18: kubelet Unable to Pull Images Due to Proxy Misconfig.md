@@ -81,3 +81,21 @@ EOF
 sudo systemctl daemon-reload
 sudo systemctl restart kubelet
 ```
+
+### Cluster-wide Update:
+```yaml
+# Ansible playbook snippet
+- name: Configure kubelet proxy
+  template:
+    src: proxy.conf.j2
+    dest: /etc/systemd/system/kubelet.service.d/proxy.conf
+    owner: root
+    group: root
+  vars:
+    no_proxy_ranges:
+      - "10.0.0.0/8"
+      - "{{ kube_service_addresses }}"
+      - ".{{ cluster_domain }}"
+```
+
+---
