@@ -63,3 +63,16 @@ kubectl debug node/<node> -it --image=alpine -- \
 2. Proxy server blocked internal IP ranges  
 
 ---
+
+## Fix/Workaround  
+
+### Immediate Resolution:
+```sh
+# 1. Edit kubelet service config
+sudo mkdir -p /etc/systemd/system/kubelet.service.d
+cat <<EOF | sudo tee /etc/systemd/system/kubelet.service.d/proxy.conf
+[Service]
+Environment="HTTP_PROXY=http://proxy.corp:3128"
+Environment="HTTPS_PROXY=http://proxy.corp:3128"
+Environment="NO_PROXY=10.0.0.0/8,192.168.0.0/16,.svc,.cluster.local,localhost,127.0.0.1"
+EOF
