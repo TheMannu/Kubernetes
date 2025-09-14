@@ -53,3 +53,13 @@ kubectl debug node/<node> -it --image=alpine -- \
 ```
 
 ---
+
+## Root Cause  
+**Proxy overreach**:  
+1. Missing `NO_PROXY` exclusions for:  
+   - Cluster CIDR (`10.0.0.0/8`)  
+   - Service CIDR (`192.168.0.0/16`)  
+   - Internal domains (`*.svc.cluster.local`)  
+2. Proxy server blocked internal IP ranges  
+
+---
