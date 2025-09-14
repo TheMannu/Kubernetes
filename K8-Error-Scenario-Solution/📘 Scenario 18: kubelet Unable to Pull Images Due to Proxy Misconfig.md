@@ -76,3 +76,8 @@ Environment="HTTP_PROXY=http://proxy.corp:3128"
 Environment="HTTPS_PROXY=http://proxy.corp:3128"
 Environment="NO_PROXY=10.0.0.0/8,192.168.0.0/16,.svc,.cluster.local,localhost,127.0.0.1"
 EOF
+
+# 2. Reload and restart
+sudo systemctl daemon-reload
+sudo systemctl restart kubelet
+```
