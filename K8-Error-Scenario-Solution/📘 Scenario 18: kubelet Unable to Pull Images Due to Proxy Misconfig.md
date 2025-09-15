@@ -99,3 +99,10 @@ sudo systemctl restart kubelet
 ```
 
 ---
+
+## Lessons Learned  
+⚠️ **Proxies break cluster networking**: Must exclude all internal traffic  
+⚠️ **Kubelet has special requirements**: Needs direct access to DNS + registry  
+⚠️ **Corporate policies need adaptation**: Kubernetes isn't a standard workload  
+
+---
