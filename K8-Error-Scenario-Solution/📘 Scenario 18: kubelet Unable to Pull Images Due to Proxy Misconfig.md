@@ -137,3 +137,17 @@ validate_proxy() {
   annotations:
     summary: "Image pulls failing through proxy (instance {{ $labels.instance }})"
 ```
+
+### 4. Documentation Standards
+
+## Corporate Proxy Requirements for Kubernetes
+- **Always exclude**:
+  - Cluster CIDR (e.g., `10.0.0.0/8`)
+  - Service CIDR (e.g., `192.168.0.0/16`)
+  - DNS suffixes (`.svc`, `.cluster.local`)
+
+- **Test before rollout**:
+  ```sh
+  kubectl run proxy-test --image=busybox -- \
+    wget -O- http://kubernetes.default.svc
+  ```
