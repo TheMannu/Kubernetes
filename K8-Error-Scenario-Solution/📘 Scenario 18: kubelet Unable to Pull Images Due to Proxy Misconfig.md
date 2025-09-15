@@ -151,3 +151,12 @@ validate_proxy() {
   kubectl run proxy-test --image=busybox -- \
     wget -O- http://kubernetes.default.svc
   ```
+
+---
+
+**Key NO_PROXY Entries for Kubernetes**:  
+- Cluster Pod CIDR  
+- Service CIDR  
+- `.svc`, `.svc.cluster.local`  
+- Internal registry domains  
+- Node IP ranges 
