@@ -117,3 +117,12 @@ Environment="HTTP_PROXY=http://proxy.corp:3128"
 Environment="HTTPS_PROXY=http://proxy.corp:3128"
 Environment="NO_PROXY=localhost,127.0.0.1,10.0.0.0/8,192.168.0.0/16,.svc,.cluster.local,.internal.corp"
 ```
+
+### 2. Validation Checks
+```sh
+# Pre-apply proxy test
+validate_proxy() {
+  kubectl run -it --rm proxy-test --image=alpine -- \
+    sh -c "env | grep -E 'NO_PROXY|cluster.local' || exit 1"
+}
+```
