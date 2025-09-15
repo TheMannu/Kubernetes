@@ -160,3 +160,13 @@ validate_proxy() {
 - `.svc`, `.svc.cluster.local`  
 - Internal registry domains  
 - Node IP ranges 
+
+**Debugging Tools**:  
+```sh
+# Verify current proxy settings
+kubectl debug node/<node> -it --image=alpine -- env | grep -i proxy
+
+# Test registry access
+kubectl run -it --rm registry-test --image=alpine -- \
+  curl -v http://registry.internal.corp/v2/_catalog
+```
