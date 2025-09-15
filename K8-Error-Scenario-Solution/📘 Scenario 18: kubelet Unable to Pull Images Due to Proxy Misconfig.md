@@ -106,3 +106,14 @@ sudo systemctl restart kubelet
 ⚠️ **Corporate policies need adaptation**: Kubernetes isn't a standard workload  
 
 ---
+
+## Prevention Framework  
+
+### 1. Proxy Configuration Template
+```ini
+# /etc/systemd/system/kubelet.service.d/proxy.conf
+[Service]
+Environment="HTTP_PROXY=http://proxy.corp:3128"
+Environment="HTTPS_PROXY=http://proxy.corp:3128"
+Environment="NO_PROXY=localhost,127.0.0.1,10.0.0.0/8,192.168.0.0/16,.svc,.cluster.local,.internal.corp"
+```
