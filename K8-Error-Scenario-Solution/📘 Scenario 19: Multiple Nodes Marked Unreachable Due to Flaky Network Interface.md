@@ -73,3 +73,15 @@ shutdown
 # 2. Drain affected nodes
 kubectl drain <node> --ignore-daemonsets --delete-emptydir-data
 ```
+
+### Permanent Solution:
+```sh
+# 1. Replace hardware (transceiver + cable)
+# 2. Configure active-backup bonding:
+nmcli con add type bond con-name bond0 ifname bond0 \
+  mode active-backup miimon 100 primary eth0
+nmcli con add type bond-slave ifname eth0 master bond0
+nmcli con add type bond-slave ifname eth1 master bond0
+```
+
+---
