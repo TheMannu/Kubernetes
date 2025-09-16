@@ -170,3 +170,14 @@ kubectl debug node/<node> -it --image=alpine -- env | grep -i proxy
 kubectl run -it --rm registry-test --image=alpine -- \
   curl -v http://registry.internal.corp/v2/_catalog
 ```
+
+**Rollback Procedure**:  
+```sh
+# Emergency proxy disable
+sudo rm /etc/systemd/system/kubelet.service.d/proxy.conf
+sudo systemctl daemon-reload
+sudo systemctl restart kubelet
+```
+
+---
+---
