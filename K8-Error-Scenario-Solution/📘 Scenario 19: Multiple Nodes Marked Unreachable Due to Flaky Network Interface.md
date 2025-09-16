@@ -38,3 +38,17 @@ kubectl get nodes -o wide --watch | tee node-status.log
 ethtool eno1 | grep -A5 'Link detected'
 # Reported intermittent link drops
 ```
+
+### 3. Analyze kernel logs:
+```sh
+dmesg -T | grep -i 'link down\|nic'
+# Revealed NIC resets
+```
+
+### 4. Verify switch port status:
+```sh
+ssh switch01 show interface ethernet 1/0/24 | include 'error|flap'
+# Output: "Last link flapped: 00:02:15 ago"
+```
+
+---
