@@ -142,3 +142,18 @@ smartctl -H /dev/nvme0
   ```
 
 ---
+
+**Key Metrics to Monitor**:  
+- `node_network_carrier_changes`  
+- `node_network_up`  
+- `kube_node_status_condition{condition="NetworkUnavailable"}`  
+
+**Debugging Tools**:  
+```sh
+# Live packet capture (tcpdump)
+kubectl debug node/<node> -it --image=nicolaka/netshoot -- \
+  tcpdump -i bond0 -w /host/tmp/bond0.pcap
+
+# Bonding status
+cat /proc/net/bonding/bond0
+```
