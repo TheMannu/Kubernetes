@@ -123,3 +123,10 @@ connections:
   labels:
     severity: critical
 ```
+
+### 3. Hardware Checks
+```sh
+# Daily NIC health check (via CronJob)
+ethtool -S eth0 | grep -E 'err|drop'
+smartctl -H /dev/nvme0
+```
