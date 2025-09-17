@@ -92,3 +92,19 @@ nmcli con add type bond-slave ifname eth1 master bond0
 ⚠️ **Hardware fails silently**: Requires active monitoring  
 
 ---
+
+## Prevention Framework  
+
+### 1. Network Bonding Configuration
+```yaml
+# NetworkManager bond example
+connections:
+- name: bond0
+  type: bond
+  interface-name: bond0
+  bond:
+    options:
+      mode: "802.3ad"
+      miimon: "100"
+      lacp-rate: "fast"
+```
