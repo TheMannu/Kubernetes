@@ -108,3 +108,18 @@ connections:
       miimon: "100"
       lacp-rate: "fast"
 ```
+
+### 2. Monitoring
+```yaml
+# Prometheus alerts
+- alert: NodeNetworkFlapping
+  expr: changes(kube_node_status_condition{condition="Ready",status="true"}[15m]) > 3
+  for: 5m
+  labels:
+    severity: warning
+    
+- alert: NICErrorsHigh
+  expr: node_network_up == 0 or rate(node_network_transmit_errs_total[5m]) > 5
+  labels:
+    severity: critical
+```
