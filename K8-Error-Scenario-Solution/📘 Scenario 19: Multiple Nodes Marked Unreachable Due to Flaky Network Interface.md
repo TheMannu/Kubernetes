@@ -157,3 +157,22 @@ kubectl debug node/<node> -it --image=nicolaka/netshoot -- \
 # Bonding status
 cat /proc/net/bonding/bond0
 ```
+
+**Switch Configuration**:  
+```cisco
+interface Port-channel1
+  description Kubernetes-Bond
+  switchport mode trunk
+  channel-group 1 mode active
+  lacp fast-switchover
+```
+
+**Rollback Procedure**:  
+```sh
+# Emergency single-interface fallback
+ip link set bond0 down
+ip link set eth0 up
+ip addr add <NODE_IP>/24 dev eth0
+```
+---
+---
