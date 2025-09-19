@@ -110,4 +110,20 @@ kubectl annotate node $NODE zone=us-east-1a  # Annotations for non-critical data
 kubectl patch node $NODE -p '{"metadata":{"labels":{"zone":"us-east-1a"}}}'  # Strategic merge
 ```
 
+### 2. Protection Policies
+```yaml
+# OPA/Gatekeeper constraint
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sProtectedLabels
+metadata:
+  name: protected-node-labels
+spec:
+  match:
+    kinds:
+    - apiGroups: [""]
+      kinds: ["Node"]
+  parameters:
+    protectedLabels: ["gpu", "storage", "topology.kubernetes.io/*"]
+```
+
 
