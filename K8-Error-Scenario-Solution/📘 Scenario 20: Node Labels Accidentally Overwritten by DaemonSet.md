@@ -164,3 +164,13 @@ kubectl get nodes -o json | jq -r '.items[].metadata.labels' > node-labels-backu
 kubectl diff -f restored-labels.yaml
 ```
 
+**Label Management Policy**:  
+```markdown
+1. **Never use `--overwrite`** for node labels  
+2. **Annotate** instead of label for non-scheduling data  
+3. **Test changes** on a single node first  
+4. **Version control** all label operations  
+```
+
+---
+---
