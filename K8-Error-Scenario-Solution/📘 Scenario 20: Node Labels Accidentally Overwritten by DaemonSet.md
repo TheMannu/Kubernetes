@@ -94,4 +94,20 @@ spec:
 
 ---
 
+## Lessons Learned  
+⚠️ **Labels are live configuration**: Overwrites immediately affect scheduling  
+⚠️ **DaemonSets are powerful**: Can modify cluster state at scale  
+⚠️ **Not all labels are equal**: Some are critical for operations  
+
+---
+
+## Prevention Framework  
+
+### 1. Safe Labeling Practices
+```sh
+# Merge (not overwrite) labels
+kubectl annotate node $NODE zone=us-east-1a  # Annotations for non-critical data
+kubectl patch node $NODE -p '{"metadata":{"labels":{"zone":"us-east-1a"}}}'  # Strategic merge
+```
+
 
