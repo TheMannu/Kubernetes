@@ -126,4 +126,27 @@ spec:
     protectedLabels: ["gpu", "storage", "topology.kubernetes.io/*"]
 ```
 
+### 3. Change Control
+```yaml
+# ArgoCD Sync Policy
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+spec:
+  syncPolicy:
+    automated:
+      prune: false  # Prevent automatic deletions
+      selfHeal: false  # Require manual intervention
+```
+
+### 4. Monitoring
+```yaml
+# Prometheus alerts
+- alert: CriticalLabelMissing
+  expr: count(kube_node_labels{label_gpu!="true"}) by (node) > 0
+  for: 5m
+  labels:
+    severity: critical
+```
+
+---
 
