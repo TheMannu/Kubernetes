@@ -62,3 +62,32 @@ kubectl -n kube-system describe configmap cluster-autoscaler-status | \
 3. Autoscaler reacted faster than pod stabilization  
 
 ---
+
+## Fix/Workaround  
+
+### Immediate Stabilization:
+```sh
+# 1. Adjust autoscaler cooldowns
+kubectl -n kube-system edit deploy cluster-autoscaler
+# Add:
+# --scale-down-delay-after-add=20m
+# --scale-down-unneeded-time=20m
+
+# 2. Patch problematic deployment
+kubectl patch deploy frontend -p '{
+  "spec":{
+    "template":{
+      "spec":{
+        "containers":[{
+          "name":"app",
+          "readinessProbe":{
+            "timeoutSeconds":3,
+            "periodSeconds":5,
+            "failureThreshold":3
+          }
+        }]
+      }
+    }
+  }
+}'
+```
