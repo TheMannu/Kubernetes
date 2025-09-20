@@ -1,0 +1,12 @@
+# 📘 Scenario 21: Cluster Autoscaler Thrashing from Flaky Readiness Probes
+
+**Category**: Cluster Scaling  
+**Environment**: Kubernetes v1.24, AWS EKS with Cluster Autoscaler v1.22.2  
+**Impact**: 40% cost overrun from node churn, workload instability  
+
+---
+
+## Scenario Summary  
+A deployment with an unreliable readiness probe triggered continuous node scaling cycles (5-7 per hour), causing performance degradation and cloud cost spikes.
+
+---
