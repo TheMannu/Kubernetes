@@ -91,3 +91,18 @@ kubectl patch deploy frontend -p '{
   }
 }'
 ```
+
+### Long-term Solution:
+```yaml
+# Autoscaler Helm values
+autoDiscovery:
+  clusterName: my-cluster
+extraArgs:
+  balance-similar-node-groups: true
+  skip-nodes-with-system-pods: false
+  scale-down-delay-after-add: 15m
+  scale-down-unneeded-time: 15m
+  max-node-provision-time: 10m
+```
+
+---
