@@ -139,3 +139,20 @@ extraArgs:
   labels:
     severity: warning
 ```
+
+### 3. Deployment Policies
+```yaml
+# OPA/Gatekeeper constraint
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sValidReadinessProbes
+metadata:
+  name: readiness-probe-timeout-check
+spec:
+  match:
+    kinds:
+    - apiGroups: ["apps"]
+      kinds: ["Deployment", "StatefulSet"]
+  parameters:
+    minTimeoutSeconds: 2
+    minFailureThreshold: 3
+```
