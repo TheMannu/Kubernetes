@@ -156,3 +156,12 @@ spec:
     minTimeoutSeconds: 2
     minFailureThreshold: 3
 ```
+
+### 4. Load Testing
+```sh
+# Simulate traffic spikes
+kubectl run -it --rm vegeta --image=peterevans/vegeta -- \
+  sh -c "echo 'GET http://frontend:8080/health' | vegeta attack -rate=100/s -duration=1m | vegeta report"
+```
+
+---
