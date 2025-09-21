@@ -113,3 +113,13 @@ extraArgs:
 ⚠️ **Monitoring gaps**: Need visibility into probe failures vs scaling  
 
 ---
+
+## Prevention Framework  
+
+### 1. Probe Validation Checklist
+```markdown
+1. [ ] Test under peak load (latency >3x normal)  
+2. [ ] Set `timeoutSeconds` > P99 endpoint latency  
+3. [ ] Configure `failureThreshold` >=3  
+4. [ ] Verify with `kubectl get --raw="/readyz?verbose"`  
+```
