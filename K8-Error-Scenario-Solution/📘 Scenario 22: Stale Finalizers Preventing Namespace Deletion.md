@@ -52,3 +52,11 @@ kubectl get crd -A --show-labels | grep custom-resource
 ```
 
 ---
+
+## Root Cause  
+**Lifecycle violation**:  
+1. Finalizer deadlock from missing controller  
+2. No pre-deletion hook to clean CR instances  
+3. Namespace finalizer garbage collection blocked  
+
+---
