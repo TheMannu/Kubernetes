@@ -38,3 +38,17 @@ kubectl get ns <namespace> -o jsonpath='{.status.phase}'
 kubectl get ns <namespace> -o json | jq '.spec.finalizers'
 # Showed ["kubernetes", "custom-controller/cleanup"]
 ```
+
+### 3. Check for controller:
+```sh
+kubectl get deploy -n operator-system custom-controller
+# Error: Error from server (NotFound)
+```
+
+### 4. Audit CRD history:
+```sh
+kubectl get crd -A --show-labels | grep custom-resource
+# No output (CRD deleted)
+```
+
+---
