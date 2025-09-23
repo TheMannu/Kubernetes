@@ -88,3 +88,21 @@ kubectl delete crd <crd-name>  # Remove CRD last
 ⚠️ **Namespace termination is atomic**: Single finalizer blocks everything  
 
 ---
+
+## Prevention Framework  
+
+### 1. Uninstall Automation
+```yaml
+# Helm pre-delete hook
+apiVersion: batch/v1
+kind: Job
+metadata:
+  annotations:
+    "helm.sh/hook": pre-delete
+spec:
+  template:
+    spec:
+      containers:
+      - name: cleanup
+        command: ["/bin/sh", "-c", "kubectl patch $(kubectl get <crd> -o name) -p '{\"metadata\":{\"finalizers\":[]}}' --type=merge"]
+```
