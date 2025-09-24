@@ -113,3 +113,20 @@ spec:
 kubectl get ns -o json | jq -r '.items[] | select(.status.phase=="Terminating") | .metadata.name'
 kubectl get crd -o json | jq -r '.items[] | select(.spec.scope=="Namespaced") | .metadata.name' | xargs -I{} sh -c "kubectl get {} -A -o json | jq -r '.items[] | select(.metadata.finalizers!=null) | .metadata.name'"
 ```
+
+### 3. Protection Policies
+```yaml
+# OPA/Gatekeeper constraint
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: CRDHasFinalizerController
+metadata:
+  name: crd-finalizer-controller-check
+spec:
+  match:
+    kinds:
+    - apiGroups: ["apiextensions.k8s.io"]
+      kinds: ["CustomResourceDefinition"]
+  parameters:
+    requiredAnnotations:
+      finalizerController: "true"
+```
