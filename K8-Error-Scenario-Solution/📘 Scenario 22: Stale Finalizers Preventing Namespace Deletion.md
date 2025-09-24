@@ -157,3 +157,13 @@ kubectl api-resources --verbs=list -o name | xargs -n1 kubectl get -A --ignore-n
 # Check etcd for stale keys
 etcdctl get / --prefix --keys-only | grep finalizers
 ```
+
+**Finalizer Best Practices**:  
+```markdown
+1. **Implement timeout logic** - Finalizers should self-clean after deadline  
+2. **Use owner references** - Ensure child resources don't block parents  
+3. **Document all finalizers** - Maintain registry with ownership  
+4. **Test uninstall scenarios** - Include in CI/CD pipelines  
+```
+---
+---
