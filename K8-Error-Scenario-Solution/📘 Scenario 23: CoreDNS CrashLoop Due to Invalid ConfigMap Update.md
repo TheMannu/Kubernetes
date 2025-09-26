@@ -70,3 +70,7 @@ kubectl -n kube-system rollout undo configmap/coredns
 # 2. Force pod restart
 kubectl -n kube-system rollout restart deployment/coredns
 
+# 3. Verify restoration
+kubectl run -it --rm dns-test --image=busybox -- nslookup kubernetes.default
+```
+
