@@ -59,3 +59,14 @@ kubectl -n kube-system get cm coredns -o jsonpath='{.data.Corefile}' | grep -A5 
 3. No validation before applying changes  
 
 ---
+
+## Fix/Workaround  
+
+### Emergency Recovery:
+```sh
+# 1. Rollback ConfigMap
+kubectl -n kube-system rollout undo configmap/coredns
+
+# 2. Force pod restart
+kubectl -n kube-system rollout restart deployment/coredns
+
