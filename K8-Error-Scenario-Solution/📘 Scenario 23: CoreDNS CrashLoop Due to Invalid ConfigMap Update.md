@@ -23,3 +23,23 @@ A malformed CoreDNS ConfigMap update caused all DNS resolution to fail, breaking
   - `kubelet` reported `node not ready` due to DNS timeouts  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Verify DNS availability:
+```sh
+kubectl run -it --rm dns-test --image=busybox -- nslookup kubernetes.default
+# Error: `Server failure`
+```
+
+### 2. Check CoreDNS status:
+```sh
+kubectl -n kube-system get pods -l k8s-app=kube-dns
+# Showed CrashLoopBackOff
+```
+
+### 3. Inspect pod logs:
+```sh
+kubectl -n kube-system logs -l k8s-app=kube-dns --tail=50
+# Output: `plugin/rewrite: unknown property "stop"`
+```
