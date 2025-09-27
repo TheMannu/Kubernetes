@@ -115,3 +115,13 @@ spec:
           template: coredns-validator
 ```
 
+### 3. Monitoring
+```yaml
+# Prometheus alerts
+- alert: CoreDNSDown
+  expr: absent(up{job="kube-dns"} == 1)
+  for: 1m
+  labels:
+    severity: critical
+```
+
