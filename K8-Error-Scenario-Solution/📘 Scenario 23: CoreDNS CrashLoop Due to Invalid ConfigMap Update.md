@@ -85,3 +85,9 @@ kubectl run -it --rm dns-test --image=busybox -- nslookup kubernetes.default
 
 ---
 
+## Lessons Learned  
+⚠️ **DNS is critical infrastructure**: Breaks within seconds of bad config  
+⚠️ **CoreDNS is unforgiving**: Silent until reload, then hard fails  
+⚠️ **Managed ≠ foolproof**: GKE doesn't validate Corefile syntax  
+
+---
