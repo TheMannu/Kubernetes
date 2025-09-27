@@ -100,3 +100,18 @@ kubectl run -it --rm dns-test --image=busybox -- nslookup kubernetes.default
 docker run -i coredns/coredns:1.8.6 -conf - <<< "$(kubectl get configmap/coredns -n kube-system -o jsonpath='{.data.Corefile}')"
 ```
 
+### 2. GitOps Safeguards
+```yaml
+# ArgoCD Application with pre-sync hook
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+spec:
+  syncPolicy:
+    syncOptions:
+    - Validate=true
+    hooks:
+      preSync:
+        - name: validate-coredns
+          template: coredns-validator
+```
+
