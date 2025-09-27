@@ -91,3 +91,12 @@ kubectl run -it --rm dns-test --image=busybox -- nslookup kubernetes.default
 ⚠️ **Managed ≠ foolproof**: GKE doesn't validate Corefile syntax  
 
 ---
+
+## Prevention Framework  
+
+### 1. Validation Workflow
+```sh
+# Pre-apply check using official image
+docker run -i coredns/coredns:1.8.6 -conf - <<< "$(kubectl get configmap/coredns -n kube-system -o jsonpath='{.data.Corefile}')"
+```
+
