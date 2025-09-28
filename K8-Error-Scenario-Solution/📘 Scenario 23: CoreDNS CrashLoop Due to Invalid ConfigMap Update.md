@@ -135,3 +135,8 @@ spec:
 ```
 
 ---
+
+**Key Metrics to Monitor**:  
+- `coredns_dns_responses_total{rcode="SERVFAIL"}`  
+- `kubelet_dns_errors`  
+- `probe_dns_lookup_time_seconds`  
