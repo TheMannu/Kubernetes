@@ -83,3 +83,10 @@ imageGCLowThresholdPercent: 80
 
 ---
 
+## Lessons Learned  
+⚠️ **DiskPressure is non-forgiving**: Evictions start before OOM kills  
+⚠️ **Storage is a shared resource**: One pod can starve the node  
+⚠️ **Default thresholds are dangerous**: Must be tuned per workload  
+
+---
+
