@@ -66,3 +66,20 @@ crictl rmi --prune
 kubectl taint nodes <node> disk-pressure=cleanup:NoSchedule
 ```
 
+### Long-term Solution:
+```yaml
+# Kubelet configuration
+apiVersion: kubelet.config.k8s.io/v1beta1
+kind: KubeletConfiguration
+evictionHard:
+  nodefs.available: "15%"
+  imagefs.available: "20%"
+evictionMinimumReclaim:
+  nodefs.available: "5Gi"
+  imagefs.available: "3Gi"
+imageGCHighThresholdPercent: 85
+imageGCLowThresholdPercent: 80
+```
+
+---
+
