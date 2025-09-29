@@ -51,3 +51,4 @@ journalctl -u kubelet --no-pager -n 100 | grep -A10 "DiskPressure"
 ```
 
 ---
+
