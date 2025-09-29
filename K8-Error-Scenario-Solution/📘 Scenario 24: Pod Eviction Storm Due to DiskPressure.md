@@ -52,3 +52,17 @@ journalctl -u kubelet --no-pager -n 100 | grep -A10 "DiskPressure"
 
 ---
 
+## Fix/Workaround  
+
+### Emergency Recovery:
+```sh
+# 1. Pause deployments
+kubectl rollout pause deploy/<batch-job>
+
+# 2. Manual image pruning (on affected nodes)
+crictl rmi --prune
+
+# 3. Taint nodes to prevent rescheduling
+kubectl taint nodes <node> disk-pressure=cleanup:NoSchedule
+```
+
