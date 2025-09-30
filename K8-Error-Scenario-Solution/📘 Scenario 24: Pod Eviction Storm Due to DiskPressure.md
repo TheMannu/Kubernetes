@@ -130,3 +130,8 @@ mount /dev/nvme1n1 /var/lib/containerd
 ```
 
 ---
+
+**Key Metrics to Monitor**:  
+- `container_fs_usage_bytes`  
+- `kubelet_evictions` by `DiskPressure`  
+- `crictl_images_bytes`  
