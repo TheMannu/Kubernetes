@@ -101,4 +101,12 @@ resources:
   requests:
     ephemeral-storage: "1Gi"
 ```
-
+ 
+### 2. Deployment Safeguards
+```yaml
+# RollingUpdate strategy
+strategy:
+  rollingUpdate:
+    maxSurge: 25%
+    maxUnavailable: 10%
+```
