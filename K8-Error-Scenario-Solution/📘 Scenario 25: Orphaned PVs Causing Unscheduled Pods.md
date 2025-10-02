@@ -22,3 +22,18 @@ PersistentVolumes (PVs) left in `Released` state after pod deletions prevented n
   - Database initialization jobs timed out  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Verify PVC status:
+```sh
+kubectl get pvc -A -o wide | grep -v Bound
+# Showed multiple PVCs pending
+```
+
+### 2. Check PV inventory:
+```sh
+kubectl get pv --sort-by=.metadata.creationTimestamp \
+  -o custom-columns=NAME:.metadata.name,STATUS:.status.phase,CLAIM:.spec.claimRef.name,RECLAIM:.spec.persistentVolumeReclaimPolicy
+# Revealed 20+ PVs in Released state
+```
