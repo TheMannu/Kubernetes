@@ -37,3 +37,16 @@ kubectl get pv --sort-by=.metadata.creationTimestamp \
   -o custom-columns=NAME:.metadata.name,STATUS:.status.phase,CLAIM:.spec.claimRef.name,RECLAIM:.spec.persistentVolumeReclaimPolicy
 # Revealed 20+ PVs in Released state
 ```
+
+### 3. Inspect storage provider:
+```sh
+kubectl logs -n kube-system ds/vsphere-csi-node -c vsphere-csi-driver | grep -A10 "already exists"
+```
+
+### 4. Audit reclaim policies:
+```sh
+kubectl get sc -o jsonpath='{range .items[*]}{.metadata.name}{"\t"}{.reclaimPolicy}{"\n"}{end}'
+# Showed 80% volumes configured with Retain
+```
+
+---
