@@ -50,3 +50,18 @@ kubectl get sc -o jsonpath='{range .items[*]}{.metadata.name}{"\t"}{.reclaimPoli
 ```
 
 ---
+
+## Root Cause  
+**Storage lifecycle breakdown**:  
+1. `Retain` policy required manual intervention  
+2. CSI driver couldn't reprovision existing volumes  
+3. No monitoring for orphaned PVs  
+
+---
+
+## Fix/Workaround  
+
+### Immediate Resolution:
+```sh
+# 1. Delete orphaned PVs (after data backup)
+kubectl get pv | grep Released | awk '{print $1}' | xargs -I{} kubectl delete pv {}
