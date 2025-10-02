@@ -65,3 +65,8 @@ kubectl get sc -o jsonpath='{range .items[*]}{.metadata.name}{"\t"}{.reclaimPoli
 ```sh
 # 1. Delete orphaned PVs (after data backup)
 kubectl get pv | grep Released | awk '{print $1}' | xargs -I{} kubectl delete pv {}
+
+# 2. Retry pending PVCs
+kubectl get pvc -A | grep Pending | awk '{print $1,$2}' | \
+  xargs -n2 sh -c 'kubectl patch pvc -n $0 $1 -p '"'"'{"metadata":{"annotations":{"volume.beta.kubernetes.io/storage-class":"force-retry"}}'"'"'
+```
