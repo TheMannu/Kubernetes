@@ -91,3 +91,31 @@ volumeBindingMode: WaitForFirstConsumer
 ⚠️ **Storage is stateful**: Must track across entire lifecycle  
 
 ---
+
+## Prevention Framework  
+
+### 1. Automated Cleanup
+```yaml
+# K8s Job to clean Released PVs (runs weekly)
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: pv-cleaner
+spec:
+  schedule: "0 3 * * 6"  # Saturday 3AM
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: cleaner
+            image: bitnami/kubectl
+            command:
+            - /bin/sh
+            - -c
+            - |
+              kubectl get pv --no-headers | \
+                grep Released | \
+                awk '{print $1}' | \
+                xargs kubectl delete pv
+```
