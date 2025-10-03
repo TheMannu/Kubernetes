@@ -119,3 +119,19 @@ spec:
                 awk '{print $1}' | \
                 xargs kubectl delete pv
 ```
+
+### 2. Storage Policy
+```yaml
+# OPA/Gatekeeper constraint
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sValidStorageClass
+metadata:
+  name: require-delete-policy
+spec:
+  match:
+    kinds:
+    - apiGroups: ["storage.k8s.io"]
+      kinds: ["StorageClass"]
+  parameters:
+    allowedReclaimPolicies: ["Delete"]
+```
