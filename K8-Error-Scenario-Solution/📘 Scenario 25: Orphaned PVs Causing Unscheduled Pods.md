@@ -84,3 +84,10 @@ volumeBindingMode: WaitForFirstConsumer
 ```
 
 ---
+
+## Lessons Learned  
+⚠️ **Released ≠ Recycled**: PVs require explicit cleanup  
+⚠️ **Retain policies are dangerous**: Need automated follow-up  
+⚠️ **Storage is stateful**: Must track across entire lifecycle  
+
+---
