@@ -5,3 +5,8 @@
 **Impact**: GPU-accelerated workloads failed to schedule for 6+ hours  
 
 ---
+
+## Scenario Summary  
+New GPU nodes remained underutilized because critical workloads lacked required tolerations, causing scheduling deadlocks and resource starvation for AI/ML pipelines.
+
+---
