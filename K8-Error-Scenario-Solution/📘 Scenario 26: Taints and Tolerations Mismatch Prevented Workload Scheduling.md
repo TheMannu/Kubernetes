@@ -62,3 +62,23 @@ kubectl get deploy -A -o json | \
 3. No validation between node selectors and taints  
 
 ---
+
+## Fix/Workaround  
+
+### Immediate Resolution:
+```yaml
+# Patch deployments with tolerations
+kubectl patch deploy <name> -p '{
+  "spec":{
+    "template":{
+      "spec":{
+        "tolerations":[{
+          "key":"node-role.kubernetes.io/gpu",
+          "operator":"Exists",
+          "effect":"NoSchedule"
+        }]
+      }
+    }
+  }
+}'
+```
