@@ -36,3 +36,21 @@ kubectl get pods -A --field-selector status.phase=Pending -o wide | grep gpu
 kubectl describe pod <pending-pod> | grep -A10 Events
 # Showed "node(s) had untolerated taint {node-role.kubernetes.io/gpu: }"
 ```
+
+### 3. Verify node taints:
+```sh
+kubectl get nodes -l accelerator=nvidia-tesla -o json | \
+  jq -r '.items[].spec.taints'
+# Output: [{"effect":"NoSchedule","key":"node-role.kubernetes.io/gpu"}]
+```
+
+### 4. Audit workload specs:
+```sh
+kubectl get deploy -A -o json | \
+  jq -r '.items[] | select(.spec.template.spec.nodeSelector?.accelerator=="nvidia-tesla") | 
+  .metadata.namespace + "/" + .metadata.name' | \
+  xargs -I{} kubectl get deploy -n {} -o json | \
+  jq -r '.spec.template.spec.tolerations' | grep -L "node-role.kubernetes.io/gpu"
+```
+
+---
