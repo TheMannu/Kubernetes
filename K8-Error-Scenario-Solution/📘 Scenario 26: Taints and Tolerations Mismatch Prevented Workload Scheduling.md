@@ -180,3 +180,12 @@ spec:
 
 ---
      
+**Key Metrics to Monitor**:  
+- `kube_node_spec_taints`  
+- `kube_pod_spec_tolerations`  
+- `nvidia_gpu_duty_cycle` 
+
+**Debugging Tools**:  
+```sh
+# List nodes with taints
+kubectl get nodes -o custom-columns=NAME:.metadata.name,TAINTS:.spec.taints
