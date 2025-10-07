@@ -189,3 +189,7 @@ spec:
 ```sh
 # List nodes with taints
 kubectl get nodes -o custom-columns=NAME:.metadata.name,TAINTS:.spec.taints
+
+# Check toleration coverage
+kubectl get pods -A -o json | jq -r '.items[] | select(.spec.nodeSelector?.accelerator=="nvidia-tesla") | .metadata.name + " " + (.spec.tolerations // [] | map(.key) | join(","))'
+```
