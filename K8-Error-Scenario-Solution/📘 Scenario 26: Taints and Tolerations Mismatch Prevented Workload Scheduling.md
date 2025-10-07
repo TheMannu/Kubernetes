@@ -136,4 +136,13 @@ spec:
     - key: "node-role.kubernetes.io/gpu"
       operator: "Exists"
 ```
-                                                 
+         
+### 2. CI/CD Validation
+```sh
+# Pre-deployment check
+if grep -q "nvidia-tesla" $MANIFEST && ! grep -q "node-role.kubernetes.io/gpu" $MANIFEST; then
+  echo "ERROR: GPU workloads require tolerations"
+  exit 1
+fi
+```
+                                        
