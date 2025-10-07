@@ -111,3 +111,29 @@ spec:
 ⚠️ **Costly idle resources**: Untolerated GPU nodes waste $100+/hr  
 
 ---
+     
+## Prevention Framework  
+
+### 1. Admission Control
+```yaml
+# OPA/Gatekeeper constraint
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sRequiredTolerations
+metadata:
+  name: gpu-toleration-check
+spec:
+  match:
+    kinds:
+    - apiGroups: ["apps"]
+      kinds: ["Deployment","DaemonSet"]
+    labelSelector:
+      matchExpressions:
+      - key: accelerator
+        operator: In
+        values: ["nvidia-tesla"]
+  parameters:
+    tolerations:
+    - key: "node-role.kubernetes.io/gpu"
+      operator: "Exists"
+```
+                                                 
