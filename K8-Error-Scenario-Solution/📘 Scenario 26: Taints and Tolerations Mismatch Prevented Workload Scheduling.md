@@ -145,4 +145,26 @@ if grep -q "nvidia-tesla" $MANIFEST && ! grep -q "node-role.kubernetes.io/gpu" $
   exit 1
 fi
 ```
-                                        
+                       
+### 3. Node Pool Testing
+```yaml
+# Test deployment template
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gpu-test
+spec:
+  replicas: 1
+  template:
+    spec:
+      nodeSelector:
+        accelerator: nvidia-tesla
+      tolerations:
+      - key: "node-role.kubernetes.io/gpu"
+        operator: "Exists"
+      containers:
+      - name: stress
+        image: nvidia/cuda:11.0-base
+        command: ["nvidia-smi"]
+```
+                 
