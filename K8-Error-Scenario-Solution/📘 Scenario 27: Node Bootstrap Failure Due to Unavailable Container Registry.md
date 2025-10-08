@@ -51,3 +51,11 @@ kubeadm config images list --kubernetes-version v1.21.5
 ```
 
 ---
+
+## Root Cause  
+**Hard dependency on registry**:  
+1. No local image cache for critical components  
+2. No fallback mirror registry configured  
+3. Infrastructure-as-Code (IaC) templates lacked image preloading  
+
+---
