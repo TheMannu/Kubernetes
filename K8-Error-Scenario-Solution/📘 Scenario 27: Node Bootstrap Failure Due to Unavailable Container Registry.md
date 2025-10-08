@@ -23,3 +23,17 @@ A private container registry outage prevented new nodes from joining the cluster
   - Emergency manual scaling attempts also failed  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Check node readiness:
+```sh
+kubectl get nodes -o json | \
+  jq -r '.items[] | .metadata.name + " " + (.status.conditions[] | select(.type=="Ready") | .status + " " + .message'
+```
+
+### 2. Inspect container runtime:
+```sh
+journalctl -u containerd --no-pager -n 100 | grep -i pull
+# Output: "PullImage registry.internal:5000/pause:3.4.1 failed"
+```
