@@ -125,3 +125,23 @@ done
   annotations:
     summary: "Container registry {{ $labels.instance }} is down"
 ```
+
+### 4. Provisioning Checks
+```yaml
+# Ansible pre-task
+- name: Verify registry access
+  uri:
+    url: "https://{{ registry_url }}/v2/"
+    status_code: 200
+    timeout: 5
+  register: registry_check
+  failed_when: false
+  changed_when: false
+
+- name: Fail if registry unreachable
+  fail:
+    msg: "Registry {{ registry_url }} is unavailable"
+  when: registry_check.status != 200
+```
+
+---
