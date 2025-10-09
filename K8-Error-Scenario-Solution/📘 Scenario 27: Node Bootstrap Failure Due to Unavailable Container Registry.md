@@ -71,3 +71,17 @@ systemctl restart registry-backend
 ctr -n k8s.io images import /opt/k8s/images/pause.tar
 ```
 
+
+### Long-term Solution:
+```yaml
+# Packer template snippet for node AMI
+provisioner "shell" {
+  script = "preload-images.sh"
+  environment_vars = [
+    "KUBE_VERSION=v1.21.5",
+    "REGISTRY=registry.internal:5000"
+  ]
+}
+```
+
+---
