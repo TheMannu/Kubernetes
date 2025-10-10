@@ -23,3 +23,17 @@ Nodes failed to rejoin the cluster after a scheduled reboot when kubelet client 
   - No automatic rotation attempted due to power-off state  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Verify node status:
+```sh
+kubectl get nodes -o json | \
+  jq -r '.items[] | select(.status.conditions[].reason=="KubeletNotReady") | .metadata.name'
+```
+
+### 2. Check kubelet logs:
+```sh
+journalctl -u kubelet --no-pager -n 50 | grep -i cert
+# Output: "certificate expired on 2023-05-15 14:22:00 +0000 UTC"
+```
