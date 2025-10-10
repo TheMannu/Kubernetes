@@ -151,3 +151,16 @@ done
 - CNI plugins (`calico`, `flannel`)  
 - `kube-proxy`  
 - `node-exporter`  
+
+**Debugging Tools**:  
+```sh
+# Check loaded images
+ctr -n k8s.io images list
+
+# Verify image pull secrets
+kubectl get secret -n kube-system | grep registry
+
+# Test registry access
+kubectl run -it --rm registry-test --image=alpine -- \
+  sh -c "apk add curl && curl -u user:pass https://registry.internal:5000/v2/_catalog"
+```
