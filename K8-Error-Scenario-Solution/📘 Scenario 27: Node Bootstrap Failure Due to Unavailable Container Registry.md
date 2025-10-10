@@ -164,3 +164,13 @@ kubectl get secret -n kube-system | grep registry
 kubectl run -it --rm registry-test --image=alpine -- \
   sh -c "apk add curl && curl -u user:pass https://registry.internal:5000/v2/_catalog"
 ```
+
+**Bootstrap Hardening Checklist**:  
+```markdown
+1. [ ] Preload all control plane images in OS image  
+2. [ ] Configure registry mirroring in containerd  
+3. [ ] Document manual recovery procedures  
+4. [ ] Test provisioning with registry offline  
+```
+---
+---
