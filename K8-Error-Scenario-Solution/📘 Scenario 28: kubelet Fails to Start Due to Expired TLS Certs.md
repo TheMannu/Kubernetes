@@ -95,3 +95,16 @@ controllerManager:
 ⚠️ **Kubelet is special**: Can't use bootstrap tokens after initial setup  
 
 ---
+
+## Prevention Framework  
+
+### 1. Certificate Monitoring
+```yaml
+# Prometheus alert rule
+- alert: KubeletCertExpirySoon
+  expr: kubelet_certificate_manager_client_expiration_seconds < 86400 * 7 # 7 days
+  labels:
+    severity: critical
+  annotations:
+    summary: "Kubelet client cert expires in {{ $value | humanizeDuration }}"
+```
