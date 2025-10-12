@@ -142,3 +142,10 @@ certificateRotationStrategy:
   expirationSeconds: 157680000  # 5 years
 ```
 
+**Key Certificates to Monitor**:  
+- `kubelet-client-current.pem`  
+- `apiserver-kubelet-client.crt`  
+- `front-proxy-client.crt`  
+
+---
+
