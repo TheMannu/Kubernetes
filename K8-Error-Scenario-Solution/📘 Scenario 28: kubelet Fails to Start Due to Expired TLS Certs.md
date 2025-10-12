@@ -149,3 +149,12 @@ certificateRotationStrategy:
 
 ---
 
+**Debugging Tools**:  
+```sh
+# Check all cert expiry
+kubeadm certs check-expiration
+
+# Manual cert inspection
+openssl x509 -in /var/lib/kubelet/pki/kubelet-client-current.pem -text -noout | \
+  grep -A2 Validity
+
