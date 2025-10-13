@@ -74,3 +74,15 @@ helm upgrade kube-scheduler -n kube-system --reuse-values \
 # 3. Force pod restart
 kubectl -n kube-system rollout restart deploy kube-scheduler
 ```
+
+### Long-term Solution:
+```yaml
+# values.yaml hardening
+leaderElection:
+  namespace: kube-system  # Immutable
+  resourceName: kube-scheduler
+  resourceLock: leases
+schedulerName: default-scheduler
+```
+
+---
