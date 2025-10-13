@@ -37,3 +37,17 @@ kubectl -n kube-system get pods -l component=kube-scheduler
 kubectl -n kube-system logs -l component=kube-scheduler --tail=100 | grep -A5 panic
 # Output: "leases.coordination.k8s.io is forbidden: cannot create resource in namespace kube-scheduler"
 ```
+
+### 3. Verify Helm values:
+```sh
+helm get values kube-scheduler -n kube-system | yq '.leaderElection'
+# Showed namespace: kube-scheduler
+```
+
+### 4. Check namespace existence:
+```sh
+kubectl get ns kube-scheduler
+# Error: NotFound
+```
+
+---
