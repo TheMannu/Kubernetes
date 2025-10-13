@@ -51,3 +51,11 @@ kubectl get ns kube-scheduler
 ```
 
 ---
+
+## Root Cause  
+**Configuration mismatch**:  
+1. Non-existent namespace specified for leader election lock  
+2. No fallback to default `kube-system` behavior  
+3. Missing pre-flight namespace validation  
+
+---
