@@ -59,3 +59,18 @@ kubectl get ns kube-scheduler
 3. Missing pre-flight namespace validation  
 
 ---
+
+## Fix/Workaround  
+
+### Immediate Recovery:
+```sh
+# 1. Create missing namespace
+kubectl create ns kube-scheduler
+
+# 2. Patch Helm release
+helm upgrade kube-scheduler -n kube-system --reuse-values \
+  --set leaderElection.namespace=kube-system
+
+# 3. Force pod restart
+kubectl -n kube-system rollout restart deploy kube-scheduler
+```
