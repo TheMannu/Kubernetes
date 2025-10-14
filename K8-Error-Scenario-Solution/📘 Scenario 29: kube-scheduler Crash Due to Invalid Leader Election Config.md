@@ -86,3 +86,12 @@ schedulerName: default-scheduler
 ```
 
 ---
+
+---
+
+## Lessons Learned  
+⚠️ **Leader election is fragile**: Requires exact namespace/RBAC  
+⚠️ **Helm defaults matter**: Should match upstream conventions  
+⚠️ **Scheduler is critical**: Single component failure halts operations  
+
+---
