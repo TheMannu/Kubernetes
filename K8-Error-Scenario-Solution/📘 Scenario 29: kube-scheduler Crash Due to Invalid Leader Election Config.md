@@ -154,3 +154,8 @@ fi
 
 
 ---
+
+**Key Resources to Verify**:  
+- `leases.coordination.k8s.io` in election namespace  
+- `kube-scheduler` pod logs  
+- `scheduler_scheduling_attempts_total` metric  
