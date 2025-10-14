@@ -136,3 +136,21 @@ fi
   annotations:
     summary: "kube-scheduler is down (instance {{ $labels.instance }})"
 ```
+
+### 4. Documentation Standards
+
+## Scheduler Configuration Checklist
+1. **Namespace must exist** before deployment  
+2. **RBAC** for leases in target namespace:  
+   ```yaml
+   apiVersion: rbac.authorization.k8s.io/v1
+   kind: Role
+   rules:
+   - apiGroups: ["coordination.k8s.io"]
+     resources: ["leases"]
+     verbs: ["create", "get", "update"]
+   ```
+3. **Test leader failover** during maintenance  
+
+
+---
