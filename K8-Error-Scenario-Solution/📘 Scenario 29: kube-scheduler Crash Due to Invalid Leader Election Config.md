@@ -95,3 +95,23 @@ schedulerName: default-scheduler
 ⚠️ **Scheduler is critical**: Single component failure halts operations  
 
 ---
+
+## Prevention Framework  
+
+### 1. Admission Control
+```yaml
+# OPA/Gatekeeper constraint
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sValidSchedulerConfig
+metadata:
+  name: scheduler-ns-check
+spec:
+  match:
+    kinds:
+    - apiGroups: ["apps"]
+      kinds: ["Deployment"]
+      namespaces: ["kube-system"]
+      name: "kube-scheduler"
+  parameters:
+    requiredNamespace: "kube-system"
+```
