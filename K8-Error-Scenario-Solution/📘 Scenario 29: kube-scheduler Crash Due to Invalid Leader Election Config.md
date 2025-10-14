@@ -115,3 +115,12 @@ spec:
   parameters:
     requiredNamespace: "kube-system"
 ```
+
+### 2. CI/CD Validation
+```sh
+# Pre-deployment check
+if ! kubectl get ns "$(yq '.leaderElection.namespace' values.yaml)"; then
+  echo "ERROR: Leader election namespace missing"
+  exit 1
+fi
+```
