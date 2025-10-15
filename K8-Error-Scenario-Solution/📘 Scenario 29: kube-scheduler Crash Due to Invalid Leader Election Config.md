@@ -159,3 +159,15 @@ fi
 - `leases.coordination.k8s.io` in election namespace  
 - `kube-scheduler` pod logs  
 - `scheduler_scheduling_attempts_total` metric  
+
+**Debugging Tools**:  
+```sh
+# Check leader election status
+kubectl -n kube-system get leases.coordination.k8s.io kube-scheduler -o yaml
+
+# Verify RBAC
+kubectl auth can-i create leases -n kube-system --as system:kube-scheduler
+
+# Test scheduler connectivity
+kubectl get --raw "/healthz/scheduler"
+```
