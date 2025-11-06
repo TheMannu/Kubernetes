@@ -1,0 +1,26 @@
+# 📘 Scenario 31: Node Clock Drift Causing Authentication Failures
+
+**Category**: Cluster Authentication  
+**Environment**: Kubernetes 1.22, On-prem, kubeadm  
+**Impact**: Cluster-wide authentication failures lasting 2+ hours  
+
+---
+
+## Scenario Summary  
+Clock drift exceeding 5 minutes between worker nodes and control plane caused JWT token validation failures, breaking all token-based authentication across the cluster.
+
+---
+
+## What Happened  
+- **Time synchronization failure**:  
+  - NTP daemon disabled during OS patching  
+  - Worker nodes drifted 7-12 minutes over 3 weeks  
+- **Authentication symptoms**:  
+  - `kubectl` commands failed with `Token cannot be validated: clock skew too great`  
+  - Pod-to-API communication errors (`x509: certificate has expired or is not yet valid`)  
+  - Service accounts unable to refresh tokens  
+- **Root discovery**:  
+  - Control plane at UTC-5, nodes at UTC+7  
+  - `kube-apiserver` logs showed `too much clock skew` warnings  
+
+---
