@@ -76,3 +76,15 @@ kubectl get nodes -o json | jq -r '.items[].metadata.name' | \
   xargs -I{} kubectl debug node/{} -it --image=ubuntu -- \
   chronyc tracking | grep -i "last offset"
 ```
+
+### Long-term Solution:
+```yaml
+# Node bootstrap configuration
+apiVersion: kubeadm.k8s.io/v1beta3
+kind: JoinConfiguration
+nodeRegistration:
+  kubeletExtraArgs:
+    system-reserved: "chronyd=100m"
+  taints: null
+  ignorePreflightErrors: null
+```
