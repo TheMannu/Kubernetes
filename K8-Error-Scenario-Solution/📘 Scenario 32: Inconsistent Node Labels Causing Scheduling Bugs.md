@@ -23,3 +23,17 @@ Missing `topology.kubernetes.io/zone` labels on manually provisioned nodes cause
   - StatefulSet pods concentrated in single zone  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Identify pending pods:
+```sh
+kubectl get pods -A --field-selector status.phase=Pending -o wide
+```
+
+### 2. Check scheduling events:
+```sh
+kubectl describe pod <pending-pod> | grep -A10 "Events"
+# Output: "0/3 nodes are available: 3 node(s) missing required label topology.kubernetes.io/zone"
+```
+
