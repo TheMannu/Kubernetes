@@ -50,3 +50,11 @@ kubectl get pods -o json | jq -r '.items[] | select(.spec.topologySpreadConstrai
 ```
 
 ---
+
+## Root Cause  
+**Label injection gap**:  
+1. Manual node creation bypassed cloud provider auto-labeling  
+2. No validation for required topology labels  
+3. Missing fallback labeling mechanism  
+
+---
