@@ -72,3 +72,26 @@ kubectl label nodes <node1> <node2> topology.kubernetes.io/zone=us-central1-a
 # 3. Trigger rescheduling
 kubectl patch deployment <app> -p '{"spec":{"template":{"metadata":{"annotations":{"restartedAt":"'$(date +%s)'"}}}}}'
 ```
+
+### Long-term Solution:
+```yaml
+# DaemonSet for label enforcement
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: node-labeler
+spec:
+  template:
+    spec:
+      containers:
+      - name: labeler
+        image: bitnami/kubectl
+        command:
+        - /bin/sh
+        - -c
+        - |
+          ZONE=$(curl -s -H "Metadata-Flavor: Google" http://metadata.google.internal/computeMetadata/v1/instance/zone | cut -d/ -f4)
+          kubectl label node $NODE topology.kubernetes.io/zone=$ZONE --overwrite
+```
+
+---
