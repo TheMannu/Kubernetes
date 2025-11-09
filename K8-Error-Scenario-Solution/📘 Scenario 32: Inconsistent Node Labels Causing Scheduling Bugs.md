@@ -58,3 +58,17 @@ kubectl get pods -o json | jq -r '.items[] | select(.spec.topologySpreadConstrai
 3. Missing fallback labeling mechanism  
 
 ---
+
+## Fix/Workaround  
+
+### Immediate Resolution:
+```sh
+# 1. Identify unlabeled nodes
+kubectl get nodes --show-labels | grep -v "topology.kubernetes.io/zone"
+
+# 2. Apply zone labels manually
+kubectl label nodes <node1> <node2> topology.kubernetes.io/zone=us-central1-a
+
+# 3. Trigger rescheduling
+kubectl patch deployment <app> -p '{"spec":{"template":{"metadata":{"annotations":{"restartedAt":"'$(date +%s)'"}}}}}'
+```
