@@ -102,3 +102,15 @@ spec:
 ⚠️ **Silent degradation**: Workloads fail scheduling without clear root cause  
 
 ---
+
+## Prevention Framework  
+
+### 1. Automated Labeling
+```yaml
+# Cloud-init script for manual nodes
+#cloud-config
+runcmd:
+  - |
+    ZONE=$(curl -s -H "Metadata-Flavor: Google" http://metadata.google.internal/computeMetadata/v1/instance/zone | cut -d/ -f4)
+    kubectl label node $(hostname) topology.kubernetes.io/zone=$ZONE
+```
