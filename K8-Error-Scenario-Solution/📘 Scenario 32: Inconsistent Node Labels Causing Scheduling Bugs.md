@@ -95,3 +95,10 @@ spec:
 ```
 
 ---
+
+## Lessons Learned  
+⚠️ **Manual operations break automation**: Cloud labels require provider integration  
+⚠️ **Topology is foundational**: Missing labels break critical scheduling features  
+⚠️ **Silent degradation**: Workloads fail scheduling without clear root cause  
+
+---
