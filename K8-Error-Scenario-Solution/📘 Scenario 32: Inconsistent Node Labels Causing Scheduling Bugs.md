@@ -132,3 +132,15 @@ spec:
     - key: topology.kubernetes.io/zone
     - key: topology.kubernetes.io/region
 ```
+
+### 3. Monitoring
+```yaml
+# Prometheus alerts
+- alert: MissingTopologyLabels
+  expr: count(kube_node_labels{label_topology_kubernetes_io_zone=""}) > 0
+  for: 15m
+  labels:
+    severity: warning
+  annotations:
+    summary: "Nodes missing topology labels ({{ $value }})"
+```
