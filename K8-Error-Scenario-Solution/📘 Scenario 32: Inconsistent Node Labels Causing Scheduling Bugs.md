@@ -155,3 +155,8 @@ fi
 ```
 
 ---
+
+**Key Topology Labels to Enforce**:  
+- `topology.kubernetes.io/zone`  
+- `topology.kubernetes.io/region`  
+- `kubernetes.io/hostname`  
