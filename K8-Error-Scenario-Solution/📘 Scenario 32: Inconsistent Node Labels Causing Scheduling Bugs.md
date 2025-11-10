@@ -144,3 +144,14 @@ spec:
   annotations:
     summary: "Nodes missing topology labels ({{ $value }})"
 ```
+
+### 4. CI/CD Validation
+```sh
+# Pre-join node validation
+if ! kubectl auth can-i create nodes; then
+  echo "ERROR: Use automated node pools instead of manual creation"
+  exit 1
+fi
+```
+
+---
