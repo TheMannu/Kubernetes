@@ -114,3 +114,21 @@ runcmd:
     ZONE=$(curl -s -H "Metadata-Flavor: Google" http://metadata.google.internal/computeMetadata/v1/instance/zone | cut -d/ -f4)
     kubectl label node $(hostname) topology.kubernetes.io/zone=$ZONE
 ```
+
+### 2. Admission Control
+```yaml
+# OPA/Gatekeeper constraint
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sRequiredNodeLabels
+metadata:
+  name: require-topology-labels
+spec:
+  match:
+    kinds:
+    - apiGroups: [""]
+      kinds: ["Node"]
+  parameters:
+    labels:
+    - key: topology.kubernetes.io/zone
+    - key: topology.kubernetes.io/region
+```
