@@ -160,3 +160,26 @@ fi
 - `topology.kubernetes.io/zone`  
 - `topology.kubernetes.io/region`  
 - `kubernetes.io/hostname`  
+
+**Debugging Tools**:  
+```sh
+# Check topology distribution
+kubectl get nodes -o json | jq -r '.items[] | .metadata.labels["topology.kubernetes.io/zone"]' | sort | uniq -c
+
+# Verify spread constraints
+kubectl get pods -o json | jq -r '.items[] | select(.spec.topologySpreadConstraints) | "\(.metadata.name): \(.spec.topologySpreadConstraints[].topologyKey)"'
+
+# Test scheduling simulation
+kubectl create job test-schedule --image=busybox --dry-run=client -o yaml | kubectl apply -f -
+```
+
+**Topology Spread Best Practices**:  
+```markdown
+1. **Always use cloud node pools** for automatic labeling  
+2. **Validate labels pre-production**:  
+   ```sh
+   kubectl get nodes -o json | jq -r '.items[].metadata.labels | has("topology.kubernetes.io/zone")' | grep -q false && echo "MISSING LABELS"
+   ```
+3. **Test topology constraints** with canary deployments  
+4. **Monitor zone distribution** of critical workloads  
+```
