@@ -38,3 +38,16 @@ kubectl get --raw /metrics | grep -E "apiserver_registered_watchers|apiserver_cu
 kubectl get --raw /metrics | grep "apiserver_watch_events_total" | \
   sort -nr -k2 | head -10
 ```
+
+### 3. Check etcd performance:
+```sh
+kubectl -n openshift-etcd logs -l app=etcd --tail=100 | grep -i "watch.*backlog"
+```
+
+### 4. Inspect client behavior:
+```sh
+kubectl top pods -n custom-operators | sort -nr -k3 | head -5
+# Showed one pod using 800MB+ memory
+```
+
+---
