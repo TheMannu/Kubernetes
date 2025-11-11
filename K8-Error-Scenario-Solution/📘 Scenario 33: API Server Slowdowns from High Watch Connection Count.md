@@ -24,3 +24,17 @@ A misconfigured custom controller opened thousands of persistent watch connectio
   - Single pod maintaining 200+ concurrent watches  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Monitor API server metrics:
+```sh
+kubectl get --raw /metrics | grep -E "apiserver_registered_watchers|apiserver_current_inflight_requests"
+# Showed 12,000+ registered watchers (normal: 200-500)
+```
+
+### 2. Identify connection sources:
+```sh
+kubectl get --raw /metrics | grep "apiserver_watch_events_total" | \
+  sort -nr -k2 | head -10
+```
