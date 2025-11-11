@@ -51,3 +51,11 @@ kubectl top pods -n custom-operators | sort -nr -k3 | head -5
 ```
 
 ---
+
+## Root Cause  
+**Resource leak in watch management**:  
+1. Controller created new watches instead of reusing existing ones  
+2. No connection timeout or cleanup mechanisms  
+3. Missing client-side watch termination on errors  
+
+---
