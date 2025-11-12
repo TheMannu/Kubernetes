@@ -95,3 +95,11 @@ for event := range watcher.ResultChan() {
 ```
 
 ---
+
+
+## Lessons Learned  
+⚠️ **Watches are expensive**: Each consumes API server resources  
+⚠️ **Client-go needs careful usage**: Automatic retries can compound issues  
+⚠️ **API server has soft limits**: Performance degrades before hard failures  
+
+---
