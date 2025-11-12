@@ -73,3 +73,25 @@ kubectl -n openshift-kube-apiserver rollout restart deployment/kube-apiserver
 # 3. Monitor recovery
 watch "kubectl get --raw /metrics | grep apiserver_registered_watchers"
 ```
+
+### Controller Patch:
+```go
+// Before: Leaking watches
+for {
+    watcher, err := client.CoreV1().Pods("").Watch(context.TODO(), opts)
+    // Never closed watcher
+}
+
+// After: Proper watch management
+ctx, cancel := context.WithTimeout(context.Background(), 30*time.Minute)
+defer cancel()
+
+watcher, err := client.CoreV1().Pods("").Watch(ctx, opts)
+defer watcher.Stop()
+
+for event := range watcher.ResultChan() {
+    // Process events
+}
+```
+
+---
