@@ -59,3 +59,13 @@ kubectl top pods -n custom-operators | sort -nr -k3 | head -5
 3. Missing client-side watch termination on errors  
 
 ---
+
+## Fix/Workaround  
+
+### Immediate Resolution:
+```sh
+# 1. Scale down offending controller
+kubectl -n custom-operators scale deployment/misbehaving-controller --replicas=0
+
+# 2. Force connection cleanup
+kubectl -n openshift-kube-apiserver rollout restart deployment/kube-apiserver
