@@ -69,3 +69,7 @@ kubectl -n custom-operators scale deployment/misbehaving-controller --replicas=0
 
 # 2. Force connection cleanup
 kubectl -n openshift-kube-apiserver rollout restart deployment/kube-apiserver
+
+# 3. Monitor recovery
+watch "kubectl get --raw /metrics | grep apiserver_registered_watchers"
+```
