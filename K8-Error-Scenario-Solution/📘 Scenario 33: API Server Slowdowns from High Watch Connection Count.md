@@ -165,12 +165,16 @@ spec:
    ```
 3. **Monitor connection count** in controller metrics  
 4. **Test under load** with 1000+ resources  
-```
 
----
+--
 
 **Key Metrics to Monitor**:  
 - `apiserver_registered_watchers`  
 - `apiserver_current_inflight_requests`  
 - `etcd_watchers`  
 - `process_resident_memory_bytes{job="apiserver"}`  
+
+**Debugging Tools**:  
+```sh
+# Real-time watch monitoring
+kubectl get --raw /metrics | grep apiserver_watch
