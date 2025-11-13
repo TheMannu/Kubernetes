@@ -114,3 +114,8 @@ config := &rest.Config{
     Burst:         100,
     Timeout:       30 * time.Second,
 }
+
+// Shared informer with resync period
+informerFactory := informers.NewSharedInformerFactory(clientset, 30*time.Minute)
+podInformer := informerFactory.Core().V1().Pods()
+```
