@@ -153,3 +153,18 @@ spec:
   labels:
     severity: warning
 ```
+
+### 4. Development Standards
+```markdown
+## Watch Implementation Checklist
+1. **Use SharedInformers** instead of direct watches  
+2. **Implement timeouts**:  
+   ```go
+   ctx, cancel := context.WithTimeout(ctx, 30*time.Minute)
+   defer cancel()
+   ```
+3. **Monitor connection count** in controller metrics  
+4. **Test under load** with 1000+ resources  
+```
+
+---
