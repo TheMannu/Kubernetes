@@ -168,3 +168,9 @@ spec:
 ```
 
 ---
+
+**Key Metrics to Monitor**:  
+- `apiserver_registered_watchers`  
+- `apiserver_current_inflight_requests`  
+- `etcd_watchers`  
+- `process_resident_memory_bytes{job="apiserver"}`  
