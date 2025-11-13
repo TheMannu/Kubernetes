@@ -119,3 +119,19 @@ config := &rest.Config{
 informerFactory := informers.NewSharedInformerFactory(clientset, 30*time.Minute)
 podInformer := informerFactory.Core().V1().Pods()
 ```
+
+### 2. Resource Limits
+```yaml
+# API server flags for protection
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kube-apiserver
+spec:
+  containers:
+  - command:
+    - kube-apiserver
+    - --max-requests-inflight=800
+    - --max-mutating-requests-inflight=400
+    - --watch-cache-sizes=100
+```
