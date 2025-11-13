@@ -135,3 +135,21 @@ spec:
     - --max-mutating-requests-inflight=400
     - --watch-cache-sizes=100
 ```
+
+### 3. Monitoring
+```yaml
+# Critical Prometheus alerts
+- alert: APIWatcherLeak
+  expr: apiserver_registered_watchers > 1000
+  for: 5m
+  labels:
+    severity: critical
+  annotations:
+    summary: "API server watcher count too high ({{ $value }})"
+
+- alert: APIConnectionSpike
+  expr: rate(apiserver_current_inflight_requests[5m]) > 100
+  for: 2m
+  labels:
+    severity: warning
+```
