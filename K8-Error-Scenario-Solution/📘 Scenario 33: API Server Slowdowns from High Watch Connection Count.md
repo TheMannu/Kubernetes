@@ -178,3 +178,10 @@ spec:
 ```sh
 # Real-time watch monitoring
 kubectl get --raw /metrics | grep apiserver_watch
+
+# Connection source analysis
+ss -tnp | grep 6443 | awk '{print $6}' | cut -d: -f2 | sort | uniq -c | sort -nr
+
+# Memory profiling
+kubectl -n openshift-kube-apiserver exec kube-apiserver -- curl http://localhost:6060/debug/pprof/heap
+```
