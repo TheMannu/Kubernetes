@@ -24,3 +24,17 @@ The etcd database exhausted all available disk space due to unmanaged growth of 
   - Worker nodes marked `NotReady` after failed heartbeats  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Verify etcd status:
+```sh
+kubectl get pods -n kube-system -l component=etcd
+# Showed CrashLoopBackOff
+```
+
+### 2. Check disk usage:
+```sh
+df -h /var/lib/etcd
+# Output: 100% used
+```
