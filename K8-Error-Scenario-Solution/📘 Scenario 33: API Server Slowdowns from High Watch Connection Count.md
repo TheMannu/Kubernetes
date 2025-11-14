@@ -185,3 +185,12 @@ ss -tnp | grep 6443 | awk '{print $6}' | cut -d: -f2 | sort | uniq -c | sort -nr
 # Memory profiling
 kubectl -n openshift-kube-apiserver exec kube-apiserver -- curl http://localhost:6060/debug/pprof/heap
 ```
+
+**Watch Management Best Practices**:  
+```markdown
+1. **Use SharedInformerFactory** for resource caching  
+2. **Set reasonable timeouts** (30min max)  
+3. **Implement exponential backoff** for reconnects  
+4. **Monitor your controller's watch count**  
+5. **Test connection cleanup** during graceful shutdown  
+```
