@@ -52,3 +52,11 @@ etcdctl endpoint status -w table
 ```
 
 ---
+
+## Root Cause  
+**Storage management failure**:  
+1. No automatic compaction of historical revisions  
+2. Missing disk space monitoring  
+3. Unbounded custom resource creation  
+
+---
