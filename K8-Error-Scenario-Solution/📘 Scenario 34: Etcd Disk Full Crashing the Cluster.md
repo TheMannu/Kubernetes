@@ -70,3 +70,10 @@ sudo find /var/lib/etcd -name "*.snap.*" -mtime +7 -delete
 
 # 2. Compact etcd history
 etcdctl compact $(etcdctl endpoint status -w json | jq -r '.[].Status.header.revision')
+
+# 3. Defragment database
+etcdctl defrag --cluster
+
+# 4. Restart etcd
+sudo systemctl restart etcd
+```
