@@ -77,3 +77,23 @@ etcdctl defrag --cluster
 # 4. Restart etcd
 sudo systemctl restart etcd
 ```
+
+### Long-term Solution:
+```yaml
+# etcd configuration
+apiVersion: v1
+kind: Pod
+metadata:
+  name: etcd
+  namespace: kube-system
+spec:
+  containers:
+  - command:
+    - etcd
+    - --auto-compaction-mode=revision
+    - --auto-compaction-retention=1000
+    - --quota-backend-bytes=8589934592  # 8GB limit
+    - --max-request-bytes=1572864
+```
+
+---
