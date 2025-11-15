@@ -38,3 +38,17 @@ kubectl get pods -n kube-system -l component=etcd
 df -h /var/lib/etcd
 # Output: 100% used
 ```
+
+### 3. Inspect etcd logs:
+```sh
+journalctl -u etcd --no-pager -n 50 | grep -i "space\|quota"
+# Output: "etcdserver: mvcc: database space exceeded"
+```
+
+### 4. Analyze database size:
+```sh
+etcdctl endpoint status -w table
+# Showed 8GB database on 10GB disk
+```
+
+---
