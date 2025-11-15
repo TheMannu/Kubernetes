@@ -60,3 +60,13 @@ etcdctl endpoint status -w table
 3. Unbounded custom resource creation  
 
 ---
+
+## Fix/Workaround  
+
+### Emergency Recovery:
+```sh
+# 1. Free up space temporarily
+sudo find /var/lib/etcd -name "*.snap.*" -mtime +7 -delete
+
+# 2. Compact etcd history
+etcdctl compact $(etcdctl endpoint status -w json | jq -r '.[].Status.header.revision')
