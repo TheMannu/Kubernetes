@@ -164,3 +164,14 @@ spec:
   labels:
     severity: warning
 ```
+
+### 4. Capacity Planning
+```markdown
+## Etcd Sizing Guidelines
+- **Small cluster**: 2GB disk, 2GB memory  
+- **Medium cluster**: 8GB disk, 8GB memory  
+- **Large cluster**: 20GB disk, 16GB memory  
+- **Monitor growth rate**: Alert if >1GB/week  
+```
+
+---
