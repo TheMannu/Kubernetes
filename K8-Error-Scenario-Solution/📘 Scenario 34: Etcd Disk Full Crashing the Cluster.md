@@ -146,3 +146,21 @@ spec:
     secrets: "1000"
     customresourcedefinitions: "50"
 ```
+
+### 3. Monitoring
+```yaml
+# Prometheus alerts
+- alert: EtcdDiskFull
+  expr: etcd_mvcc_db_total_size_in_bytes / etcd_server_quota_backend_bytes > 0.8
+  for: 5m
+  labels:
+    severity: critical
+  annotations:
+    summary: "Etcd database approaching quota ({{ $value | humanizePercentage }})"
+
+- alert: EtcdHighRevision
+  expr: increase(etcd_server_leader_changes_seen_total[1h]) > 5
+  for: 2m
+  labels:
+    severity: warning
+```
