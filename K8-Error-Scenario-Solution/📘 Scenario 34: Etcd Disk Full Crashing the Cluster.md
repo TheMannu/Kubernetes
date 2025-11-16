@@ -131,3 +131,18 @@ spec:
               etcdctl compact $(etcdctl endpoint status -w json | jq -r '.[].Status.header.revision')
               etcdctl defrag --cluster
 ```
+
+### 2. Resource Quotas
+```yaml
+# Namespace quotas for CR-heavy workloads
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: object-count
+  namespace: custom-operators
+spec:
+  hard:
+    configmaps: "1000"
+    secrets: "1000"
+    customresourcedefinitions: "50"
+```
