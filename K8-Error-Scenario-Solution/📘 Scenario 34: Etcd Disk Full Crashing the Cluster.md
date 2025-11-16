@@ -97,3 +97,10 @@ spec:
 ```
 
 ---
+
+## Lessons Learned  
+⚠️ **Etcd is stateful**: Requires proactive disk management  
+⚠️ **Silent growth**: Custom resources can explode unnoticed  
+⚠️ **Hard limits matter**: Without quotas, etcd will consume all space  
+
+---
