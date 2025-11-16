@@ -104,3 +104,30 @@ spec:
 ⚠️ **Hard limits matter**: Without quotas, etcd will consume all space  
 
 ---
+
+## Prevention Framework  
+
+### 1. Automated Maintenance
+```yaml
+# CronJob for etcd maintenance
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: etcd-maintenance
+  namespace: kube-system
+spec:
+  schedule: "0 2 * * *"  # 2 AM daily
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: maintenance
+            image: bitnami/etcd:3.5
+            command:
+            - /bin/sh
+            - -c
+            - |
+              etcdctl compact $(etcdctl endpoint status -w json | jq -r '.[].Status.header.revision')
+              etcdctl defrag --cluster
+```
