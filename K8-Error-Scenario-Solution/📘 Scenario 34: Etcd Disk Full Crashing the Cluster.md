@@ -175,3 +175,9 @@ spec:
 ```
 
 ---
+
+**Key Metrics to Monitor**:  
+- `etcd_mvcc_db_total_size_in_bytes`  
+- `etcd_server_quota_backend_bytes`  
+- `etcd_debugging_mvcc_db_total_size_in_bytes`  
+- `etcd_disk_backend_commit_duration_seconds`  
