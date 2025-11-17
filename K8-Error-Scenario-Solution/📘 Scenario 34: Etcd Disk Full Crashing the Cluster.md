@@ -193,3 +193,10 @@ du -sh /var/lib/etcd/member/
 # Monitor compaction status
 etcdctl endpoint status -w json | jq -r '.[].Status.dbSize'
 ```
+
+**Etcd Maintenance Schedule**:  
+```markdown
+| Task                  | Frequency | Command                          |
+|-----------------------|-----------|----------------------------------|
+| Compact revisions     | Daily     | `etcdctl compact <revision>`     |
+| Defragment database   | Weekly    | `etcdctl defrag`                 |
