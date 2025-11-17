@@ -200,3 +200,6 @@ etcdctl endpoint status -w json | jq -r '.[].Status.dbSize'
 |-----------------------|-----------|----------------------------------|
 | Compact revisions     | Daily     | `etcdctl compact <revision>`     |
 | Defragment database   | Weekly    | `etcdctl defrag`                 |
+| Backup snapshot       | Daily     | `etcdctl snapshot save`          |
+| Check quota usage     | Hourly    | Monitor `db_total_size_in_bytes` |
+```
