@@ -189,3 +189,7 @@ etcdctl endpoint health --cluster
 
 # Analyze storage usage
 du -sh /var/lib/etcd/member/
+
+# Monitor compaction status
+etcdctl endpoint status -w json | jq -r '.[].Status.dbSize'
+```
