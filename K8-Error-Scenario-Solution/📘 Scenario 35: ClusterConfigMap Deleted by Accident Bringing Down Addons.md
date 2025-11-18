@@ -53,3 +53,11 @@ kubectl get events -A --sort-by=.lastTimestamp | tail -20
 ```
 
 ---
+
+## Root Cause  
+**Missing resource protection**:  
+1. No RBAC restrictions on critical ConfigMaps  
+2. Overly permissive cluster role bindings  
+3. Missing admission controller protections  
+
+---
