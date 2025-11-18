@@ -25,3 +25,17 @@ Accidental deletion of the `kube-root-ca.crt` ConfigMap caused widespread failur
   - Monitoring alerts flooded due to component failures  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Identify failing pods:
+```sh
+kubectl get pods -A --field-selector status.phase!=Running
+# Showed 20+ pods in CreateContainerConfigError
+```
+
+### 2. Check pod events:
+```sh
+kubectl describe pod -n kube-system coredns-<hash> | grep -A10 Events
+# Output: "MountVolume.SetUp failed: configmap "kube-root-ca.crt" not found"
+```
