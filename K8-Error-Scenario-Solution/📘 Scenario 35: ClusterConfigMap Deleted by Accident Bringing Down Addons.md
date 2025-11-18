@@ -10,3 +10,18 @@
 Accidental deletion of the `kube-root-ca.crt` ConfigMap caused widespread failures across system workloads that relied on it for TLS trust, breaking core cluster functionality.
 
 ---
+
+## What Happened  
+- **Accidental deletion**:  
+  - User ran `kubectl delete cm kube-root-ca.crt -n kube-system` during cleanup  
+  - No RBAC restrictions prevented the deletion  
+- **Immediate impact**:  
+  - CoreDNS pods failed with `configmap "kube-root-ca.crt" not found`  
+  - Metrics-server, ingress controllers, and service mesh sidecars crashed  
+  - Pods stuck in `CreateContainerConfigError` state  
+- **Cascading effects**:  
+  - Service discovery broken due to DNS failures  
+  - HPA unable to scale due to missing metrics  
+  - Monitoring alerts flooded due to component failures  
+
+---
