@@ -39,3 +39,17 @@ kubectl get pods -A --field-selector status.phase!=Running
 kubectl describe pod -n kube-system coredns-<hash> | grep -A10 Events
 # Output: "MountVolume.SetUp failed: configmap "kube-root-ca.crt" not found"
 ```
+
+### 3. Verify ConfigMap existence:
+```sh
+kubectl get cm kube-root-ca.crt -n kube-system
+# Error: Error from server (NotFound): configmaps "kube-root-ca.crt" not found
+```
+
+### 4. Audit recent changes:
+```sh
+kubectl get events -A --sort-by=.lastTimestamp | tail -20
+# Showed deletion event
+```
+
+---
