@@ -61,3 +61,14 @@ kubectl get events -A --sort-by=.lastTimestamp | tail -20
 3. Missing admission controller protections  
 
 ---
+
+## Fix/Workaround  
+
+### Emergency Recovery:
+```sh
+# 1. Recreate the ConfigMap from backup cluster
+kubectl get cm kube-root-ca.crt -n kube-system --context=backup-cluster -o yaml | \
+  kubectl apply -f -
+
+# 2. Restart affected deployments
+kubectl rollout restart deployment -n kube-system coredns metrics-server
