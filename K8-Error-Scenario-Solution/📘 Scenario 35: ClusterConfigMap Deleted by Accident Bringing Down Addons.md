@@ -72,3 +72,8 @@ kubectl get cm kube-root-ca.crt -n kube-system --context=backup-cluster -o yaml 
 
 # 2. Restart affected deployments
 kubectl rollout restart deployment -n kube-system coredns metrics-server
+
+
+# 3. Verify recovery
+kubectl get pods -n kube-system -l k8s-app=kube-dns --watch
+```
