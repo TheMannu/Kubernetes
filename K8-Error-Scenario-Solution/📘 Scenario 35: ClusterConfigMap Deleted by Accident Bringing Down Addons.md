@@ -94,3 +94,10 @@ data:
 ```
 
 ---
+
+## Lessons Learned  
+⚠️ **Some resources are critical**: Cannot be recreated from application logic  
+⚠️ **RBAC is essential**: Must protect system namespaces  
+⚠️ **Dependencies are hidden**: Many components rely on implicit resources  
+
+---
