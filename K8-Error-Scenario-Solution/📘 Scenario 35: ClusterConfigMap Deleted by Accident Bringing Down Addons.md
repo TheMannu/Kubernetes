@@ -101,3 +101,20 @@ data:
 ⚠️ **Dependencies are hidden**: Many components rely on implicit resources  
 
 ---
+
+## Prevention Framework  
+
+### 1. RBAC Hardening
+```yaml
+# ClusterRole to prevent critical resource deletion
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: protected-resources
+rules:
+- apiGroups: [""]
+  resources: ["configmaps"]
+  resourceNames: ["kube-root-ca.crt", "kube-dns", "cluster-info"]
+  verbs: ["get", "list", "watch"]
+  # Note: No delete, update, or patch
+```
