@@ -77,3 +77,20 @@ kubectl rollout restart deployment -n kube-system coredns metrics-server
 # 3. Verify recovery
 kubectl get pods -n kube-system -l k8s-app=kube-dns --watch
 ```
+
+### Manual Recreation (if no backup):
+```yaml
+# kube-root-ca.crt recreation
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kube-root-ca.crt
+  namespace: kube-system
+data:
+  ca.crt: |
+    -----BEGIN CERTIFICATE-----
+    # Copy from /etc/kubernetes/pki/ca.crt on control plane
+    -----END CERTIFICATE-----
+```
+
+---
