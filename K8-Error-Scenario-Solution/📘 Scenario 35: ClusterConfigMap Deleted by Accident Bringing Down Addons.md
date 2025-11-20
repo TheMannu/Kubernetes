@@ -155,3 +155,25 @@ spec:
   labels:
     severity: warning
 ```
+
+### 4. Backup Strategy
+```yaml
+# Velero backup for critical resources
+apiVersion: velero.io/v1
+kind: Schedule
+metadata:
+  name: critical-configs-daily
+  namespace: velero
+spec:
+  schedule: "@daily"
+  template:
+    includedNamespaces:
+    - kube-system
+    includedResources:
+    - configmaps
+    labelSelector:
+      matchExpressions:
+      - key: critical
+        operator: In
+        values: ["true"]
+```
