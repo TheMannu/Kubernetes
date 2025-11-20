@@ -138,3 +138,14 @@ spec:
     - "kube-dns"
     - "cluster-info"
 ```
+
+### 3. Monitoring
+```yaml
+# Prometheus alerts
+- alert: CriticalConfigMapMissing
+  expr: absent(kube_configmap_metadata{namespace="kube-system",configmap="kube-root-ca.crt"})
+  for: 1m
+  labels:
+    severity: critical
+  annotations:
+    summary: "Critical ConfigMap kube-root-ca.crt is missing"
