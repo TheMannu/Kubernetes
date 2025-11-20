@@ -149,3 +149,9 @@ spec:
     severity: critical
   annotations:
     summary: "Critical ConfigMap kube-root-ca.crt is missing"
+
+- alert: PodConfigErrors
+  expr: increase(kube_pod_container_status_waiting_reason{reason="CreateContainerConfigError"}[5m]) > 0
+  labels:
+    severity: warning
+```
