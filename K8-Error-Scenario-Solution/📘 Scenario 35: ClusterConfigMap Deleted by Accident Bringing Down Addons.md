@@ -118,3 +118,23 @@ rules:
   verbs: ["get", "list", "watch"]
   # Note: No delete, update, or patch
 ```
+
+### 2. Admission Control
+```yaml
+# OPA/Gatekeeper constraint
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sProtectedConfigMaps
+metadata:
+  name: protected-configmaps
+spec:
+  match:
+    kinds:
+    - apiGroups: [""]
+      kinds: ["ConfigMap"]
+    namespaces: ["kube-system"]
+  parameters:
+    protectedNames:
+    - "kube-root-ca.crt"
+    - "kube-dns"
+    - "cluster-info"
+```
