@@ -177,3 +177,11 @@ spec:
         operator: In
         values: ["true"]
 ```
+
+---
+
+**Key Protected Resources**:  
+- `kube-root-ca.crt` (cluster CA bundle)  
+- `kube-dns` (CoreDNS configuration)  
+- `cluster-info` (bootstrap information)  
+- Extension API server certificates  
