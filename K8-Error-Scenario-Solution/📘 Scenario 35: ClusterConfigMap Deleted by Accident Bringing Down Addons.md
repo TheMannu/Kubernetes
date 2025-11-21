@@ -177,7 +177,6 @@ spec:
         operator: In
         values: ["true"]
 ```
-
 ---
 
 **Key Protected Resources**:  
