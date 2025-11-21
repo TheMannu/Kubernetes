@@ -193,3 +193,7 @@ kubectl get pods -A -o json | jq -r '.items[] | select(.spec.volumes[]?.configMa
 
 # Verify RBAC permissions
 kubectl auth can-i delete configmaps -n kube-system --as=system:serviceaccount:default:test-user
+
+# Audit recent deletions
+kubectl get event -A --field-selector reason=Killing --sort-by=.lastTimestamp
+```
