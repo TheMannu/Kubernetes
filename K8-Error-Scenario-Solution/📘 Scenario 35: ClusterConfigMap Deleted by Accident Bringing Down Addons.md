@@ -185,3 +185,11 @@ spec:
 - `kube-dns` (CoreDNS configuration)  
 - `cluster-info` (bootstrap information)  
 - Extension API server certificates  
+
+**Debugging Tools**:  
+```sh
+# Check which pods use a ConfigMap
+kubectl get pods -A -o json | jq -r '.items[] | select(.spec.volumes[]?.configMap?.name=="kube-root-ca.crt") | .metadata.namespace + "/" + .metadata.name'
+
+# Verify RBAC permissions
+kubectl auth can-i delete configmaps -n kube-system --as=system:serviceaccount:default:test-user
