@@ -210,3 +210,6 @@ kubectl get event -A --field-selector reason=Killing --sort-by=.lastTimestamp
    ```sh
    kubectl who-can delete configmaps -n kube-system
    ```
+3. **Document dependencies** for all system components  
+4. **Test recovery procedures** regularly  
+```
