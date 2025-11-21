@@ -197,3 +197,16 @@ kubectl auth can-i delete configmaps -n kube-system --as=system:serviceaccount:d
 # Audit recent deletions
 kubectl get event -A --field-selector reason=Killing --sort-by=.lastTimestamp
 ```
+
+**Resource Protection Policy**:  
+```markdown
+1. **Tag critical resources** with labels:  
+   ```yaml
+   labels:
+     cluster-critical: "true"
+     protected: "yes"
+   ```
+2. **Regular RBAC audits**:  
+   ```sh
+   kubectl who-can delete configmaps -n kube-system
+   ```
