@@ -34,3 +34,9 @@ kubectl get pods --all-namespaces --field-selector status.phase=Pending
 kubectl describe pod <pending-pod> | grep -A20 Events
 # Output: "0/15 nodes are available: 15 node(s) didn't match node affinity rules"
 ```
+
+### 3. Analyze affinity configuration:
+```sh
+kubectl get deployment <name> -o yaml | yq '.spec.template.spec.affinity'
+# Revealed invalid zone requirement
+```
