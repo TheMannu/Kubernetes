@@ -20,3 +20,11 @@ zone=us-west-3`
   - Emergency rollback required but also failed (same affinity rules)  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Check pending pods:
+```sh
+kubectl get pods --all-namespaces --field-selector status.phase=Pending
+# Showed 12 pods from affected deployment
+```
