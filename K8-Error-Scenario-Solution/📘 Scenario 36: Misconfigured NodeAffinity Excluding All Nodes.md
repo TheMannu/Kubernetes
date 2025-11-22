@@ -40,3 +40,12 @@ kubectl describe pod <pending-pod> | grep -A20 Events
 kubectl get deployment <name> -o yaml | yq '.spec.template.spec.affinity'
 # Revealed invalid zone requirement
 ```
+
+### 4. Verify available node labels:
+```sh
+kubectl get nodes -o json | jq -r '.items[].metadata.labels | 
+  ."topology.kubernetes.io/zone"' | sort | uniq
+# Output: us-west-1, us-west-2 (no us-west-3)
+```
+
+---
