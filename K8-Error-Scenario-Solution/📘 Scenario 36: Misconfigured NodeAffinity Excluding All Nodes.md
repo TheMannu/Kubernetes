@@ -28,3 +28,9 @@ zone=us-west-3`
 kubectl get pods --all-namespaces --field-selector status.phase=Pending
 # Showed 12 pods from affected deployment
 ```
+
+### 2. Inspect scheduling events:
+```sh
+kubectl describe pod <pending-pod> | grep -A20 Events
+# Output: "0/15 nodes are available: 15 node(s) didn't match node affinity rules"
+```
