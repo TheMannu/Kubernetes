@@ -85,3 +85,19 @@ kubectl patch deployment critical-app -p '{
   }
 }'
 ```
+
+### Long-term Solution:
+```yaml
+# Use preferredDuringScheduling for soft constraints
+affinity:
+  nodeAffinity:
+    preferredDuringSchedulingIgnoredDuringExecution:
+    - weight: 100
+      preference:
+        matchExpressions:
+        - key: topology.kubernetes.io/zone
+          operator: In
+          values: ["us-west-1"]
+```
+
+---
