@@ -57,3 +57,31 @@ kubectl get nodes -o json | jq -r '.items[].metadata.labels |
 3. Copy-paste error from different environment configuration  
 
 ---
+
+## Fix/Workaround  
+
+### Immediate Resolution:
+```sh
+# 1. Patch deployment with correct affinity
+kubectl patch deployment critical-app -p '{
+  "spec": {
+    "template": {
+      "spec": {
+        "affinity": {
+          "nodeAffinity": {
+            "requiredDuringSchedulingIgnoredDuringExecution": {
+              "nodeSelectorTerms": [{
+                "matchExpressions": [{
+                  "key": "topology.kubernetes.io/zone",
+                  "operator": "In",
+                  "values": ["us-west-1", "us-west-2"]
+                }]
+              }]
+            }
+          }
+        }
+      }
+    }
+  }
+}'
+```
