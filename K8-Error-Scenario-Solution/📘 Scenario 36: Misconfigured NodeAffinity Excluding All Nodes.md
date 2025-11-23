@@ -49,3 +49,11 @@ kubectl get nodes -o json | jq -r '.items[].metadata.labels |
 ```
 
 ---
+
+## Root Cause  
+**Affinity validation gap**:  
+1. Hard `requiredDuringScheduling` constraints with invalid values  
+2. No pre-deployment validation of node labels  
+3. Copy-paste error from different environment configuration  
+
+---
