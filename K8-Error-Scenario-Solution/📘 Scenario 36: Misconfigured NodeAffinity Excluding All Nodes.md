@@ -101,3 +101,10 @@ affinity:
 ```
 
 ---
+
+## Lessons Learned  
+⚠️ **Required affinity is absolute**: Invalid rules block all scheduling  
+⚠️ **Environment drift happens**: Labels may differ across clusters  
+⚠️ **Soft constraints are safer**: `preferred` fails gracefully  
+
+---
