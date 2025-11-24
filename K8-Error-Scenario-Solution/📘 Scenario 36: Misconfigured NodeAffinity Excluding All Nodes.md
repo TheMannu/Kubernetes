@@ -127,3 +127,19 @@ spec:
     allowedZones: ["us-west-1", "us-west-2"]
     requireSoftAffinity: true  # Prefer soft constraints
 ```
+
+### 2. CI/CD Validation
+```sh
+# Pre-deployment node label check
+validate_affinity() {
+  local manifest=$1
+  local required_zones=$(yq '.spec.template.spec.affinity.nodeAffinity.requiredDuringSchedulingIgnoredDuringExecution.nodeSelectorTerms[].matchExpressions[] | select(.key=="topology.kubernetes.io/zone") | .values[]' $manifest)
+  
+  for zone in $required_zones; do
+    if ! kubectl get nodes -o json | jq -e ".items[].metadata.labels.\"topology.kubernetes.io/zone\" | select(. == \"$zone\")" > /dev/null; then
+      echo "ERROR: Zone $zone not found in cluster"
+      exit 1
+    fi
+  done
+}
+```
