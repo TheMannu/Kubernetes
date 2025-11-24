@@ -183,3 +183,9 @@ spec:
 ```
 
 ---
+
+**Key Affinity Best Practices**:  
+- Use `preferredDuringScheduling` for availability requirements  
+- Always include fallback `nodeSelectorTerms`  
+- Validate labels exist before applying hard requirements  
+- Test affinity rules in non-production first  
