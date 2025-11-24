@@ -143,3 +143,21 @@ validate_affinity() {
   done
 }
 ```
+
+### 3. Monitoring
+```yaml
+# Prometheus alerts
+- alert: PodSchedulingFailures
+  expr: increase(kube_pod_status_phase{phase="Pending"}[15m]) > 10
+  for: 10m
+  labels:
+    severity: warning
+  annotations:
+    summary: "High number of pending pods ({{ $value }})"
+
+- alert: NodeAffinityMismatch
+  expr: kube_pod_status_reason{reason="NodeAffinity"} > 0
+  for: 5m
+  labels:
+    severity: critical
+```
