@@ -189,3 +189,12 @@ spec:
 - Always include fallback `nodeSelectorTerms`  
 - Validate labels exist before applying hard requirements  
 - Test affinity rules in non-production first  
+
+**Debugging Tools**:  
+```sh
+# Check available node labels
+kubectl get nodes --show-labels | grep zone
+
+# Simulate scheduling
+kubectl create job test-schedule --image=busybox --dry-run=client -o yaml | \
+  kubectl apply -f - && kubectl describe job test-schedule
