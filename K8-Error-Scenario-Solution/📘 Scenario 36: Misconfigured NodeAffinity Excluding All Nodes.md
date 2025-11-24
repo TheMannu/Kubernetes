@@ -161,3 +161,25 @@ validate_affinity() {
   labels:
     severity: critical
 ```
+
+### 4. Deployment Safeguards
+```yaml
+# Kustomize patch for safe defaults
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: critical-app
+spec:
+  template:
+    spec:
+      affinity:
+        nodeAffinity:
+          # Always include fallback option
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: topology.kubernetes.io/zone
+                operator: Exists  # Fallback to any zone
+```
+
+---
