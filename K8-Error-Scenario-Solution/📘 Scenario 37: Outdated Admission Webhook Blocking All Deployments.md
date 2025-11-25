@@ -38,3 +38,17 @@ kubectl create deployment test --image=nginx --dry-run=client -o yaml | kubectl 
 kubectl -n kube-system logs -l component=kube-apiserver --tail=100 | grep -i webhook
 # Output: "failed calling webhook: Post https://webhook-service.webhook-ns.svc:443/mutate?timeout=10s: x509: certificate expired"
 ```
+
+### 3. Inspect webhook configuration:
+```sh
+kubectl get validatingwebhookconfigurations,mutatingwebhookconfigurations -o wide
+# Identified problematic webhook
+```
+
+### 4. Verify webhook pod status:
+```sh
+kubectl -n webhook-ns get pods -l app=webhook
+# Showed Running but TLS certificate expired
+```
+
+---
