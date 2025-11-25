@@ -203,3 +203,13 @@ kubectl create job test-schedule --image=busybox --dry-run=client -o yaml | \
 kubectl get pods -A -o json | jq -r '.items[] | select(.spec.affinity) | 
   .metadata.namespace + "/" + .metadata.name'
 ```
+
+**Affinity Strategy Guide**:  
+```markdown
+| Use Case                  | Recommendation           | Example                      |
+|---------------------------|--------------------------|------------------------------|
+| High availability         | `preferred` + weights    | Spread across zones          |
+| Hardware requirements     | `required` + fallback    | GPU nodes                    |
+| Cost optimization         | `preferred`              | Spot instances               |
+| Regulatory compliance     | `required` (validated)   | Specific regions only        |
+```
