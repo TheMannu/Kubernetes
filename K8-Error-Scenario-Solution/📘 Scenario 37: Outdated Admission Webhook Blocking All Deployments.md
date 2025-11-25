@@ -24,3 +24,17 @@ An expired TLS certificate on a mutating admission webhook caused all resource c
   - API server couldn't reach webhook endpoint due to TLS errors  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Test resource creation:
+```sh
+kubectl create deployment test --image=nginx --dry-run=client -o yaml | kubectl apply -f -
+# Error: "Internal error occurred: failed calling webhook"
+```
+
+### 2. Check API server logs:
+```sh
+kubectl -n kube-system logs -l component=kube-apiserver --tail=100 | grep -i webhook
+# Output: "failed calling webhook: Post https://webhook-service.webhook-ns.svc:443/mutate?timeout=10s: x509: certificate expired"
+```
