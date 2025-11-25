@@ -198,3 +198,8 @@ kubectl get nodes --show-labels | grep zone
 # Simulate scheduling
 kubectl create job test-schedule --image=busybox --dry-run=client -o yaml | \
   kubectl apply -f - && kubectl describe job test-schedule
+
+# Audit current affinity usage
+kubectl get pods -A -o json | jq -r '.items[] | select(.spec.affinity) | 
+  .metadata.namespace + "/" + .metadata.name'
+```
