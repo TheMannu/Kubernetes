@@ -60,3 +60,15 @@ kubectl -n webhook-ns get pods -l app=webhook
 3. Webhook configured without proper failure policies  
 
 ---
+
+## Fix/Workaround  
+
+### Emergency Recovery:
+```sh
+# 1. Temporarily disable webhook
+kubectl patch mutatingwebhookconfiguration admission-webhook -p '{
+  "webhooks": [{
+    "name": "admission-webhook.example.com",
+    "failurePolicy": "Ignore"
+  }]
+}'
