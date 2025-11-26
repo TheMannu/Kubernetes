@@ -72,3 +72,11 @@ kubectl patch mutatingwebhookconfiguration admission-webhook -p '{
     "failurePolicy": "Ignore"
   }]
 }'
+
+
+# 2. Deploy critical workloads
+kubectl apply -f emergency-patch/
+
+# 3. Renew and redeploy webhook
+kubectl create secret tls webhook-tls --cert=new.crt --key=new.key -n webhook-ns
+kubectl rollout restart deployment/webhook -n webhook-ns
