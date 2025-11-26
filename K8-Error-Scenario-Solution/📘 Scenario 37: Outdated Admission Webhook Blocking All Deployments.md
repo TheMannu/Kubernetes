@@ -89,3 +89,32 @@ kubectl patch mutatingwebhookconfiguration admission-webhook -p '{
   }]
 }'
 ```
+
+### Long-term Solution:
+```yaml
+# cert-manager Issuer for automatic renewal
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: webhook-ca
+  namespace: webhook-ns
+spec:
+  ca:
+    secretName: webhook-ca-secret
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: webhook-tls
+  namespace: webhook-ns
+spec:
+  secretName: webhook-tls
+  issuerRef:
+    name: webhook-ca
+    kind: Issuer
+  dnsNames:
+  - webhook-service.webhook-ns.svc
+  - webhook-service.webhook-ns.svc.cluster.local
+```
+
+---
