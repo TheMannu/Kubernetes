@@ -80,3 +80,12 @@ kubectl apply -f emergency-patch/
 # 3. Renew and redeploy webhook
 kubectl create secret tls webhook-tls --cert=new.crt --key=new.key -n webhook-ns
 kubectl rollout restart deployment/webhook -n webhook-ns
+
+# 4. Restore webhook enforcement
+kubectl patch mutatingwebhookconfiguration admission-webhook -p '{
+  "webhooks": [{
+    "name": "admission-webhook.example.com", 
+    "failurePolicy": "Fail"
+  }]
+}'
+```
