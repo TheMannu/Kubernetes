@@ -52,3 +52,11 @@ kubectl -n webhook-ns get pods -l app=webhook
 ```
 
 ---
+
+## Root Cause  
+**Certificate lifecycle failure**:  
+1. Manual certificate management without renewal automation  
+2. No monitoring for certificate expiration  
+3. Webhook configured without proper failure policies  
+
+---
