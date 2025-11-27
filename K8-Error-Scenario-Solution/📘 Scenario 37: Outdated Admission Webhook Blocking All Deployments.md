@@ -125,3 +125,20 @@ spec:
 ⚠️ **Failure policies matter**: `Fail` vs `Ignore` has major operational impact  
 
 ---
+
+## Prevention Framework  
+
+### 1. Certificate Automation
+```yaml
+# cert-manager configuration with alerts
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: webhook-tls
+  annotations:
+    # Alert 30 days before expiry
+    cert-manager.io/alert-before-expiry: "720h"
+spec:
+  renewBefore: 240h  # Renew 10 days before expiry
+  duration: 2160h    # 90-day certificates
+```
