@@ -161,3 +161,14 @@ webhooks:
       namespace: webhook-ns
       path: /mutate
 ```
+
+### 3. Monitoring
+```yaml
+# Prometheus alerts
+- alert: WebhookCertificateExpiring
+  expr: certmanager_certificate_expiration_timestamp_seconds - time() < 86400 * 30  # 30 days
+  for: 5m
+  labels:
+    severity: warning
+  annotations:
+    summary: "Webhook certificate expiring in {{ $value | humanizeDuration }}"
