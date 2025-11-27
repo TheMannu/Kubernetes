@@ -172,3 +172,12 @@ webhooks:
     severity: warning
   annotations:
     summary: "Webhook certificate expiring in {{ $value | humanizeDuration }}"
+
+- alert: WebhookCallFailures
+  expr: rate(apiserver_admission_webhook_rejection_count[5m]) > 0
+  for: 2m
+  labels:
+    severity: critical
+  annotations:
+    summary: "Webhook rejecting requests ({{ $value }} errors/min)"
+```
