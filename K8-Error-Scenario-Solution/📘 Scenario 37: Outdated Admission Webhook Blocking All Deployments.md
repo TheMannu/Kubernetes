@@ -118,3 +118,10 @@ spec:
 ```
 
 ---
+
+## Lessons Learned  
+⚠️ **Webhooks are single points of failure**: Can block entire cluster operations  
+⚠️ **TLS certificates have hard deadlines**: Must be proactively managed  
+⚠️ **Failure policies matter**: `Fail` vs `Ignore` has major operational impact  
+
+---
