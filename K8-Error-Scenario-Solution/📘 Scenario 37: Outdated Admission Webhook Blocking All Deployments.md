@@ -142,3 +142,22 @@ spec:
   renewBefore: 240h  # Renew 10 days before expiry
   duration: 2160h    # 90-day certificates
 ```
+
+### 2. Webhook Failure Policy
+```yaml
+# Safe webhook configuration
+apiVersion: admissionregistration.k8s.io/v1
+kind: MutatingWebhookConfiguration
+metadata:
+  name: safe-webhook
+webhooks:
+- name: safe-webhook.example.com
+  failurePolicy: Ignore  # Fail open during outages
+  sideEffects: None
+  timeoutSeconds: 5
+  clientConfig:
+    service:
+      name: webhook-service
+      namespace: webhook-ns
+      path: /mutate
+```
