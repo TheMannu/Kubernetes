@@ -212,3 +212,8 @@ openssl s_client -connect webhook-service.webhook-ns.svc:443 -servername webhook
 # Test webhook connectivity
 kubectl run -it --rm webhook-test --image=curlimages/curl -- \
   curl -v https://webhook-service.webhook-ns.svc:443/healthz
+
+# Audit webhook configurations
+kubectl get mutatingwebhookconfigurations,validatingwebhookconfigurations -o yaml | 
+  grep -E "name:|failurePolicy:"
+```
