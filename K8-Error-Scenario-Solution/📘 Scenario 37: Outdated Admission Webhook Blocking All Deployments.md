@@ -217,3 +217,13 @@ kubectl run -it --rm webhook-test --image=curlimages/curl -- \
 kubectl get mutatingwebhookconfigurations,validatingwebhookconfigurations -o yaml | 
   grep -E "name:|failurePolicy:"
 ```
+
+**Webhook Reliability Checklist**:  
+```markdown
+1. [ ] Configure `failurePolicy: Ignore` for graceful degradation  
+2. [ ] Set up cert-manager for automatic TLS rotation  
+3. [ ] Implement `/healthz` endpoint with certificate status  
+4. [ ] Monitor webhook latency and error rates  
+5. [ ] Test webhook failure scenarios in staging  
+6. [ ] Document emergency disable procedures  
+```
