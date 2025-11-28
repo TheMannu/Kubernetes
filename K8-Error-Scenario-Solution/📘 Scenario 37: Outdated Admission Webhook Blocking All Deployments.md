@@ -196,3 +196,10 @@ check_webhook_health() {
 ```
 
 ---
+
+**Key Webhook Best Practices**:  
+- Use `failurePolicy: Ignore` for non-critical validations  
+- Set reasonable `timeoutSeconds` (5-10s maximum)  
+- Implement comprehensive health checks  
+- Monitor certificate expiration proactively  
+- Test webhook failure scenarios regularly  
