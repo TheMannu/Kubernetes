@@ -203,3 +203,12 @@ check_webhook_health() {
 - Implement comprehensive health checks  
 - Monitor certificate expiration proactively  
 - Test webhook failure scenarios regularly  
+
+**Debugging Tools**:  
+```sh
+# Check webhook certificate expiry
+openssl s_client -connect webhook-service.webhook-ns.svc:443 -servername webhook-service.webhook-ns.svc 2>/dev/null | openssl x509 -noout -dates
+
+# Test webhook connectivity
+kubectl run -it --rm webhook-test --image=curlimages/curl -- \
+  curl -v https://webhook-service.webhook-ns.svc:443/healthz
