@@ -181,3 +181,18 @@ webhooks:
   annotations:
     summary: "Webhook rejecting requests ({{ $value }} errors/min)"
 ```
+
+### 4. Deployment Safeguards
+```sh
+# Pre-flight webhook health check
+check_webhook_health() {
+  local response=$(curl -s -o /dev/null -w "%{http_code}" \
+    https://webhook-service.webhook-ns.svc:443/healthz --connect-timeout 5)
+  if [ "$response" != "200" ]; then
+    echo "ERROR: Webhook health check failed"
+    exit 1
+  fi
+}
+```
+
+---
