@@ -218,6 +218,7 @@ kubectl get mutatingwebhookconfigurations,validatingwebhookconfigurations -o yam
   grep -E "name:|failurePolicy:"
 ```
 
+
 **Webhook Reliability Checklist**:  
 ```markdown
 1. [ ] Configure `failurePolicy: Ignore` for graceful degradation  
