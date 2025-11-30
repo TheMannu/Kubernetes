@@ -40,3 +40,17 @@ kubectl get nodes
 openssl x509 -in /etc/kubernetes/pki/apiserver.crt -noout -dates
 # Output: "notAfter=May 15 14:22:00 2023 GMT" (expired)
 ```
+
+### 3. Inspect API server logs:
+```sh
+journalctl -u kube-apiserver --no-pager -n 50 | grep -i cert
+# Showed TLS handshake failures
+```
+
+### 4. Verify all critical certificates:
+```sh
+kubeadm certs check-expiration
+# Revealed multiple expired certificates
+```
+
+---
