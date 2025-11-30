@@ -54,4 +54,11 @@ kubeadm certs check-expiration
 ```
 
 ---
+
+## Root Cause  
+**Certificate management gap**:  
+1. kubeadm default 1-year certificate lifespan  
+2. No automated certificate renewal process  
+3. Missing certificate expiration monitoring  
+
 ---
