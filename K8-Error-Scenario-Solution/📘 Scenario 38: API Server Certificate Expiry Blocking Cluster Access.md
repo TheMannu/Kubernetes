@@ -98,3 +98,32 @@ systemctl restart kube-apiserver
 ⚠️ **Silent time bombs**: No warnings until complete failure  
 
 ---
+
+## Prevention Framework  
+
+### 1. Automated Certificate Renewal
+```yaml
+# CronJob for certificate renewal
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: certificate-renewal
+  namespace: kube-system
+spec:
+  schedule: "0 3 1 */6 *"  # Every 6 months at 3 AM
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          hostNetwork: true
+          containers:
+          - name: renew-certs
+            image: k8s.gcr.io/kube-apiserver:v1.19.0
+            command:
+            - /bin/sh
+            - -c
+            - |
+              kubeadm certs renew all
+              systemctl restart kube-apiserver kube-controller-manager kube-scheduler
+          restartPolicy: OnFailure
+```
