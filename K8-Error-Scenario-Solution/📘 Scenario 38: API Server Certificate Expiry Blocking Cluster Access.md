@@ -80,3 +80,14 @@ cp /etc/kubernetes/admin.conf ~/.kube/config
 # 4. Verify cluster recovery
 kubectl get nodes
 ```
+
+### Alternative Manual Recovery:
+```sh
+# If kubeadm unavailable, manually regenerate certificates
+cd /etc/kubernetes/pki
+rm -f apiserver.crt apiserver.key
+kubeadm init phase certs apiserver --config /etc/kubernetes/kubeadm-config.yaml
+systemctl restart kube-apiserver
+```
+
+---
