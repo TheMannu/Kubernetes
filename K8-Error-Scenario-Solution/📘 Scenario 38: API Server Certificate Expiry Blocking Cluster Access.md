@@ -138,3 +138,12 @@ spec:
     severity: critical
   annotations:
     summary: "Kubernetes certificate expiring soon ({{ $value | humanizeDuration }})"
+
+- alert: CertificateExpired
+  expr: time() - kubelet_certificate_manager_client_expiration_seconds > 0
+  for: 1m
+  labels:
+    severity: emergency
+  annotations:
+    summary: "Certificate has expired!"
+```
