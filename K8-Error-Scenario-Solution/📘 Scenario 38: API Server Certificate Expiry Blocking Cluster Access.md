@@ -127,3 +127,14 @@ spec:
               systemctl restart kube-apiserver kube-controller-manager kube-scheduler
           restartPolicy: OnFailure
 ```
+
+### 2. Certificate Monitoring
+```yaml
+# Prometheus alerts for certificate expiration
+- alert: CertificateExpirySoon
+  expr: kubelet_certificate_manager_client_ttl_seconds < 86400 * 30  # 30 days
+  for: 5m
+  labels:
+    severity: critical
+  annotations:
+    summary: "Kubernetes certificate expiring soon ({{ $value | humanizeDuration }})"
