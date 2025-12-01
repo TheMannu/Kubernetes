@@ -62,3 +62,21 @@ kubeadm certs check-expiration
 3. Missing certificate expiration monitoring  
 
 ---
+
+## Fix/Workaround  
+
+### Emergency Recovery:
+```sh
+# 1. Renew all certificates (requires SSH access to control plane)
+kubeadm certs renew all --config /etc/kubernetes/kubeadm-config.yaml
+
+# 2. Restart control plane components
+kubeadm init phase control-plane all --config /etc/kubernetes/kubeadm-config.yaml
+
+# 3. Distribute new kubeconfigs
+kubeadm init phase kubeconfig all --config /etc/kubernetes/kubeadm-config.yaml
+cp /etc/kubernetes/admin.conf ~/.kube/config
+
+# 4. Verify cluster recovery
+kubectl get nodes
+```
