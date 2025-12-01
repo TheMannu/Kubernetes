@@ -91,3 +91,10 @@ systemctl restart kube-apiserver
 ```
 
 ---
+
+## Lessons Learned  
+⚠️ **Certificates have hard deadlines**: Expiration causes immediate failure  
+⚠️ **kubeadm doesn't auto-renew**: Manual intervention required annually  
+⚠️ **Silent time bombs**: No warnings until complete failure  
+
+---
