@@ -164,3 +164,9 @@ fi
 ```markdown
 ## Annual Certificate Maintenance
 **Schedule**: Every 11 months (30-day buffer)
+
+**Procedure**:
+1. Check expiration: `kubeadm certs check-expiration`
+2. Renew certificates: `kubeadm certs renew all`
+3. Restart control plane: `kubeadm init phase control-plane all`
+4. Verify: `kubectl get nodes --kubeconfig /etc/kubernetes/admin.conf`
