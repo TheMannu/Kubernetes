@@ -147,3 +147,15 @@ spec:
   annotations:
     summary: "Certificate has expired!"
 ```
+
+### 3. Regular Maintenance Procedures
+```sh
+# Quarterly certificate health check script
+#!/bin/bash
+CERT_CHECK=$(kubeadm certs check-expiration | grep -E 'apiserver|etcd' | grep -c 'EXPIRED')
+if [ "$CERT_CHECK" -gt 0 ]; then
+  echo "ALERT: Certificates expired or expiring soon"
+  kubeadm certs renew all
+  systemctl restart kube-apiserver kube-controller-manager kube-scheduler etcd
+fi
+```
