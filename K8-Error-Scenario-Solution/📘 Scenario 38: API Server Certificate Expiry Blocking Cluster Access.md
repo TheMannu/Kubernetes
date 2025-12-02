@@ -178,3 +178,9 @@ fi
 ```
 
 ---
+
+**Critical Certificates to Monitor**:  
+- `apiserver.crt` - API server TLS  
+- `apiserver-kubelet-client.crt` - kubelet authentication  
+- `front-proxy-client.crt` - API aggregation  
+- `etcd/peer.crt` - etcd cluster communication  
