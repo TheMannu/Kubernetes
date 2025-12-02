@@ -159,3 +159,8 @@ if [ "$CERT_CHECK" -gt 0 ]; then
   systemctl restart kube-apiserver kube-controller-manager kube-scheduler etcd
 fi
 ```
+
+### 4. Documentation & Runbooks
+```markdown
+## Annual Certificate Maintenance
+**Schedule**: Every 11 months (30-day buffer)
