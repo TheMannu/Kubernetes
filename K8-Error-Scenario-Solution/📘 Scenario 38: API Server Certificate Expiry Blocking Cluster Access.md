@@ -170,3 +170,11 @@ fi
 2. Renew certificates: `kubeadm certs renew all`
 3. Restart control plane: `kubeadm init phase control-plane all`
 4. Verify: `kubectl get nodes --kubeconfig /etc/kubernetes/admin.conf`
+
+**Emergency Access**:
+- SSH to control plane nodes required
+- kubeadm must be available
+- Backup `/etc/kubernetes/pki/` before operations
+```
+
+---
