@@ -184,3 +184,8 @@ fi
 - `apiserver-kubelet-client.crt` - kubelet authentication  
 - `front-proxy-client.crt` - API aggregation  
 - `etcd/peer.crt` - etcd cluster communication  
+
+**Certificate Lifespan Reference**:  
+```markdown
+| Certificate Type           | Default Lifespan | Renewal Command              |
+|----------------------------|------------------|------------------------------|
