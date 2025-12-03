@@ -199,3 +199,8 @@ fi
 ```sh
 # Check all certificate expirations
 kubeadm certs check-expiration
+
+# Manual certificate inspection
+for cert in /etc/kubernetes/pki/*.crt; do
+  echo "$cert: $(openssl x509 -in $cert -noout -enddate)"
+done
