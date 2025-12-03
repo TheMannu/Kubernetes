@@ -194,3 +194,8 @@ fi
 | front-proxy-client         | 1 year           | `kubeadm certs renew front-proxy-client` |
 | etcd-peer                  | 1 year           | `kubeadm certs renew etcd-peer` |
 ```
+
+**Debugging Tools**:  
+```sh
+# Check all certificate expirations
+kubeadm certs check-expiration
