@@ -204,3 +204,7 @@ kubeadm certs check-expiration
 for cert in /etc/kubernetes/pki/*.crt; do
   echo "$cert: $(openssl x509 -in $cert -noout -enddate)"
 done
+
+# Verify certificate chain
+openssl verify -CAfile /etc/kubernetes/pki/ca.crt /etc/kubernetes/pki/apiserver.crt
+```
