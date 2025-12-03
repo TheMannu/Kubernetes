@@ -189,3 +189,8 @@ fi
 ```markdown
 | Certificate Type           | Default Lifespan | Renewal Command              |
 |----------------------------|------------------|------------------------------|
+| apiserver                  | 1 year           | `kubeadm certs renew apiserver` |
+| apiserver-kubelet-client   | 1 year           | `kubeadm certs renew apiserver-kubelet-client` |
+| front-proxy-client         | 1 year           | `kubeadm certs renew front-proxy-client` |
+| etcd-peer                  | 1 year           | `kubeadm certs renew etcd-peer` |
+```
