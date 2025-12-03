@@ -208,3 +208,12 @@ done
 # Verify certificate chain
 openssl verify -CAfile /etc/kubernetes/pki/ca.crt /etc/kubernetes/pki/apiserver.crt
 ```
+
+**Certificate Management Policy**:  
+```markdown
+1. **Annual Renewal**: Schedule every 11 months  
+2. **Monitoring**: Alert 30, 15, and 7 days before expiry  
+3. **Backup**: Archive `/etc/kubernetes/pki/` before operations  
+4. **Testing**: Validate cluster operations post-renewal  
+5. **Documentation**: Maintain runbook with emergency procedures  
+```
