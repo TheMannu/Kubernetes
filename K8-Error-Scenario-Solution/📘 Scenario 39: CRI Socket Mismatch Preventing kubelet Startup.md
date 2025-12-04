@@ -51,3 +51,11 @@ cat /var/lib/kubelet/kubeadm-flags.env
 ```
 
 ---
+
+## Root Cause  
+**Configuration drift during migration**:  
+1. containerd installed but kubelet not reconfigured  
+2. No validation step post-installation  
+3. Inconsistent migration procedures across nodes  
+
+---
