@@ -37,3 +37,17 @@ systemctl status kubelet --no-pager
 journalctl -u kubelet --no-pager -n 100 | grep -i "CRI\|socket"
 # Showed: "connect: no such file or directory: /run/dockershim.sock"
 ```
+
+### 3. Verify CRI socket existence:
+```sh
+ls -la /run/containerd/containerd.sock
+# Socket existed but kubelet wasn't configured to use it
+```
+
+### 4. Check kubelet configuration:
+```sh
+cat /var/lib/kubelet/kubeadm-flags.env
+# Output: --container-runtime=remote --container-runtime-endpoint=unix:///run/dockershim.sock
+```
+
+---
