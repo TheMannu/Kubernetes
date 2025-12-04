@@ -23,3 +23,17 @@ A misconfigured CRI socket path prevented kubelet from communicating with contai
   - Mixed runtime environment created operational complexity  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Check kubelet status:
+```sh
+systemctl status kubelet --no-pager
+# Output: "Failed to start kubelet: failed to connect to CRI socket"
+```
+
+### 2. Inspect kubelet logs:
+```sh
+journalctl -u kubelet --no-pager -n 100 | grep -i "CRI\|socket"
+# Showed: "connect: no such file or directory: /run/dockershim.sock"
+```
