@@ -98,3 +98,10 @@ kubectl get nodes $(hostname) -o jsonpath='{.status.conditions[?(@.type=="Ready"
 ```
 
 ---
+
+## Lessons Learned  
+⚠️ **CRI configuration is critical**: kubelet cannot function without valid CRI socket  
+⚠️ **Migration requires coordination**: All configuration files must be updated  
+⚠️ **Validation is mandatory**: Must verify runtime connectivity post-changes  
+
+---
