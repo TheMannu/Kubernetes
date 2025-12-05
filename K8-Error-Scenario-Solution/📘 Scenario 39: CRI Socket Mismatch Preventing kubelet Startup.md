@@ -119,3 +119,21 @@ kubectl get nodes $(hostname) -o jsonpath='{.status.conditions[?(@.type=="Ready"
       name: containerd.io
       state: latest
   
+  - name: Update kubelet configuration
+    lineinfile:
+      path: /var/lib/kubelet/kubeadm-flags.env
+      regexp: 'dockershim\.sock'
+      line: '--container-runtime-endpoint=unix:///run/containerd/containerd.sock'
+    
+  - name: Restart kubelet
+    systemd:
+      name: kubelet
+      state: restarted
+      
+  - name: Verify node health
+    command: kubectl get node {{ inventory_hostname }}
+    register: node_status
+    until: node_status.stdout | search("Ready")
+    retries: 10
+    delay: 30
+```
