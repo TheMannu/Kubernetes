@@ -105,3 +105,17 @@ kubectl get nodes $(hostname) -o jsonpath='{.status.conditions[?(@.type=="Ready"
 ⚠️ **Validation is mandatory**: Must verify runtime connectivity post-changes  
 
 ---
+
+## Prevention Framework  
+
+### 1. Migration Automation
+```yaml
+# Ansible playbook for CRI migration
+- name: Migrate from Docker to containerd
+  hosts: k8s_nodes
+  tasks:
+  - name: Install containerd
+    apt:
+      name: containerd.io
+      state: latest
+  
