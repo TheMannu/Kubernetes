@@ -71,3 +71,7 @@ echo 'KUBELET_KUBEADM_ARGS="--container-runtime=remote --container-runtime-endpo
 # 2. Reload systemd and restart kubelet
 systemctl daemon-reload
 systemctl restart kubelet
+
+# 3. Verify node registration
+kubectl get nodes <node-name>
+```
