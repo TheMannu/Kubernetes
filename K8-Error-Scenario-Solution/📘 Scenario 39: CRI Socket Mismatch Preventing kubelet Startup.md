@@ -75,3 +75,15 @@ systemctl restart kubelet
 # 3. Verify node registration
 kubectl get nodes <node-name>
 ```
+
+### Automated Migration Script:
+```sh
+#!/bin/bash
+# migrate-cri.sh
+set -e
+
+echo "Stopping kubelet..."
+systemctl stop kubelet
+
+echo "Updating CRI socket configuration..."
+sed -i 's|dockershim\.sock|containerd/containerd\.sock|g' /var/lib/kubelet/kubeadm-flags.env
