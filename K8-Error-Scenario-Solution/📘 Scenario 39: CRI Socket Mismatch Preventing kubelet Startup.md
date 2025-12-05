@@ -59,3 +59,15 @@ cat /var/lib/kubelet/kubeadm-flags.env
 3. Inconsistent migration procedures across nodes  
 
 ---
+
+## Fix/Workaround  
+
+### Immediate Resolution:
+```sh
+# 1. Update kubelet configuration
+echo 'KUBELET_KUBEADM_ARGS="--container-runtime=remote --container-runtime-endpoint=unix:///run/containerd/containerd.sock"' \
+  > /var/lib/kubelet/kubeadm-flags.env
+
+# 2. Reload systemd and restart kubelet
+systemctl daemon-reload
+systemctl restart kubelet
