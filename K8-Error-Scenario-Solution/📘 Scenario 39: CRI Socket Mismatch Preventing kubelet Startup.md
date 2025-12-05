@@ -87,3 +87,14 @@ systemctl stop kubelet
 
 echo "Updating CRI socket configuration..."
 sed -i 's|dockershim\.sock|containerd/containerd\.sock|g' /var/lib/kubelet/kubeadm-flags.env
+
+echo "Restarting kubelet..."
+systemctl daemon-reload
+systemctl start kubelet
+
+echo "Verifying node status..."
+sleep 10
+kubectl get nodes $(hostname) -o jsonpath='{.status.conditions[?(@.type=="Ready")].status}'
+```
+
+---
