@@ -179,3 +179,17 @@ validate_cri_migration() {
   labels:
     severity: warning
 ```
+
+### 4. Documentation Standards
+```markdown
+## CRI Migration Checklist
+1. **Pre-migration**:
+   - [ ] Backup kubelet configuration
+   - [ ] Install and test containerd
+   - [ ] Drain node (`kubectl drain`)
+   
+2. **Migration**:
+   - [ ] Stop kubelet
+   - [ ] Update `/var/lib/kubelet/kubeadm-flags.env`
+   - [ ] Start kubelet
+   
