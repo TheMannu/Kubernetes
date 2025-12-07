@@ -161,3 +161,14 @@ validate_cri_migration() {
   fi
 }
 ```
+
+### 3. Monitoring
+```yaml
+# Prometheus alerts for CRI issues
+- alert: KubeletCRIConnectionFailed
+  expr: kubelet_runtime_operations_errors_total > 0
+  for: 2m
+  labels:
+    severity: critical
+  annotations:
+    summary: "Kubelet CRI connection failing ({{ $value }} errors)"
