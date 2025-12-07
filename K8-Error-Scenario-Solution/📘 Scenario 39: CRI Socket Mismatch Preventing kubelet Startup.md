@@ -137,3 +137,14 @@ kubectl get nodes $(hostname) -o jsonpath='{.status.conditions[?(@.type=="Ready"
     retries: 10
     delay: 30
 ```
+
+### 2. Pre-flight Validation
+```sh
+# Pre-migration validation script
+validate_cri_migration() {
+  # Check containerd installation
+  if ! systemctl is-active containerd > /dev/null; then
+    echo "ERROR: containerd not running"
+    exit 1
+  fi
+  
