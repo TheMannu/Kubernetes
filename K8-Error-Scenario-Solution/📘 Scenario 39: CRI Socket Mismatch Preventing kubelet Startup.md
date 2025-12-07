@@ -193,3 +193,10 @@ validate_cri_migration() {
    - [ ] Update `/var/lib/kubelet/kubeadm-flags.env`
    - [ ] Start kubelet
    
+3. **Post-migration**:
+   - [ ] Verify node status (`kubectl get node`)
+   - [ ] Test pod scheduling
+   - [ ] Remove Docker packages
+```
+
+---
