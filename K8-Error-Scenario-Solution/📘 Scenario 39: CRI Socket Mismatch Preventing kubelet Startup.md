@@ -172,3 +172,10 @@ validate_cri_migration() {
     severity: critical
   annotations:
     summary: "Kubelet CRI connection failing ({{ $value }} errors)"
+
+- alert: ContainerRuntimeNotReady
+  expr: kube_node_status_condition{condition="ContainerRuntimeNotReady",status="true"} == 1
+  for: 5m
+  labels:
+    severity: warning
+```
