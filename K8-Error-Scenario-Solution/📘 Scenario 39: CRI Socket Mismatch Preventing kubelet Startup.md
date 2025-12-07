@@ -148,3 +148,16 @@ validate_cri_migration() {
     exit 1
   fi
   
+  # Verify socket exists
+  if [ ! -S /run/containerd/containerd.sock ]; then
+    echo "ERROR: containerd socket not found"
+    exit 1
+  fi
+  
+  # Test CRI connectivity
+  if ! crictl version > /dev/null 2>&1; then
+    echo "ERROR: Cannot connect to containerd via CRI"
+    exit 1
+  fi
+}
+```
