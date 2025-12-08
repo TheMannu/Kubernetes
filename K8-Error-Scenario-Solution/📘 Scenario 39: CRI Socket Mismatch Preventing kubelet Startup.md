@@ -200,3 +200,8 @@ validate_cri_migration() {
 ```
 
 ---
+
+**Key Configuration Files**:  
+- `/var/lib/kubelet/kubeadm-flags.env` - kubelet runtime configuration  
+- `/etc/containerd/config.toml` - containerd configuration  
+- `/etc/crictl.yaml` - CRI CLI configuration  
