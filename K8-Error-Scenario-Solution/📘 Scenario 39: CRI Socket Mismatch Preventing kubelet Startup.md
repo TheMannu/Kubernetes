@@ -221,3 +221,8 @@ ps aux | grep kubelet | grep -o "\-\-container-runtime-endpoint=[^ ]*"
 # Inspect containerd logs
 journalctl -u containerd --no-pager -n 50
 ```
+
+**CRI Configuration Reference**:  
+```markdown
+| Runtime        | Socket Path                          | kubelet Argument                                  |
+|----------------|--------------------------------------|---------------------------------------------------|
