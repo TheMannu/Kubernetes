@@ -226,3 +226,8 @@ journalctl -u containerd --no-pager -n 50
 ```markdown
 | Runtime        | Socket Path                          | kubelet Argument                                  |
 |----------------|--------------------------------------|---------------------------------------------------|
+
+| Docker         | `/run/dockershim.sock`               | `unix:///run/dockershim.sock`                    |
+| containerd     | `/run/containerd/containerd.sock`    | `unix:///run/containerd/containerd.sock`         |
+| CRI-O          | `/run/crio/crio.sock`                | `unix:///run/crio/crio.sock`                     |
+```
