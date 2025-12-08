@@ -205,3 +205,19 @@ validate_cri_migration() {
 - `/var/lib/kubelet/kubeadm-flags.env` - kubelet runtime configuration  
 - `/etc/containerd/config.toml` - containerd configuration  
 - `/etc/crictl.yaml` - CRI CLI configuration  
+
+**Debugging Tools**:  
+```sh
+# Test CRI connectivity
+crictl version
+crictl images
+
+# Verify socket permissions
+ls -la /run/containerd/containerd.sock
+
+# Check kubelet runtime configuration
+ps aux | grep kubelet | grep -o "\-\-container-runtime-endpoint=[^ ]*"
+
+# Inspect containerd logs
+journalctl -u containerd --no-pager -n 50
+```
