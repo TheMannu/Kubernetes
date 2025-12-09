@@ -39,3 +39,17 @@ kubectl get events -A --sort-by=.lastTimestamp | grep -i "quota\|forbidden"
 kubectl get quota -A
 # Output showed 100% utilization across all namespaces
 ```
+
+### 3. Analyze quota definitions:
+```sh
+kubectl get quota -o yaml | yq '.spec.hard'
+# Revealed restrictive limits: cpu: "100m", memory: "256Mi"
+```
+
+### 4. Compare with actual usage:
+```sh
+kubectl top pods -A --no-headers | awk '{cpu+=$2; mem+=$3} END {print "CPU: " cpu "m, Memory: " mem "Mi"}'
+# Showed usage far exceeding new quota limits
+```
+
+---
