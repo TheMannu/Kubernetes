@@ -75,3 +75,21 @@ kubectl rollout restart deployment -n production
 # 3. Apply corrected quotas (after analysis)
 kubectl apply -f corrected-quotas.yaml
 ```
+
+### Gradual Quota Application:
+```yaml
+# Quota with buffer for existing workloads
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: namespace-quota
+spec:
+  hard:
+    requests.cpu: "2"
+    requests.memory: "4Gi"
+    limits.cpu: "4"
+    limits.memory: "8Gi"
+    pods: "50"
+```
+
+---
