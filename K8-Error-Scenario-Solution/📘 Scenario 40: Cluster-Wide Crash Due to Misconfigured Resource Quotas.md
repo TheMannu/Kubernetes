@@ -93,3 +93,10 @@ spec:
 ```
 
 ---
+
+## Lessons Learned  
+⚠️ **Quotas are enforcement boundaries**: Apply cautiously to avoid breaking existing workloads  
+⚠️ **Current usage matters**: Must baseline before setting limits  
+⚠️ **Dry-run is essential**: Test quota impact before enforcement  
+
+---
