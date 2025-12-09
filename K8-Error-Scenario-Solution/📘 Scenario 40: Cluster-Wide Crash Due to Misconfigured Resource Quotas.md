@@ -25,3 +25,17 @@ Overly restrictive resource quotas applied cluster-wide prevented all new pod sc
   - Emergency fixes blocked by quota restrictions  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Identify scheduling failures:
+```sh
+kubectl get events -A --sort-by=.lastTimestamp | grep -i "quota\|forbidden"
+# Showed "exceeded quota" errors across namespaces
+```
+
+### 2. Check quota usage:
+```sh
+kubectl get quota -A
+# Output showed 100% utilization across all namespaces
+```
