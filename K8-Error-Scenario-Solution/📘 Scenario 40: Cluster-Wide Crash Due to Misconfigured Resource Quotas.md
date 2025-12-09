@@ -53,3 +53,25 @@ kubectl top pods -A --no-headers | awk '{cpu+=$2; mem+=$3} END {print "CPU: " cp
 ```
 
 ---
+
+## Root Cause  
+**Aggressive quota enforcement without validation**:  
+1. Quotas applied without assessing current resource consumption  
+2. No dry-run or staged rollout  
+3. Missing monitoring for quota utilization trends  
+
+---
+
+## Fix/Workaround  
+
+### Emergency Recovery:
+```sh
+# 1. Temporarily remove restrictive quotas
+kubectl delete quota -A --all
+
+# 2. Restart critical deployments
+kubectl rollout restart deployment -n production
+
+# 3. Apply corrected quotas (after analysis)
+kubectl apply -f corrected-quotas.yaml
+```
