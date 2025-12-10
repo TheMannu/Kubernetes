@@ -120,3 +120,21 @@ validate_quota() {
   fi
 }
 ```
+
+### 2. Admission Control Safeguards
+```yaml
+# OPA/Gatekeeper constraint
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sValidResourceQuota
+metadata:
+  name: quota-change-validation
+spec:
+  match:
+    kinds:
+    - apiGroups: [""]
+      kinds: ["ResourceQuota"]
+  parameters:
+    maxReductionPercent: 20  # Cannot reduce quota by more than 20% at once
+    requiredLabels:
+    - change-request-id
+```
