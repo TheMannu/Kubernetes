@@ -138,3 +138,14 @@ spec:
     requiredLabels:
     - change-request-id
 ```
+
+### 3. Monitoring & Alerts
+```yaml
+# Prometheus alerts
+- alert: QuotaExceeded
+  expr: kube_resourcequota_status_used > kube_resourcequota * 0.9
+  for: 5m
+  labels:
+    severity: warning
+  annotations:
+    summary: "Namespace {{ $labels.namespace }} approaching quota limit"
