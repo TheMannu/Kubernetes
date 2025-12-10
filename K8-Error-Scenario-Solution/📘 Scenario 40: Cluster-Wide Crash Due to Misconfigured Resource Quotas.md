@@ -149,3 +149,11 @@ spec:
     severity: warning
   annotations:
     summary: "Namespace {{ $labels.namespace }} approaching quota limit"
+
+- alert: QuotaChangeImpact
+  expr: abs(delta(kube_resourcequota_status_used[1h])) > kube_resourcequota_status_used * 0.5
+  labels:
+    severity: critical
+  annotations:
+    summary: "Quota change causing major usage shift"
+```
