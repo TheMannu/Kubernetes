@@ -100,3 +100,23 @@ spec:
 ⚠️ **Dry-run is essential**: Test quota impact before enforcement  
 
 ---
+
+## Prevention Framework  
+
+### 1. Quota Validation Workflow
+```sh
+# Pre-apply quota validation script
+validate_quota() {
+  local namespace=$1
+  local quota_file=$2
+  
+  # Get current usage
+  local current_cpu=$(kubectl get quota -n $namespace -o json 2>/dev/null | jq '.items[].status.used."limits.cpu" // "0"' | sed 's/"//g')
+  local quota_cpu=$(yq '.spec.hard."limits.cpu"' $quota_file)
+  
+  if [ "$current_cpu" -gt "$quota_cpu" ]; then
+    echo "ERROR: Current CPU usage ($current_cpu) exceeds proposed quota ($quota_cpu)"
+    exit 1
+  fi
+}
+```
