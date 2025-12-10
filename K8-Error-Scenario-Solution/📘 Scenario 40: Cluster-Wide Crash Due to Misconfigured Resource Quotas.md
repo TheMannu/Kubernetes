@@ -157,3 +157,19 @@ spec:
   annotations:
     summary: "Quota change causing major usage shift"
 ```
+
+### 4. Change Management Process
+```markdown
+## Quota Change Protocol
+1. **Baseline current usage**:
+   ```sh
+   kubectl describe quota -n <namespace>
+   ```
+2. **Calculate safe limits** (current usage + 30% buffer)  
+3. **Dry-run simulation**:
+   ```sh
+   kubectl apply -f new-quota.yaml --dry-run=server
+   ```
+4. **Gradual rollout** using canary namespaces  
+5. **Monitor impact** for 24 hours before full rollout  
+```
