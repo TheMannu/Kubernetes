@@ -181,3 +181,8 @@ spec:
 - `kube_resourcequota_status_used` - current usage  
 - `kube_pod_resource_requests` - requested resources  
 - `kube_pod_resource_limits` - limit resources  
+
+**Debugging Tools**:  
+```sh
+# Check quota usage across all namespaces
+kubectl get quota -A -o custom-columns="NAMESPACE:.metadata.namespace,NAME:.metadata.name,CPU-REQ:.status.used.requests.cpu,CPU-LIM:.status.used.limits.cpu,MEM-REQ:.status.used.requests.memory,MEM-LIM:.status.used.limits.memory"
