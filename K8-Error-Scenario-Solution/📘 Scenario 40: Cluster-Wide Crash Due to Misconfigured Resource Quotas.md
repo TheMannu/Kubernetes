@@ -193,3 +193,12 @@ kubectl get pods -A -o json | jq -r '.items[] | select(.status.reason=="FailedCr
 # Simulate quota impact
 kubectl create quota test-quota --hard=cpu=1,memory=1Gi -n test-ns --dry-run=client -o yaml
 ```
+
+**Quota Design Best Practices**:  
+```markdown
+1. **Start generous**: Set initial quotas 2-3x current usage  
+2. **Use namespaces**: Isolate quotas by team/service  
+3. **Monitor trends**: Alert on 80% utilization  
+4. **Include buffers**: Account for scaling and spikes  
+5. **Review regularly**: Adjust quotas based on actual usage patterns  
+```
