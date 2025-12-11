@@ -173,3 +173,11 @@ spec:
 4. **Gradual rollout** using canary namespaces  
 5. **Monitor impact** for 24 hours before full rollout  
 ```
+
+---
+
+**Key Quota Metrics to Monitor**:  
+- `kube_resourcequota` - defined quota limits  
+- `kube_resourcequota_status_used` - current usage  
+- `kube_pod_resource_requests` - requested resources  
+- `kube_pod_resource_limits` - limit resources  
