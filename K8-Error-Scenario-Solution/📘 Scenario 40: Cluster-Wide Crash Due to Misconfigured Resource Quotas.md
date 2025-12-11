@@ -202,3 +202,11 @@ kubectl create quota test-quota --hard=cpu=1,memory=1Gi -n test-ns --dry-run=cli
 4. **Include buffers**: Account for scaling and spikes  
 5. **Review regularly**: Adjust quotas based on actual usage patterns  
 ```
+
+**Emergency Quota Override**:  
+```sh
+# In case of emergency, create temporary quota exemption
+kubectl create quota emergency-override -n production \
+  --hard=cpu=10,memory=20Gi,pods=100 \
+  --dry-run=client -o yaml | kubectl apply -f -
+```
