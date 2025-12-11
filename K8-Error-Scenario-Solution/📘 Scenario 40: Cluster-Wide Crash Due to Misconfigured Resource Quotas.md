@@ -172,7 +172,7 @@ spec:
    ```
 4. **Gradual rollout** using canary namespaces  
 5. **Monitor impact** for 24 hours before full rollout  
-```
+
 
 ---
 
@@ -186,3 +186,10 @@ spec:
 ```sh
 # Check quota usage across all namespaces
 kubectl get quota -A -o custom-columns="NAMESPACE:.metadata.namespace,NAME:.metadata.name,CPU-REQ:.status.used.requests.cpu,CPU-LIM:.status.used.limits.cpu,MEM-REQ:.status.used.requests.memory,MEM-LIM:.status.used.limits.memory"
+
+# Find pods affected by quota
+kubectl get pods -A -o json | jq -r '.items[] | select(.status.reason=="FailedCreate") | .metadata.namespace + "/" + .metadata.name'
+
+# Simulate quota impact
+kubectl create quota test-quota --hard=cpu=1,memory=1Gi -n test-ns --dry-run=client -o yaml
+```
