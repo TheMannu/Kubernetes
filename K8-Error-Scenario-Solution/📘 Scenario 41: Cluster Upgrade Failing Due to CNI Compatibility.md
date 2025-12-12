@@ -38,3 +38,17 @@ kubectl run -it --rm net-test --image=nicolaka/netshoot -- ping 8.8.8.8
 kubectl get pods -n kube-system -l app=cni-plugin
 # Showed CrashLoopBackOff
 ```
+
+### 3. Inspect CNI plugin logs:
+```sh
+kubectl logs -n kube-system -l app=cni-plugin --tail=50
+# Output: "failed to create CNI network: incompatible API version"
+```
+
+### 4. Verify CNI configuration:
+```sh
+kubectl debug node/<node> -it --image=busybox -- cat /etc/cni/net.d/10-custom-cni.conf
+# Showed CNI version "0.4.0" vs required "1.0.0"
+```
+
+---
