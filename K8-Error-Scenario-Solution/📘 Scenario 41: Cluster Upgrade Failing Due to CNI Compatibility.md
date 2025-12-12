@@ -66,3 +66,14 @@ kubectl debug node/<node> -it --image=busybox -- cat /etc/cni/net.d/10-custom-cn
 ```
 
 ---
+
+## Fix/Workaround  
+
+### Emergency Rollback:
+```sh
+# Option 1: Rollback control plane (if within rollback window)
+kubeadm upgrade apply v1.21.4 --force
+
+# Option 2: Upgrade CNI plugin immediately
+kubectl apply -f https://raw.githubusercontent.com/cni-plugin/releases/v1.0.0/deploy.yaml
+```
