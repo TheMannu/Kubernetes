@@ -24,3 +24,17 @@ A Kubernetes control plane upgrade to v1.22 broke all pod networking due to an i
   - Required v1.0.0+ for 1.22 compatibility  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Verify pod networking:
+```sh
+kubectl run -it --rm net-test --image=nicolaka/netshoot -- ping 8.8.8.8
+# Output: "connect: Network is unreachable"
+```
+
+### 2. Check CNI plugin status:
+```sh
+kubectl get pods -n kube-system -l app=cni-plugin
+# Showed CrashLoopBackOff
+```
