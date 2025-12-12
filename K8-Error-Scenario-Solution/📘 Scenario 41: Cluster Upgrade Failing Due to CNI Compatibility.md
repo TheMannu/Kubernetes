@@ -52,3 +52,17 @@ kubectl debug node/<node> -it --image=busybox -- cat /etc/cni/net.d/10-custom-cn
 ```
 
 ---
+
+### 3. Inspect CNI plugin logs:
+```sh
+kubectl logs -n kube-system -l app=cni-plugin --tail=50
+# Output: "failed to create CNI network: incompatible API version"
+```
+
+### 4. Verify CNI configuration:
+```sh
+kubectl debug node/<node> -it --image=busybox -- cat /etc/cni/net.d/10-custom-cni.conf
+# Showed CNI version "0.4.0" vs required "1.0.0"
+```
+
+---
