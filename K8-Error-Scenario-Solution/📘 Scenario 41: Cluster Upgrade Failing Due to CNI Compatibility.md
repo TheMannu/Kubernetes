@@ -91,3 +91,10 @@ kubectl run -it --rm connectivity-test --image=alpine -- ping -c 3 kubernetes.de
 ```
 
 ---
+
+## Lessons Learned  
+⚠️ **CNI is a critical dependency**: Must be upgraded in lockstep with Kubernetes  
+⚠️ **Version matrices matter**: Always check compatibility before upgrades  
+⚠️ **Partial upgrades are dangerous**: Control plane and CNI must be compatible  
+
+---
