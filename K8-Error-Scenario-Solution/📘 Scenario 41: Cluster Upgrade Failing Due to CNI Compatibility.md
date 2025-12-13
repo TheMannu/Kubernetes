@@ -110,3 +110,21 @@ kubectl run -it --rm connectivity-test --image=alpine -- ping -c 3 kubernetes.de
 4. [ ] Prepare rollback procedure  
 5. [ ] Document CNI upgrade steps separately  
 ```
+
+### 2. Automated Validation
+```sh
+# Pre-upgrade compatibility check script
+check_cni_compatibility() {
+  local k8s_version=$1
+  local cni_version=$(kubectl get ds cni-plugin -n kube-system -o jsonpath='{.spec.template.spec.containers[0].image}' | cut -d: -f2)
+  
+  case $k8s_version in
+    1.22|1.23)
+      if [[ $cni_version < v1.0.0 ]]; then
+        echo "ERROR: CNI plugin $cni_version incompatible with Kubernetes $k8s_version"
+        exit 1
+      fi
+      ;;
+  esac
+}
+```
