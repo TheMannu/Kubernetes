@@ -98,3 +98,15 @@ kubectl run -it --rm connectivity-test --image=alpine -- ping -c 3 kubernetes.de
 ⚠️ **Partial upgrades are dangerous**: Control plane and CNI must be compatible  
 
 ---
+
+## Prevention Framework  
+
+### 1. Upgrade Compatibility Checklist
+```markdown
+## Pre-Upgrade Validation
+1. [ ] Check CNI plugin compatibility matrix  
+2. [ ] Verify CNI configuration file version support  
+3. [ ] Test upgrade in staging environment  
+4. [ ] Prepare rollback procedure  
+5. [ ] Document CNI upgrade steps separately  
+```
