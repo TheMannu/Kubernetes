@@ -128,3 +128,21 @@ check_cni_compatibility() {
   esac
 }
 ```
+
+### 3. Monitoring
+```yaml
+# Prometheus alerts for CNI health
+- alert: CNINotReady
+  expr: kube_node_status_condition{condition="NetworkUnavailable",status="true"} == 1
+  for: 5m
+  labels:
+    severity: critical
+  annotations:
+    summary: "CNI networking unavailable on {{ $labels.node }}"
+
+- alert: PodNetworkErrors
+  expr: rate(kubelet_network_plugin_operations_errors_total[5m]) > 0
+  for: 2m
+  labels:
+    severity: warning
+```
