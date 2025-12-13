@@ -77,3 +77,17 @@ kubeadm upgrade apply v1.21.4 --force
 # Option 2: Upgrade CNI plugin immediately
 kubectl apply -f https://raw.githubusercontent.com/cni-plugin/releases/v1.0.0/deploy.yaml
 ```
+
+### Recovery Procedure:
+```sh
+# 1. Upgrade CNI DaemonSet
+kubectl set image daemonset/cni-plugin -n kube-system cni-plugin=mycni/cni-plugin:v1.0.0
+
+# 2. Restart kubelet on all nodes
+kubectl get nodes -o name | xargs -I{} kubectl debug {} -it --image=busybox -- systemctl restart kubelet
+
+# 3. Verify network recovery
+kubectl run -it --rm connectivity-test --image=alpine -- ping -c 3 kubernetes.default.svc.cluster.local
+```
+
+---
