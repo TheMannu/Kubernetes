@@ -156,3 +156,12 @@ check_cni_compatibility() {
 | 1.21.x     | v0.9.x     | Maximum support          |
 | 1.22.x     | v1.0.x     | Breaking API changes     |
 | 1.23.x     | v1.1.x     | Added new features       |
+
+**Upgrade Order**:
+1. Drain nodes
+2. Upgrade CNI plugin
+3. Upgrade kubelet
+4. Uncordon nodes
+```
+
+---
