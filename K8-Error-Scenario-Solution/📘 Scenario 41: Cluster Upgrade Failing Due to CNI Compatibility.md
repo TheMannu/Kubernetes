@@ -165,3 +165,9 @@ check_cni_compatibility() {
 ```
 
 ---
+
+**Key Compatibility Requirements**:  
+- CNI spec version compatibility  
+- Kubernetes API group changes  
+- RBAC permission requirements  
+- Container runtime interface changes  
