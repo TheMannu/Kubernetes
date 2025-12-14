@@ -176,3 +176,10 @@ check_cni_compatibility() {
 ```sh
 # Check CNI plugin version
 kubectl get ds -n kube-system -l app=cni-plugin -o yaml | grep image:
+
+# Verify CNI binary presence
+kubectl debug node/<node> -it --image=busybox -- ls -la /opt/cni/bin/
+
+# Test CNI configuration
+kubectl debug node/<node> -it --image=busybox -- cat /etc/cni/net.d/*.conf | jq .cniVersion
+```
