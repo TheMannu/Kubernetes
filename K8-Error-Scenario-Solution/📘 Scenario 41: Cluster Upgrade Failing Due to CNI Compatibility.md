@@ -146,3 +146,10 @@ check_cni_compatibility() {
   labels:
     severity: warning
 ```
+
+### 4. Documentation Standards
+```markdown
+## CNI Upgrade Protocol
+**Supported Version Matrix**:
+| Kubernetes | CNI Plugin | Notes                    |
+|------------|------------|--------------------------|
