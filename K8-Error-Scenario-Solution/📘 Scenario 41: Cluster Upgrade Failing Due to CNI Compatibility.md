@@ -153,3 +153,6 @@ check_cni_compatibility() {
 **Supported Version Matrix**:
 | Kubernetes | CNI Plugin | Notes                    |
 |------------|------------|--------------------------|
+| 1.21.x     | v0.9.x     | Maximum support          |
+| 1.22.x     | v1.0.x     | Breaking API changes     |
+| 1.23.x     | v1.1.x     | Added new features       |
