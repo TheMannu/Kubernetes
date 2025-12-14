@@ -171,3 +171,8 @@ check_cni_compatibility() {
 - Kubernetes API group changes  
 - RBAC permission requirements  
 - Container runtime interface changes  
+
+**Debugging Tools**:  
+```sh
+# Check CNI plugin version
+kubectl get ds -n kube-system -l app=cni-plugin -o yaml | grep image:
