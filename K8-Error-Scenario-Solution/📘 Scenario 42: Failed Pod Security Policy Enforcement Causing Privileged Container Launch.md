@@ -24,3 +24,11 @@ A PodSecurityPolicy (PSP) enforcement failure allowed privileged containers to r
   - Potential privilege escalation vectors exposed  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Verify pod security context:
+```sh
+kubectl get pod <pod-name> -o yaml | yq '.spec.containers[].securityContext.privileged'
+# Output: true (should have been denied)
+```
