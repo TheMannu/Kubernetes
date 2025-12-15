@@ -39,3 +39,17 @@ kubectl -n kube-system get pod -l component=kube-apiserver -o yaml | \
   grep -A5 "\-\-enable-admission-plugins"
 # Missing "PodSecurityPolicy" in list
 ```
+
+### 3. Audit PSP configuration:
+```sh
+kubectl get psp
+# Showed restrictive-psp with allowPrivilegeEscalation: false
+```
+
+### 4. Check namespace annotations:
+```sh
+kubectl get namespace default -o yaml | yq '.metadata.annotations'
+# Missing: pod-security.kubernetes.io/enforce
+```
+
+---
