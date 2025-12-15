@@ -32,3 +32,10 @@ A PodSecurityPolicy (PSP) enforcement failure allowed privileged containers to r
 kubectl get pod <pod-name> -o yaml | yq '.spec.containers[].securityContext.privileged'
 # Output: true (should have been denied)
 ```
+
+### 2. Check admission controllers:
+```sh
+kubectl -n kube-system get pod -l component=kube-apiserver -o yaml | \
+  grep -A5 "\-\-enable-admission-plugins"
+# Missing "PodSecurityPolicy" in list
+```
