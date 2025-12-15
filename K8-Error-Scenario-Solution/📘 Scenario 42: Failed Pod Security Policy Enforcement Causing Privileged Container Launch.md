@@ -53,3 +53,11 @@ kubectl get namespace default -o yaml | yq '.metadata.annotations'
 ```
 
 ---
+
+## Root Cause  
+**Admission controller gap**:  
+1. PSP admission controller not enabled in API server  
+2. Missing namespace enforcement annotations  
+3. No validation of security policy application  
+
+---
