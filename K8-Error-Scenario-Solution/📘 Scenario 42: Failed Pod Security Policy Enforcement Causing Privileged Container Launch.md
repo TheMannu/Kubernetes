@@ -94,3 +94,10 @@ addons:
 ```
 
 ---
+
+## Lessons Learned  
+⚠️ **PSPs require admission controllers**: Policies alone don't enforce security  
+⚠️ **Managed services have limitations**: EKS requires explicit PSP enablement  
+⚠️ **Security is multi-layered**: Need runtime, admission, and namespace controls  
+
+---
