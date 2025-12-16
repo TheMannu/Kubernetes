@@ -101,3 +101,19 @@ addons:
 ⚠️ **Security is multi-layered**: Need runtime, admission, and namespace controls  
 
 ---
+
+## Prevention Framework  
+
+### 1. Admission Controller Validation
+```sh
+# Health check script for admission controllers
+check_admission_controllers() {
+  local api_pod=$(kubectl -n kube-system get pod -l component=kube-apiserver -o jsonpath='{.items[0].metadata.name}')
+  kubectl -n kube-system exec $api_pod -- kube-apiserver --help | grep -A100 "enable-admission-plugins"
+  
+  if ! kubectl -n kube-system exec $api_pod -- sh -c 'ps aux | grep kube-apiserver | grep -q PodSecurityPolicy'; then
+    echo "ERROR: PodSecurityPolicy admission controller not enabled"
+    exit 1
+  fi
+}
+```
