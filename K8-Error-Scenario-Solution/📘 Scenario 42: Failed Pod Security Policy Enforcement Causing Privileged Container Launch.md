@@ -71,3 +71,9 @@ kubectl delete pod --all --field-selector spec.containers[].securityContext.priv
 
 # 2. Update API server configuration (EKS managed requires support ticket)
 # Submit AWS support ticket to enable PodSecurityPolicy admission controller
+
+# 3. Apply namespace-level enforcement
+kubectl annotate namespace default \
+  pod-security.kubernetes.io/enforce=baseline \
+  pod-security.kubernetes.io/enforce-version=latest
+```
