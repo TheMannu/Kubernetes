@@ -77,3 +77,20 @@ kubectl annotate namespace default \
   pod-security.kubernetes.io/enforce=baseline \
   pod-security.kubernetes.io/enforce-version=latest
 ```
+
+### Alternative (EKS-specific):
+```yaml
+# EKS managed node group configuration for Pod Security Standards
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+metadata:
+  name: my-cluster
+  region: us-west-2
+iam:
+  withOIDC: true
+addons:
+- name: aws-pod-identity-webhook
+  version: v1.0.0
+```
+
+---
