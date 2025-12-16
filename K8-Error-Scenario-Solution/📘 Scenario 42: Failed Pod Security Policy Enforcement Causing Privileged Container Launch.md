@@ -61,3 +61,13 @@ kubectl get namespace default -o yaml | yq '.metadata.annotations'
 3. No validation of security policy application  
 
 ---
+
+## Fix/Workaround  
+
+### Immediate Security Remediation:
+```sh
+# 1. Delete privileged pods
+kubectl delete pod --all --field-selector spec.containers[].securityContext.privileged=true
+
+# 2. Update API server configuration (EKS managed requires support ticket)
+# Submit AWS support ticket to enable PodSecurityPolicy admission controller
