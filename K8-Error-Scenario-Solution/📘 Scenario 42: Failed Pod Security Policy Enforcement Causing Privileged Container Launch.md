@@ -117,3 +117,23 @@ check_admission_controllers() {
   fi
 }
 ```
+
+### 2. Security Policy Enforcement
+```yaml
+# PodSecurityPolicy definition (when admission controller enabled)
+apiVersion: policy/v1beta1
+kind: PodSecurityPolicy
+metadata:
+  name: restricted
+spec:
+  privileged: false
+  allowPrivilegeEscalation: false
+  requiredDropCapabilities:
+    - ALL
+  volumes:
+    - 'configMap'
+    - 'emptyDir'
+    - 'projected'
+    - 'secret'
+    - 'downwardAPI'
+    - 'persistentVolumeClaim'
