@@ -198,3 +198,9 @@ validate_security_context() {
 - Runtime security: AppArmor, SELinux, seccomp profiles  
 - Network policies: Zero-trust pod communication  
 - Audit logging: Security-relevant API calls  
+
+**Debugging Tools**:  
+```sh
+# Check PSP usage
+kubectl get psp
+kubectl get clusterrolebindings -o yaml | grep -A5 -B5 "system:controller:podsecuritypolicy"
