@@ -166,3 +166,11 @@ spec:
     severity: critical
   annotations:
     summary: "Privileged container detected ({{ $value }} instances)"
+
+- alert: PSPAdmissionDisabled
+  expr: count(kube_pod_security_policy_admission_disabled) > 0
+  labels:
+    severity: warning
+  annotations:
+    summary: "PodSecurityPolicy admission controller disabled"
+```
