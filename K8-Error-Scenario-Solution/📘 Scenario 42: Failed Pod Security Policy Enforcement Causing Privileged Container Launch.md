@@ -155,3 +155,14 @@ spec:
       - min: 1
         max: 65535
 ```
+
+### 3. Monitoring & Auditing
+```yaml
+# Prometheus alerts for security violations
+- alert: PrivilegedContainerDetected
+  expr: count(kube_pod_container_info{container_privileged="true"}) > 0
+  for: 1m
+  labels:
+    severity: critical
+  annotations:
+    summary: "Privileged container detected ({{ $value }} instances)"
