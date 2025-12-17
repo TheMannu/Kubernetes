@@ -174,3 +174,21 @@ spec:
   annotations:
     summary: "PodSecurityPolicy admission controller disabled"
 ```
+
+### 4. CI/CD Security Gates
+```sh
+# Pre-deployment security validation
+validate_security_context() {
+  if yq '.spec.containers[].securityContext.privileged' $MANIFEST | grep -q "true"; then
+    echo "ERROR: Privileged containers not allowed"
+    exit 1
+  fi
+  
+  if yq '.spec.securityContext.runAsUser' $MANIFEST | grep -q "^0$"; then
+    echo "ERROR: Containers cannot run as root (UID 0)"
+    exit 1
+  fi
+}
+```
+
+---
