@@ -192,3 +192,9 @@ validate_security_context() {
 ```
 
 ---
+
+**Key Security Controls**:  
+- Admission controllers: `PodSecurityPolicy`, `SecurityContextDeny`  
+- Runtime security: AppArmor, SELinux, seccomp profiles  
+- Network policies: Zero-trust pod communication  
+- Audit logging: Security-relevant API calls  
