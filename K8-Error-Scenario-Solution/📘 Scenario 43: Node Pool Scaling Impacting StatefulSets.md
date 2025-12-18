@@ -25,3 +25,17 @@ Automatic node pool scaling triggered involuntary StatefulSet pod migrations, br
   - Write-ahead logs became inconsistent  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Identify affected StatefulSets:
+```sh
+kubectl get statefulsets -A -o json | \
+  jq -r '.items[] | select(.spec.volumeClaimTemplates) | .metadata.namespace + "/" + .metadata.name'
+```
+
+### 2. Check PVC binding status:
+```sh
+kubectl get pvc -A -o wide | grep -v Bound
+# Showed multiple PVCs in Pending state
+```
