@@ -220,3 +220,17 @@ kubectl -n kube-system logs -l component=kube-apiserver | grep -i "podsecuritypo
 4. **Monitor runtime security** with Falco/Sysdig  
 5. **Regular security audits** of pod configurations  
 ```
+
+**Pod Security Standards (Kubernetes 1.23+)**:  
+```yaml
+# Namespace-level enforcement (replaces PSP)
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: production
+  labels:
+    pod-security.kubernetes.io/enforce: baseline
+    pod-security.kubernetes.io/enforce-version: v1.24
+    pod-security.kubernetes.io/audit: restricted
+    pod-security.kubernetes.io/warn: restricted
+```
