@@ -204,3 +204,10 @@ validate_security_context() {
 # Check PSP usage
 kubectl get psp
 kubectl get clusterrolebindings -o yaml | grep -A5 -B5 "system:controller:podsecuritypolicy"
+
+# Audit privileged containers
+kubectl get pods -A -o json | jq -r '.items[] | select(.spec.containers[].securityContext.privileged==true) | .metadata.namespace + "/" + .metadata.name'
+
+# Verify admission controller logs
+kubectl -n kube-system logs -l component=kube-apiserver | grep -i "podsecuritypolicy\|admission"
+```
