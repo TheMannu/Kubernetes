@@ -211,3 +211,12 @@ kubectl get pods -A -o json | jq -r '.items[] | select(.spec.containers[].securi
 # Verify admission controller logs
 kubectl -n kube-system logs -l component=kube-apiserver | grep -i "podsecuritypolicy\|admission"
 ```
+
+**Security Best Practices**:  
+```markdown
+1. **Use Pod Security Standards** (replacing PSP in 1.25+)  
+2. **Enable admission controllers** via API server flags  
+3. **Apply namespace defaults** with annotations  
+4. **Monitor runtime security** with Falco/Sysdig  
+5. **Regular security audits** of pod configurations  
+```
