@@ -92,3 +92,7 @@ kubectl patch statefulset cassandra -n database -p '{
     }
   }
 }'
+
+# 3. Delete and recreate PVCs (if data backed up)
+kubectl delete pvc --all -n database
+```
