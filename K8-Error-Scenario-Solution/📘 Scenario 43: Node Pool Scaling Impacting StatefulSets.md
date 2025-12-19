@@ -197,3 +197,21 @@ spec:
       value: stateful
       effect: NoSchedule
 ```
+
+### 3. Monitoring
+```yaml
+# Prometheus alerts for StatefulSet health
+- alert: StatefulSetPodDisruption
+  expr: kube_statefulset_status_replicas_ready != kube_statefulset_status_replicas
+  for: 5m
+  labels:
+    severity: critical
+  annotations:
+    summary: "StatefulSet {{ $labels.namespace }}/{{ $labels.statefulset }} has {{ $value }} unavailable pods"
+
+- alert: PVCBindingIssues
+  expr: kube_persistentvolumeclaim_status_phase{phase="Pending"} > 0
+  for: 10m
+  labels:
+    severity: warning
+```
