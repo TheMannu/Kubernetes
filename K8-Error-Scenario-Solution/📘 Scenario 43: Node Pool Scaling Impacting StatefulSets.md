@@ -119,3 +119,10 @@ allowedTopologies:
 ```
 
 ---
+
+## Lessons Learned  
+⚠️ **StatefulSets are topology-sensitive**: Must consider zone/region constraints  
+⚠️ **Autoscaling breaks assumptions**: Nodes are ephemeral for stateful workloads  
+⚠️ **Volume binding matters**: `WaitForFirstConsumer` vs `Immediate` has major implications  
+
+---
