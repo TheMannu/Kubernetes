@@ -231,3 +231,9 @@ validate_stateful_scaling() {
 ```
 
 ---
+
+**Key Considerations for Stateful Workloads**:  
+- `podAntiAffinity` to prevent co-location on same node  
+- `topologySpreadConstraints` for zone distribution  
+- `volumeBindingMode` appropriate for topology  
+- Minimum node count for quorum-based systems  
