@@ -39,3 +39,9 @@ kubectl get statefulsets -A -o json | \
 kubectl get pvc -A -o wide | grep -v Bound
 # Showed multiple PVCs in Pending state
 ```
+
+### 3. Inspect volume affinity errors:
+```sh
+kubectl describe pvc data-cassandra-0 -n database | grep -A5 Events
+# Output: "no persistent volumes available for this claim due to storage class node affinity conflict"
+```
