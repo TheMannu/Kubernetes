@@ -126,3 +126,50 @@ allowedTopologies:
 ⚠️ **Volume binding matters**: `WaitForFirstConsumer` vs `Immediate` has major implications  
 
 ---
+
+## Prevention Framework  
+
+### 1. StatefulSet Design Patterns
+```yaml
+# StatefulSet with proper affinity and topology
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: database
+spec:
+  serviceName: database
+  replicas: 3
+  selector:
+    matchLabels:
+      app: database
+  template:
+    metadata:
+      labels:
+        app: database
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values: ["database"]
+            topologyKey: "topology.kubernetes.io/zone"
+      topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: topology.kubernetes.io/zone
+        whenUnsatisfiable: DoNotSchedule
+        labelSelector:
+          matchLabels:
+            app: database
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      storageClassName: regional-ssd
+      resources:
+        requests:
+          storage: 100Gi
+```
