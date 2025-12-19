@@ -215,3 +215,19 @@ spec:
   labels:
     severity: warning
 ```
+
+### 4. Scaling Safeguards
+```sh
+# Pre-scaling validation for stateful workloads
+validate_stateful_scaling() {
+  local stateful_pods=$(kubectl get pods -l workload-type=stateful -o name | wc -l)
+  local available_nodes=$(kubectl get nodes -l workload-type=stateful --no-headers | wc -l)
+  
+  if [ $stateful_pods -ge $available_nodes ]; then
+    echo "ERROR: Insufficient nodes for stateful pod rescheduling"
+    exit 1
+  fi
+}
+```
+
+---
