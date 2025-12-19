@@ -173,3 +173,27 @@ spec:
         requests:
           storage: 100Gi
 ```
+
+### 2. Node Pool Management
+```yaml
+# GKE NodePool configuration for stateful workloads
+apiVersion: container.googleapis.com/v1beta1
+kind: NodePool
+metadata:
+  name: stateful-pool
+spec:
+  autoscaling:
+    enabled: true
+    minNodeCount: 3  # Minimum for quorum
+    maxNodeCount: 6
+  management:
+    autoRepair: true
+    autoUpgrade: true
+  config:
+    labels:
+      workload-type: stateful
+    taints:
+    - key: workload-type
+      value: stateful
+      effect: NoSchedule
+```
