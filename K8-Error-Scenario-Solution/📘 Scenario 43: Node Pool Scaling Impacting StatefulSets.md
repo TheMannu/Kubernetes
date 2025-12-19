@@ -61,3 +61,34 @@ kubectl get nodes -o json | jq -r '.items[] | .metadata.labels."topology.kuberne
 3. PVCs bound to specific zones that became unavailable  
 
 ---
+
+## Fix/Workaround  
+
+### Emergency Recovery:
+```sh
+# 1. Prevent further scaling during recovery
+gcloud container clusters update my-cluster --no-enable-autoscaling
+
+# 2. Patch StatefulSet with pod anti-affinity
+kubectl patch statefulset cassandra -n database -p '{
+  "spec": {
+    "template": {
+      "spec": {
+        "affinity": {
+          "podAntiAffinity": {
+            "requiredDuringSchedulingIgnoredDuringExecution": [{
+              "labelSelector": {
+                "matchExpressions": [{
+                  "key": "app",
+                  "operator": "In",
+                  "values": ["cassandra"]
+                }]
+              },
+              "topologyKey": "kubernetes.io/hostname"
+            }]
+          }
+        }
+      }
+    }
+  }
+}'
