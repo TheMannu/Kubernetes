@@ -53,3 +53,11 @@ kubectl get nodes -o json | jq -r '.items[] | .metadata.labels."topology.kuberne
 ```
 
 ---
+
+## Root Cause  
+**Topology-aware volume constraints**:  
+1. Regional StorageClass with `volumeBindingMode: WaitForFirstConsumer`  
+2. No pod anti-affinity or node affinity for StatefulSet pods  
+3. PVCs bound to specific zones that became unavailable  
+
+---
