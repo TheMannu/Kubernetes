@@ -45,3 +45,11 @@ kubectl get pvc -A -o wide | grep -v Bound
 kubectl describe pvc data-cassandra-0 -n database | grep -A5 Events
 # Output: "no persistent volumes available for this claim due to storage class node affinity conflict"
 ```
+
+### 4. Verify node topology:
+```sh
+kubectl get nodes -o json | jq -r '.items[] | .metadata.labels."topology.kubernetes.io/zone"'
+# Showed missing zones after scaling
+```
+
+---
