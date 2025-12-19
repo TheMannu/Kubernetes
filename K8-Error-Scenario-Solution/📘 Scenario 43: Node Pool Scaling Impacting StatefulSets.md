@@ -96,3 +96,26 @@ kubectl patch statefulset cassandra -n database -p '{
 # 3. Delete and recreate PVCs (if data backed up)
 kubectl delete pvc --all -n database
 ```
+
+### Long-term Solution:
+```yaml
+# Regional StorageClass configuration
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: regional-ssd
+provisioner: pd.csi.storage.gke.io
+parameters:
+  type: pd-ssd
+  replication-type: regional-pd
+volumeBindingMode: WaitForFirstConsumer
+allowedTopologies:
+- matchLabelExpressions:
+  - key: topology.gke.io/zone
+    values:
+    - us-central1-a
+    - us-central1-b
+    - us-central1-c
+```
+
+---
