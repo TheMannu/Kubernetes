@@ -245,3 +245,7 @@ kubectl get pv -o json | jq -r '.items[] | .metadata.name + " " + .spec.nodeAffi
 
 # Verify StatefulSet scheduling
 kubectl get pods -l app=database -o wide | awk '{print $1,$7}' | sort -k2
+
+# Test pod disruption budgets
+kubectl create poddisruptionbudget test-pdb --selector=app=database --max-unavailable=1 --dry-run=client -o yaml
+```
