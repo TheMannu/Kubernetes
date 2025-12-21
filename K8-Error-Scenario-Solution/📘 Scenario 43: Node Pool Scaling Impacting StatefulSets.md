@@ -242,3 +242,6 @@ validate_stateful_scaling() {
 ```sh
 # Check volume topology constraints
 kubectl get pv -o json | jq -r '.items[] | .metadata.name + " " + .spec.nodeAffinity.required.nodeSelectorTerms[].matchExpressions[]?.values[]'
+
+# Verify StatefulSet scheduling
+kubectl get pods -l app=database -o wide | awk '{print $1,$7}' | sort -k2
