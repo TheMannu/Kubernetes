@@ -237,3 +237,8 @@ validate_stateful_scaling() {
 - `topologySpreadConstraints` for zone distribution  
 - `volumeBindingMode` appropriate for topology  
 - Minimum node count for quorum-based systems  
+
+**Debugging Tools**:  
+```sh
+# Check volume topology constraints
+kubectl get pv -o json | jq -r '.items[] | .metadata.name + " " + .spec.nodeAffinity.required.nodeSelectorTerms[].matchExpressions[]?.values[]'
