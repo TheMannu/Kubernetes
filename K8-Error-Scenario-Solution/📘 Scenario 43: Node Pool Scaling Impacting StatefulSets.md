@@ -249,3 +249,12 @@ kubectl get pods -l app=database -o wide | awk '{print $1,$7}' | sort -k2
 # Test pod disruption budgets
 kubectl create poddisruptionbudget test-pdb --selector=app=database --max-unavailable=1 --dry-run=client -o yaml
 ```
+
+**StatefulSet Protection Strategies**:  
+```markdown
+1. **PodDisruptionBudget**: Limit voluntary disruptions  
+2. **Node Affinity**: Pin to specific node pools  
+3. **Volume Snapshots**: Regular backups before scaling events  
+4. **Drain Ordering**: Manual control over node evictions  
+5. **Quorum Protection**: Minimum replica count enforcement  
+```
