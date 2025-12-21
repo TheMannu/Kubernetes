@@ -259,6 +259,7 @@ kubectl create poddisruptionbudget test-pdb --selector=app=database --max-unavai
 5. **Quorum Protection**: Minimum replica count enforcement  
 ```
 
+
 **GKE-specific Recommendations**:  
 ```yaml
 # Regional PD with automatic failover
