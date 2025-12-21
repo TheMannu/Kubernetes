@@ -258,3 +258,14 @@ kubectl create poddisruptionbudget test-pdb --selector=app=database --max-unavai
 4. **Drain Ordering**: Manual control over node evictions  
 5. **Quorum Protection**: Minimum replica count enforcement  
 ```
+
+**GKE-specific Recommendations**:  
+```yaml
+# Regional PD with automatic failover
+gcloud beta container clusters create regional-cluster \
+  --region us-central1 \
+  --node-locations us-central1-a,us-central1-b,us-central1-c \
+  --enable-autorepair \
+  --enable-autoupgrade \
+  --cluster-version 1.24
+```
