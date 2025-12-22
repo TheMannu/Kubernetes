@@ -25,3 +25,17 @@ Kubelet process crashed due to memory exhaustion from unconstrained pod memory c
   - Node required hard reboot to recover  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Check system logs for OOM events:
+```sh
+journalctl -k | grep -i "killed process.*kubelet\|out of memory"
+# Output: "Out of memory: Killed process 1234 (kubelet)"
+```
+
+### 2. Analyze memory usage before crash:
+```sh
+kubectl describe node <node> | grep -A10 "Allocated resources"
+# Showed 30GB/32GB memory allocated, but actual usage unknown
+```
