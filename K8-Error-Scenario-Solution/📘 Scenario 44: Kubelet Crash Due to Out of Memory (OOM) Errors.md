@@ -61,3 +61,31 @@ cat /var/lib/kubelet/config.yaml | grep -A5 systemReserved
 3. Missing node-level memory pressure monitoring  
 
 ---
+
+## Fix/Workaround  
+
+### Emergency Recovery:
+```sh
+# 1. Hard reboot affected node (if unresponsive)
+sudo reboot
+
+# 2. After reboot, drain node to prevent immediate rescheduling
+kubectl drain <node> --ignore-daemonsets --delete-emptydir-data
+
+# 3. Apply memory limits to offending deployments
+kubectl patch deployment memory-hog -p '{
+  "spec": {
+    "template": {
+      "spec": {
+        "containers": [{
+          "name": "app",
+          "resources": {
+            "limits": {"memory": "512Mi"},
+            "requests": {"memory": "256Mi"}
+          }
+        }]
+      }
+    }
+  }
+}'
+```
