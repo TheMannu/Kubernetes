@@ -1,4 +1,4 @@
-# 📘 Scenario #44: Kubelet Crash Due to Out of Memory (OOM) Errors
+# 📘 Scenario 44: Kubelet Crash Due to Out of Memory (OOM) Errors
 
 **Category**: Node Resource Management  
 **Environment**: Kubernetes 1.20, Bare Metal, 32GB RAM Nodes  
@@ -8,5 +8,20 @@
 
 ## Scenario Summary  
 Kubelet process crashed due to memory exhaustion from unconstrained pod memory consumption, causing node unresponsiveness and requiring manual recovery.
+
+---
+
+## What Happened  
+- **Memory pressure buildup**:  
+  - Multiple pods without memory limits deployed to single node  
+  - Memory consumption grew until system OOM killer terminated kubelet  
+- **Failure progression**:  
+  - Kubelet logs showed `out of memory` warnings  
+  - Node status changed to `NotReady` after kubelet termination  
+  - System logs recorded `oom-killer` killing kubelet process (PID 1)  
+- **Cascading effects**:  
+  - Pods unable to be rescheduled (node still considered allocated)  
+  - Critical daemonsets (CNI, monitoring) stopped functioning  
+  - Node required hard reboot to recover  
 
 ---
