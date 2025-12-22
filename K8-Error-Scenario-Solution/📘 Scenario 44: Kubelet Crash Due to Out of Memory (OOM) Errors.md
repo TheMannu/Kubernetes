@@ -39,3 +39,17 @@ journalctl -k | grep -i "killed process.*kubelet\|out of memory"
 kubectl describe node <node> | grep -A10 "Allocated resources"
 # Showed 30GB/32GB memory allocated, but actual usage unknown
 ```
+
+### 3. Check pod resource configurations:
+```sh
+kubectl get pods -A -o json | jq -r '.items[] | select(.spec.containers[].resources.limits.memory == null) | .metadata.namespace + "/" + .metadata.name'
+# Showed 15+ pods without memory limits
+```
+
+### 4. Review kubelet configuration:
+```sh
+cat /var/lib/kubelet/config.yaml | grep -A5 systemReserved
+# Showed no system memory reservation
+```
+
+---
