@@ -53,3 +53,11 @@ cat /var/lib/kubelet/config.yaml | grep -A5 systemReserved
 ```
 
 ---
+
+## Root Cause  
+**Unmanaged memory consumption**:  
+1. Pods deployed without memory limits  
+2. No kubelet system memory reservations  
+3. Missing node-level memory pressure monitoring  
+
+---
