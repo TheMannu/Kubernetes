@@ -144,3 +144,21 @@ MemoryHigh=4G
 MemoryMax=4.5G
 MemorySwapMax=0  # Disable swap for kubelet
 ```
+
+### 3. Monitoring & Alerting
+```yaml
+# Prometheus alerts for memory pressure
+- alert: NodeMemoryPressure
+  expr: (1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)) > 0.85
+  for: 5m
+  labels:
+    severity: critical
+  annotations:
+    summary: "Node {{ $labels.instance }} memory usage >85%"
+
+- alert: PodWithoutMemoryLimits
+  expr: count(kube_pod_container_info{container="",container_memory_limit_bytes="0"}) by (namespace,pod) > 0
+  for: 1h
+  labels:
+    severity: warning
+```
