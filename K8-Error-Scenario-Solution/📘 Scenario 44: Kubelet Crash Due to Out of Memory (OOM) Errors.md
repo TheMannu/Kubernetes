@@ -114,3 +114,24 @@ evictionHard:
 ⚠️ **OOM kills are destructive**: Terminate processes without graceful shutdown  
 
 ---
+
+## Prevention Framework  
+
+### 1. Resource Policy Enforcement
+```yaml
+# OPA/Gatekeeper constraint for memory limits
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sRequiredResourceLimits
+metadata:
+  name: require-memory-limits
+spec:
+  match:
+    kinds:
+    - apiGroups: ["apps"]
+      kinds: ["Deployment", "StatefulSet", "DaemonSet"]
+  parameters:
+    limits:
+      memory: "required"
+    requests:
+      memory: "required"
+```
