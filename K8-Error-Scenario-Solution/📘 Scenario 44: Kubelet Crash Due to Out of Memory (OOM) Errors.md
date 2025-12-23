@@ -89,3 +89,21 @@ kubectl patch deployment memory-hog -p '{
   }
 }'
 ```
+
+### Long-term Solution:
+```yaml
+# Kubelet configuration with system reservations
+apiVersion: kubelet.config.k8s.io/v1beta1
+kind: KubeletConfiguration
+systemReserved:
+  memory: "2Gi"
+  cpu: "500m"
+kubeReserved:
+  memory: "1Gi"
+  cpu: "250m"
+evictionHard:
+  memory.available: "500Mi"
+  nodefs.available: "10%"
+```
+
+---
