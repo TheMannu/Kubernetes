@@ -107,3 +107,10 @@ evictionHard:
 ```
 
 ---
+
+## Lessons Learned  
+⚠️ **Kubelet is a system process**: Requires protected memory allocation  
+⚠️ **Unlimited pods are dangerous**: Can consume all node resources  
+⚠️ **OOM kills are destructive**: Terminate processes without graceful shutdown  
+
+---
