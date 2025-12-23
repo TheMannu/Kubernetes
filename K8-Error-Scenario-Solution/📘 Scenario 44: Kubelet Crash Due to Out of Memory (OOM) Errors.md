@@ -162,3 +162,25 @@ MemorySwapMax=0  # Disable swap for kubelet
   labels:
     severity: warning
 ```
+
+### 4. CI/CD Resource Validation
+```sh
+# Pre-deployment resource limit validation
+validate_resource_limits() {
+  if ! yq '.spec.template.spec.containers[].resources.limits.memory' $MANIFEST | grep -q -v null; then
+    echo "ERROR: Memory limits not specified"
+    exit 1
+  fi
+  
+  local requested=$(yq '.spec.template.spec.containers[].resources.requests.memory' $MANIFEST | sed 's/null/0Mi/')
+  local limit=$(yq '.spec.template.spec.containers[].resources.limits.memory' $MANIFEST | sed 's/null/0Mi/')
+  
+  # Ensure requests <= limits
+  if [ "$(convert_to_mb $requested)" -gt "$(convert_to_mb $limit)" ]; then
+    echo "ERROR: Memory requests exceed limits"
+    exit 1
+  fi
+}
+```
+
+---
