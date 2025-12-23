@@ -135,3 +135,12 @@ spec:
     requests:
       memory: "required"
 ```
+
+### 2. Kubelet Configuration Hardening
+```yaml
+# Kubelet systemd unit with memory protection
+[Service]
+MemoryHigh=4G
+MemoryMax=4.5G
+MemorySwapMax=0  # Disable swap for kubelet
+```
