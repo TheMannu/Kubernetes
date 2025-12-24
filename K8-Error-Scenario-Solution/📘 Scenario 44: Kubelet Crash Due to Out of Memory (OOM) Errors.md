@@ -184,3 +184,10 @@ validate_resource_limits() {
 ```
 
 ---
+
+
+**Key Memory Management Principles**:  
+- **System Reserved**: Reserve memory for kubelet, OS, and system daemons  
+- **Pod Limits**: Every pod must have memory limits  
+- **Quality of Service**: Limits determine OOM kill priority  
+- **Monitoring**: Track actual vs requested memory usage  
