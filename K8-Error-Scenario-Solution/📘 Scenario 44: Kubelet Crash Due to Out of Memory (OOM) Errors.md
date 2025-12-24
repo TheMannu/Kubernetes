@@ -199,3 +199,10 @@ kubectl top pods -A --no-headers | sort -k3 -h
 
 # Analyze pod QoS classes
 kubectl get pods -A -o json | jq -r '.items[] | .metadata.namespace + "/" + .metadata.name + " " + .status.qosClass'
+
+# Check kubelet memory cgroup
+cat /sys/fs/cgroup/memory/kubepods/memory.usage_in_bytes
+
+# Test OOM behavior
+kubectl run mem-hog --image=polinux/stress -- stress --vm 1 --vm-bytes 2G --vm-hang 0
+```
