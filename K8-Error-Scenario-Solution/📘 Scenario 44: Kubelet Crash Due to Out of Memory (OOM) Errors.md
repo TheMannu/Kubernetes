@@ -230,3 +230,7 @@ sudo sync && echo 3 | sudo tee /proc/sys/vm/drop_caches
 
 # Identify and kill memory-hogging containers
 crictl stats | sort -k5 -h | tail -5
+
+# Temporarily add swap (emergency only)
+sudo fallocate -l 2G /swapfile && sudo mkswap /swapfile && sudo swapon /swapfile
+```
