@@ -215,3 +215,10 @@ kubectl run mem-hog --image=polinux/stress -- stress --vm 1 --vm-bytes 2G --vm-h
 - **Eviction Threshold**: 500MB (trigger point)  
 - **Available for Pods**: ~28.5GB  
 - **Per-pod Buffer**: 10-20% overhead for monitoring sidecars  
+
+## Pod Memory Best Practices
+1. **Always set limits**: Prevents single-pod exhaustion  
+2. **Requests ≈ 80% of limits**: Allows bursting  
+3. **Monitor actual usage**: Adjust based on metrics  
+4. **Use VerticalPodAutoscaler**: For dynamic sizing  
+```
