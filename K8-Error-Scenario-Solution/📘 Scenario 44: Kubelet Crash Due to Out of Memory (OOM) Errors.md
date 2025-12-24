@@ -191,3 +191,11 @@ validate_resource_limits() {
 - **Pod Limits**: Every pod must have memory limits  
 - **Quality of Service**: Limits determine OOM kill priority  
 - **Monitoring**: Track actual vs requested memory usage  
+
+**Debugging Tools**:  
+```sh
+# Check current memory usage vs requests
+kubectl top pods -A --no-headers | sort -k3 -h
+
+# Analyze pod QoS classes
+kubectl get pods -A -o json | jq -r '.items[] | .metadata.namespace + "/" + .metadata.name + " " + .status.qosClass'
