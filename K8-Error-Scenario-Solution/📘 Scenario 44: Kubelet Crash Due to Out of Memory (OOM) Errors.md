@@ -222,3 +222,11 @@ kubectl run mem-hog --image=polinux/stress -- stress --vm 1 --vm-bytes 2G --vm-h
 3. **Monitor actual usage**: Adjust based on metrics  
 4. **Use VerticalPodAutoscaler**: For dynamic sizing  
 ```
+
+**Emergency Memory Recovery**:  
+```sh
+# Quick memory free-up on affected node
+sudo sync && echo 3 | sudo tee /proc/sys/vm/drop_caches
+
+# Identify and kill memory-hogging containers
+crictl stats | sort -k5 -h | tail -5
