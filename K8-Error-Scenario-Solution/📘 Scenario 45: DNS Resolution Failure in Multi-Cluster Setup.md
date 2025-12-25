@@ -40,3 +40,17 @@ kubectl run -it --rm dns-test --image=busybox -- \
 kubectl -n kube-system get configmap coredns -o yaml | yq '.data.Corefile'
 # Missing `clusterset.local` zone configuration
 ```
+
+### 3. Verify federated service status:
+```sh
+kubectl get federatedservice -A
+# Showed services but no DNS endpoints
+```
+
+### 4. Inspect CoreDNS logs:
+```sh
+kubectl logs -n kube-system -l k8s-app=kube-dns --tail=50 | grep -i clusterset
+# No queries logged for clusterset.local domain
+```
+
+---
