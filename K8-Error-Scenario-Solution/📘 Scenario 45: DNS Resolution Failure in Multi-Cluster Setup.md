@@ -62,3 +62,39 @@ kubectl logs -n kube-system -l k8s-app=kube-dns --tail=50 | grep -i clusterset
 3. No DNS record propagation between clusters  
 
 ---
+
+## Fix/Workaround  
+
+### Immediate Resolution:
+```yaml
+# Update CoreDNS configuration
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: coredns
+  namespace: kube-system
+data:
+  Corefile: |
+    .:53 {
+        errors
+        health {
+           lameduck 5s
+        }
+        ready
+        kubernetes cluster.local in-addr.arpa ip6.arpa {
+           pods insecure
+           fallthrough in-addr.arpa ip6.arpa
+           ttl 30
+        }
+        # Add federated domain
+        federation clusterset.local {
+           upstream
+        }
+        prometheus :9153
+        forward . /etc/resolv.conf
+        cache 30
+        loop
+        reload
+        loadbalance
+    }
+```
