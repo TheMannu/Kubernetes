@@ -25,3 +25,18 @@ DNS resolution failures between federated clusters prevented services from disco
   - Cross-region microservice communication disrupted  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Test DNS resolution:
+```sh
+kubectl run -it --rm dns-test --image=busybox -- \
+  nslookup frontend.default.svc.clusterset.local
+# Output: `server can't find frontend.default.svc.clusterset.local: NXDOMAIN`
+```
+
+### 2. Check CoreDNS configuration:
+```sh
+kubectl -n kube-system get configmap coredns -o yaml | yq '.data.Corefile'
+# Missing `clusterset.local` zone configuration
+```
