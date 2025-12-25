@@ -54,3 +54,11 @@ kubectl logs -n kube-system -l k8s-app=kube-dns --tail=50 | grep -i clusterset
 ```
 
 ---
+
+## Root Cause  
+**DNS zone configuration gap**:  
+1. CoreDNS not configured for federated domain (`clusterset.local`)  
+2. Missing `kubefed` DNS provider integration  
+3. No DNS record propagation between clusters  
+
+---
