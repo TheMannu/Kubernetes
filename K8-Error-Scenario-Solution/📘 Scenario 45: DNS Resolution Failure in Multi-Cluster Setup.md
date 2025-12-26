@@ -117,3 +117,11 @@ spec:
 ```
 
 ---
+
+
+## Lessons Learned  
+⚠️ **Federation requires DNS coordination**: Multiple DNS zones must be synchronized  
+⚠️ **Cross-cluster DNS is complex**: Different from single-cluster service discovery  
+⚠️ **Silent failures**: Applications fail without clear DNS error messages  
+
+---
