@@ -155,3 +155,21 @@ coredns:
     clusterIP: 10.96.0.10
   isClusterService: true
 ```
+
+### 3. Monitoring
+```yaml
+# Prometheus alerts for federated DNS
+- alert: FederatedDNSFailure
+  expr: increase(coredns_dns_responses_total{zone="clusterset.local",rcode="NXDOMAIN"}[5m]) > 10
+  for: 2m
+  labels:
+    severity: critical
+  annotations:
+    summary: "Federated DNS resolution failing ({{ $value }} NXDOMAIN/min)"
+
+- alert: CrossClusterDNSLatency
+  expr: histogram_quantile(0.95, rate(coredns_dns_request_duration_seconds_bucket{zone="clusterset.local"}[5m])) > 1
+  for: 5m
+  labels:
+    severity: warning
+```
