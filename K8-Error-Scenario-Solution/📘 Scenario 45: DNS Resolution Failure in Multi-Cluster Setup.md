@@ -142,3 +142,16 @@ check_federated_dns() {
   done
 }
 ```
+
+### 2. Configuration Management
+```yaml
+# Helm values for CoreDNS with federation support
+coredns:
+  customCorefile: |
+    federation clusterset.local {
+       upstream
+    }
+  service:
+    clusterIP: 10.96.0.10
+  isClusterService: true
+```
