@@ -125,3 +125,20 @@ spec:
 ⚠️ **Silent failures**: Applications fail without clear DNS error messages  
 
 ---
+
+## Prevention Framework  
+
+### 1. DNS Validation Tooling
+```sh
+# Multi-cluster DNS health check script
+check_federated_dns() {
+  for cluster in us-west eu-central; do
+    kubectl config use-context $cluster
+    kubectl run -it --rm dns-check --image=busybox --restart=Never -- \
+      nslookup test-service.default.svc.clusterset.local || {
+        echo "ERROR: DNS resolution failed in $cluster"
+        exit 1
+      }
+  done
+}
+```
