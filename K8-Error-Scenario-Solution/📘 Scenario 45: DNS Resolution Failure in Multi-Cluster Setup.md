@@ -173,3 +173,18 @@ coredns:
   labels:
     severity: warning
 ```
+
+### 4. CI/CD Validation
+```sh
+# Pre-deployment DNS validation
+validate_federated_dns() {
+  local service=$1
+  for cluster in $(kubectl config get-contexts -o name | grep -v '*' | grep -v kind); do
+    if ! kubectl --context $cluster exec -it dns-test -- \
+      nslookup $service.default.svc.clusterset.local >/dev/null 2>&1; then
+      echo "ERROR: Service $service not resolvable in cluster $cluster"
+      exit 1
+    fi
+  done
+}
+```
