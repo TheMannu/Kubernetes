@@ -98,3 +98,22 @@ data:
         loadbalance
     }
 ```
+
+### Long-term Solution:
+```yaml
+# KubeFed configuration with DNS integration
+apiVersion: core.kubefed.io/v1beta1
+kind: KubeFedConfig
+metadata:
+  name: kubefed-config
+  namespace: kube-federation-system
+spec:
+  dns:
+    domain: clusterset.local
+    backend: coredns
+  featureGates:
+    PushReconciler: true
+    SchedulerPreferences: true
+```
+
+---
