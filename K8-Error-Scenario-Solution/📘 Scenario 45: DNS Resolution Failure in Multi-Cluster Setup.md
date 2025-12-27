@@ -202,3 +202,7 @@ validate_federated_dns() {
 # Query CoreDNS directly
 kubectl run -it --rm dig --image=infoblox/dnstools -- \
   dig @10.96.0.10 frontend.default.svc.clusterset.local +short
+
+# Check DNS cache
+kubectl -n kube-system exec -it coredns-<hash> -- \
+  curl http://localhost:9153/metrics | grep coredns_cache
