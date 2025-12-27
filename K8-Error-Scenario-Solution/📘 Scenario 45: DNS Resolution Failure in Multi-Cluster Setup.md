@@ -188,3 +188,11 @@ validate_federated_dns() {
   done
 }
 ```
+
+---
+
+**Key DNS Components for Federation**:  
+- **CoreDNS Federation Plugin**: Cross-cluster DNS resolution  
+- **ExternalDNS**: Cloud provider DNS integration  
+- **KubeFed DNS Controller**: Service endpoint propagation  
+- **Global Load Balancer**: External access to federated services  
