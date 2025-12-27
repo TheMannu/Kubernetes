@@ -214,3 +214,9 @@ kubectl get endpoints -o wide -A | grep federated
 kubectl run -it --rm curl-test --image=curlimages/curl -- \
   curl -v http://frontend.default.svc.clusterset.local:8080/health
 ```
+
+**Federated DNS Architecture**:  
+```markdown
+1. **Local Cluster**: `service.namespace.svc.cluster.local`  
+2. **Federated**: `service.namespace.svc.clusterset.local`  
+3. **Global**: `service.namespace.global.example.com`  
