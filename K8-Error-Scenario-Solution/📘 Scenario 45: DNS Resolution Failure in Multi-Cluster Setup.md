@@ -206,3 +206,6 @@ kubectl run -it --rm dig --image=infoblox/dnstools -- \
 # Check DNS cache
 kubectl -n kube-system exec -it coredns-<hash> -- \
   curl http://localhost:9153/metrics | grep coredns_cache
+
+# Verify service endpoints
+kubectl get endpoints -o wide -A | grep federated
