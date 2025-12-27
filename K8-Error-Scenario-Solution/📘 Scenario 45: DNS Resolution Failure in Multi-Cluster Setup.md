@@ -209,3 +209,8 @@ kubectl -n kube-system exec -it coredns-<hash> -- \
 
 # Verify service endpoints
 kubectl get endpoints -o wide -A | grep federated
+
+# Test cross-cluster connectivity
+kubectl run -it --rm curl-test --image=curlimages/curl -- \
+  curl -v http://frontend.default.svc.clusterset.local:8080/health
+```
