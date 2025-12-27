@@ -196,3 +196,9 @@ validate_federated_dns() {
 - **ExternalDNS**: Cloud provider DNS integration  
 - **KubeFed DNS Controller**: Service endpoint propagation  
 - **Global Load Balancer**: External access to federated services  
+
+**Debugging Tools**:  
+```sh
+# Query CoreDNS directly
+kubectl run -it --rm dig --image=infoblox/dnstools -- \
+  dig @10.96.0.10 frontend.default.svc.clusterset.local +short
