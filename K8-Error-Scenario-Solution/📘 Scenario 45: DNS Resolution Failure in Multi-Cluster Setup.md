@@ -220,3 +220,10 @@ kubectl run -it --rm curl-test --image=curlimages/curl -- \
 1. **Local Cluster**: `service.namespace.svc.cluster.local`  
 2. **Federated**: `service.namespace.svc.clusterset.local`  
 3. **Global**: `service.namespace.global.example.com`  
+
+**CoreDNS Configuration Requirements**:  
+- `federation` plugin for clusterset.local  
+- `forward` to upstream DNS resolvers  
+- `kubernetes` plugin with fallthrough  
+- Health checks and metrics endpoints  
+```
