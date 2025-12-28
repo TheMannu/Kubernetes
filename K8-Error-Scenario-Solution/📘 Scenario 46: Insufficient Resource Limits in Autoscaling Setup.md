@@ -36,3 +36,21 @@ kubectl get hpa -n production
 # NAME    REFERENCE          TARGETS   MINPODS   MAXPODS   REPLICAS   AGE
 # webapp  Deployment/webapp  90%/80%   2         10        2          15d
 ```
+
+### 2. Inspect HPA events:
+```sh
+kubectl describe hpa webapp -n production | grep -A10 Events
+# Showed no scaling events despite high utilization
+```
+
+### 3. Analyze pod resource configuration:
+```sh
+kubectl get deployment webapp -n production -o yaml | yq '.spec.template.spec.containers[].resources'
+# Output:
+# limits:
+#   cpu: 100m
+#   memory: 128Mi
+# requests:
+#   cpu: 50m
+#   memory: 64Mi
+```
