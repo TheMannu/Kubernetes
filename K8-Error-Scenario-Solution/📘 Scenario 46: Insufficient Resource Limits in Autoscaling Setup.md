@@ -26,3 +26,13 @@ The Horizontal Pod Autoscaler failed to scale application pods during traffic sp
   - User experience degradation  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Check HPA status:
+```sh
+kubectl get hpa -n production
+# Output: 
+# NAME    REFERENCE          TARGETS   MINPODS   MAXPODS   REPLICAS   AGE
+# webapp  Deployment/webapp  90%/80%   2         10        2          15d
+```
