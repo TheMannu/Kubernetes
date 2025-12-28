@@ -227,3 +227,19 @@ kubectl run -it --rm curl-test --image=curlimages/curl -- \
 - `kubernetes` plugin with fallthrough  
 - Health checks and metrics endpoints  
 ```
+
+**Emergency DNS Override**:  
+```yaml
+# Temporary hostAlias for critical services (emergency only)
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: critical-app
+spec:
+  template:
+    spec:
+      hostAliases:
+      - ip: "10.100.0.10"  # Target cluster service IP
+        hostnames:
+        - "frontend.default.svc.clusterset.local"
+```
