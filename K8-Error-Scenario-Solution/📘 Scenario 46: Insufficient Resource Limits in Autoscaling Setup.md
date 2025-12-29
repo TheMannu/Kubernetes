@@ -63,3 +63,11 @@ kubectl top pods -n production --containers
 ```
 
 ---
+
+## Root Cause  
+**Resource configuration mismatch**:  
+1. HPA uses `requests` for utilization calculation, not actual resource usage  
+2. Pod limits set too low, causing 100% utilization at normal load  
+3. No buffer between normal operations and scaling thresholds  
+
+---
