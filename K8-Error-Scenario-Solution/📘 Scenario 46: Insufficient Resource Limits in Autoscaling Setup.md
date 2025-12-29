@@ -78,3 +78,20 @@ kubectl top pods -n production --containers
 ```sh
 # 1. Manually scale deployment (emergency)
 kubectl scale deployment webapp -n production --replicas=5
+
+# 2. Update resource limits
+kubectl patch deployment webapp -n production -p '{
+  "spec": {
+    "template": {
+      "spec": {
+        "containers": [{
+          "name": "app",
+          "resources": {
+            "limits": {"cpu": "500m", "memory": "256Mi"},
+            "requests": {"cpu": "200m", "memory": "128Mi"}
+          }
+        }]
+      }
+    }
+  }
+}'
