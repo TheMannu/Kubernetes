@@ -71,3 +71,10 @@ kubectl top pods -n production --containers
 3. No buffer between normal operations and scaling thresholds  
 
 ---
+
+## Fix/Workaround  
+
+### Immediate Scaling Intervention:
+```sh
+# 1. Manually scale deployment (emergency)
+kubectl scale deployment webapp -n production --replicas=5
