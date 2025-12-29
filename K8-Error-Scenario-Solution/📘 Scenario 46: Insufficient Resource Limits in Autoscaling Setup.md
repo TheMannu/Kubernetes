@@ -54,3 +54,12 @@ kubectl get deployment webapp -n production -o yaml | yq '.spec.template.spec.co
 #   cpu: 50m
 #   memory: 64Mi
 ```
+
+### 4. Check actual resource usage:
+```sh
+kubectl top pods -n production --containers
+# Output:
+# webapp-abc123    app    95m (95%)   56Mi (43%)
+```
+
+---
