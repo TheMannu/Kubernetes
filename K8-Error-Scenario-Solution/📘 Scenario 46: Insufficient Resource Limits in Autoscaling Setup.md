@@ -95,3 +95,7 @@ kubectl patch deployment webapp -n production -p '{
     }
   }
 }'
+
+# 3. Verify HPA recalculates
+kubectl get hpa webapp -n production -w
+```
