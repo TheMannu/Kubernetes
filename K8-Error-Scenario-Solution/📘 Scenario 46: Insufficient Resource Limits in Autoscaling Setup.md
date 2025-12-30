@@ -180,3 +180,14 @@ resources:
     cpu: "500m"     # 2.5x requests for burst capacity
     memory: "512Mi" # 2x requests for memory safety
 ```
+
+### 3. Monitoring & Alerting
+```yaml
+# Prometheus alerts for HPA health
+- alert: HPAStuckAtMin
+  expr: kube_horizontalpodautoscaler_status_current_replicas == kube_horizontalpodautoscaler_spec_min_replicas
+  for: 1h
+  labels:
+    severity: warning
+  annotations:
+    summary: "HPA {{ $labels.namespace }}/{{ $labels.horizontalpodautoscaler }} stuck at minimum replicas"
