@@ -145,3 +145,16 @@ spec:
 ⚠️ **Multiple metrics prevent single-point failures**: CPU alone isn't sufficient  
 
 ---
+
+## Prevention Framework  
+
+### 1. HPA Configuration Validation
+```sh
+# Pre-deployment HPA validation script
+validate_hpa_config() {
+  local deployment=$1
+  local namespace=$2
+  
+  # Get resource requests
+  local requests_cpu=$(kubectl get deployment $deployment -n $namespace -o jsonpath='{.spec.template.spec.containers[0].resources.requests.cpu}')
+  
