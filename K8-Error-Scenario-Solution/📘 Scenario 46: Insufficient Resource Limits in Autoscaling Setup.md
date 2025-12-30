@@ -168,3 +168,15 @@ validate_hpa_config() {
   fi
 }
 ```
+
+### 2. Resource Sizing Guidelines
+```yaml
+# Resource sizing policy template
+resources:
+  requests:
+    cpu: "200m"     # 40-60% of expected average usage
+    memory: "256Mi"  # 50-70% of expected average usage
+  limits:
+    cpu: "500m"     # 2.5x requests for burst capacity
+    memory: "512Mi" # 2x requests for memory safety
+```
