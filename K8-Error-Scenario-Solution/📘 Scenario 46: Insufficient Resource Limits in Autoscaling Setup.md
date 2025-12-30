@@ -158,3 +158,13 @@ validate_hpa_config() {
   # Get resource requests
   local requests_cpu=$(kubectl get deployment $deployment -n $namespace -o jsonpath='{.spec.template.spec.containers[0].resources.requests.cpu}')
   
+  # Check if requests are sufficient for scaling calculations
+  if [[ "$requests_cpu" =~ m$ ]]; then
+    local cpu_milli=${requests_cpu%m}
+    if [ $cpu_milli -lt 100 ]; then
+      echo "ERROR: CPU requests ($requests_cpu) too low for effective HPA scaling"
+      exit 1
+    fi
+  fi
+}
+```
