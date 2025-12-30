@@ -191,3 +191,11 @@ resources:
     severity: warning
   annotations:
     summary: "HPA {{ $labels.namespace }}/{{ $labels.horizontalpodautoscaler }} stuck at minimum replicas"
+
+- alert: HighResourceUtilization
+  expr: sum(rate(container_cpu_usage_seconds_total{container!="", pod!=""}[5m])) by (pod, namespace) / 
+        sum(kube_pod_container_resource_requests_cpu_cores) by (pod, namespace) > 0.9
+  for: 10m
+  labels:
+    severity: critical
+```
