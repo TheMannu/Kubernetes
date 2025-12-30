@@ -138,3 +138,10 @@ spec:
 ```
 
 ---
+
+## Lessons Learned  
+⚠️ **HPA math matters**: Utilization = (Actual Usage / Requests) × 100%  
+⚠️ **Buffer capacity required**: Normal ops should be at 40-60% of requests  
+⚠️ **Multiple metrics prevent single-point failures**: CPU alone isn't sufficient  
+
+---
