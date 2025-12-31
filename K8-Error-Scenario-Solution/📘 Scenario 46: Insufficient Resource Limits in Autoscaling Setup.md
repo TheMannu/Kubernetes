@@ -267,3 +267,7 @@ kubectl top pods --containers -l app=webapp --use-protocol-buffers
 
 # Simulate scaling
 kubectl autoscale deployment webapp --cpu-percent=70 --min=3 --max=10 --dry-run=client -o yaml
+
+# Check metrics availability
+kubectl get --raw "/apis/custom.metrics.k8s.io/v1beta1" | jq '.resources[].name'
+```
