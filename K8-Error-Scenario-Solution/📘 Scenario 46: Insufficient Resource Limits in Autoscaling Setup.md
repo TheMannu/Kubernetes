@@ -256,3 +256,8 @@ Example:
 - **Multiple metrics**: CPU, memory, custom (QPS, latency)  
 - **Pod Disruption Budget**: Prevent excessive scaling disruptions  
 ```
+
+**Debugging Tools**:  
+```sh
+# Check HPA calculations
+kubectl get --raw "/apis/autoscaling/v2/namespaces/production/horizontalpodautoscalers/webapp" | jq '.status'
