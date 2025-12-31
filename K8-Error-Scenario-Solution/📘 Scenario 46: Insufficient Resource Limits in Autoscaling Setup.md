@@ -242,3 +242,11 @@ Example:
 - Target: 70%
 - Result: HPA will scale up
 ```
+
+**Resource Sizing Best Practices**:  
+```markdown
+## Baseline Sizing (Before HPA)
+1. **Monitor** actual usage for 7+ days  
+2. **Calculate** P95 usage + 30% buffer = Requests  
+3. **Set Limits** = 2-3x Requests for burst capacity  
+4. **HPA Target** = 60-80% of Requests utilization  
