@@ -199,3 +199,34 @@ resources:
   labels:
     severity: critical
 ```
+
+### 4. Load Testing Framework
+```yaml
+# Locust load test Job for capacity validation
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: load-test
+spec:
+  template:
+    spec:
+      containers:
+      - name: locust
+        image: locustio/locust
+        command: ["locust"]
+        args:
+        - "--host=http://webapp.production.svc.cluster.local:8080"
+        - "--users=1000"
+        - "--spawn-rate=100"
+        - "--run-time=30m"
+        - "--csv=/tmp/results"
+        resources:
+          requests:
+            cpu: "200m"
+            memory: "256Mi"
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+```
+
+---
