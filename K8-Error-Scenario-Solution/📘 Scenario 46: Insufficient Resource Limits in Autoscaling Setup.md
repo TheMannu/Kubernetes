@@ -250,3 +250,9 @@ Example:
 2. **Calculate** P95 usage + 30% buffer = Requests  
 3. **Set Limits** = 2-3x Requests for burst capacity  
 4. **HPA Target** = 60-80% of Requests utilization  
+
+## Scaling Behavior Optimization
+- **Cooldown periods**: scale-up: 2-3min, scale-down: 5-10min  
+- **Multiple metrics**: CPU, memory, custom (QPS, latency)  
+- **Pod Disruption Budget**: Prevent excessive scaling disruptions  
+```
