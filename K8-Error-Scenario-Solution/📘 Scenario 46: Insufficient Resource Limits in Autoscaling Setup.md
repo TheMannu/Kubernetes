@@ -230,3 +230,15 @@ spec:
 ```
 
 ---
+
+**Key HPA Calculation Formula**:  
+```
+Utilization = (Actual Resource Usage / Resource Request) × 100%
+
+Example:
+- Request: 200m CPU
+- Actual: 150m CPU  
+- Utilization: (150m / 200m) × 100% = 75%
+- Target: 70%
+- Result: HPA will scale up
+```
