@@ -261,3 +261,9 @@ Example:
 ```sh
 # Check HPA calculations
 kubectl get --raw "/apis/autoscaling/v2/namespaces/production/horizontalpodautoscalers/webapp" | jq '.status'
+
+# Analyze resource usage patterns
+kubectl top pods --containers -l app=webapp --use-protocol-buffers
+
+# Simulate scaling
+kubectl autoscale deployment webapp --cpu-percent=70 --min=3 --max=10 --dry-run=client -o yaml
