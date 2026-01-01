@@ -25,3 +25,11 @@ An overly permissive audit logging policy generated massive volumes of audit eve
   - 80% of logs were repetitive `get` and `list` operations  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Check API server metrics:
+```sh
+kubectl get --raw /metrics | grep -E "apiserver_audit_event_total|apiserver_request_duration_seconds"
+# Showed 500k+ audit events per minute
+```
