@@ -279,3 +279,20 @@ kubectl scale deployment webapp --replicas=10
 
 # Temporary HPA suspension
 kubectl patch hpa webapp -p '{"spec":{"minReplicas":10,"maxReplicas":10}}'
+
+# Direct metric manipulation (for testing)
+kubectl apply -f - <<EOF
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: adapter-config
+  namespace: custom-metrics
+data:
+  config.yaml: |
+    rules:
+    - seriesQuery: '{__name__=~"^container_cpu_usage_seconds_total"}'
+      resources:
+        template: <<.Resource>>
+      metricsQuery: 'sum(rate(<<.Series>>{<<.LabelMatchers>>}[2m])) by (<<.GroupBy>>)'
+EOF
+```
