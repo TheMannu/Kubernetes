@@ -276,3 +276,6 @@ kubectl get --raw "/apis/custom.metrics.k8s.io/v1beta1" | jq '.resources[].name'
 ```sh
 # Manual override during incidents
 kubectl scale deployment webapp --replicas=10
+
+# Temporary HPA suspension
+kubectl patch hpa webapp -p '{"spec":{"minReplicas":10,"maxReplicas":10}}'
