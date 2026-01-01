@@ -271,3 +271,8 @@ kubectl autoscale deployment webapp --cpu-percent=70 --min=3 --max=10 --dry-run=
 # Check metrics availability
 kubectl get --raw "/apis/custom.metrics.k8s.io/v1beta1" | jq '.resources[].name'
 ```
+
+**Emergency Scaling Procedures**:  
+```sh
+# Manual override during incidents
+kubectl scale deployment webapp --replicas=10
