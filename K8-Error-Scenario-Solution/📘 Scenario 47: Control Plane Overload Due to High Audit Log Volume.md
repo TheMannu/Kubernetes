@@ -10,3 +10,18 @@
 An overly permissive audit logging policy generated massive volumes of audit events, overwhelming the API server and etcd, causing severe performance degradation across the entire cluster.
 
 ---
+
+## What Happened  
+- **Audit policy misconfiguration**:  
+  - Policy set to log all events at `Metadata` level for all resources  
+  - No filters for high-frequency operations (GET, LIST, WATCH)  
+- **Performance symptoms**:  
+  - API server CPU usage spiked to 95%+  
+  - etcd disk I/O saturated with audit log writes  
+  - `kubectl` commands timed out after 30s  
+  - Audit log storage grew at 50GB/hour  
+- **Root discovery**:  
+  - Single namespace generated 2M audit events/hour  
+  - 80% of logs were repetitive `get` and `list` operations  
+
+---
