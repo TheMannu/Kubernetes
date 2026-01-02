@@ -33,3 +33,9 @@ An overly permissive audit logging policy generated massive volumes of audit eve
 kubectl get --raw /metrics | grep -E "apiserver_audit_event_total|apiserver_request_duration_seconds"
 # Showed 500k+ audit events per minute
 ```
+ 
+### 2. Monitor API server resource usage:
+```sh
+kubectl top pods -n kube-system -l component=kube-apiserver
+# Output: CPU 9500m/10000m, MEM 6Gi/8Gi
+```
