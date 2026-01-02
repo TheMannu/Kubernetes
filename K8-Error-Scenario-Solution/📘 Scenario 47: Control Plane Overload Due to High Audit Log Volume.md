@@ -46,3 +46,12 @@ kubectl top pods -n kube-system -l component=kube-apiserver
 du -sh /var/log/kube-apiserver/audit.log*
 # Output: 450GB total audit logs
 ```
+
+### 4. Analyze audit policy:
+```sh
+kubectl -n kube-system get configmap kube-apiserver -o yaml | \
+  yq '.data."audit-policy.yaml"'
+# Showed overly broad rules with no request filters
+```
+
+---
