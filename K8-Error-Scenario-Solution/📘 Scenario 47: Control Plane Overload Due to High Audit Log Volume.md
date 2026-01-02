@@ -79,3 +79,17 @@ kubectl -n kube-system edit configmap kube-apiserver
 kubectl debug node/<control-plane> -it --image=alpine -- \
   find /var/log/kube-apiserver -name "audit.log*" -mtime +1 -delete
 ```
+
+### Long-term Solution:
+```yaml
+# Refined audit policy
+apiVersion: audit.k8s.io/v1
+kind: Policy
+rules:
+- level: None
+  users: ["system:kube-proxy"]
+  verbs: ["watch"]
+  resources:
+  - group: ""
+    resources: ["endpoints", "services", "services/status"]
+    
