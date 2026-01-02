@@ -63,3 +63,19 @@ kubectl -n kube-system get configmap kube-apiserver -o yaml | \
 3. Missing audit log rotation and retention limits  
 
 ---
+
+## Fix/Workaround  
+
+### Emergency Recovery:
+```sh
+# 1. Temporarily reduce audit level (requires API server restart)
+kubectl -n kube-system edit configmap kube-apiserver
+# Change default audit level from Metadata to None
+
+# 2. Restart API servers (AKS managed - requires support ticket)
+# Submit Azure support ticket for emergency API server restart
+
+# 3. Clean up audit logs
+kubectl debug node/<control-plane> -it --image=alpine -- \
+  find /var/log/kube-apiserver -name "audit.log*" -mtime +1 -delete
+```
