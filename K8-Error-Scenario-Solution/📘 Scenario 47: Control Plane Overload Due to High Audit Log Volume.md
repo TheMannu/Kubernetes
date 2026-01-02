@@ -55,3 +55,11 @@ kubectl -n kube-system get configmap kube-apiserver -o yaml | \
 ```
 
 ---
+
+## Root Cause  
+**Unconstrained audit logging**:  
+1. Policy logging all resource types at `Metadata` level  
+2. No request filters for high-volume operations  
+3. Missing audit log rotation and retention limits  
+
+---
