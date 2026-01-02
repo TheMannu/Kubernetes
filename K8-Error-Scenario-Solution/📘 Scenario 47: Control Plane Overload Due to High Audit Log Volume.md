@@ -39,3 +39,10 @@ kubectl get --raw /metrics | grep -E "apiserver_audit_event_total|apiserver_requ
 kubectl top pods -n kube-system -l component=kube-apiserver
 # Output: CPU 9500m/10000m, MEM 6Gi/8Gi
 ```
+
+### 3. Inspect audit log volume:
+```sh
+# On control plane node
+du -sh /var/log/kube-apiserver/audit.log*
+# Output: 450GB total audit logs
+```
