@@ -107,3 +107,9 @@ rules:
   - group: "apps"
   - group: "authentication.k8s.io"
     
+- level: RequestResponse
+  verbs: ["create", "update", "patch", "delete"]
+  resources:
+  - group: ""
+    resources: ["secrets", "configmaps"]
+    
