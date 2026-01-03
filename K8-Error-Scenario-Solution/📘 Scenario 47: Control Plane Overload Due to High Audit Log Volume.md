@@ -130,3 +130,24 @@ rules:
 ⚠️ **Managed services have limitations**: AKS audit configuration requires planning  
 
 ---
+
+## Prevention Framework  
+
+### 1. Audit Policy Validation
+```sh
+# Pre-apply audit policy validation
+validate_audit_policy() {
+  local policy_file=$1
+  
+  # Check for dangerous patterns
+  if grep -q "level: RequestResponse" $policy_file | grep -q "verbs:.*get"; then
+    echo "ERROR: RequestResponse level with GET verbs will generate excessive logs"
+    exit 1
+  fi
+  
+  # Ensure exclusions for system accounts
+  if ! grep -q "system:kube-proxy\|system:nodes" $policy_file; then
+    echo "WARNING: No exclusions for system accounts"
+  fi
+}
+```
