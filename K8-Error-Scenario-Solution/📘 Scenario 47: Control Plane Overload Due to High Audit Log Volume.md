@@ -113,3 +113,13 @@ rules:
   - group: ""
     resources: ["secrets", "configmaps"]
     
+- level: Metadata
+  verbs: ["get", "list", "watch"]
+  
+- level: None
+  resources:
+  - group: ""
+    resources: ["events"]
+```
+
+---
