@@ -100,3 +100,10 @@ rules:
   - group: ""
     resources: ["nodes", "nodes/status"]
         
+- level: Request
+  verbs: ["create", "update", "patch", "delete"]
+  resources:
+  - group: ""
+  - group: "apps"
+  - group: "authentication.k8s.io"
+    
