@@ -123,3 +123,10 @@ rules:
 ```
 
 ---
+
+## Lessons Learned  
+⚠️ **Audit logs have performance costs**: Each log entry consumes CPU and I/O  
+⚠️ **Filtering is essential**: Must exclude high-frequency, low-value operations  
+⚠️ **Managed services have limitations**: AKS audit configuration requires planning  
+
+---
