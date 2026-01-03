@@ -93,3 +93,10 @@ rules:
   - group: ""
     resources: ["endpoints", "services", "services/status"]
     
+- level: None
+  userGroups: ["system:nodes"]
+  verbs: ["get"]
+  resources:
+  - group: ""
+    resources: ["nodes", "nodes/status"]
+        
