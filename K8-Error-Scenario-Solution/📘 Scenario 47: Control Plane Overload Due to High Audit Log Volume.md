@@ -151,3 +151,14 @@ validate_audit_policy() {
   fi
 }
 ```
+
+### 2. Performance Monitoring
+```yaml
+# Prometheus alerts for audit log issues
+- alert: HighAuditLogVolume
+  expr: rate(apiserver_audit_event_total[5m]) > 10000
+  for: 5m
+  labels:
+    severity: critical
+  annotations:
+    summary: "High audit log volume ({{ $value }} events/min)"
