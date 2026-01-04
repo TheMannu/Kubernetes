@@ -202,3 +202,7 @@ data:
 - System service accounts (kube-proxy, nodes)
 - GET/LIST/WATCH operations (log at Metadata level)
 - High-frequency resources (events, endpoints)
+
+**Log at RequestResponse only for**:
+- Security-sensitive resources (secrets, service accounts)
+- Critical write operations (cluster-admin actions)
