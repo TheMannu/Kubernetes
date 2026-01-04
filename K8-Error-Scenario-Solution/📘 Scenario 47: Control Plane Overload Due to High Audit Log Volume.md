@@ -171,3 +171,26 @@ validate_audit_policy() {
   annotations:
     summary: "High audit processing latency ({{ $value }} seconds)"
 ```
+
+### 3. Log Management Configuration
+```yaml
+# API server audit backend configuration
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kube-apiserver
+  namespace: kube-system
+data:
+  audit-policy.yaml: |
+    # Policy as above
+  audit-backend.yaml: |
+    apiVersion: audit.k8s.io/v1
+    kind: Policy
+    auditBackend:
+      log:
+        maxAge: 24h
+        maxBackups: 10
+        maxSize: 100
+        path: /var/log/kube-apiserver/audit.log
+        format: json
+```
