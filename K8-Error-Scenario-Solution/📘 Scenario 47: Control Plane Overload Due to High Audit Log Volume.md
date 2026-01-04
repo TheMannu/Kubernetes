@@ -162,3 +162,12 @@ validate_audit_policy() {
     severity: critical
   annotations:
     summary: "High audit log volume ({{ $value }} events/min)"
+
+- alert: APIServerAuditLatency
+  expr: histogram_quantile(0.95, rate(apiserver_audit_event_duration_seconds_bucket[5m])) > 0.1
+  for: 5m
+  labels:
+    severity: warning
+  annotations:
+    summary: "High audit processing latency ({{ $value }} seconds)"
+```
