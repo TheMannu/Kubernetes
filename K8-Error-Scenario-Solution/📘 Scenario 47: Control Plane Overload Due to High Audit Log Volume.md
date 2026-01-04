@@ -194,3 +194,11 @@ data:
         path: /var/log/kube-apiserver/audit.log
         format: json
 ```
+
+### 4. Documentation Standards
+```markdown
+## Audit Logging Guidelines
+**Always exclude**:
+- System service accounts (kube-proxy, nodes)
+- GET/LIST/WATCH operations (log at Metadata level)
+- High-frequency resources (events, endpoints)
