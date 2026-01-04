@@ -206,3 +206,11 @@ data:
 **Log at RequestResponse only for**:
 - Security-sensitive resources (secrets, service accounts)
 - Critical write operations (cluster-admin actions)
+
+**Monitoring requirements**:
+- Alert at >10k events/minute
+- Retain logs for compliance period only
+- Regular policy review (quarterly)
+```
+
+---
