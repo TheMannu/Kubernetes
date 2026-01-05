@@ -255,3 +255,13 @@ apiVersion: audit.k8s.io/v1
 kind: Policy
 omitStages:
 - "RequestReceived"
+rules:
+- level: None
+  users: ["*"]
+  verbs: ["get", "list", "watch"]
+- level: Request
+  verbs: ["create", "update", "patch", "delete"]
+  resources:
+  - group: ""
+    resources: ["secrets", "serviceaccounts"]
+```
