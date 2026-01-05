@@ -228,3 +228,7 @@ kubectl debug node/<cp-node> -it --image=ubuntu -- \
   tail -1000 /var/log/kube-apiserver/audit.log | \
   jq -r '.verb + " " + .objectRef.resource + "/" + (.objectRef.namespace // "cluster")' | \
   sort | uniq -c | sort -nr
+
+# Check audit log storage impact
+kubectl debug node/<cp-node> -it --image=alpine -- \
+  ls -lh /var/log/kube-apiserver/audit.log*
