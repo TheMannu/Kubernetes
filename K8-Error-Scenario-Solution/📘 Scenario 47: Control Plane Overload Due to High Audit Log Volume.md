@@ -214,3 +214,9 @@ data:
 ```
 
 ---
+
+**Key Audit Configuration Principles**:  
+- **Least privilege logging**: Only log what's needed for compliance  
+- **Performance awareness**: Audit logs compete with operational requests  
+- **Storage management**: Implement rotation and retention policies  
+- **Security balance**: Too much logging obscures security signals  
