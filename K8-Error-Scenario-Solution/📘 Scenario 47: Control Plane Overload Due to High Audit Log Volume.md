@@ -220,3 +220,11 @@ data:
 - **Performance awareness**: Audit logs compete with operational requests  
 - **Storage management**: Implement rotation and retention policies  
 - **Security balance**: Too much logging obscures security signals  
+
+**Debugging Tools**:  
+```sh
+# Analyze audit log patterns
+kubectl debug node/<cp-node> -it --image=ubuntu -- \
+  tail -1000 /var/log/kube-apiserver/audit.log | \
+  jq -r '.verb + " " + .objectRef.resource + "/" + (.objectRef.namespace // "cluster")' | \
+  sort | uniq -c | sort -nr
