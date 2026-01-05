@@ -244,3 +244,6 @@ kubectl create ns audit-test --dry-run=client
 |------------------|----------------------------------|-------------------|
 | None             | High-frequency system operations | None              |
 | Metadata         | GET/LIST/WATCH tracking          | Low               |
+| Request          | Write operation auditing         | Medium            |
+| RequestResponse  | Security forensics               | High              |
+```
