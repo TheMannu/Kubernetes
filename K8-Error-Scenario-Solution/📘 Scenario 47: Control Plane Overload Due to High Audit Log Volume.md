@@ -232,3 +232,8 @@ kubectl debug node/<cp-node> -it --image=ubuntu -- \
 # Check audit log storage impact
 kubectl debug node/<cp-node> -it --image=alpine -- \
   ls -lh /var/log/kube-apiserver/audit.log*
+
+# Test audit policy impact
+kubectl create ns audit-test --dry-run=client
+# Check if audit log generated
+```
