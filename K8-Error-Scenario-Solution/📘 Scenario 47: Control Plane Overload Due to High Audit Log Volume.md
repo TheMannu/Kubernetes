@@ -247,3 +247,11 @@ kubectl create ns audit-test --dry-run=client
 | Request          | Write operation auditing         | Medium            |
 | RequestResponse  | Security forensics               | High              |
 ```
+
+**Emergency Audit Reduction**:  
+```yaml
+# Minimal audit policy for emergency situations
+apiVersion: audit.k8s.io/v1
+kind: Policy
+omitStages:
+- "RequestReceived"
