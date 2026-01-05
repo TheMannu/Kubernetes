@@ -237,3 +237,10 @@ kubectl debug node/<cp-node> -it --image=alpine -- \
 kubectl create ns audit-test --dry-run=client
 # Check if audit log generated
 ```
+
+**Audit Policy Tiers**:  
+```markdown
+| Level            | Use Case                         | Performance Impact |
+|------------------|----------------------------------|-------------------|
+| None             | High-frequency system operations | None              |
+| Metadata         | GET/LIST/WATCH tracking          | Low               |
