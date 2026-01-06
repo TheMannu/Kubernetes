@@ -42,3 +42,9 @@ kubectl get nodes -o custom-columns="NAME:.metadata.name,CPU-REQ:status.allocata
 kubectl get pods -A -o wide | awk '{print $8}' | sort | uniq -c | sort -nr
 # Output: node-1: 45 pods, node-2: 8 pods, node-3: 42 pods
 ```
+
+### 3. Check scheduling failures:
+```sh
+kubectl get events -A --sort-by=.lastTimestamp | grep -i "insufficient\|failed scheduling"
+# Multiple "Insufficient cpu" errors despite cluster having capacity
+```
