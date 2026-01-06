@@ -48,3 +48,11 @@ kubectl get pods -A -o wide | awk '{print $8}' | sort | uniq -c | sort -nr
 kubectl get events -A --sort-by=.lastTimestamp | grep -i "insufficient\|failed scheduling"
 # Multiple "Insufficient cpu" errors despite cluster having capacity
 ```
+
+### 4. Review node resource fragmentation:
+```sh
+kubectl describe node <overloaded-node> | grep -A20 "Allocated resources"
+# Showed many small resource allocations causing fragmentation
+```
+
+---
