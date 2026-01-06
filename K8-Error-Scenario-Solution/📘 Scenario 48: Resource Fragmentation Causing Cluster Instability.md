@@ -36,3 +36,9 @@ Resource fragmentation from imbalanced pod scheduling led to "hot" nodes experie
 kubectl get nodes -o custom-columns="NAME:.metadata.name,CPU-REQ:status.allocatable.cpu,CPU-USE:status.allocatable.cpu - .status.allocatable.cpu,CPU%:.status.allocatable.cpu - .status.allocatable.cpu / .status.allocatable.cpu * 100,PODS:status.allocatable.pods - .status.allocatable.pods"
 # Showed 80% CPU utilization on 3/10 nodes
 ```
+
+### 2. Analyze pod distribution:
+```sh
+kubectl get pods -A -o wide | awk '{print $8}' | sort | uniq -c | sort -nr
+# Output: node-1: 45 pods, node-2: 8 pods, node-3: 42 pods
+```
