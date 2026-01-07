@@ -122,3 +122,10 @@ spec:
 ```
 
 ---
+
+## Lessons Learned  
+⚠️ **Bin-packing creates hotspots**: Default scheduler favors density over distribution  
+⚠️ **Topology matters**: Physical node distribution affects performance  
+⚠️ **Fragmentation is cumulative**: Small inefficiencies compound over time  
+
+---
