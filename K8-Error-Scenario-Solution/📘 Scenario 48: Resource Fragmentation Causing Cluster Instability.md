@@ -56,3 +56,12 @@ kubectl describe node <overloaded-node> | grep -A20 "Allocated resources"
 ```
 
 ---
+
+## Root Cause  
+**Scheduler algorithm limitations**:  
+1. Default bin-packing optimization favored node saturation  
+2. No topology spread constraints for workload distribution  
+3. Missing pod anti-affinity for same-service instances  
+4. Heterogeneous node sizes exacerbated fragmentation  
+
+---
