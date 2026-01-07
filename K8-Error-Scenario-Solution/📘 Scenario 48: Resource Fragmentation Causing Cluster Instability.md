@@ -129,3 +129,31 @@ spec:
 ⚠️ **Fragmentation is cumulative**: Small inefficiencies compound over time  
 
 ---
+
+## Prevention Framework  
+
+### 1. Scheduler Configuration
+```yaml
+# Kube-scheduler configuration profile
+apiVersion: kubescheduler.config.k8s.io/v1beta3
+kind: KubeSchedulerConfiguration
+profiles:
+- schedulerName: default-scheduler
+  pluginConfig:
+  - name: NodeResourcesFit
+    args:
+      scoringStrategy:
+        type: LeastAllocated  # Changed from MostAllocated
+        resources:
+        - name: cpu
+          weight: 1
+        - name: memory
+          weight: 1
+  - name: NodeResourcesBalancedAllocation
+    args:
+      resources:
+      - name: cpu
+        weight: 1
+      - name: memory
+        weight: 1
+```
