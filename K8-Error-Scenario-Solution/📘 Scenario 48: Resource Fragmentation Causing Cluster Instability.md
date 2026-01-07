@@ -89,3 +89,36 @@ kubectl patch deployment critical-app -p '{
   }
 }'
 ```
+
+### Long-term Solution:
+```yaml
+# Deployment with balanced scheduling
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: balanced-app
+spec:
+  replicas: 10
+  template:
+    spec:
+      topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: kubernetes.io/hostname
+        whenUnsatisfiable: DoNotSchedule
+        labelSelector:
+          matchLabels:
+            app: balanced-app
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values: ["balanced-app"]
+              topologyKey: kubernetes.io/hostname
+```
+
+---
