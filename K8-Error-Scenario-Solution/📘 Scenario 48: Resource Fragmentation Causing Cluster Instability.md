@@ -65,3 +65,10 @@ kubectl describe node <overloaded-node> | grep -A20 "Allocated resources"
 4. Heterogeneous node sizes exacerbated fragmentation  
 
 ---
+
+## Fix/Workaround  
+
+### Immediate Remediation:
+```sh
+# 1. Drain overloaded nodes (carefully, with PDBs)
+kubectl drain <overloaded-node> --ignore-daemonsets --delete-emptydir-data
