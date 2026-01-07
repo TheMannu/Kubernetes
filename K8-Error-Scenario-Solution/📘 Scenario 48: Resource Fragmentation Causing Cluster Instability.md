@@ -72,3 +72,20 @@ kubectl describe node <overloaded-node> | grep -A20 "Allocated resources"
 ```sh
 # 1. Drain overloaded nodes (carefully, with PDBs)
 kubectl drain <overloaded-node> --ignore-daemonsets --delete-emptydir-data
+
+# 2. Apply topology spread constraints
+kubectl patch deployment critical-app -p '{
+  "spec": {
+    "template": {
+      "spec": {
+        "topologySpreadConstraints": [{
+          "maxSkew": 1,
+          "topologyKey": "kubernetes.io/hostname",
+          "whenUnsatisfiable": "ScheduleAnyway",
+          "labelSelector": {"matchLabels": {"app": "critical-app"}}
+        }]
+      }
+    }
+  }
+}'
+```
