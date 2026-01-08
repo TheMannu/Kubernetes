@@ -233,3 +233,8 @@ spec:
 - **Pod Anti-affinity**: Prevent co-location of same-service pods  
 - **Node Affinity**: Control placement based on node characteristics  
 - **Resource Limits**: Prevent single pods from dominating nodes  
+
+**Debugging Tools**:  
+```sh
+# Visualize node resource allocation
+kubectl describe nodes | grep -A10 "Allocated resources" | grep -E "(cpu|memory|pods)"
