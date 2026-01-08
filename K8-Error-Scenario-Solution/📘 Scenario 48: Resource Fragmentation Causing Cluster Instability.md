@@ -175,3 +175,34 @@ profiles:
   labels:
     severity: warning
 ```
+
+### 3. Automated Rebalancing
+```yaml
+# Descheduler CronJob for periodic rebalancing
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: descheduler
+  namespace: kube-system
+spec:
+  schedule: "0 */6 * * *"  # Every 6 hours
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: descheduler-sa
+          containers:
+          - name: descheduler
+            image: registry.k8s.io/descheduler/descheduler:v0.26.0
+            command: ["/bin/descheduler"]
+            args:
+            - "--policy-config-file=/policy-dir/policy.yaml"
+            - "--v=3"
+            volumeMounts:
+            - mountPath: /policy-dir
+              name: policy-volume
+          volumes:
+          - name: policy-volume
+            configMap:
+              name: descheduler-policy
+```
