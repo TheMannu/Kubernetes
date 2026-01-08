@@ -206,3 +206,24 @@ spec:
             configMap:
               name: descheduler-policy
 ```
+
+### 4. CI/CD Scheduling Policies
+```yaml
+# Kustomize patch for all deployments
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: not-important
+spec:
+  template:
+    spec:
+      topologySpreadConstraints:
+      - maxSkew: 2
+        topologyKey: kubernetes.io/hostname
+        whenUnsatisfiable: ScheduleAnyway
+        labelSelector:
+          matchLabels:
+            app: placeholder
+```
+
+---
