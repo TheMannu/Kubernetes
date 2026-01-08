@@ -157,3 +157,14 @@ profiles:
       - name: memory
         weight: 1
 ```
+
+### 2. Resource Usage Monitoring
+```yaml
+# Prometheus alerts for resource fragmentation
+- alert: NodeResourceImbalance
+  expr: stddev(kube_node_status_allocatable_cpu_cores - kube_node_status_allocatable_cpu_cores) > kube_node_status_allocatable_cpu_cores * 0.3
+  for: 30m
+  labels:
+    severity: warning
+  annotations:
+    summary: "Uneven CPU allocation across nodes (stddev >30%)"
