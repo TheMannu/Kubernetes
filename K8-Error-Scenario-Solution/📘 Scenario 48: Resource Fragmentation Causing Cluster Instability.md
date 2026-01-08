@@ -227,3 +227,9 @@ spec:
 ```
 
 ---
+
+**Key Scheduling Strategies**:  
+- **Topology Spread Constraints**: Distribute pods across failure domains  
+- **Pod Anti-affinity**: Prevent co-location of same-service pods  
+- **Node Affinity**: Control placement based on node characteristics  
+- **Resource Limits**: Prevent single pods from dominating nodes  
