@@ -168,3 +168,10 @@ profiles:
     severity: warning
   annotations:
     summary: "Uneven CPU allocation across nodes (stddev >30%)"
+
+- alert: PodDistributionSkew
+  expr: max(kube_pod_info) by (node) / avg(kube_pod_info) by () > 2
+  for: 1h
+  labels:
+    severity: warning
+```
