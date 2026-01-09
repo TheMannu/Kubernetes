@@ -245,3 +245,7 @@ kubectl get events -A | grep -i "scheduled" | tail -20
 # Simulate scheduling decisions
 kubectl create deployment test-sched --image=nginx --replicas=5 --dry-run=client -o yaml | \
   kubectl apply -f - && sleep 5 && kubectl get pods -o wide
+
+# Analyze fragmentation patterns
+kubectl get pods -A -o json | jq -r '.items[] | .spec.nodeName' | sort | uniq -c
+```
