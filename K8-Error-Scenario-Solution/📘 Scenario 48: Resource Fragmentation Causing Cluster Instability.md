@@ -260,3 +260,11 @@ kubectl get pods -A -o json | jq -r '.items[] | .spec.nodeName' | sort | uniq -c
 | Storage fragmentation      | Volume topology awareness        | StorageClass configuration      |
 | Network congestion         | Node selector for network zones  | Pod spec                        |
 ```
+
+**Emergency Rebalancing Commands**:  
+```sh
+# One-time rebalance using kubectl
+for node in $(kubectl get nodes -o name); do
+  kubectl drain $node --ignore-daemonsets --delete-emptydir-data --grace-period=300
+  kubectl uncordon $node
+done
