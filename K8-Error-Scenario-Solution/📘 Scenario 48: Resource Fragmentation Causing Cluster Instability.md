@@ -254,3 +254,9 @@ kubectl get pods -A -o json | jq -r '.items[] | .spec.nodeName' | sort | uniq -c
 ```markdown
 | Problem                     | Solution                          | Implementation                  |
 |-----------------------------|-----------------------------------|----------------------------------|
+| CPU fragmentation          | LeastAllocated scoring           | Scheduler configuration         |
+| Memory fragmentation       | Pod anti-affinity                | Deployment spec                 |
+| Node hotspots              | Topology spread constraints      | Deployment spec                 |
+| Storage fragmentation      | Volume topology awareness        | StorageClass configuration      |
+| Network congestion         | Node selector for network zones  | Pod spec                        |
+```
