@@ -249,3 +249,8 @@ kubectl create deployment test-sched --image=nginx --replicas=5 --dry-run=client
 # Analyze fragmentation patterns
 kubectl get pods -A -o json | jq -r '.items[] | .spec.nodeName' | sort | uniq -c
 ```
+
+**Resource Fragmentation Prevention Matrix**:  
+```markdown
+| Problem                     | Solution                          | Implementation                  |
+|-----------------------------|-----------------------------------|----------------------------------|
