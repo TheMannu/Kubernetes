@@ -238,3 +238,6 @@ spec:
 ```sh
 # Visualize node resource allocation
 kubectl describe nodes | grep -A10 "Allocated resources" | grep -E "(cpu|memory|pods)"
+
+# Check scheduler scoring
+kubectl get events -A | grep -i "scheduled" | tail -20
