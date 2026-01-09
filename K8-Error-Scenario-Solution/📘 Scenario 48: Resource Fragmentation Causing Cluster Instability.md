@@ -241,3 +241,7 @@ kubectl describe nodes | grep -A10 "Allocated resources" | grep -E "(cpu|memory|
 
 # Check scheduler scoring
 kubectl get events -A | grep -i "scheduled" | tail -20
+
+# Simulate scheduling decisions
+kubectl create deployment test-sched --image=nginx --replicas=5 --dry-run=client -o yaml | \
+  kubectl apply -f - && sleep 5 && kubectl get pods -o wide
