@@ -268,3 +268,10 @@ for node in $(kubectl get nodes -o name); do
   kubectl drain $node --ignore-daemonsets --delete-emptydir-data --grace-period=300
   kubectl uncordon $node
 done
+
+# Force rescheduling of specific deployment
+kubectl rollout restart deployment/app
+
+# Temporary scheduling constraints
+kubectl cordon overloaded-node
+```
