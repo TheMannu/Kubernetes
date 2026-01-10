@@ -45,3 +45,11 @@ kubectl logs -n velero -l component=velero --tail=100 | grep -i "snapshot\|faile
 kubectl get volumesnapshotclass -o yaml | yq '.items[].driver'
 # Output: ebs.csi.aws.com but missing required parameters
 ```
+
+### 4. Check CSI driver permissions:
+```sh
+kubectl logs -n kube-system -l app=ebs-csi-controller --tail=50 | grep -i "permission\|access"
+# Output: "AccessDenied: User arn:aws:iam::123456789:role/ebs-csi-driver is not authorized"
+```
+
+---
