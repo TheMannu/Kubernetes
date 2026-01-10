@@ -33,3 +33,9 @@ A misconfigured EBS CSI snapshot driver caused complete backup failures, leaving
 velero backup describe latest-backup --details
 # Output: Phase: Failed, Errors: 152, Snapshots Attempted: 0
 ```
+
+### 2. Inspect Velero logs:
+```sh
+kubectl logs -n velero -l component=velero --tail=100 | grep -i "snapshot\|failed"
+# Output: "error creating snapshot: rpc error: code = InvalidArgument desc = Invalid volume snapshot class"
+```
