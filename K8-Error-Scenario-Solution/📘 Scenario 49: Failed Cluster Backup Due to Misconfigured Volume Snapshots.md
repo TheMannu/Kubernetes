@@ -39,3 +39,9 @@ velero backup describe latest-backup --details
 kubectl logs -n velero -l component=velero --tail=100 | grep -i "snapshot\|failed"
 # Output: "error creating snapshot: rpc error: code = InvalidArgument desc = Invalid volume snapshot class"
 ```
+
+### 3. Verify VolumeSnapshotClass configuration:
+```sh
+kubectl get volumesnapshotclass -o yaml | yq '.items[].driver'
+# Output: ebs.csi.aws.com but missing required parameters
+```
