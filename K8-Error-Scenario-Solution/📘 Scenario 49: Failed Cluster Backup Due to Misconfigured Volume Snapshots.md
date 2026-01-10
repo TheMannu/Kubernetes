@@ -10,3 +10,18 @@
 A misconfigured EBS CSI snapshot driver caused complete backup failures, leaving the cluster without viable restore points for critical stateful workloads.
 
 ---
+
+## What Happened  
+- **Scheduled backup execution**:  
+  - Velero scheduled backup triggered at 02:00 UTC  
+  - Attempted to snapshot 150+ EBS volumes across 3 AZs  
+- **Backup failure symptoms**:  
+  - Velero logs showed `Failed to create snapshot: invalid request`  
+  - CSI driver logs: `invalid volume snapshot class specified`  
+  - 0/152 snapshots completed successfully  
+- **Configuration issues**:  
+  - VolumeSnapshotClass referenced non-existent IAM role  
+  - StorageClass `allowVolumeExpansion: true` but snapshot class incompatible  
+  - Missing tags for snapshot lifecycle management  
+
+---
