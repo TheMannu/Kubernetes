@@ -25,3 +25,11 @@ A misconfigured EBS CSI snapshot driver caused complete backup failures, leaving
   - Missing tags for snapshot lifecycle management  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Check Velero backup status:
+```sh
+velero backup describe latest-backup --details
+# Output: Phase: Failed, Errors: 152, Snapshots Attempted: 0
+```
