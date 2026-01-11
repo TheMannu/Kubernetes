@@ -72,3 +72,18 @@ aws ec2 create-snapshot --volume-id vol-abc123 --description "Emergency backup $
 # 2. Fix IAM permissions
 aws iam attach-role-policy --role-name ebs-csi-driver \
   --policy-arn arn:aws:iam::aws:policy/AmazonEC2FullAccess
+
+# 3. Update VolumeSnapshotClass
+kubectl apply -f - <<EOF
+apiVersion: snapshot.storage.k8s.io/v1
+kind: VolumeSnapshotClass
+metadata:
+  name: csi-aws-vsc
+  annotations:
+    velero.io/csi-volumesnapshot-class: "true"
+driver: ebs.csi.aws.com
+deletionPolicy: Retain
+parameters:
+  tagSpecification_1: "ResourceType=snapshot,Tags=[{Key=backup,Value=velero}]"
+EOF
+```
