@@ -87,3 +87,19 @@ parameters:
   tagSpecification_1: "ResourceType=snapshot,Tags=[{Key=backup,Value=velero}]"
 EOF
 ```
+
+### Long-term Solution:
+```yaml
+# Complete Velero + CSI configuration
+apiVersion: velero.io/v1
+kind: BackupStorageLocation
+metadata:
+  name: aws
+  namespace: velero
+spec:
+  provider: aws
+  objectStorage:
+    bucket: my-velero-backups
+  config:
+    region: us-west-2
+---
