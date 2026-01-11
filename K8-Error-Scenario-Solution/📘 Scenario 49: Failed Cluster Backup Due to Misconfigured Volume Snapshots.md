@@ -61,3 +61,10 @@ kubectl logs -n kube-system -l app=ebs-csi-controller --tail=50 | grep -i "permi
 3. StorageClass and SnapshotClass compatibility issues  
 
 ---
+
+## Fix/Workaround  
+
+### Emergency Recovery:
+```sh
+# 1. Create manual EBS snapshots via AWS CLI (emergency)
+aws ec2 create-snapshot --volume-id vol-abc123 --description "Emergency backup $(date +%Y%m%d)"
