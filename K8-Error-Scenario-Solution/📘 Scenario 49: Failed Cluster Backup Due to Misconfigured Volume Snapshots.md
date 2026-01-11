@@ -68,3 +68,7 @@ kubectl logs -n kube-system -l app=ebs-csi-controller --tail=50 | grep -i "permi
 ```sh
 # 1. Create manual EBS snapshots via AWS CLI (emergency)
 aws ec2 create-snapshot --volume-id vol-abc123 --description "Emergency backup $(date +%Y%m%d)"
+
+# 2. Fix IAM permissions
+aws iam attach-role-policy --role-name ebs-csi-driver \
+  --policy-arn arn:aws:iam::aws:policy/AmazonEC2FullAccess
