@@ -103,3 +103,16 @@ spec:
   config:
     region: us-west-2
 ---
+apiVersion: velero.io/v1
+kind: VolumeSnapshotLocation
+metadata:
+  name: aws
+  namespace: velero
+spec:
+  provider: aws
+  config:
+    region: us-west-2
+    profile: default
+```
+
+---
