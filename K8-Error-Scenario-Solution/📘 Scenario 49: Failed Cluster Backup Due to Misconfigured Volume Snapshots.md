@@ -53,3 +53,11 @@ kubectl logs -n kube-system -l app=ebs-csi-controller --tail=50 | grep -i "permi
 ```
 
 ---
+
+## Root Cause  
+**CSI driver configuration mismatch**:  
+1. VolumeSnapshotClass referenced wrong CSI driver (`ebs.csi.aws.com` vs correct `ebs.csi.aws.com/v1`)  
+2. IAM role missing `ec2:CreateSnapshot` permission  
+3. StorageClass and SnapshotClass compatibility issues  
+
+---
