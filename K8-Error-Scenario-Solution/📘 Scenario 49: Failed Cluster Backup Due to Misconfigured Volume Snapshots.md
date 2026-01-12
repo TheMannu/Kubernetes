@@ -142,3 +142,9 @@ validate_backup() {
   local pvc_count=$(kubectl get pvc -A --no-headers | wc -l)
   local snapshot_count=$(velero backup describe $backup_name --details | grep "Snapshot ID" | wc -l)
   
+  if [ $pvc_count -ne $snapshot_count ]; then
+    echo "ERROR: Snapshot count mismatch (PVCs: $pvc_count, Snapshots: $snapshot_count)"
+    exit 1
+  fi
+}
+```
