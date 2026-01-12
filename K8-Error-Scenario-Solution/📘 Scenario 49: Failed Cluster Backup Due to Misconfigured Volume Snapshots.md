@@ -138,3 +138,7 @@ validate_backup() {
     exit 1
   fi
   
+  # Verify snapshot count matches PVC count
+  local pvc_count=$(kubectl get pvc -A --no-headers | wc -l)
+  local snapshot_count=$(velero backup describe $backup_name --details | grep "Snapshot ID" | wc -l)
+  
