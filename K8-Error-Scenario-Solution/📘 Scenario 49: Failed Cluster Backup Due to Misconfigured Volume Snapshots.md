@@ -116,3 +116,10 @@ spec:
 ```
 
 ---
+
+## Lessons Learned  
+⚠️ **Backup failures are silent disasters**: Only discovered during restore attempts  
+⚠️ **IAM permissions are critical**: CSI drivers need explicit snapshot permissions  
+⚠️ **Configuration drift happens**: Snapshot classes must match storage classes  
+
+---
