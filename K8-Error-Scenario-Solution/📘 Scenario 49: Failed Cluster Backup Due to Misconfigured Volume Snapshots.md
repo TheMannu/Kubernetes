@@ -132,3 +132,9 @@ spec:
 validate_backup() {
   local backup_name=$1
   
+  # Check backup completion
+  if ! velero backup describe $backup_name --details | grep -q "Phase: Completed"; then
+    echo "ERROR: Backup $backup_name failed"
+    exit 1
+  fi
+  
