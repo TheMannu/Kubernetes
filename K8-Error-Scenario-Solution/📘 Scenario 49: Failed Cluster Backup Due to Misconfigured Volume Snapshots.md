@@ -148,3 +148,26 @@ validate_backup() {
   fi
 }
 ```
+
+### 2. IAM Policy Management
+```json
+// Minimal EBS CSI driver IAM policy
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "ec2:CreateSnapshot",
+        "ec2:DeleteSnapshot",
+        "ec2:DescribeSnapshots",
+        "ec2:ModifySnapshotAttribute",
+        "ec2:DescribeVolumes",
+        "ec2:DescribeTags",
+        "ec2:CreateTags"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
+```
