@@ -234,3 +234,9 @@ spec:
 ```
 
 ---
+
+**Key Backup Components**:  
+- **CSI Snapshot Controller**: Manages VolumeSnapshot CRDs  
+- **VolumeSnapshotClass**: Defines snapshot parameters and driver  
+- **Velero Restic**: For file-level backups of volumes without CSI  
+- **StorageClass Compatibility**: Must support snapshots  
