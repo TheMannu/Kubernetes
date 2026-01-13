@@ -182,3 +182,11 @@ validate_backup() {
     severity: critical
   annotations:
     summary: "Velero backup failed ({{ $value }} failures)"
+
+- alert: MissingSnapshots
+  expr: velero_volume_snapshot_attempt_total - velero_volume_snapshot_success_total > 0
+  for: 10m
+  labels:
+    severity: warning
+  annotations:
+    summary: "Volume snapshot failures detected"
