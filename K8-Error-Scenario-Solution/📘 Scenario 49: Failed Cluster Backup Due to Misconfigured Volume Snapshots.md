@@ -240,3 +240,11 @@ spec:
 - **VolumeSnapshotClass**: Defines snapshot parameters and driver  
 - **Velero Restic**: For file-level backups of volumes without CSI  
 - **StorageClass Compatibility**: Must support snapshots  
+
+**Debugging Tools**:  
+```sh
+# Check CSI driver health
+kubectl get pods -n kube-system -l app.kubernetes.io/name=aws-ebs-csi-driver
+
+# Verify VolumeSnapshot CRDs exist
+kubectl get crd | grep volumesnapshot
