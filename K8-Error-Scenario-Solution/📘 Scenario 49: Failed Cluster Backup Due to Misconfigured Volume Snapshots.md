@@ -190,3 +190,12 @@ validate_backup() {
     severity: warning
   annotations:
     summary: "Volume snapshot failures detected"
+
+- alert: OldBackup
+  expr: time() - velero_backup_last_successful_timestamp_seconds > 86400
+  for: 1h
+  labels:
+    severity: critical
+  annotations:
+    summary: "No successful backup in 24 hours"
+```
