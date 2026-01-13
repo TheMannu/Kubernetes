@@ -171,3 +171,14 @@ validate_backup() {
   ]
 }
 ```
+
+### 3. Monitoring & Alerting
+```yaml
+# Prometheus alerts for backup health
+- alert: BackupFailure
+  expr: velero_backup_failure_total > 0
+  for: 5m
+  labels:
+    severity: critical
+  annotations:
+    summary: "Velero backup failed ({{ $value }} failures)"
