@@ -199,3 +199,38 @@ validate_backup() {
   annotations:
     summary: "No successful backup in 24 hours"
 ```
+
+### 4. Configuration Testing
+```yaml
+# Pre-production backup test job
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: backup-test
+  namespace: velero
+spec:
+  template:
+    spec:
+      containers:
+      - name: tester
+        image: velero/velero:v1.9.0
+        command: ["/bin/sh", "-c"]
+        args:
+        - |
+          # Create test PVC
+          kubectl apply -f test-pvc.yaml
+          
+          # Run test backup
+          velero backup create test-backup --include-namespaces=backup-test
+          
+          # Verify backup
+          velero backup describe test-backup --details | grep -q "Phase: Completed" || exit 1
+          
+          # Test restore
+          velero restore create --from-backup test-backup
+          
+          # Cleanup
+          velero backup delete test-backup --confirm
+```
+
+---
