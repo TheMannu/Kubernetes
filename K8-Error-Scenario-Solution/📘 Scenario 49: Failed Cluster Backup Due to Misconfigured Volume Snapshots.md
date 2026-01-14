@@ -278,3 +278,11 @@ aws iam simulate-principal-policy \
 7. [ ] Monitoring alerts configured  
 8. [ ] Disaster recovery runbook documented  
 ```
+
+**Emergency Manual Backup Procedure**:  
+```sh
+# If automated backup fails completely
+for pvc in $(kubectl get pvc -A -o jsonpath='{.items[*].spec.volumeName}'); do
+  volume_id=$(aws ec2 describe-volumes --filters Name=tag:kubernetes.io/created-for/pvc/name,Values=$pvc --query 'Volumes[0].VolumeId')
+  aws ec2 create-snapshot --volume-id $volume_id --tag-specifications 'ResourceType=snapshot,Tags=[{Key=EmergencyBackup,Value=true}]'
+done
