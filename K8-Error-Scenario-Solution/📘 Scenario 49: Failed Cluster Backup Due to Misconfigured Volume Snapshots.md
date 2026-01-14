@@ -266,3 +266,10 @@ aws iam simulate-principal-policy \
   --policy-source-arn arn:aws:iam::123456789:role/ebs-csi-driver \
   --action-names ec2:CreateSnapshot
 ```
+
+**Backup Configuration Checklist**:  
+```markdown
+1. [ ] CSI driver installed and healthy  
+2. [ ] VolumeSnapshotClass configured with correct driver  
+3. [ ] IAM role has snapshot permissions  
+4. [ ] StorageClass supports snapshots (`allowVolumeExpansion: true`)  
