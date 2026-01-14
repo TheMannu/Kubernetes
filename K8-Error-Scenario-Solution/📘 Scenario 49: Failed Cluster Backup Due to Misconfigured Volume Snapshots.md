@@ -273,3 +273,8 @@ aws iam simulate-principal-policy \
 2. [ ] VolumeSnapshotClass configured with correct driver  
 3. [ ] IAM role has snapshot permissions  
 4. [ ] StorageClass supports snapshots (`allowVolumeExpansion: true`)  
+5. [ ] Velero VolumeSnapshotLocation configured  
+6. [ ] Regular backup validation tests  
+7. [ ] Monitoring alerts configured  
+8. [ ] Disaster recovery runbook documented  
+```
