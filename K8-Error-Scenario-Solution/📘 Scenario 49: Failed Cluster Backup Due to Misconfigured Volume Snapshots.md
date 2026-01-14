@@ -260,3 +260,9 @@ spec:
   source:
     persistentVolumeClaimName: test-pvc
 EOF
+
+# Check AWS permissions
+aws iam simulate-principal-policy \
+  --policy-source-arn arn:aws:iam::123456789:role/ebs-csi-driver \
+  --action-names ec2:CreateSnapshot
+```
