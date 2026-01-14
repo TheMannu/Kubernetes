@@ -286,3 +286,8 @@ for pvc in $(kubectl get pvc -A -o jsonpath='{.items[*].spec.volumeName}'); do
   volume_id=$(aws ec2 describe-volumes --filters Name=tag:kubernetes.io/created-for/pvc/name,Values=$pvc --query 'Volumes[0].VolumeId')
   aws ec2 create-snapshot --volume-id $volume_id --tag-specifications 'ResourceType=snapshot,Tags=[{Key=EmergencyBackup,Value=true}]'
 done
+
+# Export critical ConfigMaps and Secrets
+kubectl get cm -A -o yaml > configmaps-backup.yaml
+kubectl get secret -A -o yaml > secrets-backup.yaml
+```
