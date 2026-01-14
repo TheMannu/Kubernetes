@@ -248,3 +248,15 @@ kubectl get pods -n kube-system -l app.kubernetes.io/name=aws-ebs-csi-driver
 
 # Verify VolumeSnapshot CRDs exist
 kubectl get crd | grep volumesnapshot
+
+# Test snapshot creation manually
+kubectl apply -f - <<EOF
+apiVersion: snapshot.storage.k8s.io/v1
+kind: VolumeSnapshot
+metadata:
+  name: test-snapshot
+spec:
+  volumeSnapshotClassName: csi-aws-vsc
+  source:
+    persistentVolumeClaimName: test-pvc
+EOF
