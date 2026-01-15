@@ -48,3 +48,11 @@ kubectl run -it --rm registry-test --image=alpine -- \
   docker login registry.new.corp:5000 -u $USER -p $PASS
 # Error: "Error response from daemon: Get https://registry.new.corp:5000/v2/: x509: certificate signed by unknown authority"
 ```
+
+### 4. Check pod image pull spec:
+```sh
+kubectl get pod <pod> -o jsonpath='{.spec.containers[].image}'
+# Output: registry.new.corp:5000/app:v1.2.3
+```
+
+---
