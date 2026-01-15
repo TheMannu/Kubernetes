@@ -10,3 +10,19 @@
 Deployments failed across multiple clusters due to misconfigured image pull secrets, preventing pods from pulling container images from a private Docker registry and causing widespread deployment failures.
 
 ---
+
+## What Happened  
+- **Registry authentication failure**:  
+  - Registry migrated from Docker Hub to private Harbor instance  
+  - Image pull secrets referenced old registry URL (`registry.old.corp:5000`)  
+  - Docker config JSON contained expired credentials  
+- **Observed symptoms**:  
+  - Pods stuck in `ImagePullBackOff` or `ErrImagePull` states  
+  - Events showed `Failed to pull image: unauthorized: authentication required`  
+  - Cluster-wide impact as multiple teams used same base images  
+- **Root discovery**:  
+  - Secrets lacked `imagePullSecrets` reference in pod spec  
+  - Registry credentials expired during maintenance window  
+  - Network policies blocked access to new registry endpoint  
+
+---
