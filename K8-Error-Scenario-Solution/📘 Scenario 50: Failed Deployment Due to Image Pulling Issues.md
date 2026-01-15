@@ -35,3 +35,9 @@ kubectl get pods -A | grep -E "ImagePullBackOff|ErrImagePull"
 kubectl describe pod <failing-pod> | grep -A10 Events
 # Output: "Failed to pull image: unauthorized: authentication required"
 ```
+
+### 2. Verify image pull secrets:
+```sh
+kubectl get secret -A -o yaml | grep -A5 "dockerconfigjson"
+# Showed base64 encoded credentials for old registry
+```
