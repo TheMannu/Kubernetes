@@ -41,3 +41,10 @@ kubectl describe pod <failing-pod> | grep -A10 Events
 kubectl get secret -A -o yaml | grep -A5 "dockerconfigjson"
 # Showed base64 encoded credentials for old registry
 ```
+
+### 3. Test registry access:
+```sh
+kubectl run -it --rm registry-test --image=alpine -- \
+  docker login registry.new.corp:5000 -u $USER -p $PASS
+# Error: "Error response from daemon: Get https://registry.new.corp:5000/v2/: x509: certificate signed by unknown authority"
+```
