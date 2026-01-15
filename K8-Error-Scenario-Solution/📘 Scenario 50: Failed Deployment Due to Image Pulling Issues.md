@@ -26,3 +26,12 @@ Deployments failed across multiple clusters due to misconfigured image pull secr
   - Network policies blocked access to new registry endpoint  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Check pod status and events:
+```sh
+kubectl get pods -A | grep -E "ImagePullBackOff|ErrImagePull"
+kubectl describe pod <failing-pod> | grep -A10 Events
+# Output: "Failed to pull image: unauthorized: authentication required"
+```
