@@ -92,3 +92,15 @@ kubectl patch deployment myapp -n production -p '{
 # 3. Force pod recreation
 kubectl rollout restart deployment -n production
 ```
+
+### Long-term Solution:
+```yaml
+# ServiceAccount with automounted image pull secrets
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: deploy-sa
+  namespace: production
+imagePullSecrets:
+- name: harbor-credentials
+---
