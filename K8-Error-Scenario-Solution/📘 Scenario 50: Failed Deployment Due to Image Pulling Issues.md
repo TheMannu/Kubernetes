@@ -56,3 +56,12 @@ kubectl get pod <pod> -o jsonpath='{.spec.containers[].image}'
 ```
 
 ---
+
+## Root Cause  
+**Authentication and configuration mismatch**:  
+1. Image pull secrets referenced wrong registry endpoint  
+2. Expired credentials not rotated  
+3. Missing `imagePullSecrets` in pod/service account specs  
+4. Self-signed registry certificate not trusted  
+
+---
