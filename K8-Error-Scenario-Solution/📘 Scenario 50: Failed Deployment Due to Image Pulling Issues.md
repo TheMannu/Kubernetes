@@ -88,3 +88,7 @@ kubectl patch deployment myapp -n production -p '{
     }
   }
 }'
+
+# 3. Force pod recreation
+kubectl rollout restart deployment -n production
+```
