@@ -77,3 +77,14 @@ kubectl create secret docker-registry harbor-credentials \
   --docker-password=$(aws secretsmanager get-secret-value --secret-id registry-creds --query SecretString --output text) \
   --docker-email=devops@corp.com \
   --namespace=production
+
+# 2. Patch deployments with correct secret
+kubectl patch deployment myapp -n production -p '{
+  "spec": {
+    "template": {
+      "spec": {
+        "imagePullSecrets": [{"name": "harbor-credentials"}]
+      }
+    }
+  }
+}'
