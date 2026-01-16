@@ -104,3 +104,17 @@ metadata:
 imagePullSecrets:
 - name: harbor-credentials
 ---
+# Pod using the service account
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp
+  namespace: production
+spec:
+  template:
+    spec:
+      serviceAccountName: deploy-sa  # Automatically uses attached secrets
+      containers:
+      - name: app
+        image: registry.new.corp:5000/app:v1.2.3
+```
