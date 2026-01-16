@@ -65,3 +65,15 @@ kubectl get pod <pod> -o jsonpath='{.spec.containers[].image}'
 4. Self-signed registry certificate not trusted  
 
 ---
+
+## Fix/Workaround  
+
+### Emergency Recovery:
+```sh
+# 1. Create updated image pull secret
+kubectl create secret docker-registry harbor-credentials \
+  --docker-server=registry.new.corp:5000 \
+  --docker-username=robot\$deploy \
+  --docker-password=$(aws secretsmanager get-secret-value --secret-id registry-creds --query SecretString --output text) \
+  --docker-email=devops@corp.com \
+  --namespace=production
