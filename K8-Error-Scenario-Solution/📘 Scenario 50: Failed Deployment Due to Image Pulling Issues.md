@@ -191,3 +191,10 @@ EOF
     severity: critical
   annotations:
     summary: "Image pull failures detected ({{ $value }} in 5m)"
+
+- alert: RegistryCertificateExpiry
+  expr: probe_ssl_earliest_cert_expiry{job="registry-tls-check"} - time() < 86400 * 7
+  for: 5m
+  labels:
+    severity: warning
+```
