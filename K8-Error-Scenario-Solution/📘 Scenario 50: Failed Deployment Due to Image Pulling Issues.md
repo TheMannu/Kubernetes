@@ -127,3 +127,28 @@ spec:
 ⚠️ **ServiceAccounts centralize secret management**: Better than per-pod secrets  
 
 ---
+
+## Prevention Framework  
+
+### 1. Automated Secret Rotation
+```yaml
+# External Secrets Operator configuration
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: registry-credentials
+  namespace: production
+spec:
+  refreshInterval: 1h
+  secretStoreRef:
+    name: vault-backend
+    kind: SecretStore
+  target:
+    name: harbor-credentials
+    creationPolicy: Owner
+  data:
+  - secretKey: .dockerconfigjson
+    remoteRef:
+      key: registry/creds
+      property: dockerconfig
+```
