@@ -174,3 +174,9 @@ validate_image_pull() {
   }
 }
 EOF
+)" -- sleep 5 || {
+    echo "ERROR: Failed to pull image $image"
+    exit 1
+  }
+}
+```
