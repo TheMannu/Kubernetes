@@ -118,3 +118,12 @@ spec:
       - name: app
         image: registry.new.corp:5000/app:v1.2.3
 ```
+
+---
+
+## Lessons Learned  
+⚠️ **Registry migrations are high-risk**: Requires coordinated updates across all clusters  
+⚠️ **Credentials have lifecycle**: Must be rotated before expiration  
+⚠️ **ServiceAccounts centralize secret management**: Better than per-pod secrets  
+
+---
