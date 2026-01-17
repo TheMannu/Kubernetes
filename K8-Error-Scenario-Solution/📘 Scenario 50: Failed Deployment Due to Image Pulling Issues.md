@@ -152,3 +152,25 @@ spec:
       key: registry/creds
       property: dockerconfig
 ```
+
+### 2. Pre-flight Validation
+```sh
+# Image pull validation in CI/CD pipeline
+validate_image_pull() {
+  local image=$1
+  local secret=$2
+  
+  # Test pull with secret
+  kubectl run -it --rm pull-test --image=$image \
+    --overrides="$(cat <<EOF
+{
+  "spec": {
+    "imagePullSecrets": [{"name": "$secret"}],
+    "containers": [{
+      "name": "test",
+      "image": "$image",
+      "command": ["sleep", "infinity"]
+    }]
+  }
+}
+EOF
