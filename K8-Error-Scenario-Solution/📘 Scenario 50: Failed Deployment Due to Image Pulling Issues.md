@@ -180,3 +180,14 @@ EOF
   }
 }
 ```
+
+### 3. Monitoring & Alerting
+```yaml
+# Prometheus alerts for image pull issues
+- alert: ImagePullFailures
+  expr: increase(kubelet_image_pull_failures_total[5m]) > 5
+  for: 2m
+  labels:
+    severity: critical
+  annotations:
+    summary: "Image pull failures detected ({{ $value }} in 5m)"
