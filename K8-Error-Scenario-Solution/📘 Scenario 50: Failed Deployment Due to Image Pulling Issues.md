@@ -232,3 +232,7 @@ kubectl get secret harbor-credentials -o jsonpath='{.data.\.dockerconfigjson}' |
 # Test pull with crictl on node
 kubectl debug node/<node> -it --image=alpine -- \
   crictl pull --creds "user:pass" registry.new.corp:5000/app:v1.2.3
+
+# Check registry connectivity
+kubectl run -it --rm curl-test --image=curlimages/curl -- \
+  curl -v https://registry.new.corp:5000/v2/_catalog
