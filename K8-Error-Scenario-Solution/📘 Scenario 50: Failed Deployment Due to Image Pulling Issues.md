@@ -240,3 +240,12 @@ kubectl run -it --rm curl-test --image=curlimages/curl -- \
 # Verify service account secrets
 kubectl describe serviceaccount default -n production
 ```
+
+**Image Pull Best Practices**:  
+```markdown
+1. **Use ServiceAccounts**: Centralize secret management  
+2. **Rotate credentials**: Automate with external secrets manager  
+3. **Test before deployment**: Validate pulls in CI/CD  
+4. **Monitor failures**: Alert on pull error rates  
+5. **Cache images**: Use local registry mirror for resilience  
+```
