@@ -217,3 +217,8 @@ data:
 ```
 
 ---
+
+**Key Image Pull Components**:  
+- **Image Pull Secrets**: Kubernetes secrets with `.dockerconfigjson`  
+- **Service Accounts**: Automount secrets to pods  
+- **Registry Configuration**: TLS certificates, authentication methods  
