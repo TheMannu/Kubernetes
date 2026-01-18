@@ -198,3 +198,13 @@ EOF
   labels:
     severity: warning
 ```
+
+### 4. Registry Health Checks
+```yaml
+# Liveness probe for registry connectivity
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: registry-check
+data:
+  check.sh: |
