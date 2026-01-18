@@ -222,3 +222,9 @@ data:
 - **Image Pull Secrets**: Kubernetes secrets with `.dockerconfigjson`  
 - **Service Accounts**: Automount secrets to pods  
 - **Registry Configuration**: TLS certificates, authentication methods  
+- **Network Policies**: Allow egress to registry endpoints  
+
+**Debugging Tools**:  
+```sh
+# Decode docker config to verify credentials
+kubectl get secret harbor-credentials -o jsonpath='{.data.\.dockerconfigjson}' | base64 -d | jq
