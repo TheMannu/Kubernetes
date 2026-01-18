@@ -208,3 +208,12 @@ metadata:
   name: registry-check
 data:
   check.sh: |
+    #!/bin/sh
+    IMAGE="registry.new.corp:5000/health-check:latest"
+    if ! skopeo inspect --creds="robot\$deploy:$PASSWORD" docker://$IMAGE; then
+      echo "Registry health check failed"
+      exit 1
+    fi
+```
+
+---
