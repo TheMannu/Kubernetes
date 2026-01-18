@@ -236,3 +236,7 @@ kubectl debug node/<node> -it --image=alpine -- \
 # Check registry connectivity
 kubectl run -it --rm curl-test --image=curlimages/curl -- \
   curl -v https://registry.new.corp:5000/v2/_catalog
+
+# Verify service account secrets
+kubectl describe serviceaccount default -n production
+```
