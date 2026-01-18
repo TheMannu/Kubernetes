@@ -228,3 +228,7 @@ data:
 ```sh
 # Decode docker config to verify credentials
 kubectl get secret harbor-credentials -o jsonpath='{.data.\.dockerconfigjson}' | base64 -d | jq
+
+# Test pull with crictl on node
+kubectl debug node/<node> -it --image=alpine -- \
+  crictl pull --creds "user:pass" registry.new.corp:5000/app:v1.2.3
