@@ -264,6 +264,12 @@ spec:
     command: ["sh", "-c", "echo 'Emergency mode' && sleep infinity"]
 ```
 
+# Or configure containerd to trust registry
+cat >> /etc/containerd/config.toml <<EOF
+[plugins."io.containerd.grpc.v1.cri".registry.configs."registry.new.corp:5000".tls]
+  ca_file = "/etc/ssl/certs/registry-ca.crt"
+EOF
+```
 **Certificate Management**:  
 ```sh
 # Add self-signed certificate to nodes
