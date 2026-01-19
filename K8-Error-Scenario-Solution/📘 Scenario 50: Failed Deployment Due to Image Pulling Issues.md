@@ -263,3 +263,9 @@ spec:
     image: docker.io/library/nginx:alpine  # Public fallback
     command: ["sh", "-c", "echo 'Emergency mode' && sleep infinity"]
 ```
+
+**Certificate Management**:  
+```sh
+# Add self-signed certificate to nodes
+sudo mkdir -p /etc/docker/certs.d/registry.new.corp:5000
+sudo cp registry-ca.crt /etc/docker/certs.d/registry.new.corp:5000/ca.crt
