@@ -269,3 +269,10 @@ spec:
 # Add self-signed certificate to nodes
 sudo mkdir -p /etc/docker/certs.d/registry.new.corp:5000
 sudo cp registry-ca.crt /etc/docker/certs.d/registry.new.corp:5000/ca.crt
+
+# Or configure containerd to trust registry
+cat >> /etc/containerd/config.toml <<EOF
+[plugins."io.containerd.grpc.v1.cri".registry.configs."registry.new.corp:5000".tls]
+  ca_file = "/etc/ssl/certs/registry-ca.crt"
+EOF
+```
