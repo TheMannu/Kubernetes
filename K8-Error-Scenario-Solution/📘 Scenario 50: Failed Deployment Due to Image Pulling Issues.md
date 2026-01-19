@@ -249,3 +249,12 @@ kubectl describe serviceaccount default -n production
 4. **Monitor failures**: Alert on pull error rates  
 5. **Cache images**: Use local registry mirror for resilience  
 ```
+
+**Emergency Registry Access**:  
+```yaml
+# Temporary workaround: Use public mirror
+apiVersion: v1
+kind: Pod
+metadata:
+  name: emergency-app
+spec:
