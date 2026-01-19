@@ -270,6 +270,7 @@ cat >> /etc/containerd/config.toml <<EOF
   ca_file = "/etc/ssl/certs/registry-ca.crt"
 EOF
 ```
+
 **Certificate Management**:  
 ```sh
 # Add self-signed certificate to nodes
