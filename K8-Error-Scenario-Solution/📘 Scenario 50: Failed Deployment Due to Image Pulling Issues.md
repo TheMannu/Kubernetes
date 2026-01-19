@@ -258,3 +258,8 @@ kind: Pod
 metadata:
   name: emergency-app
 spec:
+  containers:
+  - name: app
+    image: docker.io/library/nginx:alpine  # Public fallback
+    command: ["sh", "-c", "echo 'Emergency mode' && sleep infinity"]
+```
