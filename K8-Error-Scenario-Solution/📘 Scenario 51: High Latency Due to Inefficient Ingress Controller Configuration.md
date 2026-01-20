@@ -40,3 +40,10 @@ kubectl get --raw /apis/metrics.k8s.io/v1beta1/namespaces/ingress-nginx/pods | j
 kubectl exec -n ingress-nginx deploy/nginx-ingress-controller -- nginx -T | head -100
 # Revealed 500+ location blocks with regex
 ```
+
+### 3. Analyze access logs for slow requests:
+```sh
+kubectl logs -n ingress-nginx -l app.kubernetes.io/name=ingress-nginx --tail=1000 | \
+  awk '{print $NF}' | sort -n | tail -10
+# Output: Processing times >500ms
+```
