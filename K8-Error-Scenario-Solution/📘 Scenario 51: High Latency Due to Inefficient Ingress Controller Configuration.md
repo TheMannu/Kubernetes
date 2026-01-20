@@ -47,3 +47,11 @@ kubectl logs -n ingress-nginx -l app.kubernetes.io/name=ingress-nginx --tail=100
   awk '{print $NF}' | sort -n | tail -10
 # Output: Processing times >500ms
 ```
+
+### 4. Inspect ingress resource complexity:
+```sh
+kubectl get ingress -A -o yaml | yq '.items[].spec.rules[].http.paths | length' | sort -nr | head -5
+# Showed one ingress with 150+ paths
+```
+
+---
