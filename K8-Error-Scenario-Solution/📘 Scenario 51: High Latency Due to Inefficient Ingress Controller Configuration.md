@@ -5,3 +5,8 @@
 **Impact**: 500ms+ latency increase, 30% error rate during peak traffic  
 
 ---
+
+## Scenario Summary  
+Inefficient Ingress routing configurations caused severe latency spikes and packet processing delays, degrading user experience and increasing error rates for external-facing applications.
+
+---
