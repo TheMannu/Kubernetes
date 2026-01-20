@@ -34,3 +34,9 @@ Inefficient Ingress routing configurations caused severe latency spikes and pack
 kubectl get --raw /apis/metrics.k8s.io/v1beta1/namespaces/ingress-nginx/pods | jq '.items[] | .metadata.name + " " + (.containers[].usage.cpu | tonumber/1000000)'
 # Showed 90%+ CPU utilization
 ```
+
+### 2. Check NGINX configuration:
+```sh
+kubectl exec -n ingress-nginx deploy/nginx-ingress-controller -- nginx -T | head -100
+# Revealed 500+ location blocks with regex
+```
