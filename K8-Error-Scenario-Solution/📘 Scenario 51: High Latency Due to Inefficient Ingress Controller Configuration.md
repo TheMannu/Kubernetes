@@ -64,3 +64,23 @@ kubectl get ingress -A -o yaml | yq '.items[].spec.rules[].http.paths | length' 
 4. Excessive ingress fragmentation (many small resources vs consolidated)  
 
 ---
+
+## Fix/Workaround  
+
+### Immediate Optimization:
+```yaml
+# Consolidated ingress with optimized routing
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: optimized-ingress
+  namespace: production
+  annotations:
+    nginx.ingress.kubernetes.io/use-regex: "false"  # Disable regex by default
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      # Performance optimizations
+      limit_conn perip 10;
+      limit_conn perserver 100;
+    nginx.ingress.kubernetes.io/proxy-buffering: "on"
+    nginx.ingress.kubernetes.io/proxy-buffer-size: "16k"
+    nginx.ingress.kubernetes.io/proxy-buffers-number: "4"
