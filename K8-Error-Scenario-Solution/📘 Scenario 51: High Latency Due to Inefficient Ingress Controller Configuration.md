@@ -84,3 +84,24 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-buffering: "on"
     nginx.ingress.kubernetes.io/proxy-buffer-size: "16k"
     nginx.ingress.kubernetes.io/proxy-buffers-number: "4"
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: api.example.com
+    http:
+      paths:
+      - path: /api/v1/users
+        pathType: Prefix  # Changed from ImplementationSpecific
+        backend:
+          service:
+            name: user-service
+            port:
+              number: 8080
+      - path: /api/v1/products
+        pathType: Exact   # Exact matching for performance
+        backend:
+          service:
+            name: product-service
+            port:
+              number: 8080
+```
