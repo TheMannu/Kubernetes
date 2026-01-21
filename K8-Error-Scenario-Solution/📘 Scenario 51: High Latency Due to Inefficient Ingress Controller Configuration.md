@@ -55,3 +55,12 @@ kubectl get ingress -A -o yaml | yq '.items[].spec.rules[].http.paths | length' 
 ```
 
 ---
+
+## Root Cause  
+**Inefficient routing configuration**:  
+1. Regex path matching instead of exact/prefix matching  
+2. NGINX `location` blocks evaluated sequentially  
+3. Missing performance optimizations (caching, keepalive, HTTP/2)  
+4. Excessive ingress fragmentation (many small resources vs consolidated)  
+
+---
