@@ -136,3 +136,18 @@ data:
 ⚠️ **Connection management**: Keep-alive and HTTP/2 dramatically improve performance  
 
 ---
+
+## Prevention Framework  
+
+### 1. Ingress Validation Pipeline
+```sh
+# Pre-apply ingress validation
+validate_ingress() {
+  local ingress_file=$1
+  
+  # Check for excessive regex usage
+  local regex_count=$(grep -c "ImplementationSpecific\|use-regex.*true" $ingress_file)
+  if [ $regex_count -gt 10 ]; then
+    echo "WARNING: High regex usage ($regex_count instances) - consider Prefix/Exact matching"
+  fi
+  
