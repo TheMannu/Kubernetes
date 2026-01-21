@@ -129,3 +129,10 @@ data:
 ```
 
 ---
+
+## Lessons Learned  
+⚠️ **Regex is expensive**: Use `Exact` or `Prefix` path types when possible  
+⚠️ **Location order matters**: NGINX evaluates location blocks sequentially  
+⚠️ **Connection management**: Keep-alive and HTTP/2 dramatically improve performance  
+
+---
