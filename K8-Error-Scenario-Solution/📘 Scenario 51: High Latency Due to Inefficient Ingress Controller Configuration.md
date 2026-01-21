@@ -105,3 +105,27 @@ spec:
             port:
               number: 8080
 ```
+
+### NGINX Configuration Tuning:
+```yaml
+# ConfigMap for performance tuning
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-configuration
+  namespace: ingress-nginx
+data:
+  worker-processes: "auto"
+  worker-connections: "65536"
+  keep-alive: "75"
+  keep-alive-requests: "1000"
+  upstream-keepalive-connections: "32"
+  upstream-keepalive-timeout: "60"
+  upstream-keepalive-requests: "100"
+  http2-max-field-size: "16k"
+  http2-max-header-size: "32k"
+  proxy-buffer-size: "16k"
+  proxy-buffers: "4 16k"
+```
+
+---
