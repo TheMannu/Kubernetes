@@ -150,4 +150,5 @@ validate_ingress() {
   if [ $regex_count -gt 10 ]; then
     echo "WARNING: High regex usage ($regex_count instances) - consider Prefix/Exact matching"
   fi
+```
   
