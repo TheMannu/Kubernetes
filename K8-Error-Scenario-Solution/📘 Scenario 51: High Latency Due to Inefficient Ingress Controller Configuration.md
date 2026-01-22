@@ -170,3 +170,10 @@ validate_ingress() {
     severity: critical
   annotations:
     summary: "Ingress 5xx error rate >5%"
+
+- alert: IngressWorkerSaturation
+  expr: nginx_ingress_controller_nginx_process_connections_total / nginx_ingress_controller_nginx_process_connections_limit > 0.8
+  for: 10m
+  labels:
+    severity: warning
+```
