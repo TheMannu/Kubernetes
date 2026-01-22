@@ -162,3 +162,11 @@ validate_ingress() {
     severity: warning
   annotations:
     summary: "Ingress P95 latency >500ms ({{ $value }} seconds)"
+
+- alert: IngressHighErrorRate
+  expr: rate(nginx_ingress_controller_requests{status=~"5.."}[5m]) / rate(nginx_ingress_controller_requests[5m]) > 0.05
+  for: 2m
+  labels:
+    severity: critical
+  annotations:
+    summary: "Ingress 5xx error rate >5%"
