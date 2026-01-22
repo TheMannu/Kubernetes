@@ -152,3 +152,13 @@ validate_ingress() {
   fi
 ```
   
+### 2. Performance Monitoring
+```yaml
+# Prometheus alerts for ingress performance
+- alert: IngressHighLatency
+  expr: histogram_quantile(0.95, rate(nginx_ingress_controller_request_duration_seconds_bucket[5m])) > 0.5
+  for: 5m
+  labels:
+    severity: warning
+  annotations:
+    summary: "Ingress P95 latency >500ms ({{ $value }} seconds)"
