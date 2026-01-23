@@ -261,3 +261,7 @@ proxy_buffers 4 16k;             # Number and size of buffers
 ```sh
 # Generate NGINX configuration for inspection
 kubectl exec -n ingress-nginx deploy/nginx-ingress-controller -- nginx -T > nginx.conf
+
+# Check active connections
+kubectl exec -n ingress-nginx deploy/nginx-ingress-controller -- \
+  curl -s http://localhost:10254/metrics | grep nginx_ingress_controller_nginx_process_connections
