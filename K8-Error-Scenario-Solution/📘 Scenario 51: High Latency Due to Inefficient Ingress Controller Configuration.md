@@ -222,3 +222,17 @@ spec:
         command: ["sh", "-c"]
         args:
         - |
+          echo "GET https://api.example.com/healthz" | \
+          vegeta attack -rate=1000 -duration=30s -insecure | \
+          vegeta report > /tmp/report.txt && \
+          cat /tmp/report.txt
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+```
+
+---
