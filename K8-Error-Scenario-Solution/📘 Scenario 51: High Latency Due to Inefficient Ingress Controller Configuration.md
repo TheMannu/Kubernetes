@@ -256,3 +256,8 @@ http2_max_header_size 32k;       # HTTP/2 header size
 proxy_buffer_size 16k;           # Proxy buffer size
 proxy_buffers 4 16k;             # Number and size of buffers
 ```
+
+**Debugging Tools**:  
+```sh
+# Generate NGINX configuration for inspection
+kubectl exec -n ingress-nginx deploy/nginx-ingress-controller -- nginx -T > nginx.conf
