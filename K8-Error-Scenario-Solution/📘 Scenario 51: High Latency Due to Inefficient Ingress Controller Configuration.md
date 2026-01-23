@@ -236,3 +236,10 @@ spec:
 ```
 
 ---
+
+**Key Performance Optimizations**:  
+- **Path Matching Priority**: Exact > Prefix > Regex  
+- **Connection Pooling**: Upstream keep-alive connections  
+- **Buffer Tuning**: Optimized for request/response sizes  
+- **Compression**: Gzip for text-based responses  
+- **Caching**: Static asset caching where applicable  
