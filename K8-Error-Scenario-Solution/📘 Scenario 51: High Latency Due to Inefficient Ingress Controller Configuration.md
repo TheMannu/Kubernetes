@@ -205,3 +205,20 @@ metadata:
     nginx.ingress.kubernetes.io/configuration-snippet: |
       more_set_headers "X-Request-ID: $request_id";
 ```
+
+### 4. Load Testing Framework
+```yaml
+# Vegeta load test for ingress validation
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: ingress-load-test
+spec:
+  template:
+    spec:
+      containers:
+      - name: vegeta
+        image: peterevans/vegeta
+        command: ["sh", "-c"]
+        args:
+        - |
