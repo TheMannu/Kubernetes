@@ -243,3 +243,16 @@ spec:
 - **Buffer Tuning**: Optimized for request/response sizes  
 - **Compression**: Gzip for text-based responses  
 - **Caching**: Static asset caching where applicable  
+
+**NGINX Configuration Tuning Parameters**:  
+```nginx
+# Critical performance settings
+worker_processes auto;            # Match CPU cores
+worker_connections 65536;         # Max connections per worker
+keepalive_timeout 75;            # Keep-alive timeout
+keepalive_requests 1000;         # Requests per connection
+http2_max_field_size 16k;        # HTTP/2 field size
+http2_max_header_size 32k;       # HTTP/2 header size
+proxy_buffer_size 16k;           # Proxy buffer size
+proxy_buffers 4 16k;             # Number and size of buffers
+```
