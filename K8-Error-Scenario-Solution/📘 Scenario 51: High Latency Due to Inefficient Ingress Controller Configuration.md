@@ -269,3 +269,8 @@ kubectl exec -n ingress-nginx deploy/nginx-ingress-controller -- \
 # Test routing performance
 kubectl run -it --rm curl-test --image=curlimages/curl -- \
   curl -w "Time: %{time_total}s\n" -o /dev/null -s https://api.example.com/healthz
+
+# Analyze location block efficiency
+kubectl logs -n ingress-nginx -l app.kubernetes.io/name=ingress-nginx | \
+  grep "location.*matches" | sort | uniq -c | sort -nr
+```
