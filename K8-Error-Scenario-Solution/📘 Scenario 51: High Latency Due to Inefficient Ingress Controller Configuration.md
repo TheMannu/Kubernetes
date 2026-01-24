@@ -295,3 +295,8 @@ metadata:
   name: emergency-nginx-config
   namespace: ingress-nginx
 data:
+  worker-processes: "2"  # Reduce context switching
+  worker-connections: "8192"
+  enable-modsecurity: "false"  # Disable WAF if needed
+  enable-opentracing: "false"  # Disable tracing
+  main-snippet: |
