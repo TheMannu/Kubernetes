@@ -285,3 +285,13 @@ kubectl logs -n ingress-nginx -l app.kubernetes.io/name=ingress-nginx | \
 6. [ ] Regularly review and consolidate ingress resources  
 7. [ ] Load test after configuration changes  
 ```
+
+**Emergency Performance Override**:  
+```yaml
+# Temporary configuration for traffic spikes
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: emergency-nginx-config
+  namespace: ingress-nginx
+data:
