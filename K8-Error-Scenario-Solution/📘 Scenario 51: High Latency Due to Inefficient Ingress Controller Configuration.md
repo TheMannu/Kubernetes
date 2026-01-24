@@ -274,3 +274,14 @@ kubectl run -it --rm curl-test --image=curlimages/curl -- \
 kubectl logs -n ingress-nginx -l app.kubernetes.io/name=ingress-nginx | \
   grep "location.*matches" | sort | uniq -c | sort -nr
 ```
+
+**Ingress Performance Checklist**:  
+```markdown
+1. [ ] Use `Exact` or `Prefix` path types instead of regex  
+2. [ ] Enable HTTP/2 and keep-alive  
+3. [ ] Configure appropriate buffer sizes  
+4. [ ] Implement connection limiting  
+5. [ ] Monitor latency and error rates  
+6. [ ] Regularly review and consolidate ingress resources  
+7. [ ] Load test after configuration changes  
+```
