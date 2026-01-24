@@ -300,3 +300,9 @@ data:
   enable-modsecurity: "false"  # Disable WAF if needed
   enable-opentracing: "false"  # Disable tracing
   main-snippet: |
+    events {
+      worker_connections 8192;
+      multi_accept on;
+      use epoll;
+    }
+```
