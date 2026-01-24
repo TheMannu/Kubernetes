@@ -265,3 +265,7 @@ kubectl exec -n ingress-nginx deploy/nginx-ingress-controller -- nginx -T > ngin
 # Check active connections
 kubectl exec -n ingress-nginx deploy/nginx-ingress-controller -- \
   curl -s http://localhost:10254/metrics | grep nginx_ingress_controller_nginx_process_connections
+
+# Test routing performance
+kubectl run -it --rm curl-test --image=curlimages/curl -- \
+  curl -w "Time: %{time_total}s\n" -o /dev/null -s https://api.example.com/healthz
