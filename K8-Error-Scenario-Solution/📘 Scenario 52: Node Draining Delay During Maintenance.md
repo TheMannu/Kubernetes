@@ -10,3 +10,19 @@
 Strict PodDisruptionBudget (PDB) configurations prevented timely node draining during maintenance, causing prolonged downtime and operational delays.
 
 ---
+
+## What Happened  
+- **Planned node maintenance**:  
+  - GKE node auto-upgrade triggered for security patches  
+  - 5-node cluster with 3-node Cassandra ring  
+- **Draining bottlenecks**:  
+  - `kubectl drain` hung for 45+ minutes  
+  - PDB `minAvailable: 3` for Cassandra with only 3 replicas  
+  - Storage-attached pods with `terminationGracePeriodSeconds: 300`  
+  - No healthy pods ready to replace terminating ones  
+- **Impact**:  
+  - Maintenance window extended by 2 hours  
+  - Cascading delays for subsequent node rotations  
+  - SLA violations for stateful services  
+
+---
