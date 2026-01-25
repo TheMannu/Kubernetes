@@ -26,3 +26,12 @@ Strict PodDisruptionBudget (PDB) configurations prevented timely node draining d
   - SLA violations for stateful services  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Check node draining status:
+```sh
+kubectl get nodes
+kubectl describe node <node-being-drained> | grep -A10 "Conditions"
+# Showed SchedulingDisabled but pods still running
+```
