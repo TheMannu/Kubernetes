@@ -49,3 +49,12 @@ kubectl get pods -n database -o wide | grep -E "Terminating|Pending"
 kubectl describe pod cassandra-0 -n database | grep -A10 "Events"
 # Showed waiting for volume detachment
 ```
+
+### 4. Check pod disruption readiness:
+```sh
+kubectl get pods -n database -l app=cassandra -o json | \
+  jq -r '.items[] | .metadata.name + " " + (.status.conditions[] | select(.type=="Ready") | .status)'
+# Output: 1/3 pods not ready
+```
+
+---
