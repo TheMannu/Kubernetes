@@ -42,3 +42,10 @@ kubectl get pdb -A
 kubectl describe pdb cassandra-pdb -n database
 # Output: Allowed disruptions: 0
 ```
+
+### 3. Analyze pod termination:
+```sh
+kubectl get pods -n database -o wide | grep -E "Terminating|Pending"
+kubectl describe pod cassandra-0 -n database | grep -A10 "Events"
+# Showed waiting for volume detachment
+```
