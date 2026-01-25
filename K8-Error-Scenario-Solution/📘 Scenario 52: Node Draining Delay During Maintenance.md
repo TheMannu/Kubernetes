@@ -35,3 +35,10 @@ kubectl get nodes
 kubectl describe node <node-being-drained> | grep -A10 "Conditions"
 # Showed SchedulingDisabled but pods still running
 ```
+
+### 2. Investigate PDB violations:
+```sh
+kubectl get pdb -A
+kubectl describe pdb cassandra-pdb -n database
+# Output: Allowed disruptions: 0
+```
