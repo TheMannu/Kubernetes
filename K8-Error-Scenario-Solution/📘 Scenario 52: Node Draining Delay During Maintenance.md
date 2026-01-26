@@ -67,3 +67,11 @@ kubectl get pods -n database -l app=cassandra -o json | \
 4. Storage volume detachment delays  
 
 ---
+
+## Fix/Workaround  
+
+### Emergency Maintenance Acceleration:
+```sh
+# 1. Temporarily relax PDB (if SLA allows)
+kubectl patch pdb cassandra-pdb -n database -p '{"spec":{"minAvailable":2}}'
+
