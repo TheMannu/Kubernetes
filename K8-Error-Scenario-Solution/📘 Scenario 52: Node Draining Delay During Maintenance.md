@@ -96,3 +96,22 @@ spec:
     matchLabels:
       app: cassandra
 ---
+
+# Pod configuration with faster failover
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: cassandra
+spec:
+  template:
+    spec:
+      terminationGracePeriodSeconds: 60  # Reduced from 300
+      containers:
+      - name: cassandra
+        lifecycle:
+          preStop:
+            exec:
+              command: ["/bin/sh", "-c", "nodetool drain && sleep 30"]
+```
+
+---
