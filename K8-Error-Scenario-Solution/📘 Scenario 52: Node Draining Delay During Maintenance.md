@@ -58,3 +58,12 @@ kubectl get pods -n database -l app=cassandra -o json | \
 ```
 
 ---
+
+## Root Cause  
+**Overly conservative availability guarantees**:  
+1. PDB `minAvailable` equal to replica count → zero disruption allowance  
+2. Stateful pods with long termination grace periods  
+3. No pod readiness for replacement scheduling  
+4. Storage volume detachment delays  
+
+---
