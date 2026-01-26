@@ -82,3 +82,17 @@ kubectl delete pod cassandra-0 -n database --grace-period=0 --force
 kubectl drain <node> --ignore-daemonsets --delete-emptydir-data --timeout=600s
 ```
 
+### Long-term Solution:
+```yaml
+# Updated PDB with buffer for maintenance
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: cassandra-pdb
+  namespace: database
+spec:
+  minAvailable: 2  # Changed from 3 (allows 1 pod disruption)
+  selector:
+    matchLabels:
+      app: cassandra
+---
