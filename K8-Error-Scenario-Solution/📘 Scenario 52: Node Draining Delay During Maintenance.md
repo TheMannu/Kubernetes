@@ -115,3 +115,10 @@ spec:
 ```
 
 ---
+
+## Lessons Learned  
+⚠️ **PDB math matters**: `minAvailable = replicas` creates hard locks  
+⚠️ **Grace periods compound delays**: Long terminations block node recycling  
+⚠️ **Stateful workloads need special handling**: Storage and quorum considerations  
+
+---
