@@ -75,3 +75,10 @@ kubectl get pods -n database -l app=cassandra -o json | \
 # 1. Temporarily relax PDB (if SLA allows)
 kubectl patch pdb cassandra-pdb -n database -p '{"spec":{"minAvailable":2}}'
 
+# 2. Force delete stuck pods (after data verification)
+kubectl delete pod cassandra-0 -n database --grace-period=0 --force
+
+# 3. Complete node drain
+kubectl drain <node> --ignore-daemonsets --delete-emptydir-data --timeout=600s
+```
+
