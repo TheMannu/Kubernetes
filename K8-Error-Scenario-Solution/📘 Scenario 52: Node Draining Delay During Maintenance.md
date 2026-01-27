@@ -176,3 +176,14 @@ spec:
             exit 1
           fi
 ```
+
+### 3. Monitoring & Alerting
+```yaml
+# Prometheus alerts for maintenance readiness
+- alert: PDBBlocksDisruptions
+  expr: kube_poddisruptionbudget_status_disruptions_allowed == 0
+  for: 15m
+  labels:
+    severity: warning
+  annotations:
+    summary: "PDB {{ $labels.namespace }}/{{ $labels.poddisruptionbudget }} allows zero disruptions"
