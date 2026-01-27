@@ -142,3 +142,20 @@ validate_pdb() {
   fi
 }
 ```
+
+### 2. Maintenance Readiness Checks
+```yaml
+# Pre-maintenance validation Job
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: maintenance-readiness-check
+spec:
+  template:
+    spec:
+      containers:
+      - name: checker
+        image: bitnami/kubectl
+        command: ["/bin/sh", "-c"]
+        args:
+        - |
