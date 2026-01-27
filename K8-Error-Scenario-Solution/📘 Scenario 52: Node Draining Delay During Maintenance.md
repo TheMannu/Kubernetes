@@ -159,3 +159,20 @@ spec:
         command: ["/bin/sh", "-c"]
         args:
         - |
+          # Check PDB allowances
+          kubectl get pdb -A -o json | jq -r '.items[] | select(.status.disruptionsAllowed == 0) | .metadata.namespace + "/" + .metadata.name'
+          
+          # Check pod distribution
+          for node in $(kubectl get nodes -o name); do
+            pod_count=$(kubectl get pods -A --field-selector spec.nodeName=${node#node/} --no-headers | wc -l)
+            echo "Node ${node#node/} has $pod_count pods"
+          done
+          
+          # Verify replacement capacity
+          available_nodes=$(kubectl get nodes --no-headers | grep -c Ready)
+          needed_nodes=$(( $(kubectl get pods -A --no-headers | wc -l) / 30 + 1 ))  # 30 pods per node
+          if [ $available_nodes -le $needed_nodes ]; then
+            echo "ERROR: Insufficient node capacity for maintenance"
+            exit 1
+          fi
+```
