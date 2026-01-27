@@ -122,3 +122,16 @@ spec:
 ⚠️ **Stateful workloads need special handling**: Storage and quorum considerations  
 
 ---
+
+## Prevention Framework  
+
+### 1. PDB Validation Rules
+```sh
+# Pre-apply PDB validation
+validate_pdb() {
+  local namespace=$1
+  local pdb_name=$2
+  
+  local min_available=$(kubectl get pdb $pdb_name -n $namespace -o jsonpath='{.spec.minAvailable}')
+  local replicas=$(kubectl get deploy -n $namespace -l app=$(kubectl get pdb $pdb_name -n $namespace -o jsonpath='{.spec.selector.matchLabels.app}') -o jsonpath='{.items[].spec.replicas}')
+  
