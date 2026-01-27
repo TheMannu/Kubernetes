@@ -135,3 +135,10 @@ validate_pdb() {
   local min_available=$(kubectl get pdb $pdb_name -n $namespace -o jsonpath='{.spec.minAvailable}')
   local replicas=$(kubectl get deploy -n $namespace -l app=$(kubectl get pdb $pdb_name -n $namespace -o jsonpath='{.spec.selector.matchLabels.app}') -o jsonpath='{.items[].spec.replicas}')
   
+
+  if [ "$min_available" = "$replicas" ]; then
+    echo "ERROR: PDB minAvailable ($min_available) equals replica count ($replicas) - will block all disruptions"
+    exit 1
+  fi
+}
+```
