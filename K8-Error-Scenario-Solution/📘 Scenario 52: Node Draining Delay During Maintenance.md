@@ -159,3 +159,76 @@ spec:
         command: ["/bin/sh", "-c"]
         args:
         - |
+### 2. Maintenance Readiness Checks
+```yaml
+# Pre-maintenance validation Job
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: maintenance-readiness-check
+spec:
+  template:
+    spec:
+      containers:
+      - name: checker
+        image: bitnami/kubectl
+        command: ["/bin/sh", "-c"]
+        args:
+        - |
+### 2. Maintenance Readiness Checks
+```yaml
+# Pre-maintenance validation Job
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: maintenance-readiness-check
+spec:
+  template:
+    spec:
+      containers:
+      - name: checker
+        image: bitnami/kubectl
+        command: ["/bin/sh", "-c"]
+        args:
+        - |
+### 2. Maintenance Readiness Checks
+```yaml
+# Pre-maintenance validation Job
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: maintenance-readiness-check
+spec:
+  template:
+    spec:
+      containers:
+      - name: checker
+        image: bitnami/kubectl
+        command: ["/bin/sh", "-c"]
+        args:
+        - |
+### 2. Maintenance Readiness Checks
+```yaml
+# Pre-maintenance validation Job
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: maintenance-readiness-check
+spec:
+  template:
+    spec:
+      containers:
+      - name: checker
+        image: bitnami/kubectl
+        command: ["/bin/sh", "-c"]
+        args:
+        - |
+          # Check PDB allowances
+          kubectl get pdb -A -o json | jq -r '.items[] | select(.status.disruptionsAllowed == 0) | .metadata.namespace + "/" + .metadata.name'
+          
+          # Check pod distribution
+          for node in $(kubectl get nodes -o name); do
+            pod_count=$(kubectl get pods -A --field-selector spec.nodeName=${node#node/} --no-headers | wc -l)
+            echo "Node ${node#node/} has $pod_count pods"
+          done
+          
