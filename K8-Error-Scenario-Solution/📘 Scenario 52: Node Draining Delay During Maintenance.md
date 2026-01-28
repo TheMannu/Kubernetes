@@ -233,3 +233,14 @@ spec:
                 exit 1
               fi
               
+              # Drain node with timeout
+              timeout 600 kubectl drain $NODE --ignore-daemonsets --delete-emptydir-data
+              
+              # Wait for replacement pods
+              sleep 120
+              
+              # Verify cluster health
+              kubectl get pods -A | grep -v "Running\|Completed" && exit 1
+```
+
+---
