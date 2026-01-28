@@ -204,3 +204,23 @@ spec:
   annotations:
     summary: "Pods terminating for >5 minutes"
 ```
+
+### 4. Maintenance Automation
+```yaml
+# Automated node rotation with safety checks
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: node-rotation
+spec:
+  schedule: "0 2 * * 0"  # Sundays at 2 AM
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: rotator
+            image: bitnami/kubectl
+            command: ["/bin/sh", "-c"]
+            args:
+            - |
