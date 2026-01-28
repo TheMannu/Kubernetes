@@ -224,3 +224,12 @@ spec:
             command: ["/bin/sh", "-c"]
             args:
             - |
+              # Select oldest node
+              NODE=$(kubectl get nodes --sort-by=.metadata.creationTimestamp -o jsonpath='{.items[0].metadata.name}')
+              
+              # Verify PDB allowances
+              if kubectl get pdb -A -o json | jq -r '.items[] | select(.status.disruptionsAllowed == 0)' | grep -q .; then
+                echo "PDB violations detected - aborting"
+                exit 1
+              fi
+              
