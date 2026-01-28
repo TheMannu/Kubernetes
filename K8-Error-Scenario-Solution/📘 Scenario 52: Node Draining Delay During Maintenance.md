@@ -187,3 +187,11 @@ spec:
     severity: warning
   annotations:
     summary: "PDB {{ $labels.namespace }}/{{ $labels.poddisruptionbudget }} allows zero disruptions"
+
+- alert: NodeDrainStalled
+  expr: time() - kube_node_spec_unschedulable > 1800
+  for: 10m
+  labels:
+    severity: critical
+  annotations:
+    summary: "Node {{ $labels.node }} has been unschedulable for >30 minutes"
