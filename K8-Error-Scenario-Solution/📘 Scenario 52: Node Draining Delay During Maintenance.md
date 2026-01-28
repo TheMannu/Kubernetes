@@ -250,3 +250,14 @@ spec:
 - **Percentage-based PDBs**: Better for scaling workloads (e.g., `minAvailable: 80%`)  
 - **Application-aware**: Consider quorum requirements for stateful systems  
 - **Graceful degradation**: Allow some disruption for operational flexibility  
+
+**Node Draining Optimization Strategies**:  
+```markdown
+1. **Pre-drain preparation**:  
+   - Scale up deployments before maintenance  
+   - Ensure replacement capacity exists  
+   
+2. **Pod lifecycle tuning**:  
+   - Reduce `terminationGracePeriodSeconds`  
+   - Implement `preStop` hooks for graceful shutdown  
+   
