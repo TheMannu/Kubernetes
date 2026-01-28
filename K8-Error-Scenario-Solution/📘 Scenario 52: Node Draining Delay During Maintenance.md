@@ -195,3 +195,12 @@ spec:
     severity: critical
   annotations:
     summary: "Node {{ $labels.node }} has been unschedulable for >30 minutes"
+
+- alert: LongTerminatingPods
+  expr: time() - kube_pod_deletion_timestamp > 300
+  for: 5m
+  labels:
+    severity: warning
+  annotations:
+    summary: "Pods terminating for >5 minutes"
+```
