@@ -244,3 +244,9 @@ spec:
 ```
 
 ---
+
+**Key PDB Design Principles**:  
+- **N+1 Rule**: `minAvailable` should be less than replica count  
+- **Percentage-based PDBs**: Better for scaling workloads (e.g., `minAvailable: 80%`)  
+- **Application-aware**: Consider quorum requirements for stateful systems  
+- **Graceful degradation**: Allow some disruption for operational flexibility  
