@@ -269,3 +269,7 @@ spec:
    - Track pod rescheduling latency  
    - Alert on long-running terminations  
 ```
+**Debugging Tools**:  
+```sh
+# Check PDB status across cluster
+kubectl get pdb -A -o custom-columns="NAMESPACE:.metadata.namespace,NAME:.metadata.name,MIN:.spec.minAvailable,HEALTHY:.status.currentHealthy,ALLOWED:.status.disruptionsAllowed"
