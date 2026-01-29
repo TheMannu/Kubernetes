@@ -265,3 +265,7 @@ spec:
    - Use `volumeBindingMode: WaitForFirstConsumer`  
    - Implement storage high availability  
    
+4. **Monitoring**:  
+   - Track pod rescheduling latency  
+   - Alert on long-running terminations  
+```
