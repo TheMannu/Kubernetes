@@ -286,3 +286,17 @@ kubectl get pods -A -o json | jq -r '.items[] | select(.metadata.deletionTimesta
 # Monitor eviction events
 kubectl get events -A --sort-by=.lastTimestamp | grep -i "evicted\|drain"
 ```
+
+**Emergency Drain Procedures**:  
+```sh
+# Force drain when stuck
+kubectl drain <node> --force --ignore-daemonsets --delete-emptydir-data --grace-period=0
+
+# Bypass PDB for emergency (dangerous)
+kubectl delete pdb <problematic-pdb> --wait=false
+
+# Manual pod eviction
+for pod in $(kubectl get pods --field-selector spec.nodeName=<node> -o name); do
+  kubectl delete $pod --grace-period=0 --force
+done
+```
