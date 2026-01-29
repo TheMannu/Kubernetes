@@ -273,3 +273,9 @@ spec:
 ```sh
 # Check PDB status across cluster
 kubectl get pdb -A -o custom-columns="NAMESPACE:.metadata.namespace,NAME:.metadata.name,MIN:.spec.minAvailable,HEALTHY:.status.currentHealthy,ALLOWED:.status.disruptionsAllowed"
+
+# Analyze pod distribution
+kubectl get pods -A -o wide | awk '{print $8}' | sort | uniq -c | sort -nr
+
+# Test drain impact simulation
+kubectl drain <node> --dry-run --ignore-daemonsets
