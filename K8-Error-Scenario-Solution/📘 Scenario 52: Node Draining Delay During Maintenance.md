@@ -279,3 +279,10 @@ kubectl get pods -A -o wide | awk '{print $8}' | sort | uniq -c | sort -nr
 
 # Test drain impact simulation
 kubectl drain <node> --dry-run --ignore-daemonsets
+
+# Check pod termination progress
+kubectl get pods -A -o json | jq -r '.items[] | select(.metadata.deletionTimestamp) | .metadata.namespace + "/" + .metadata.name + " " + .metadata.deletionTimestamp'
+
+# Monitor eviction events
+kubectl get events -A --sort-by=.lastTimestamp | grep -i "evicted\|drain"
+```
