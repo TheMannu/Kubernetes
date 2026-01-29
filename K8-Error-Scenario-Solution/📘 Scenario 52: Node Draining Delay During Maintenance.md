@@ -261,3 +261,7 @@ spec:
    - Reduce `terminationGracePeriodSeconds`  
    - Implement `preStop` hooks for graceful shutdown  
    
+3. **Storage optimization**:  
+   - Use `volumeBindingMode: WaitForFirstConsumer`  
+   - Implement storage high availability  
+   
