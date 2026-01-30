@@ -28,3 +28,11 @@ A massive batch deployment of 500 pods simultaneously overwhelmed the control pl
   - Node kubelets overwhelmed with pod creation requests  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Check API server health:
+```sh
+kubectl get --raw /readyz 2>&1 | head -5
+# Output: timeout after 30 seconds
+```
