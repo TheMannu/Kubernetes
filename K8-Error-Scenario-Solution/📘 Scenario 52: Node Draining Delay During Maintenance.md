@@ -300,3 +300,13 @@ for pod in $(kubectl get pods --field-selector spec.nodeName=<node> -o name); do
   kubectl delete $pod --grace-period=0 --force
 done
 ```
+
+**GKE-specific Considerations**:  
+```yaml
+# Node pool configuration for easier maintenance
+gcloud container node-pools update my-pool \
+  --cluster my-cluster \
+  --max-surge-upgrade 1 \
+  --max-unavailable-upgrade 0 \
+  --node-version 1.21.10-gke.2000
+```
