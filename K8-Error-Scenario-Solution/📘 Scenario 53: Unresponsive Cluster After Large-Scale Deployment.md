@@ -36,3 +36,10 @@ A massive batch deployment of 500 pods simultaneously overwhelmed the control pl
 kubectl get --raw /readyz 2>&1 | head -5
 # Output: timeout after 30 seconds
 ```
+
+### 2. Monitor control plane metrics:
+```sh
+# Via Azure Monitor (since kubectl unavailable)
+az monitor metrics list --resource /subscriptions/{sub}/resourceGroups/{rg}/providers/Microsoft.ContainerService/managedClusters/{cluster} --metric "apiserver_current_inflight_requests"
+# Showed 15k+ inflight requests
+```
