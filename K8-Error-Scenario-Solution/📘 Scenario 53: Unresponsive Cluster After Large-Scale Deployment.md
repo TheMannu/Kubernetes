@@ -43,3 +43,10 @@ kubectl get --raw /readyz 2>&1 | head -5
 az monitor metrics list --resource /subscriptions/{sub}/resourceGroups/{rg}/providers/Microsoft.ContainerService/managedClusters/{cluster} --metric "apiserver_current_inflight_requests"
 # Showed 15k+ inflight requests
 ```
+
+### 3. Check etcd status:
+```sh
+# Direct etcdctl access (if possible)
+etcdctl endpoint status --cluster
+# High latency and leader changes
+```
