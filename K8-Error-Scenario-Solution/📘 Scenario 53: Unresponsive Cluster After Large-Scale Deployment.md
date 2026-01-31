@@ -89,3 +89,31 @@ az aks maintenanceconfiguration add \
 # 3. Clear stuck pods
 kubectl delete pods --field-selector=status.phase=Pending --grace-period=0 --force
 ```
+
+### Long-term Solution:
+```yaml
+# RollingUpdate strategy with controlled deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: controlled-deploy
+spec:
+  replicas: 500
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 10%  # 50 pods at a time
+      maxUnavailable: 5%  # 25 pods unavailable during update
+  minReadySeconds: 30  # Wait 30s between batches
+  progressDeadlineSeconds: 600  # Fail after 10 minutes
+  template:
+    spec:
+      containers:
+      - name: app
+        resources:
+          requests:
+            memory: "256Mi"  # Reduced from 1Gi
+            cpu: "100m"
+```
+
+---
