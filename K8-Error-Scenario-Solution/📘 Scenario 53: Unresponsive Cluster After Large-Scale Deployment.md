@@ -59,3 +59,12 @@ kubectl get events --sort-by=.lastTimestamp | grep -i "deployment\|scale" | tail
 ```
 
 ---
+
+## Root Cause  
+**Thundering herd deployment**:  
+1. 500 simultaneous pod creation requests to API server  
+2. etcd overwhelmed with write operations  
+3. No rate limiting in CI/CD pipeline  
+4. Missing deployment staging or canary strategy  
+
+---
