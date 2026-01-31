@@ -68,3 +68,13 @@ kubectl get events --sort-by=.lastTimestamp | grep -i "deployment\|scale" | tail
 4. Missing deployment staging or canary strategy  
 
 ---
+
+## Fix/Workaround  
+
+### Emergency Recovery:
+```sh
+# 1. Scale down deployment via direct API (if accessible)
+curl -k -X PATCH https://${API_SERVER}/apis/apps/v1/namespaces/production/deployments/massive-deploy \
+  -H "Authorization: Bearer $(cat /var/run/secrets/kubernetes.io/serviceaccount/token)" \
+  -H "Content-Type: application/strategic-merge-patch+json" \
+  -d '{"spec":{"replicas":10}}'
