@@ -117,3 +117,10 @@ spec:
 ```
 
 ---
+
+## Lessons Learned  
+⚠️ **Batch size matters**: API server has hard limits on concurrent operations  
+⚠️ **etcd is the bottleneck**: Writes don't scale linearly with cluster size  
+⚠️ **Resource requests compound**: 500 pods × 1GB = 500GB instant demand  
+
+---
