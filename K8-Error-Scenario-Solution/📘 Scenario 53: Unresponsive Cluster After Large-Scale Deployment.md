@@ -50,3 +50,12 @@ az monitor metrics list --resource /subscriptions/{sub}/resourceGroups/{rg}/prov
 etcdctl endpoint status --cluster
 # High latency and leader changes
 ```
+
+### 4. Analyze deployment patterns:
+```sh
+# After recovery, check deployment history
+kubectl get events --sort-by=.lastTimestamp | grep -i "deployment\|scale" | tail -20
+# Showed 500 pod creation events within 60s
+```
+
+---
