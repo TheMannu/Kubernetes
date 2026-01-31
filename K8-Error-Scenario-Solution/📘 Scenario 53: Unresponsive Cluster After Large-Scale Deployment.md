@@ -78,3 +78,14 @@ curl -k -X PATCH https://${API_SERVER}/apis/apps/v1/namespaces/production/deploy
   -H "Authorization: Bearer $(cat /var/run/secrets/kubernetes.io/serviceaccount/token)" \
   -H "Content-Type: application/strategic-merge-patch+json" \
   -d '{"spec":{"replicas":10}}'
+
+# 2. Restart control plane components (requires Azure support)
+az aks maintenanceconfiguration add \
+  --resource-group myResourceGroup \
+  --cluster-name myAKSCluster \
+  --name controlplane-restart \
+  --config-file ./restart.json
+
+# 3. Clear stuck pods
+kubectl delete pods --field-selector=status.phase=Pending --grace-period=0 --force
+```
