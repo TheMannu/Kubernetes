@@ -187,3 +187,16 @@ spec:
   labels:
     severity: critical
 ```
+
+### 4. Capacity Planning Framework
+```sh
+# Pre-deployment capacity validation
+validate_deployment_capacity() {
+  local pods=$1
+  local cpu_per_pod=$2
+  local mem_per_pod=$3
+  
+  # Calculate required resources
+  local total_cpu=$(echo "$pods * $cpu_per_pod" | bc)
+  local total_mem=$(echo "$pods * $mem_per_pod" | bc)
+  
