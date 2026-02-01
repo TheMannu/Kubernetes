@@ -200,3 +200,15 @@ validate_deployment_capacity() {
   local total_cpu=$(echo "$pods * $cpu_per_pod" | bc)
   local total_mem=$(echo "$pods * $mem_per_pod" | bc)
   
+  # Check available cluster capacity
+  local available_cpu=$(kubectl get nodes -o json | jq '.items[].status.allocatable.cpu' | sed 's/[^0-9.]//g' | awk '{sum+=$1} END {print sum}')
+  local available_mem=$(kubectl get nodes -o json | jq '.items[].status.allocatable.memory' | sed 's/[^0-9.]//g' | awk '{sum+=$1} END {print sum/1024/1024/1024}')  # Convert to GB
+  
+  if (( $(echo "$total_cpu > $available_cpu * 0.7" | bc -l) )); then
+    echo "ERROR: CPU request ($total_cpu) exceeds 70% of available capacity ($available_cpu)"
+    exit 1
+  fi
+}
+```
+
+---
