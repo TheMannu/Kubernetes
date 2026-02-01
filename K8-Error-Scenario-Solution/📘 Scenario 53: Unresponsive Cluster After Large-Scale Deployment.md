@@ -124,3 +124,22 @@ spec:
 ⚠️ **Resource requests compound**: 500 pods × 1GB = 500GB instant demand  
 
 ---
+
+## Prevention Framework  
+
+### 1. Deployment Rate Limiting
+```yaml
+# CI/CD pipeline configuration with rate limits
+stages:
+- deploy:
+    strategy:
+      max_parallel: 5  # Max 5 pods simultaneously
+      batch_size: 10   # 10 pods per batch
+      wait_time: 30    # Wait 30s between batches
+    script:
+      - kubectl apply -f deployment.yaml --server-side --dry-run=server
+      - for i in {1..50}; do
+          kubectl scale --replicas=$((i*10)) deployment/massive-deploy
+          sleep 30
+        done
+```
