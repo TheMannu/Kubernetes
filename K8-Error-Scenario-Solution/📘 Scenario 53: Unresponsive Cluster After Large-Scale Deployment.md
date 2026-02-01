@@ -172,3 +172,18 @@ spec:
     severity: critical
   annotations:
     summary: "API server receiving >5k requests/min"
+
+- alert: DeploymentStormDetected
+  expr: increase(deployment_controller_syncs_total[1m]) > 100
+  for: 1m
+  labels:
+    severity: warning
+  annotations:
+    summary: "High deployment activity detected"
+
+- alert: etcdHighLatency
+  expr: histogram_quantile(0.95, rate(etcd_disk_wal_fsync_duration_seconds_bucket[5m])) > 0.5
+  for: 2m
+  labels:
+    severity: critical
+```
