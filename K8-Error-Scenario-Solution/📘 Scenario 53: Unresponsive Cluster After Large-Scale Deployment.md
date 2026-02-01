@@ -143,3 +143,21 @@ stages:
           sleep 30
         done
 ```
+
+### 2. API Server Protection
+```yaml
+# API server configuration for burst protection
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kube-apiserver
+  namespace: kube-system
+spec:
+  containers:
+  - command:
+    - kube-apiserver
+    - --max-requests-inflight=800
+    - --max-mutating-requests-inflight=400
+    - --target-ram-mb=8192
+    - --etcd-servers-overrides=/events#http://etcd-client:2379  # Separate event etcd
+```
