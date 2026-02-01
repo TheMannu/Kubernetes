@@ -161,3 +161,14 @@ spec:
     - --target-ram-mb=8192
     - --etcd-servers-overrides=/events#http://etcd-client:2379  # Separate event etcd
 ```
+
+### 3. Monitoring & Alerting
+```yaml
+# Prometheus alerts for deployment storms
+- alert: APIServerOverload
+  expr: rate(apiserver_request_total[5m]) > 5000
+  for: 2m
+  labels:
+    severity: critical
+  annotations:
+    summary: "API server receiving >5k requests/min"
