@@ -212,3 +212,9 @@ validate_deployment_capacity() {
 ```
 
 ---
+
+**Key Deployment Constraints**:  
+- **API Server**: ~500-1000 concurrent requests maximum  
+- **etcd**: ~50-100 writes per second sustainable  
+- **Scheduler**: ~100 pods per second scheduling rate  
+- **Kubelet**: ~50 pods per minute creation capacity  
