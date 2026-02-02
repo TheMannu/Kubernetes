@@ -238,3 +238,10 @@ kubectl get --raw /metrics | grep apiserver_current_inflight_requests
 kubectl get events --sort-by=.metadata.creationTimestamp | \
   grep -E "Created pod|Successfully assigned" | \
   awk '{print $2}' | cut -d: -f1 | uniq -c
+
+# Test etcd performance
+etcdctl check perf --load="s" --auto-compact-retention=1
+
+# Simulate deployment impact
+kubectl create deployment test-burst --image=nginx --replicas=100 --dry-run=server
+```
