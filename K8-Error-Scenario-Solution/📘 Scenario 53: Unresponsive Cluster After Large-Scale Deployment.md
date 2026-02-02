@@ -233,3 +233,8 @@ validate_deployment_capacity() {
 ```sh
 # Check API server queue depth (after recovery)
 kubectl get --raw /metrics | grep apiserver_current_inflight_requests
+
+# Analyze deployment timeline
+kubectl get events --sort-by=.metadata.creationTimestamp | \
+  grep -E "Created pod|Successfully assigned" | \
+  awk '{print $2}' | cut -d: -f1 | uniq -c
