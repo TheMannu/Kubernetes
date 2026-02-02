@@ -218,3 +218,13 @@ validate_deployment_capacity() {
 - **etcd**: ~50-100 writes per second sustainable  
 - **Scheduler**: ~100 pods per second scheduling rate  
 - **Kubelet**: ~50 pods per minute creation capacity  
+
+**Scaling Strategy Matrix**:  
+```markdown
+| Deployment Size | Recommended Strategy          | Batch Size | Interval |
+|-----------------|-------------------------------|------------|----------|
+| 1-50 pods       | Single batch                  | All        | Immediate|
+| 50-200 pods     | RollingUpdate (maxSurge: 20%) | 10-20      | 30s      |
+| 200-500 pods    | Phased deployment             | 25         | 60s      |
+| 500+ pods       | Multi-stage rollout           | 50         | 120s     |
+```
