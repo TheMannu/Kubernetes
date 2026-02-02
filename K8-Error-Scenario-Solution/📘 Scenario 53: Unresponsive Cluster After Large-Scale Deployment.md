@@ -245,3 +245,26 @@ etcdctl check perf --load="s" --auto-compact-retention=1
 # Simulate deployment impact
 kubectl create deployment test-burst --image=nginx --replicas=100 --dry-run=server
 ```
+
+**Emergency Mitigation Procedures**:  
+```yaml
+# Admission webhook to prevent large deployments
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingWebhookConfiguration
+metadata:
+  name: deployment-validator
+webhooks:
+- name: deployment-size.webhook.corp.com
+  rules:
+  - apiGroups: ["apps"]
+    apiVersions: ["v1"]
+    operations: ["CREATE", "UPDATE"]
+    resources: ["deployments"]
+  failurePolicy: Fail
+  sideEffects: None
+  clientConfig:
+    service:
+      name: deployment-validator
+      namespace: webhooks
+      path: /validate
+```
