@@ -228,3 +228,8 @@ validate_deployment_capacity() {
 | 200-500 pods    | Phased deployment             | 25         | 60s      |
 | 500+ pods       | Multi-stage rollout           | 50         | 120s     |
 ```
+
+**Debugging Tools**:  
+```sh
+# Check API server queue depth (after recovery)
+kubectl get --raw /metrics | grep apiserver_current_inflight_requests
