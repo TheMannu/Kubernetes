@@ -291,3 +291,7 @@ az aks update \
 1. [ ] Review deployment patterns in CI/CD  
 2. [ ] Implement deployment staging environments  
 3. [ ] Configure rate limiting in deployment tools  
+4. [ ] Set up canary deployment strategies  
+5. [ ] Monitor control plane capacity during deployments  
+6. [ ] Document maximum safe deployment sizes  
+```
