@@ -268,3 +268,11 @@ webhooks:
       namespace: webhooks
       path: /validate
 ```
+
+**AKS-specific Recommendations**:  
+```bash
+# Scale control plane for large deployments
+az aks update \
+  --resource-group myResourceGroup \
+  --name myAKSCluster \
+  --control-plane-vm-size Standard_D8s_v3
