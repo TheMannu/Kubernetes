@@ -276,3 +276,12 @@ az aks update \
   --resource-group myResourceGroup \
   --name myAKSCluster \
   --control-plane-vm-size Standard_D8s_v3
+
+# Enable cluster autoscaler for burst capacity
+az aks update \
+  --resource-group myResourceGroup \
+  --name myAKSCluster \
+  --enable-cluster-autoscaler \
+  --min-count 10 \
+  --max-count 100
+```
