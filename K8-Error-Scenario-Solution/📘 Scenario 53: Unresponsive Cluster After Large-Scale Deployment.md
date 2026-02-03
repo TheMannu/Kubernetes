@@ -285,3 +285,9 @@ az aks update \
   --min-count 10 \
   --max-count 100
 ```
+
+**Post-Mortem Checklist**:  
+```markdown
+1. [ ] Review deployment patterns in CI/CD  
+2. [ ] Implement deployment staging environments  
+3. [ ] Configure rate limiting in deployment tools  
