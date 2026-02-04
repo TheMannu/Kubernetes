@@ -52,3 +52,11 @@ ls -lh /var/lib/kubelet/config.yaml
 python3 -c "import yaml; yaml.safe_load(open('/var/lib/kubelet/config.yaml'))"
 # Output: yaml.parser.ParserError: while parsing a block mapping
 ```
+
+### 4. Check for backups:
+```sh
+find /etc/kubernetes /var/backups -name "*kubelet*config*" -type f 2>/dev/null
+# Found outdated backup from 30 days ago
+```
+
+---
