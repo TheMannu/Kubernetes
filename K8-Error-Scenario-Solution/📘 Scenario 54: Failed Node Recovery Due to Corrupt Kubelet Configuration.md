@@ -35,3 +35,20 @@ A corrupted kubelet configuration file prevented a node from rejoining the clust
 systemctl status kubelet --no-pager
 # Output: "Failed to start kubelet: failed to load kubelet config file"
 ```
+
+### 2. Inspect kubelet logs:
+```sh
+journalctl -u kubelet --no-pager -n 50 | grep -i "config\|json\|yaml"
+# Output: "error unmarshaling JSON: while parsing JSON: unexpected end of JSON input"
+```
+
+### 3. Verify configuration file integrity:
+```sh
+# Check file size (corruption indicator)
+ls -lh /var/lib/kubelet/config.yaml
+# Output: 0 bytes (empty file)
+
+# Validate YAML syntax
+python3 -c "import yaml; yaml.safe_load(open('/var/lib/kubelet/config.yaml'))"
+# Output: yaml.parser.ParserError: while parsing a block mapping
+```
