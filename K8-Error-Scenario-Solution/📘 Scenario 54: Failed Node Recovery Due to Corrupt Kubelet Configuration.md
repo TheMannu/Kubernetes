@@ -27,3 +27,11 @@ A corrupted kubelet configuration file prevented a node from rejoining the clust
   - Manual recovery required physical access (no out-of-band management)  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Check kubelet service status:
+```sh
+systemctl status kubelet --no-pager
+# Output: "Failed to start kubelet: failed to load kubelet config file"
+```
