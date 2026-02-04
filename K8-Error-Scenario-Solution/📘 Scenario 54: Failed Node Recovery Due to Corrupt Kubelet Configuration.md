@@ -22,3 +22,8 @@ A corrupted kubelet configuration file prevented a node from rejoining the clust
   - File corruption due to incomplete Chef run during maintenance  
   - No configuration validation on write operations  
   - Backup configuration was 30 days old (outdated)  
+- **Recovery challenges**:  
+  - Node-specific certificates embedded in config  
+  - Manual recovery required physical access (no out-of-band management)  
+
+---
