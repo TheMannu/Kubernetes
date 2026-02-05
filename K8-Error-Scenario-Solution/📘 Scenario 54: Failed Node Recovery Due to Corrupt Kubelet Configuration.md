@@ -95,3 +95,8 @@ authentication:
   webhook:
     enabled: true
 EOF
+
+# 3. Rejoin cluster
+kubeadm join 10.0.0.1:6443 --token <token> --discovery-token-ca-cert-hash sha256:<hash> \
+  --node-name $(hostname) --v=5
+```
