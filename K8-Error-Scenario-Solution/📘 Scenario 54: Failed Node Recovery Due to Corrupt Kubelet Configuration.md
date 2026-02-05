@@ -134,3 +134,10 @@ spec:
 ```
 
 ---
+
+## Lessons Learned  
+⚠️ **Node configs are stateful**: Unique per node, can't be trivially replaced  
+⚠️ **Atomic writes matter**: Partial config writes cause corruption  
+⚠️ **Validation is crucial**: Must verify configs before service restart  
+
+---
