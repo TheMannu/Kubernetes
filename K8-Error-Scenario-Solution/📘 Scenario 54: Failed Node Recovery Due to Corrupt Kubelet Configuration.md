@@ -115,3 +115,22 @@ data:
     kind: KubeletConfiguration
     # Base configuration here
 ---
+
+# DaemonSet to distribute and validate configs
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: kubelet-config-manager
+spec:
+  template:
+    spec:
+      containers:
+      - name: config-sync
+        image: alpine/k8s:1.23.0
+        command: ["/sync-config.sh"]
+        volumeMounts:
+        - name: kubelet-config
+          mountPath: /etc/kubernetes/kubelet
+```
+
+---
