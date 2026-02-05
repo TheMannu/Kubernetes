@@ -60,3 +60,12 @@ find /etc/kubernetes /var/backups -name "*kubelet*config*" -type f 2>/dev/null
 ```
 
 ---
+
+## Root Cause  
+**Configuration management failure**:  
+1. Chef run interrupted during config file write  
+2. No file integrity validation post-write  
+3. Missing configuration versioning or rollback mechanism  
+4. Inadequate backup frequency for node-specific configs  
+
+---
