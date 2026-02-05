@@ -100,3 +100,18 @@ EOF
 kubeadm join 10.0.0.1:6443 --token <token> --discovery-token-ca-cert-hash sha256:<hash> \
   --node-name $(hostname) --v=5
 ```
+
+### Long-term Solution:
+```yaml
+# Configuration management with validation
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kubelet-base-config
+  namespace: kube-system
+data:
+  kubelet-base.yaml: |
+    apiVersion: kubelet.config.k8s.io/v1beta1
+    kind: KubeletConfiguration
+    # Base configuration here
+---
