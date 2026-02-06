@@ -157,4 +157,23 @@ update_kubelet_config() {
     echo "ERROR: Configuration validation failed"
     exit 1
   fi
+    
+  # Create backup
+  mkdir -p "$backup_dir"
+  cp /var/lib/kubelet/config.yaml "$backup_dir/config.yaml.$(date +%s)"
   
+  # Atomic write with rename
+  cp "$new_config" "/var/lib/kubelet/config.yaml.new"
+  mv "/var/lib/kubelet/config.yaml.new" "/var/lib/kubelet/config.yaml"
+  
+  # Restart with validation
+  systemctl restart kubelet
+  sleep 5
+  systemctl is-active kubelet || {
+    echo "ERROR: Kubelet failed to start, rolling back"
+    cp "$backup_dir/config.yaml.$(date +%s)" /var/lib/kubelet/config.yaml
+    systemctl restart kubelet
+    exit 1
+  }
+}
+```
