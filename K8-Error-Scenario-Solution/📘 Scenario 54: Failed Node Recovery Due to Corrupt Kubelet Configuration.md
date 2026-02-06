@@ -237,3 +237,27 @@ spec:
               # Upload to S3 for disaster recovery
               aws s3 cp $BACKUP_DIR s3://my-cluster-backups/kubelet-configs/ --recursive
 ```
+
+### 4. Validation Webhooks
+```yaml
+# Admission webhook for kubelet config validation
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingWebhookConfiguration
+metadata:
+  name: kubelet-config-validator
+webhooks:
+- name: kubelet-config.webhook.corp.com
+  rules:
+  - apiGroups: [""]
+    apiVersions: ["v1"]
+    operations: ["CREATE", "UPDATE"]
+    resources: ["configmaps"]
+    scope: "Namespaced"
+  failurePolicy: Fail
+  sideEffects: None
+  clientConfig:
+    service:
+      name: config-validator
+      namespace: webhooks
+      path: /validate/kubelet-config
+```
