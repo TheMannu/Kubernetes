@@ -177,3 +177,14 @@ update_kubelet_config() {
   }
 }
 ```
+
+### 2. Monitoring & Alerting
+```yaml
+# Prometheus alerts for kubelet configuration
+- alert: KubeletConfigCorruption
+  expr: kubelet_config_hash != on(node) kubelet_running_config_hash
+  for: 5m
+  labels:
+    severity: critical
+  annotations:
+    summary: "Kubelet configuration mismatch on {{ $labels.node }}"
