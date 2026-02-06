@@ -188,3 +188,20 @@ update_kubelet_config() {
     severity: critical
   annotations:
     summary: "Kubelet configuration mismatch on {{ $labels.node }}"
+
+- alert: KubeletConfigValidationFailed
+  expr: increase(kubelet_config_validation_failures_total[5m]) > 0
+  for: 2m
+  labels:
+    severity: warning
+  annotations:
+    summary: "Kubelet configuration validation failures detected"
+
+- alert: KubeletServiceDown
+  expr: up{job="kubelet"} == 0
+  for: 5m
+  labels:
+    severity: critical
+  annotations:
+    summary: "Kubelet down on {{ $labels.instance }}"
+```
