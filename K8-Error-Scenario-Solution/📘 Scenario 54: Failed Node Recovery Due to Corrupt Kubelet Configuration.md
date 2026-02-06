@@ -205,3 +205,35 @@ update_kubelet_config() {
   annotations:
     summary: "Kubelet down on {{ $labels.instance }}"
 ```
+
+### 3. Configuration Backup Strategy
+```yaml
+# CronJob for regular configuration backups
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: kubelet-config-backup
+  namespace: kube-system
+spec:
+  schedule: "0 */6 * * *"  # Every 6 hours
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          hostNetwork: true
+          containers:
+          - name: backup
+            image: alpine
+            command:
+            - /bin/sh
+            - -c
+            - |
+              # Backup kubelet config
+              NODE=$(hostname)
+              BACKUP_DIR="/var/backups/kubelet/$(date +%Y%m%d)"
+              mkdir -p $BACKUP_DIR
+              cp /var/lib/kubelet/config.yaml $BACKUP_DIR/config.yaml.$NODE.$(date +%s)
+              
+              # Upload to S3 for disaster recovery
+              aws s3 cp $BACKUP_DIR s3://my-cluster-backups/kubelet-configs/ --recursive
+```
