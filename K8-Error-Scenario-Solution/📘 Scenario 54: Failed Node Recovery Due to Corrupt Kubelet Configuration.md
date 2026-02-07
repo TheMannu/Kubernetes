@@ -283,3 +283,8 @@ webhooks:
 - `/var/lib/kubelet/pki/kubelet-client-current.pem` (certificate)
 - `/etc/kubernetes/bootstrap-kubelet.conf` (bootstrap)
 ```
+
+**Debugging Tools**:  
+```sh
+# Validate kubelet configuration
+kubelet --validate --config=/var/lib/kubelet/config.yaml --pod-manifest-path=/etc/kubernetes/manifests
