@@ -294,3 +294,10 @@ sha256sum /var/lib/kubelet/config.yaml
 
 # Compare running vs stored config
 diff <(kubelet --print-config) /var/lib/kubelet/config.yaml
+
+# Test configuration changes
+kubelet --config=/tmp/test-config.yaml --pod-manifest-path=/tmp/manifests --exit-after-config
+
+# Inspect kubelet bootstrap process
+journalctl -u kubelet -f | grep -E "config\|certificate\|join"
+```
