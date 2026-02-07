@@ -269,3 +269,10 @@ webhooks:
 - **Bootstrap Config**: Initial join configuration  
 - **Dynamic Kubelet Config**: Runtime configuration updates  
 - **Certificate Files**: Client certificates for API server auth  
+
+**Configuration Backup Strategy**:  
+```markdown
+## Backup Tiers
+1. **Local (node)**: Hourly to `/var/backups/kubelet/`  
+2. **Cluster-wide**: Daily to ConfigMap in `kube-system`  
+3. **External**: Weekly to S3/GCS with 90-day retention  
