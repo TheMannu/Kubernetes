@@ -276,3 +276,10 @@ webhooks:
 1. **Local (node)**: Hourly to `/var/backups/kubelet/`  
 2. **Cluster-wide**: Daily to ConfigMap in `kube-system`  
 3. **External**: Weekly to S3/GCS with 90-day retention  
+
+## Critical Files to Backup
+- `/var/lib/kubelet/config.yaml` (kubelet config)
+- `/etc/kubernetes/kubelet.conf` (kubeconfig)
+- `/var/lib/kubelet/pki/kubelet-client-current.pem` (certificate)
+- `/etc/kubernetes/bootstrap-kubelet.conf` (bootstrap)
+```
