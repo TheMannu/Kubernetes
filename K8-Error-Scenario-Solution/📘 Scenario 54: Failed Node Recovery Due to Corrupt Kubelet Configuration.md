@@ -288,3 +288,9 @@ webhooks:
 ```sh
 # Validate kubelet configuration
 kubelet --validate --config=/var/lib/kubelet/config.yaml --pod-manifest-path=/etc/kubernetes/manifests
+
+# Check configuration hash
+sha256sum /var/lib/kubelet/config.yaml
+
+# Compare running vs stored config
+diff <(kubelet --print-config) /var/lib/kubelet/config.yaml
