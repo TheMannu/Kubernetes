@@ -261,3 +261,11 @@ webhooks:
       namespace: webhooks
       path: /validate/kubelet-config
 ```
+
+---
+
+**Key Configuration Components**:  
+- **KubeletConfiguration**: Node-specific runtime configuration  
+- **Bootstrap Config**: Initial join configuration  
+- **Dynamic Kubelet Config**: Runtime configuration updates  
+- **Certificate Files**: Client certificates for API server auth  
