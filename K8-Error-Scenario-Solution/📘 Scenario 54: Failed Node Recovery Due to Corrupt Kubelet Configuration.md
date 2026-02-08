@@ -330,3 +330,16 @@ LABEL linux
     kubelet.config.hash=$(sha256sum {{.NodeName}}.yaml) \
     kubelet.config.backup=http://config-server/backups/
 ```
+
+**Chef/Ansible Best Practices**:  
+```ruby
+# Chef template with validation
+template '/var/lib/kubelet/config.yaml' do
+  source 'kubelet-config.yaml.erb'
+  owner 'root'
+  group 'root'
+  mode '0640'
+  verify 'kubelet --validate --config=%{path} >/dev/null 2>&1'
+  notifies :restart, 'service[kubelet]', :delayed
+end
+```
