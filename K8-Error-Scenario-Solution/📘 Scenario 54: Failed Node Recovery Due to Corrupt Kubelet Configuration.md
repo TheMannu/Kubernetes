@@ -330,3 +330,9 @@ LABEL linux
     kubelet.config.hash=$(sha256sum {{.NodeName}}.yaml) \
     kubelet.config.backup=http://config-server/backups/
 ```
+
+**Chef/Ansible Best Practices**:  
+```ruby
+# Chef template with validation
+template '/var/lib/kubelet/config.yaml' do
+  source 'kubelet-config.yaml.erb'
