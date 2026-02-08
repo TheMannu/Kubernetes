@@ -301,3 +301,11 @@ kubelet --config=/tmp/test-config.yaml --pod-manifest-path=/tmp/manifests --exit
 # Inspect kubelet bootstrap process
 journalctl -u kubelet -f | grep -E "config\|certificate\|join"
 ```
+
+**Recovery Procedures**:  
+```markdown
+## Automated Recovery Flow
+1. **Detection**: Monitor for `kubelet_config_hash` mismatch  
+2. **Rollback**: Restore from last known good backup  
+3. **Validation**: Test config before restarting kubelet  
+4. **Notification**: Alert administrators of recovery action  
