@@ -309,3 +309,12 @@ journalctl -u kubelet -f | grep -E "config\|certificate\|join"
 2. **Rollback**: Restore from last known good backup  
 3. **Validation**: Test config before restarting kubelet  
 4. **Notification**: Alert administrators of recovery action  
+
+## Manual Recovery Steps
+1. SSH to affected node  
+2. Stop kubelet: `systemctl stop kubelet`  
+3. Restore config from backup  
+4. Validate: `kubelet --validate --config=...`  
+5. Start kubelet: `systemctl start kubelet`  
+6. Verify node rejoins: `kubectl get nodes`  
+```
