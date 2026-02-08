@@ -335,4 +335,10 @@ LABEL linux
 ```ruby
 # Chef template with validation
 template '/var/lib/kubelet/config.yaml' do
-  source 'kubelet-config.yaml.erb'
+  source 'kubelet-config.yaml.erb'  owner 'root'
+  group 'root'
+  mode '0640'
+  verify 'kubelet --validate --config=%{path} >/dev/null 2>&1'
+  notifies :restart, 'service[kubelet]', :delayed
+end
+```
