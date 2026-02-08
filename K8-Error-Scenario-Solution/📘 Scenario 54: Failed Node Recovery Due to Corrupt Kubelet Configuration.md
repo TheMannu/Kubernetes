@@ -318,3 +318,15 @@ journalctl -u kubelet -f | grep -E "config\|certificate\|join"
 5. Start kubelet: `systemctl start kubelet`  
 6. Verify node rejoins: `kubectl get nodes`  
 ```
+
+**Bare Metal Specific Considerations**:  
+```yaml
+# PXE boot configuration with kubelet config
+DEFAULT linux
+LABEL linux
+  KERNEL vmlinuz
+  APPEND initrd=initrd.img ip=dhcp \
+    kubelet.config.url=http://config-server/kubelet-config/{{.NodeName}}.yaml \
+    kubelet.config.hash=$(sha256sum {{.NodeName}}.yaml) \
+    kubelet.config.backup=http://config-server/backups/
+```
