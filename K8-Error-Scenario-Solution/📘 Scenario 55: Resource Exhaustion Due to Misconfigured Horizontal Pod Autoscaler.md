@@ -44,3 +44,9 @@ sum(rate(container_cpu_usage_seconds_total{namespace="production"}[5m])) by (pod
 sum(kube_pod_container_resource_requests{namespace="production",resource="cpu"}) by (pod)
 # Showed CPU spike followed by sustained high utilization despite scaling
 ```
+
+### 3. Check node resource pressure:
+```sh
+kubectl top nodes
+# Output: All nodes at 80%+ CPU, memory pressure warnings
+```
