@@ -26,3 +26,13 @@ An overly aggressive HPA configuration triggered runaway scaling, exhausting clu
   - Cloud bill alerts triggered at 150% budget threshold  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Check HPA scaling events:
+```sh
+kubectl describe hpa webapp -n production
+# Output:
+# CurrentReplicas: 100, DesiredReplicas: 100
+# Scaling events: 90 scaling events in last 15 minutes
+```
