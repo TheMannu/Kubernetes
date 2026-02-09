@@ -50,3 +50,20 @@ sum(kube_pod_container_resource_requests{namespace="production",resource="cpu"})
 kubectl top nodes
 # Output: All nodes at 80%+ CPU, memory pressure warnings
 ```
+
+### 4. Review HPA configuration:
+```sh
+kubectl get hpa webapp -n production -o yaml | yq '.spec'
+# Showed:
+# metrics:
+# - type: Resource
+#   resource:
+#     name: cpu
+#     target:
+#       type: Utilization
+#       averageUtilization: 50  # Too aggressive
+# minReplicas: 1
+# maxReplicas: 100  # Too high without safeguards
+```
+
+---
