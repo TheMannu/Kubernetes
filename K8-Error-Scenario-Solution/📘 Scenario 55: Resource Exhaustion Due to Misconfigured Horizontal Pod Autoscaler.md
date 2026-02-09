@@ -36,3 +36,11 @@ kubectl describe hpa webapp -n production
 # CurrentReplicas: 100, DesiredReplicas: 100
 # Scaling events: 90 scaling events in last 15 minutes
 ```
+
+### 2. Analyze metrics trends:
+```sh
+# Query Prometheus for CPU utilization during incident
+sum(rate(container_cpu_usage_seconds_total{namespace="production"}[5m])) by (pod) / 
+sum(kube_pod_container_resource_requests{namespace="production",resource="cpu"}) by (pod)
+# Showed CPU spike followed by sustained high utilization despite scaling
+```
