@@ -10,3 +10,19 @@
 An overly aggressive HPA configuration triggered runaway scaling, exhausting cluster resources and driving up cloud costs while actually degrading application performance due to resource contention.
 
 ---
+
+## What Happened  
+- **Triggering event**:  
+  - Legitimate traffic spike increased CPU utilization from 40% to 85%  
+  - HPA with CPU target of 50% triggered immediate scaling  
+- **Runaway scaling**:  
+  - Pods scaled from 10 → 100 in 15 minutes  
+  - Each new pod increased overall CPU load (cold start overhead)  
+  - Scaling continued despite plateauing external traffic  
+- **Observed symptoms**:  
+  - Node pool scaled from 50 → 150 nodes ($300/hr cost)  
+  - Application latency increased due to resource contention  
+  - etcd performance degraded from 1000+ pods per node  
+  - Cloud bill alerts triggered at 150% budget threshold  
+
+---
