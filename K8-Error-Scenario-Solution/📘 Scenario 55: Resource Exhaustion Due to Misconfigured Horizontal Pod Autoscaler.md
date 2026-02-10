@@ -90,3 +90,32 @@ kubectl scale deployment webapp -n production --replicas=20
 # 3. Suspend cluster autoscaler temporarily
 kubectl scale deployment cluster-autoscaler -n kube-system --replicas=0
 ```
+
+### Long-term Solution:
+```yaml
+# Multi-metric HPA with stabilization windows
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: webapp
+  namespace: production
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: webapp
+  minReplicas: 3
+  maxReplicas: 50  # Realistic maximum
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 300  # Wait 5 minutes before scaling down
+      policies:
+      - type: Pods
+        value: 2
+        periodSeconds: 60  # Max 2 pods per minute when scaling down
+    scaleUp:
+      stabilizationWindowSeconds: 60  # Wait 1 minute before scaling up
+      policies:
+      - type: Pods
+        value: 5
+        periodSeconds: 60  # Max 5 pods per minute when scaling up
