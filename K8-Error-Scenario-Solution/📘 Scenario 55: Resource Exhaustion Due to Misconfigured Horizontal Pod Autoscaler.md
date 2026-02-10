@@ -150,3 +150,21 @@ spec:
 ⚠️ **Cost controls matter**: Unlimited scaling equals unlimited costs  
 
 ---
+
+## Prevention Framework  
+
+### 1. HPA Configuration Validation
+```sh
+# Pre-apply HPA validation
+validate_hpa_config() {
+  local hpa_file=$1
+  
+  local max_replicas=$(yq '.spec.maxReplicas' $hpa_file)
+  local metrics_count=$(yq '.spec.metrics | length' $hpa_file)
+  
+  # Enforce maximum scaling limits
+  if [ $max_replicas -gt 100 ]; then
+    echo "ERROR: maxReplicas ($max_replicas) exceeds safety limit of 100"
+    exit 1
+  fi
+  
