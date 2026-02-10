@@ -67,3 +67,12 @@ kubectl get hpa webapp -n production -o yaml | yq '.spec'
 ```
 
 ---
+
+## Root Cause  
+**Single-metric autoscaling failure**:  
+1. HPA using only CPU metric without stabilization window  
+2. `maxReplicas` set too high without pod disruption considerations  
+3. No scaling cooldown between scaling events  
+4. Missing memory-based scaling limits  
+
+---
