@@ -76,3 +76,17 @@ kubectl get hpa webapp -n production -o yaml | yq '.spec'
 4. Missing memory-based scaling limits  
 
 ---
+
+## Fix/Workaround  
+
+### Emergency Stabilization:
+```sh
+# 1. Temporarily cap HPA maximum replicas
+kubectl patch hpa webapp -n production -p '{"spec":{"maxReplicas":20}}'
+
+# 2. Manually scale down overloaded deployment
+kubectl scale deployment webapp -n production --replicas=20
+
+# 3. Suspend cluster autoscaler temporarily
+kubectl scale deployment cluster-autoscaler -n kube-system --replicas=0
+```
