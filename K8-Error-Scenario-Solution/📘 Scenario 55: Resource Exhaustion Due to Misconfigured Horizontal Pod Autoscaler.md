@@ -119,3 +119,26 @@ spec:
       - type: Pods
         value: 5
         periodSeconds: 60  # Max 5 pods per minute when scaling up
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70  # More realistic target
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 80
+  - type: Pods
+    pods:
+      metric:
+        name: http_requests_per_second
+      target:
+        type: AverageValue
+        averageValue: 100
+```
+
+---
