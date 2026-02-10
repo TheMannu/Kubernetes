@@ -142,3 +142,11 @@ spec:
 ```
 
 ---
+
+## Lessons Learned  
+⚠️ **Scaling too fast creates feedback loops**: New pods consume resources during initialization  
+⚠️ **Single metrics are dangerous**: Must combine CPU, memory, and custom metrics  
+⚠️ **Stabilization windows are critical**: Prevent rapid oscillation  
+⚠️ **Cost controls matter**: Unlimited scaling equals unlimited costs  
+
+---
