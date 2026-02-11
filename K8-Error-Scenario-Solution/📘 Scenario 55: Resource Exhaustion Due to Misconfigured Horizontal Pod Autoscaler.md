@@ -220,3 +220,12 @@ spec:
     severity: warning
   annotations:
     summary: "HPA {{ $labels.namespace }}/{{ $labels.horizontalpodautoscaler }} at maximum replicas for 15+ minutes"
+
+- alert: ClusterCostExceeded
+  expr: aws_ec2_running_instances * 0.10 > 100  # Assuming $0.10/hr per instance
+  for: 10m
+  labels:
+    severity: critical
+  annotations:
+    summary: "Cluster cost exceeds $100/hour threshold"
+```
