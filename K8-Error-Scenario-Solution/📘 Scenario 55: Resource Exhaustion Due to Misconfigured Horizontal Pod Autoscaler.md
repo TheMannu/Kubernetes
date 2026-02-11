@@ -212,3 +212,11 @@ spec:
     severity: critical
   annotations:
     summary: "HPA scaling up too rapidly ({{ $value }} events in 10m)"
+
+- alert: HPAAtMaxReplicas
+  expr: kube_horizontalpodautoscaler_status_current_replicas == kube_horizontalpodautoscaler_spec_max_replicas
+  for: 15m
+  labels:
+    severity: warning
+  annotations:
+    summary: "HPA {{ $labels.namespace }}/{{ $labels.horizontalpodautoscaler }} at maximum replicas for 15+ minutes"
