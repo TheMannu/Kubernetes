@@ -168,3 +168,36 @@ validate_hpa_config() {
     exit 1
   fi
   
+  # Require multiple metrics
+  if [ $metrics_count -lt 2 ]; then
+    echo "WARNING: HPA configured with only $metrics_count metric(s)"
+  fi
+  
+  # Check for stabilization windows
+  if ! yq '.spec.behavior.scaleUp.stabilizationWindowSeconds' $hpa_file > /dev/null 2>&1; then
+    echo "WARNING: No stabilization window configured"
+  fi
+}
+```
+
+### 2. Cost Control Integration
+```yaml
+# Custom controller for cost-aware scaling
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cost-aware-scaler
+spec:
+  template:
+    spec:
+      containers:
+      - name: scaler
+        image: cost-aware-scaler:1.0
+        env:
+        - name: MAX_COST_PER_HOUR
+          value: "100"  # $100/hour maximum
+        - name: CLOUD_PROVIDER
+          value: "aws"
+        - name: REGION
+          value: "us-west-2"
+```
