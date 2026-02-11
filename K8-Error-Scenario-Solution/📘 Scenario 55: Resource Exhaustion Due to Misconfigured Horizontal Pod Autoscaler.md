@@ -229,3 +229,38 @@ spec:
   annotations:
     summary: "Cluster cost exceeds $100/hour threshold"
 ```
+
+### 4. Load Testing Framework
+```yaml
+# Automated scaling test before production deployment
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: hpa-load-test
+spec:
+  template:
+    spec:
+      containers:
+      - name: loader
+        image: loadimpact/k6
+        command: ["k6"]
+        args:
+        - "run"
+        - "--vus"
+        - "1000"
+        - "--duration"
+        - "10m"
+        - "/scripts/load-test.js"
+        env:
+        - name: TARGET_URL
+          value: "http://webapp.production.svc.cluster.local"
+        volumeMounts:
+        - name: scripts
+          mountPath: /scripts
+      volumes:
+      - name: scripts
+        configMap:
+          name: load-test-scripts
+```
+
+---
