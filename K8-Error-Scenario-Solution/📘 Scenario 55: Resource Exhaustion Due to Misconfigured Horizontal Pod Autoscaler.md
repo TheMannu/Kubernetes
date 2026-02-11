@@ -264,3 +264,10 @@ spec:
 ```
 
 ---
+
+**Key HPA Design Principles**:  
+- **Multiple Metrics**: Combine CPU, memory, and application-specific metrics  
+- **Stabilization Windows**: Prevent rapid oscillation (scaleUp: 60-120s, scaleDown: 300-600s)  
+- **Gradual Scaling**: Limit pods per minute scaling rates  
+- **Cost Awareness**: Integrate with cloud billing APIs  
+- **Capacity Planning**: Realistic `maxReplicas` based on actual capacity  
