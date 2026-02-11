@@ -201,3 +201,14 @@ spec:
         - name: REGION
           value: "us-west-2"
 ```
+
+### 3. Monitoring & Alerting
+```yaml
+# Prometheus alerts for runaway scaling
+- alert: HPAExcessiveScaling
+  expr: increase(hpa_scaling_total{direction="up"}[10m]) > 20
+  for: 5m
+  labels:
+    severity: critical
+  annotations:
+    summary: "HPA scaling up too rapidly ({{ $value }} events in 10m)"
