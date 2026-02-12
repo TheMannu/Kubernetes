@@ -281,3 +281,10 @@ behavior:
     - type: Percent
       value: 100
       periodSeconds: 15  # Double every 15 seconds during rapid scale-up
+  scaleDown:
+    stabilizationWindowSeconds: 300
+    policies:
+    - type: Pods
+      value: 2
+      periodSeconds: 60  # Remove max 2 pods per minute
+```
