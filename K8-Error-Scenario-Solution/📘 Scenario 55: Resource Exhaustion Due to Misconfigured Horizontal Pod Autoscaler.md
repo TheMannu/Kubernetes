@@ -271,3 +271,13 @@ spec:
 - **Gradual Scaling**: Limit pods per minute scaling rates  
 - **Cost Awareness**: Integrate with cloud billing APIs  
 - **Capacity Planning**: Realistic `maxReplicas` based on actual capacity  
+
+**HPA Configuration Best Practices**:  
+```yaml
+behavior:
+  scaleUp:
+    stabilizationWindowSeconds: 60
+    policies:
+    - type: Percent
+      value: 100
+      periodSeconds: 15  # Double every 15 seconds during rapid scale-up
