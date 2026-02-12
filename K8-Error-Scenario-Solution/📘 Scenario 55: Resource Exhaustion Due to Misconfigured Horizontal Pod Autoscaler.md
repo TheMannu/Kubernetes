@@ -288,3 +288,14 @@ behavior:
       value: 2
       periodSeconds: 60  # Remove max 2 pods per minute
 ```
+
+**Debugging Tools**:  
+```sh
+# Monitor HPA decisions
+kubectl get hpa -w
+
+# Analyze scaling events timeline
+kubectl describe hpa webapp | grep -A5 "ScalingReplicaSet"
+
+# Check actual vs desired replica count
+kubectl get hpa -o custom-columns="NAME:.metadata.name,CURRENT:.status.currentReplicas,DESIRED:.status.desiredReplicas,MIN:.spec.minReplicas,MAX:.spec.maxReplicas"
