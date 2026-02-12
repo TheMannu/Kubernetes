@@ -332,3 +332,15 @@ webhooks:
       operator: In
       values: ["production"]
 ```
+
+**EKS-specific Recommendations**:  
+```bash
+# Enable managed node groups with scaling limits
+eksctl create nodegroup \
+  --cluster my-cluster \
+  --name ng-1 \
+  --node-type m5.large \
+  --nodes 3 \
+  --nodes-min 3 \
+  --nodes-max 20 \  # Reasonable maximum
+  --managed
