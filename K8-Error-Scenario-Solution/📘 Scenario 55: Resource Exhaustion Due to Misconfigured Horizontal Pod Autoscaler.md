@@ -304,3 +304,31 @@ kubectl get hpa -o custom-columns="NAME:.metadata.name,CURRENT:.status.currentRe
 kubectl autoscale deployment test --cpu-percent=50 --min=1 --max=10
 kubectl run -it --rm load-generator --image=busybox -- sh -c "while true; do wget -q -O- http://webapp; done"
 ```
+
+**Emergency Scaling Controls**:  
+```yaml
+# Admission webhook to prevent dangerous HPA configurations
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingWebhookConfiguration
+metadata:
+  name: hpa-validator
+webhooks:
+- name: hpa.webhook.corp.com
+  rules:
+  - apiGroups: ["autoscaling"]
+    apiVersions: ["v2"]
+    operations: ["CREATE", "UPDATE"]
+    resources: ["horizontalpodautoscalers"]
+  failurePolicy: Fail
+  sideEffects: None
+  clientConfig:
+    service:
+      name: hpa-validator
+      namespace: webhooks
+      path: /validate/hpa
+  namespaceSelector:
+    matchExpressions:
+    - key: environment
+      operator: In
+      values: ["production"]
+```
