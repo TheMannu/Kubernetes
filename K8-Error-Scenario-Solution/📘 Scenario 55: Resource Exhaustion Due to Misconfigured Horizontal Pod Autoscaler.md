@@ -299,3 +299,8 @@ kubectl describe hpa webapp | grep -A5 "ScalingReplicaSet"
 
 # Check actual vs desired replica count
 kubectl get hpa -o custom-columns="NAME:.metadata.name,CURRENT:.status.currentReplicas,DESIRED:.status.desiredReplicas,MIN:.spec.minReplicas,MAX:.spec.maxReplicas"
+
+# Simulate scaling behavior
+kubectl autoscale deployment test --cpu-percent=50 --min=1 --max=10
+kubectl run -it --rm load-generator --image=busybox -- sh -c "while true; do wget -q -O- http://webapp; done"
+```
