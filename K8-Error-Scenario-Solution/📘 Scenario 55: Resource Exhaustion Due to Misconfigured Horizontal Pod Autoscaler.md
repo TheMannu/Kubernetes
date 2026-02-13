@@ -356,3 +356,12 @@ globalDefault: false
 description: "High priority for critical pods"
 EOF
 ```
+
+**Post-Incident Actions**:  
+```markdown
+1. [ ] Implement HPA configuration review gates in CI/CD  
+2. [ ] Set up cost anomaly detection with CloudWatch/Stackdriver  
+3. [ ] Create HPA runbooks with emergency scaling procedures  
+4. [ ] Establish maximum scaling limits per application tier  
+5. [ ] Schedule regular load testing to validate scaling behavior  
+```
