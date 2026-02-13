@@ -27,3 +27,12 @@ An application storing session state and user preferences in ephemeral container
   - No health check for state readiness  
 
 ---
+
+## Diagnosis Steps  
+
+### 1. Check pod restart history:
+```sh
+kubectl get pods -l app=frontend -n ecommerce | grep -v Running
+kubectl describe pod frontend-abc123 -n ecommerce | grep -A10 "Events"
+# Showed 3 pods restarted in last 30 minutes
+```
