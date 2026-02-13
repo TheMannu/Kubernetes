@@ -344,3 +344,15 @@ eksctl create nodegroup \
   --nodes-min 3 \
   --nodes-max 20 \  # Reasonable maximum
   --managed
+
+# Configure Cluster Autoscaler with pod priority
+kubectl create -f - <<EOF
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: high-priority
+value: 1000000
+globalDefault: false
+description: "High priority for critical pods"
+EOF
+```
