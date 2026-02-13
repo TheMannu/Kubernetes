@@ -36,3 +36,9 @@ kubectl get pods -l app=frontend -n ecommerce | grep -v Running
 kubectl describe pod frontend-abc123 -n ecommerce | grep -A10 "Events"
 # Showed 3 pods restarted in last 30 minutes
 ```
+
+### 2. Inspect application logs:
+```sh
+kubectl logs -l app=frontend -n ecommerce --tail=100 | grep -i "session\|cache\|state"
+# Output: "Failed to load session data: file not found"
+```
