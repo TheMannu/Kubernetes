@@ -10,3 +10,20 @@
 An application storing session state and user preferences in ephemeral container storage exhibited unpredictable behavior after pod restarts, resulting in data loss, inconsistent user experiences, and hard-to-reproduce bugs.
 
 ---
+
+## What Happened  
+- **Trigger event**:  
+  - Node maintenance triggered pod rescheduling  
+  - 3 of 12 application pods were terminated and recreated  
+- **Observed symptoms**:  
+  - Users reported shopping carts randomly emptying  
+  - Some users saw outdated profile information  
+  - Admin dashboards showed inconsistent analytics  
+  - Support tickets spiked 300% within 1 hour  
+- **Root analysis**:  
+  - Application stored user session data in `/tmp` (ephemeral storage)  
+  - No leader election for stateful operations  
+  - Caches not rebuilt after pod restart  
+  - No health check for state readiness  
+
+---
