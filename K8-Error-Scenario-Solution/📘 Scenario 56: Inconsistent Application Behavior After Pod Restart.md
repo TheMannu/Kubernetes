@@ -80,3 +80,52 @@ helm upgrade frontend ./helm-chart \
   --set redis.enabled=true \
   --set session.storage.type=redis
 ```
+
+
+### Long-term Solution:
+```yaml
+# Deployment with external state dependencies
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: ecommerce
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: app
+        image: myapp/frontend:2.1.0
+        env:
+        - name: REDIS_HOST
+          value: redis-master.ecommerce.svc.cluster.local
+        - name: SESSION_STORAGE
+          value: redis
+        - name: CACHE_WARMUP_ENABLED
+          value: "true"
+        volumeMounts:
+        - name: tmp
+          mountPath: /tmp  # Only for non-critical data
+        readinessProbe:
+          httpGet:
+            path: /health/ready
+            port: 8080
+          initialDelaySeconds: 30  # Wait for cache warmup
+          periodSeconds: 10
+        startupProbe:
+          httpGet:
+            path: /health/startup
+            port: 8080
+          failureThreshold: 30
+          periodSeconds: 10
+      volumes:
+      - name: tmp
+        emptyDir: {}
+---
