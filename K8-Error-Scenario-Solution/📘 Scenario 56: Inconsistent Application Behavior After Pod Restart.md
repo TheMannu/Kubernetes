@@ -42,3 +42,11 @@ kubectl describe pod frontend-abc123 -n ecommerce | grep -A10 "Events"
 kubectl logs -l app=frontend -n ecommerce --tail=100 | grep -i "session\|cache\|state"
 # Output: "Failed to load session data: file not found"
 ```
+
+### 3. Verify storage configuration:
+```sh
+kubectl get deployment frontend -n ecommerce -o yaml | yq '.spec.template.spec.volumes'
+# No persistent volume claims configured
+kubectl exec -it frontend-abc123 -n ecommerce -- ls -la /tmp/sessions
+# Showed local session files (lost on restart)
+```
