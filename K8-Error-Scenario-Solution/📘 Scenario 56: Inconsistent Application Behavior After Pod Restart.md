@@ -50,3 +50,11 @@ kubectl get deployment frontend -n ecommerce -o yaml | yq '.spec.template.spec.v
 kubectl exec -it frontend-abc123 -n ecommerce -- ls -la /tmp/sessions
 # Showed local session files (lost on restart)
 ```
+
+### 4. Check state synchronization:
+```sh
+kubectl logs frontend-xyz789 -n ecommerce | grep -i "leader"
+# No leader election logs found
+```
+
+---
