@@ -58,3 +58,12 @@ kubectl logs frontend-xyz789 -n ecommerce | grep -i "leader"
 ```
 
 ---
+
+## Root Cause  
+**Ephemeral state anti-pattern**:  
+1. Session data stored in container filesystem (non-persistent)  
+2. No external state store (Redis, database) for shared state  
+3. Missing startup health checks to verify state readiness  
+4. Load balancer sent traffic to pods before cache warmup  
+
+---
