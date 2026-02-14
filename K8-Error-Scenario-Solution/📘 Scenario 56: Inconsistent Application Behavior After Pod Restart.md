@@ -67,3 +67,10 @@ kubectl logs frontend-xyz789 -n ecommerce | grep -i "leader"
 4. Load balancer sent traffic to pods before cache warmup  
 
 ---
+
+## Fix/Workaround  
+
+### Immediate Mitigation:
+```sh
+# 1. Scale down to prevent further inconsistent state
+kubectl scale deployment frontend -n ecommerce --replicas=0
