@@ -74,3 +74,9 @@ kubectl logs frontend-xyz789 -n ecommerce | grep -i "leader"
 ```sh
 # 1. Scale down to prevent further inconsistent state
 kubectl scale deployment frontend -n ecommerce --replicas=0
+
+# 2. Re-deploy with external state store
+helm upgrade frontend ./helm-chart \
+  --set redis.enabled=true \
+  --set session.storage.type=redis
+```
