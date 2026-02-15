@@ -167,3 +167,11 @@ spec:
 ```
 
 ---
+
+## Lessons Learned  
+⚠️ **Kubernetes is ephemeral**: Pods can restart or move at any time  
+⚠️ **State must be external**: Use databases, object stores, or distributed caches  
+⚠️ **Readiness is more than running**: Application must verify external dependencies  
+⚠️ **Session affinity isn't enough**: Users may be routed to different pods  
+
+---
