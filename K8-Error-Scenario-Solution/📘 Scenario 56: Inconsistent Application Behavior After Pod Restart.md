@@ -175,3 +175,17 @@ spec:
 ⚠️ **Session affinity isn't enough**: Users may be routed to different pods  
 
 ---
+## Prevention Framework  
+
+### 1. Application Design Guidelines
+```yaml
+# State management best practices as code
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: state-management-policies
+  namespace: platform-engineering
+data:
+  guidelines.md: |
+    ## Stateful Design Principles
+    
