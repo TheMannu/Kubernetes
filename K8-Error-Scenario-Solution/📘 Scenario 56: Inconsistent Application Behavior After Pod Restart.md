@@ -129,3 +129,21 @@ spec:
       - name: tmp
         emptyDir: {}
 ---
+
+# Redis for shared session state
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: redis-master
+  namespace: ecommerce
+spec:
+  serviceName: redis-master
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
