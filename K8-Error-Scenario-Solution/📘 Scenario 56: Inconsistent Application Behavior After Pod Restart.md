@@ -147,3 +147,23 @@ spec:
       labels:
         app: redis
     spec:
+      containers:
+      - name: redis
+        image: redis:6.2-alpine
+        args: ["--save", "60", "100", "--appendonly", "yes"]
+        ports:
+        - containerPort: 6379
+        volumeMounts:
+        - name: redis-data
+          mountPath: /data
+  volumeClaimTemplates:
+  - metadata:
+      name: redis-data
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: 10Gi
+```
+
+---
