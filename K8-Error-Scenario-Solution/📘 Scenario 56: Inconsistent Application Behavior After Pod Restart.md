@@ -189,3 +189,12 @@ data:
   guidelines.md: |
     ## Stateful Design Principles
     
+    1. **Never store state in local filesystem** except for caching
+    2. **Use external databases** for persistent data (PostgreSQL, MySQL)
+    3. **Use distributed caches** for session state (Redis, Memcached)
+    4. **Implement leader election** for active/passive patterns
+    5. **Design for idempotency** - same request produces same result
+    6. **Implement graceful shutdown** - save state before termination
+    7. **Add readiness probes** that verify external dependencies
+    8. **Test failure scenarios** - kill pods and verify recovery
+```
