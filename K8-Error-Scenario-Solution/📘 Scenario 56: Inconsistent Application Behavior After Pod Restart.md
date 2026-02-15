@@ -198,3 +198,16 @@ data:
     7. **Add readiness probes** that verify external dependencies
     8. **Test failure scenarios** - kill pods and verify recovery
 ```
+
+### 2. CI/CD Validation
+```sh
+# Pre-deployment state management audit
+audit_state_management() {
+  local repo=$1
+  local app=$2
+  
+  # Check for local file writes in critical paths
+  if grep -r "write.*/tmp\|write.*/var\|File\.write" $repo/src --include="*.py" --include="*.java" --include="*.go"; then
+    echo "WARNING: Application writing to local filesystem - verify this is non-critical data"
+  fi
+  
